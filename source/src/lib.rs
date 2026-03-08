@@ -22,3 +22,12 @@ pub use self_kernel::{
     SelfReport, Goal, GoalVector, GoalStatus,
     SelfPredictor, PredictedState
 };
+
+// P2: Self Preservation Kernel
+pub mod self_preservation;
+pub use self_preservation::{
+    SelfPreservationKernel, HomeostasisState,
+    PreservationAction, PreservationPolicy,
+    SurvivalRiskModel, SurvivalRiskEstimate,
+    PreservationMetrics, ExperimentComparison
+};
