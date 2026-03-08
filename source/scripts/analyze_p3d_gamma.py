@@ -19,6 +19,8 @@ import os
 import glob
 import statistics
 import math
+import time
+from datetime import datetime, timezone
 from collections import defaultdict
 
 def extract_seed_from_filename(filename):
@@ -58,7 +60,7 @@ def compute_paired_deltas(baseline, p2on):
     paired_seeds = sorted(set(baseline.keys()) & set(p2on.keys()))
     
     if not paired_seeds:
-        return [], []
+        return [], [], []  # 修正：返回3个值，与正常路径一致
     
     survival_deltas = []
     food_deltas = []
@@ -157,22 +159,22 @@ def analyze_paired_results(baseline, p2on):
     if n_paired == 0:
         return None, "NO_PAIRED_DATA: no matching seeds found"
     
-    # 2. 基础统计
-    # Baseline 组（所有数据）
+    # 2. 基础统计（严格 paired：只使用 paired_seeds）
+    # 修正：与 survival_deltas 保持一致的样本基底
     baseline_survival = []
     baseline_food = []
-    for seed in baseline:
+    for seed in paired_seeds:  # 修正：只用 paired seeds
         for r in baseline[seed]:
             baseline_survival.append(r.get('avg_survival_steps', 0))
             baseline_food.append(r.get('total_food_eaten', 0))
     
-    # P2-ON 组（所有数据）
+    # P2-ON 组（严格 paired：只使用 paired_seeds）
     p2on_survival = []
     p2on_food = []
     p2on_intervention = []
     p2on_recovery = []
     
-    for seed in p2on:
+    for seed in paired_seeds:  # 修正：只用 paired seeds
         for r in p2on[seed]:
             p2on_survival.append(r.get('avg_survival_steps', 0))
             p2on_food.append(r.get('total_food_eaten', 0))
@@ -293,8 +295,15 @@ def print_report(stats, error=None):
     
     # 判定逻辑
     intervention_active = i['mean'] > 0.10
-    effect_detected = abs(cohens_d) >= 0.20
-    sample_level = determine_sample_level(stats['n_paired_seeds'], stats['total_episodes_p2on'])
+    # 修正：严格 paired design 应使用 paired_d，或双重防线
+    # 方案 B（保守）：pooled 和 paired 都需达标
+    pooled_significant = abs(cohens_d) >= 0.20
+    paired_significant = abs(paired_d) >= 0.20
+    effect_detected = pooled_significant and paired_significant  # 双重防线
+    
+    # 修正：样本量使用两组中的较小值，确保平衡
+    n_total_episodes = min(stats['total_episodes_baseline'], stats['total_episodes_p2on'])
+    sample_level = determine_sample_level(stats['n_paired_seeds'], n_total_episodes)
     sample_sufficient = sample_level == "adequate"
     
     # 关键判定
@@ -331,8 +340,10 @@ def print_report(stats, error=None):
     print()
     print("Summary:")
     print(f"  intervention_active:      {intervention_active} (rate={i['mean']*100:.1f}%)")
-    print(f"  effect_detected:          {effect_detected} (|d|≥0.2? {effect_detected}, d={cohens_d:.2f})")
-    print(f"  sample_level:             {sample_level} (n_seeds={stats['n_paired_seeds']}, n_ep={stats['total_episodes_p2on']})")
+    print(f"  pooled_d_significant:     {pooled_significant} (|d|={abs(cohens_d):.2f})")
+    print(f"  paired_d_significant:     {paired_significant} (|d|={abs(paired_d):.2f})")
+    print(f"  effect_detected:          {effect_detected} (both significant? {effect_detected})")
+    print(f"  sample_level:             {sample_level} (n_seeds={stats['n_paired_seeds']}, n_ep={n_total_episodes})")
     print(f"  evidence_strength:        {evidence_strength}")
     print(f"  behavioral_shift:         {behavioral_shift_detected}")
     print(f"  verdict:                  {verdict}")
@@ -357,12 +368,15 @@ def print_report(stats, error=None):
         'behavioral_shift_detected': behavioral_shift_detected,
         'intervention_active': intervention_active,
         'effect_detected': effect_detected,
+        'pooled_significant': pooled_significant,
+        'paired_significant': paired_significant,
         'cohens_d': cohens_d,
+        'paired_d': paired_d,
         'effect_size_interpretation': effect_interp,
         'sample_level': sample_level,
         'evidence_strength': evidence_strength,
         'n_paired_seeds': stats['n_paired_seeds'],
-        'total_episodes_p2on': stats['total_episodes_p2on'],
+        'total_episodes': n_total_episodes,
     }
 
 def save_summary(stats, verdict_info, output_dir):
@@ -372,7 +386,7 @@ def save_summary(stats, verdict_info, output_dir):
     
     summary = {
         "p3d_gamma_status": "measured_native_ab",
-        "analysis_timestamp": str(os.path.getmtime(output_dir)),
+        "analysis_timestamp": datetime.now(timezone.utc).isoformat(),  # 修正：真实分析时间
         "paired_analysis": {
             "n_paired_seeds": stats['n_paired_seeds'],
             "paired_seeds": stats['paired_seeds'],
@@ -400,6 +414,8 @@ def save_summary(stats, verdict_info, output_dir):
         "effect_size": {
             "cohens_d_pooled": stats['cohens_d_pooled'],
             "cohens_d_paired": stats['cohens_d_paired'],
+            "pooled_significant": verdict_info.get('pooled_significant', False),
+            "paired_significant": verdict_info.get('paired_significant', False),
             "interpretation": verdict_info['effect_size_interpretation'],
         },
         # 关键判定字段
@@ -407,6 +423,8 @@ def save_summary(stats, verdict_info, output_dir):
         "behavioral_shift_detected": verdict_info['behavioral_shift_detected'],
         "intervention_active": verdict_info['intervention_active'],
         "effect_detected": verdict_info['effect_detected'],
+        "pooled_significant": verdict_info.get('pooled_significant', False),
+        "paired_significant": verdict_info.get('paired_significant', False),
         "sample_level": verdict_info['sample_level'],
         "evidence_strength": verdict_info['evidence_strength'],
     }
