@@ -200,7 +200,7 @@ python3 scripts/analyze_p3d_gamma.py logs/p3d/
 
 ## 院长审查修正记录
 
-### 7 项关键修正（最新提交 `7691f95`）
+### 第一轮 7 项修正（提交 `934a6c3`）
 
 | # | 问题 | 修正 | 状态 |
 |---|------|------|------|
@@ -211,6 +211,18 @@ python3 scripts/analyze_p3d_gamma.py logs/p3d/
 | 5 | Log 文件名不含 seed | 格式: `{mode}_seed{seed}_{ts}.csv` | ✅ |
 | 6 | ContinueTask reset 不完整 | 明确 reset 所有控制参数 | ✅ |
 | 7 | ReduceExploration 方向不清 | 添加方向性注释 | ✅ |
+
+### 第二轮 5 项修正（最终提交 `e1e4a58`）
+
+| # | 问题 | 修正 | 状态 |
+|---|------|------|------|
+| 1 | 返回值不一致 bug | `return [], [], []` | ✅ |
+| 2 | pooled 混入非 paired seeds | 基础统计只用 `paired_seeds` | ✅ |
+| 3 | effect_detected 只用 pooled | 双重防线: `pooled AND paired` | ✅ |
+| 4 | sample level 只看 p2on | `min(baseline, p2on)` | ✅ |
+| 5 | timestamp 是目录 mtime | `datetime.now(timezone.utc)` | ✅ |
+
+**当前状态**: P3D-gamma analysis framework 已方法学完备，待实际样本验证。
 
 ---
 
