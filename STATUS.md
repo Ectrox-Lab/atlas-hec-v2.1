@@ -82,20 +82,24 @@ d < 0.2:   negligible (可忽略)
 > 0.8:     large (大效应)
 ```
 
-### 判定标准（修正后）
+### 判定标准（院长修正版）
 
 #### 核心公式
 ```python
 # 基础判定
 intervention_active = intervention_rate > 0.10
 effect_detected = abs(cohens_d) >= 0.20
-sample_sufficient = n_episodes_per_condition >= 500
 
-# 关键判定（修正：移除 sample_sufficient 作为 shift 替代条件）
+# 关键判定（修正：sample_sufficient 不作为 shift 替代条件）
 behavioral_shift_detected = intervention_active AND effect_detected
 
-# 证据强度（独立判定）
-evidence_strength = "adequate" if sample_sufficient else "preliminary"
+# 证据强度（独立分层）
+if n_paired_seeds >= 10 and n_episodes >= 500:
+    sample_level = "adequate"
+elif n_paired_seeds >= 5 and n_episodes >= 100:
+    sample_level = "preliminary"
+else:
+    sample_level = "limited"
 ```
 
 #### 四段式判定逻辑
@@ -105,19 +109,32 @@ if not intervention_active:
     
 elif not effect_detected:
     verdict = "NO_SHIFT: no measurable behavioral shift detected"
-    # 关键失败模式：control parameters 未影响 policy dynamics
+    # 关键失败模式：intervention 很多但无 effect
+    # → control parameters 未真正影响 policy dynamics
     
-elif not sample_sufficient:
-    verdict = "PRELIMINARY_SHIFT: effect detected but sample insufficient"
+elif sample_level == "limited":
+    verdict = "INSUFFICIENT_DATA: effect suggested but sample too small"
+    
+elif sample_level == "preliminary":
+    verdict = "PRELIMINARY_SHIFT: effect detected but need more data"
     
 else:
     verdict = "SUPPORTED_SHIFT: measurable behavioral shift detected"
 ```
 
+#### 统计方法（严格配对）
+1. **Paired Analysis**: 只使用交集 seed，计算 pair-wise delta
+2. **Cohen's d**: 标准 pooled SD 公式
+   ```
+   d = (mean2 - mean1) / pooled_std
+   pooled_std = sqrt(((n1-1)*s1^2 + (n2-1)*s2^2) / (n1+n2-2))
+   ```
+3. **Paired d**: delta_mean / delta_std (配对设计)
+
 #### 常见失败模式（需警惕）
 ```
 intervention_rate 很高 (如 80%)
-但 behavior metrics 无变化 (d < 0.2)
+但 Cohen's d < 0.2 (negligible)
 → verdict: "NO_SHIFT: no measurable behavioral shift detected"
 → 说明: control parameter 未真正影响 policy dynamics
 ```
@@ -181,6 +198,22 @@ python3 scripts/analyze_p3d_gamma.py logs/p3d/
 
 ---
 
+## 院长审查修正记录
+
+### 7 项关键修正（最新提交 `7691f95`）
+
+| # | 问题 | 修正 | 状态 |
+|---|------|------|------|
+| 1 | 非严格 paired analysis | 使用交集 seed，计算 pair-wise delta | ✅ |
+| 2 | Cohen's d 不标准 | 改用 pooled SD 标准公式 | ✅ |
+| 3 | sample size 判定过弱 | 分层: adequate/preliminary/limited | ✅ |
+| 4 | JSON 缺少 verdict 字段 | 保存所有关键判定字段 | ✅ |
+| 5 | Log 文件名不含 seed | 格式: `{mode}_seed{seed}_{ts}.csv` | ✅ |
+| 6 | ContinueTask reset 不完整 | 明确 reset 所有控制参数 | ✅ |
+| 7 | ReduceExploration 方向不清 | 添加方向性注释 | ✅ |
+
+---
+
 ## 文件索引
 
 | 文件 | 阶段 | 说明 |
@@ -188,9 +221,9 @@ python3 scripts/analyze_p3d_gamma.py logs/p3d/
 | `src/p3_runtime_integration/` | P3A | Runtime Integration |
 | `src/bin/p3b_ab_validation.rs` | P3B | Simulated Validation |
 | `src/bin/p3c_real_validation.rs` | P3C | Runtime-like Harness |
-| `src/bin/p3d_main_runtime_native.rs` | P3D | Main Runtime Native |
-| `src/gridworld/mod.rs` | P3D | 主系统（P3 Control API）|
-| `scripts/analyze_p3d_gamma.py` | P3D-γ | 统计分析（Cohen's d）|
+| `src/bin/p3d_main_runtime_native.rs` | P3D | Main Runtime Native (含 seed 命名) |
+| `src/gridworld/mod.rs` | P3D | 主系统（P3 Control API，方向注释）|
+| `scripts/analyze_p3d_gamma.py` | P3D-γ | 统计分析（配对分析，标准 Cohen's d）|
 | `scripts/p3d_gamma_batch.sh` | P3D-γ | 批量实验脚本 |
 | `P3D_GAMMA_EXPERIMENT_PLAN.md` | P3D-γ | 实验规范文档 |
 | `STATUS.md` | - | 本文件 |
