@@ -326,10 +326,21 @@ impl P3DMainRuntimeValidator {
                 println!("  [P3] SlowDown: limit_ms={}", 10 + sleep_ms);
             }
             PreservationAction::ContinueTask => {
-                // 正常模式：渐进恢复默认参数
-                if self.agent.get_control_params().recovery_mode {
+                // 正常模式：恢复所有控制参数到默认值
+                // 设计选择: per-step reactive control（非 sticky state）
+                let params = self.agent.get_control_params();
+                if params.recovery_mode 
+                    || params.exploration_scale != 1.0
+                    || params.curiosity_eta_scale != 1.0
+                    || params.motor_bias_scale != 1.0
+                    || params.step_rate_limit_ms != 10 {
+                    
                     self.agent.set_recovery_mode(false);
-                    println!("  [P3] ContinueTask: recovery exited");
+                    self.agent.set_exploration_scale(1.0);
+                    self.agent.set_curiosity_eta_scale(1.0);
+                    self.agent.set_motor_bias_scale(1.0);
+                    self.agent.set_step_rate_limit_ms(10);
+                    println!("  [P3] ContinueTask: all controls reset to defaults");
                 }
             }
         }
@@ -468,8 +479,9 @@ fn main() {
     }
     
     let mode_str = if p3_enabled { "p2on" } else { "baseline" };
-    let log_file = format!("logs/p3d/{}_{}.csv", mode_str, 
-        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs());
+    let timestamp = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_secs();
+    // 文件名包含 seed，便于配对识别: {mode}_seed{seed}_{timestamp}.csv
+    let log_file = format!("logs/p3d/{}_seed{}_{}.csv", mode_str, seed, timestamp);
     
     std::fs::create_dir_all("logs/p3d").ok();
     

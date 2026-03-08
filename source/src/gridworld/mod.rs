@@ -353,6 +353,10 @@ impl SuperbrainAgent {
     // === P3D-beta: Preservation Control API ===
     
     /// 设置探索缩放 (P3: ReduceExploration)
+    /// 
+    /// 语义：scale 越小 = 探索越少（更保守）
+    /// P3 传入: params.exploration_rate * 2.0 (如 0.15 * 2 = 0.3)
+    /// 结果：scale=0.3 表示探索降低到正常的 30%
     pub fn set_exploration_scale(&mut self, scale: f32) {
         self.exploration_scale = scale.clamp(0.0, 2.0);
     }

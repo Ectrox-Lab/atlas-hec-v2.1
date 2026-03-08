@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-P3D-gamma: Measured Native A/B Statistical Analysis
+P3D-gamma: Paired Native A/B Statistical Analysis
 
-院长要求：
-- 成对实验统计
-- 均值 ± 标准差
-- 效应方向明确
-- 可复现
+院长修正要求：
+1. 严格 paired analysis (seed 交集，pair-wise delta)
+2. 标准 Cohen's d (pooled SD)
+3. 分层 sample size 判定
+4. JSON 保存 verdict 等关键字段
+5. 明确方向性和控制语义
 
 用法：
-    python3 scripts/analyze_p3d_gamma.py logs/p3d_gamma/
+    python3 scripts/analyze_p3d_gamma.py logs/p3d/
 """
 
 import json
@@ -17,12 +18,12 @@ import sys
 import os
 import glob
 import statistics
+import math
 from collections import defaultdict
 
 def extract_seed_from_filename(filename):
-    """从文件名提取 seed (p3d_gamma 命名格式: {mode}_seed{N}_*.json)"""
+    """从文件名提取 seed"""
     basename = os.path.basename(filename)
-    # 尝试匹配 seed 数字
     import re
     match = re.search(r'seed(\d+)', basename)
     if match:
@@ -37,7 +38,6 @@ def load_all_results(directory):
     for json_file in glob.glob(os.path.join(directory, "*_result.json")):
         with open(json_file) as f:
             data = json.load(f)
-            # 优先使用文件中的 seed，否则从文件名提取
             seed = data.get('seed')
             if seed is None:
                 seed = extract_seed_from_filename(json_file)
@@ -49,86 +49,78 @@ def load_all_results(directory):
     
     return baseline, p2on
 
-def compute_stats(values):
-    """计算均值、标准差、最小、最大"""
-    if not values:
-        return {"mean": 0, "std": 0, "min": 0, "max": 0, "n": 0}
-    
-    n = len(values)
-    mean = statistics.mean(values)
-    std = statistics.stdev(values) if n > 1 else 0.0
-    
-    return {
-        "mean": mean,
-        "std": std,
-        "min": min(values),
-        "max": max(values),
-        "n": n
-    }
-
-def analyze_paired_results(baseline, p2on):
-    """分析成对实验结果"""
-    
-    # 收集所有指标
-    baseline_survival = []
-    baseline_food = []
-    baseline_intervention = []
-    
-    p2on_survival = []
-    p2on_food = []
-    p2on_intervention = []
-    p2on_recovery = []
-    
-    # 按 seed 配对
-    all_seeds = set(baseline.keys()) | set(p2on.keys())
-    
-    for seed in all_seeds:
-        # Baseline 数据
-        for r in baseline.get(seed, []):
-            baseline_survival.append(r.get('avg_survival_steps', 0))
-            baseline_food.append(r.get('total_food_eaten', 0))
-            baseline_intervention.append(r.get('intervention_rate', 0))
-        
-        # P2-ON 数据
-        for r in p2on.get(seed, []):
-            p2on_survival.append(r.get('avg_survival_steps', 0))
-            p2on_food.append(r.get('total_food_eaten', 0))
-            p2on_intervention.append(r.get('intervention_rate', 0))
-            # recovery 比例
-            action_dist = r.get('action_distribution', {})
-            total_actions = sum(action_dist.values())
-            recovery_count = action_dist.get('EnterRecovery', 0)
-            p2on_recovery.append(recovery_count / total_actions if total_actions > 0 else 0)
-    
-    return {
-        'baseline': {
-            'survival': compute_stats(baseline_survival),
-            'food': compute_stats(baseline_food),
-            'intervention': compute_stats(baseline_intervention),
-        },
-        'p2on': {
-            'survival': compute_stats(p2on_survival),
-            'food': compute_stats(p2on_food),
-            'intervention': compute_stats(p2on_intervention),
-            'recovery': compute_stats(p2on_recovery),
-        }
-    }
-
-def compute_effect_size(baseline_mean, p2on_mean, baseline_std):
-    """计算效应大小 (Cohen's d)
-    
-    解释标准 (固定):
-    - d < 0.2:   negligible (可忽略)
-    - 0.2–0.5:   small (小效应)
-    - 0.5–0.8:   medium (中等效应)
-    - > 0.8:     large (大效应)
+def compute_paired_deltas(baseline, p2on):
     """
-    if baseline_std == 0:
+    严格 paired analysis:
+    只对交集 seed 计算 pair-wise delta
+    """
+    # 只使用交集 seed（严格配对）
+    paired_seeds = sorted(set(baseline.keys()) & set(p2on.keys()))
+    
+    if not paired_seeds:
+        return [], []
+    
+    survival_deltas = []
+    food_deltas = []
+    
+    for seed in paired_seeds:
+        # 对每个 seed，取该 seed 下所有 episodes 的均值
+        b_survival = [r.get('avg_survival_steps', 0) for r in baseline[seed]]
+        p_survival = [r.get('avg_survival_steps', 0) for r in p2on[seed]]
+        
+        b_food = [r.get('total_food_eaten', 0) for r in baseline[seed]]
+        p_food = [r.get('total_food_eaten', 0) for r in p2on[seed]]
+        
+        # 计算该 seed 的均值
+        b_surv_mean = statistics.mean(b_survival) if b_survival else 0
+        p_surv_mean = statistics.mean(p_survival) if p_survival else 0
+        
+        b_food_mean = statistics.mean(b_food) if b_food else 0
+        p_food_mean = statistics.mean(p_food) if p_food else 0
+        
+        # pair-wise delta
+        survival_deltas.append(p_surv_mean - b_surv_mean)
+        food_deltas.append(p_food_mean - b_food_mean)
+    
+    return survival_deltas, food_deltas, paired_seeds
+
+def compute_cohens_d_pooled(mean1, std1, n1, mean2, std2, n2):
+    """
+    标准 Cohen's d (pooled SD 版本)
+    
+    d = (mean2 - mean1) / pooled_std
+    pooled_std = sqrt(((n1-1)*s1^2 + (n2-1)*s2^2) / (n1+n2-2))
+    """
+    if n1 < 2 or n2 < 2:
         return 0.0
-    return (p2on_mean - baseline_mean) / baseline_std
+    
+    # Pooled variance
+    pooled_var = (((n1 - 1) * std1**2) + ((n2 - 1) * std2**2)) / (n1 + n2 - 2)
+    pooled_std = math.sqrt(pooled_var)
+    
+    if pooled_std == 0:
+        return 0.0
+    
+    return (mean2 - mean1) / pooled_std
+
+def compute_paired_cohens_d(deltas):
+    """
+    Paired design 的 Cohen's d
+    d = mean(delta) / std(delta)
+    """
+    if len(deltas) < 2:
+        return 0.0
+    
+    mean_delta = statistics.mean(deltas)
+    std_delta = statistics.stdev(deltas)
+    
+    if std_delta == 0:
+        return 0.0
+    
+    return mean_delta / std_delta
 
 def interpret_effect_size(d):
-    """Cohen's d 解释"""
+    """Cohen's d 解释 (固定标准)"""
     abs_d = abs(d)
     if abs_d < 0.2:
         return "negligible"
@@ -139,163 +131,284 @@ def interpret_effect_size(d):
     else:
         return "large"
 
-def print_report(stats):
+def determine_sample_level(n_paired_seeds, n_total_episodes):
+    """
+    分层 sample size 判定
+    
+    层级:
+    - adequate: 足够支撑 SUPPORTED_SHIFT
+    - preliminary: 可以检测效应，但证据较弱  
+    - limited: 样本不足，结论不可靠
+    """
+    if n_paired_seeds >= 10 and n_total_episodes >= 500:
+        return "adequate"
+    elif n_paired_seeds >= 5 and n_total_episodes >= 100:
+        return "preliminary"
+    else:
+        return "limited"
+
+def analyze_paired_results(baseline, p2on):
+    """分析配对实验结果"""
+    
+    # 1. 严格 paired analysis
+    survival_deltas, food_deltas, paired_seeds = compute_paired_deltas(baseline, p2on)
+    n_paired = len(paired_seeds)
+    
+    if n_paired == 0:
+        return None, "NO_PAIRED_DATA: no matching seeds found"
+    
+    # 2. 基础统计
+    # Baseline 组（所有数据）
+    baseline_survival = []
+    baseline_food = []
+    for seed in baseline:
+        for r in baseline[seed]:
+            baseline_survival.append(r.get('avg_survival_steps', 0))
+            baseline_food.append(r.get('total_food_eaten', 0))
+    
+    # P2-ON 组（所有数据）
+    p2on_survival = []
+    p2on_food = []
+    p2on_intervention = []
+    p2on_recovery = []
+    
+    for seed in p2on:
+        for r in p2on[seed]:
+            p2on_survival.append(r.get('avg_survival_steps', 0))
+            p2on_food.append(r.get('total_food_eaten', 0))
+            p2on_intervention.append(r.get('intervention_rate', 0))
+            
+            # recovery 比例
+            action_dist = r.get('action_distribution', {})
+            total_actions = sum(action_dist.values())
+            recovery_count = action_dist.get('EnterRecovery', 0)
+            p2on_recovery.append(recovery_count / total_actions if total_actions > 0 else 0)
+    
+    # 3. 计算统计量
+    b_surv_stats = {
+        'mean': statistics.mean(baseline_survival) if baseline_survival else 0,
+        'std': statistics.stdev(baseline_survival) if len(baseline_survival) > 1 else 0,
+        'n': len(baseline_survival),
+    }
+    
+    p_surv_stats = {
+        'mean': statistics.mean(p2on_survival) if p2on_survival else 0,
+        'std': statistics.stdev(p2on_survival) if len(p2on_survival) > 1 else 0,
+        'n': len(p2on_survival),
+    }
+    
+    # 4. Cohen's d (pooled 标准版本)
+    cohens_d = compute_cohens_d_pooled(
+        b_surv_stats['mean'], b_surv_stats['std'], b_surv_stats['n'],
+        p_surv_stats['mean'], p_surv_stats['std'], p_surv_stats['n']
+    )
+    
+    # Paired delta 统计
+    delta_stats = {
+        'mean': statistics.mean(survival_deltas),
+        'std': statistics.stdev(survival_deltas) if len(survival_deltas) > 1 else 0,
+        'min': min(survival_deltas),
+        'max': max(survival_deltas),
+    }
+    
+    # Paired Cohen's d
+    paired_d = compute_paired_cohens_d(survival_deltas)
+    
+    # 5. Intervention 统计
+    intervention_stats = {
+        'mean': statistics.mean(p2on_intervention) if p2on_intervention else 0,
+        'std': statistics.stdev(p2on_intervention) if len(p2on_intervention) > 1 else 0,
+    }
+    
+    recovery_stats = {
+        'mean': statistics.mean(p2on_recovery) if p2on_recovery else 0,
+    }
+    
+    return {
+        'n_paired_seeds': n_paired,
+        'paired_seeds': paired_seeds,
+        'baseline': b_surv_stats,
+        'p2on': p_surv_stats,
+        'delta': delta_stats,
+        'cohens_d_pooled': cohens_d,
+        'cohens_d_paired': paired_d,
+        'intervention': intervention_stats,
+        'recovery': recovery_stats,
+        'total_episodes_baseline': len(baseline_survival),
+        'total_episodes_p2on': len(p2on_survival),
+    }, None
+
+def print_report(stats, error=None):
     """打印统计报告"""
     
     print("=" * 70)
-    print("        P3D-gamma: Measured Native A/B Statistical Report")
+    print("     P3D-gamma: Paired Native A/B Statistical Report")
     print("=" * 70)
     print()
     
-    # 配对信息
-    baseline_n = stats['baseline']['survival']['n']
-    p2on_n = stats['p2on']['survival']['n']
+    if error:
+        print(f"❌ ERROR: {error}")
+        print("=" * 70)
+        return None
     
-    print(f"Sample Size:")
-    print(f"  Baseline: {baseline_n} experiments")
-    print(f"  P2-ON:    {p2on_n} experiments")
+    # 配对信息
+    print(f"Paired Analysis:")
+    print(f"  Paired seeds: {stats['n_paired_seeds']}")
+    print(f"  Seeds: {stats['paired_seeds']}")
+    print(f"  Total episodes (baseline): {stats['total_episodes_baseline']}")
+    print(f"  Total episodes (P2-ON): {stats['total_episodes_p2on']}")
     print()
     
     # Survival Steps
-    b_surv = stats['baseline']['survival']
-    p_surv = stats['p2on']['survival']
+    b = stats['baseline']
+    p = stats['p2on']
+    d = stats['delta']
     
     print("-" * 70)
-    print("Survival Steps (primary metric)")
+    print("Survival Steps (paired analysis)")
     print("-" * 70)
-    print(f"  Baseline: {b_surv['mean']:.1f} ± {b_surv['std']:.1f}  [{b_surv['min']:.0f}, {b_surv['max']:.0f}]")
-    print(f"  P2-ON:    {p_surv['mean']:.1f} ± {p_surv['std']:.1f}  [{p_surv['min']:.0f}, {p_surv['max']:.0f}]")
+    print(f"  Baseline:     {b['mean']:.1f} ± {b['std']:.1f}  [n={b['n']}]")
+    print(f"  P2-ON:        {p['mean']:.1f} ± {p['std']:.1f}  [n={p['n']}]")
+    print(f"  Paired Delta: {d['mean']:+.1f} ± {d['std']:.1f}  [range: {d['min']:.1f}, {d['max']:.1f}]")
     
-    diff = p_surv['mean'] - b_surv['mean']
-    effect = compute_effect_size(b_surv['mean'], p_surv['mean'], b_surv['std'])
-    direction = "↑" if diff > 0 else "↓"
-    effect_interp = interpret_effect_size(effect)
+    # Effect size
+    cohens_d = stats['cohens_d_pooled']
+    paired_d = stats['cohens_d_paired']
+    effect_interp = interpret_effect_size(cohens_d)
     
-    print(f"  Diff:     {diff:+.1f} {direction}")
-    print(f"  Effect:   d = {effect:.2f} ({effect_interp})")
+    print(f"  Cohen's d (pooled):  {cohens_d:.2f} ({effect_interp})")
+    print(f"  Cohen's d (paired):  {paired_d:.2f}")
     print()
     
-    # Food Eaten
-    b_food = stats['baseline']['food']
-    p_food = stats['p2on']['food']
+    # Intervention
+    i = stats['intervention']
+    r = stats['recovery']
     
     print("-" * 70)
-    print("Food Eaten (task performance)")
+    print("Preservation Metrics (P2-ON)")
     print("-" * 70)
-    print(f"  Baseline: {b_food['mean']:.1f} ± {b_food['std']:.1f}")
-    print(f"  P2-ON:    {p_food['mean']:.1f} ± {p_food['std']:.1f}")
-    
-    diff_food = p_food['mean'] - b_food['mean']
-    direction_food = "↑" if diff_food > 0 else "↓"
-    print(f"  Diff:     {diff_food:+.1f} {direction_food}")
+    print(f"  Intervention rate:  {i['mean']*100:.1f}% ± {i['std']*100:.1f}%")
+    print(f"  Recovery ratio:     {r['mean']*100:.1f}%")
     print()
     
-    # Intervention Rate
-    p_int = stats['p2on']['intervention']
-    p_rec = stats['p2on']['recovery']
+    # 判定逻辑
+    intervention_active = i['mean'] > 0.10
+    effect_detected = abs(cohens_d) >= 0.20
+    sample_level = determine_sample_level(stats['n_paired_seeds'], stats['total_episodes_p2on'])
+    sample_sufficient = sample_level == "adequate"
     
-    print("-" * 70)
-    print("Preservation Metrics (P2-ON only)")
-    print("-" * 70)
-    print(f"  Intervention Rate: {p_int['mean']*100:.1f}% ± {p_int['std']*100:.1f}%")
-    print(f"  Recovery Ratio:    {p_rec['mean']*100:.1f}% ± {p_rec['std']*100:.1f}%")
-    print()
+    # 关键判定
+    behavioral_shift_detected = intervention_active and effect_detected
     
-    # 判定
     print("=" * 70)
     print("                         VERDICT")
     print("=" * 70)
     
-    # 样本量判定
-    if p2on_n >= 10 and baseline_n >= 10:
-        print("✅ Sample size: Sufficient (≥10 per group)")
-        sample_ok = True
-    else:
-        print(f"⚠️  Sample size: Limited (baseline={baseline_n}, p2on={p2on_n})")
-        sample_ok = False
-    
-    # Effect size 判定
-    effect_interp = interpret_effect_size(effect)
-    if abs(effect) >= 0.2:
-        print(f"✅ Effect detected: d = {effect:.2f} ({effect_interp})")
-        effect_ok = True
-    else:
-        print(f"⚠️  Effect negligible: d = {effect:.2f} ({effect_interp})")
-        effect_ok = False
-    
-    # Intervention 活跃度判定
-    if p_int['mean'] > 0.1:
-        print(f"✅ Intervention active: {p_int['mean']*100:.1f}%")
-        intervention_ok = True
-    else:
-        print(f"⚠️  Intervention low: {p_int['mean']*100:.1f}%")
-        intervention_ok = False
-    
-    # 关键判定：干预是否产生可测量的行为改变
-    # 修正：behavioral_shift_detected = intervention_active AND effect_detected
-    # sample_sufficient 仅作为证据强度判定，不作为 shift 的替代条件
-    behavioral_shift_detected = intervention_ok and effect_ok
-    
-    print()
-    print("P3D-gamma Key Question:")
-    print("  Does intervention produce measurable behavioral shift?")
-    
-    # 四段式判定逻辑
-    if not intervention_ok:
+    # 四段式判定
+    if not intervention_active:
         verdict = "NO_SHIFT: intervention inactive"
         print(f"  ❌ {verdict}")
-    elif not effect_ok:
+    elif not effect_detected:
         verdict = "NO_SHIFT: no measurable behavioral shift detected"
         print(f"  ❌ {verdict}")
-        print(f"     High intervention ({p_int['mean']*100:.1f}%) but no behavioral change")
-        print(f"     This suggests control parameters don't affect policy dynamics")
-    elif not sample_ok:
-        verdict = "PRELIMINARY_SHIFT: effect detected but sample insufficient"
+        print(f"     Intervention: {i['mean']*100:.1f}% but Cohen's d = {cohens_d:.2f} (negligible)")
+        print(f"     → control parameters may not affect policy dynamics")
+    elif sample_level == "limited":
+        verdict = "INSUFFICIENT_DATA: effect suggested but sample too small"
         print(f"  ⚠️  {verdict}")
-        print(f"     d = {effect:.2f} ({effect_interp}) detected, need more data for confidence")
+    elif sample_level == "preliminary":
+        verdict = "PRELIMINARY_SHIFT: effect detected but need more data"
+        print(f"  ⚠️  {verdict}")
+        print(f"     d = {cohens_d:.2f} ({effect_interp}), n_seeds = {stats['n_paired_seeds']}")
     else:
         verdict = "SUPPORTED_SHIFT: measurable behavioral shift detected"
         print(f"  ✅ {verdict}")
-        print(f"     Intervention: {p_int['mean']*100:.1f}% | Effect: d = {effect:.2f} ({effect_interp})")
+        print(f"     d = {cohens_d:.2f} ({effect_interp}), n_seeds = {stats['n_paired_seeds']}")
     
-    # 证据强度（独立判定）
-    evidence_strength = "adequate" if sample_ok else "preliminary"
+    # 证据强度
+    evidence_strength = "adequate" if sample_sufficient else "preliminary" if sample_level == "preliminary" else "limited"
     
     print()
-    print("P3D-gamma Summary:")
-    print(f"  intervention_active:    {intervention_ok} (rate={p_int['mean']*100:.1f}%)")
-    print(f"  effect_detected:        {effect_ok} (d={effect:.2f}, |d|≥0.2? {effect_ok})")
-    print(f"  sample_sufficient:      {sample_ok} (n={p2on_n})")
-    print(f"  evidence_strength:      {evidence_strength}")
-    print(f"  behavioral_shift:       {behavioral_shift_detected}")
-    print(f"  verdict:                {verdict}")
+    print("Summary:")
+    print(f"  intervention_active:      {intervention_active} (rate={i['mean']*100:.1f}%)")
+    print(f"  effect_detected:          {effect_detected} (|d|≥0.2? {effect_detected}, d={cohens_d:.2f})")
+    print(f"  sample_level:             {sample_level} (n_seeds={stats['n_paired_seeds']}, n_ep={stats['total_episodes_p2on']})")
+    print(f"  evidence_strength:        {evidence_strength}")
+    print(f"  behavioral_shift:         {behavioral_shift_detected}")
+    print(f"  verdict:                  {verdict}")
     
     print()
     print("P3D-gamma Status:")
     if verdict.startswith("SUPPORTED_SHIFT"):
         print("  🎯 COMPLETE: Measured Native A/B validated")
     elif verdict.startswith("PRELIMINARY_SHIFT"):
-        print("  ⏳ PENDING: Effect detected but need more data")
+        print("  ⏳ PENDING: Effect detected, run full experiment (10+ seeds, 500+ episodes)")
+    elif verdict.startswith("NO_SHIFT"):
+        print("  ❌ NO SHIFT: Intervention not producing measurable behavioral change")
+        print("      → Check: homeostasis thresholds, control parameter mapping, task difficulty")
     else:
-        print("  ❌ NO SHIFT: Intervention not producing behavioral change")
+        print("  ⏳ NEED MORE DATA")
     
     print("=" * 70)
+    
+    # 返回判定结果用于 JSON
+    return {
+        'verdict': verdict,
+        'behavioral_shift_detected': behavioral_shift_detected,
+        'intervention_active': intervention_active,
+        'effect_detected': effect_detected,
+        'cohens_d': cohens_d,
+        'effect_size_interpretation': effect_interp,
+        'sample_level': sample_level,
+        'evidence_strength': evidence_strength,
+        'n_paired_seeds': stats['n_paired_seeds'],
+        'total_episodes_p2on': stats['total_episodes_p2on'],
+    }
 
-def save_summary(stats, output_dir):
-    """保存汇总 JSON"""
+def save_summary(stats, verdict_info, output_dir):
+    """保存汇总 JSON（包含所有关键判定字段）"""
+    if verdict_info is None:
+        return
+    
     summary = {
         "p3d_gamma_status": "measured_native_ab",
-        "baseline": stats['baseline'],
-        "p2on": stats['p2on'],
-        "comparison": {
-            "survival_diff": stats['p2on']['survival']['mean'] - stats['baseline']['survival']['mean'],
-            "food_diff": stats['p2on']['food']['mean'] - stats['baseline']['food']['mean'],
-            "effect_size_d": compute_effect_size(
-                stats['baseline']['survival']['mean'],
-                stats['p2on']['survival']['mean'],
-                stats['baseline']['survival']['std']
-            )
-        }
+        "analysis_timestamp": str(os.path.getmtime(output_dir)),
+        "paired_analysis": {
+            "n_paired_seeds": stats['n_paired_seeds'],
+            "paired_seeds": stats['paired_seeds'],
+            "total_episodes_baseline": stats['total_episodes_baseline'],
+            "total_episodes_p2on": stats['total_episodes_p2on'],
+        },
+        "baseline": {
+            "survival_mean": stats['baseline']['mean'],
+            "survival_std": stats['baseline']['std'],
+            "n": stats['baseline']['n'],
+        },
+        "p2on": {
+            "survival_mean": stats['p2on']['mean'],
+            "survival_std": stats['p2on']['std'],
+            "n": stats['p2on']['n'],
+            "intervention_rate_mean": stats['intervention']['mean'],
+            "intervention_rate_std": stats['intervention']['std'],
+        },
+        "paired_delta": {
+            "mean": stats['delta']['mean'],
+            "std": stats['delta']['std'],
+            "min": stats['delta']['min'],
+            "max": stats['delta']['max'],
+        },
+        "effect_size": {
+            "cohens_d_pooled": stats['cohens_d_pooled'],
+            "cohens_d_paired": stats['cohens_d_paired'],
+            "interpretation": verdict_info['effect_size_interpretation'],
+        },
+        # 关键判定字段
+        "verdict": verdict_info['verdict'],
+        "behavioral_shift_detected": verdict_info['behavioral_shift_detected'],
+        "intervention_active": verdict_info['intervention_active'],
+        "effect_detected": verdict_info['effect_detected'],
+        "sample_level": verdict_info['sample_level'],
+        "evidence_strength": verdict_info['evidence_strength'],
     }
     
     output_path = os.path.join(output_dir, "summary_report.json")
@@ -303,6 +416,7 @@ def save_summary(stats, output_dir):
         json.dump(summary, f, indent=2)
     
     print(f"📁 Summary saved: {output_path}")
+    return output_path
 
 def main():
     if len(sys.argv) < 2:
@@ -318,17 +432,27 @@ def main():
     print(f"Loading results from: {log_dir}")
     baseline, p2on = load_all_results(log_dir)
     
-    print(f"  Baseline groups: {len(baseline)}")
-    print(f"  P2-ON groups:    {len(p2on)}")
+    print(f"  Baseline groups: {len(baseline)} seeds")
+    print(f"  P2-ON groups:    {len(p2on)} seeds")
+    
+    # 检查配对
+    paired_seeds = set(baseline.keys()) & set(p2on.keys())
+    print(f"  Paired seeds:    {len(paired_seeds)}")
     print()
     
     if not baseline and not p2on:
         print("⚠️  No results found")
         sys.exit(1)
     
-    stats = analyze_paired_results(baseline, p2on)
-    print_report(stats)
-    save_summary(stats, log_dir)
+    # 分析
+    stats, error = analyze_paired_results(baseline, p2on)
+    
+    # 打印报告并获取判定信息
+    verdict_info = print_report(stats, error)
+    
+    # 保存汇总
+    if stats:
+        save_summary(stats, verdict_info, log_dir)
 
 if __name__ == "__main__":
     main()
