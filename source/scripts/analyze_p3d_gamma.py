@@ -232,27 +232,52 @@ def print_report(stats):
         intervention_ok = False
     
     # 关键判定：干预是否产生可测量的行为改变
-    # 标准：intervention 活跃 AND (有 effect OR 样本足够)
-    behavioral_shift = intervention_ok and (effect_ok or sample_ok)
+    # 修正：behavioral_shift_detected = intervention_active AND effect_detected
+    # sample_sufficient 仅作为证据强度判定，不作为 shift 的替代条件
+    behavioral_shift_detected = intervention_ok and effect_ok
     
     print()
     print("P3D-gamma Key Question:")
     print("  Does intervention produce measurable behavioral shift?")
-    if behavioral_shift:
-        print(f"  ✅ YES: Intervention active ({p_int['mean']*100:.1f}%) + Effect detected (d={effect:.2f})")
-    else:
-        print(f"  ❌ NO: High intervention but no behavioral shift detected")
+    
+    # 四段式判定逻辑
+    if not intervention_ok:
+        verdict = "NO_SHIFT: intervention inactive"
+        print(f"  ❌ {verdict}")
+    elif not effect_ok:
+        verdict = "NO_SHIFT: no measurable behavioral shift detected"
+        print(f"  ❌ {verdict}")
+        print(f"     High intervention ({p_int['mean']*100:.1f}%) but no behavioral change")
         print(f"     This suggests control parameters don't affect policy dynamics")
+    elif not sample_ok:
+        verdict = "PRELIMINARY_SHIFT: effect detected but sample insufficient"
+        print(f"  ⚠️  {verdict}")
+        print(f"     d = {effect:.2f} ({effect_interp}) detected, need more data for confidence")
+    else:
+        verdict = "SUPPORTED_SHIFT: measurable behavioral shift detected"
+        print(f"  ✅ {verdict}")
+        print(f"     Intervention: {p_int['mean']*100:.1f}% | Effect: d = {effect:.2f} ({effect_interp})")
+    
+    # 证据强度（独立判定）
+    evidence_strength = "adequate" if sample_ok else "preliminary"
+    
+    print()
+    print("P3D-gamma Summary:")
+    print(f"  intervention_active:    {intervention_ok} (rate={p_int['mean']*100:.1f}%)")
+    print(f"  effect_detected:        {effect_ok} (d={effect:.2f}, |d|≥0.2? {effect_ok})")
+    print(f"  sample_sufficient:      {sample_ok} (n={p2on_n})")
+    print(f"  evidence_strength:      {evidence_strength}")
+    print(f"  behavioral_shift:       {behavioral_shift_detected}")
+    print(f"  verdict:                {verdict}")
     
     print()
     print("P3D-gamma Status:")
-    if sample_ok and intervention_ok and effect_ok:
+    if verdict.startswith("SUPPORTED_SHIFT"):
         print("  🎯 COMPLETE: Measured Native A/B validated")
-    elif sample_ok and intervention_ok:
-        print("  ⚠️  PENDING: Intervention active but behavioral effect unclear")
-        print("      Consider: longer episodes, different homeostasis thresholds")
+    elif verdict.startswith("PRELIMINARY_SHIFT"):
+        print("  ⏳ PENDING: Effect detected but need more data")
     else:
-        print("  ⏳ NEED MORE DATA")
+        print("  ❌ NO SHIFT: Intervention not producing behavioral change")
     
     print("=" * 70)
 

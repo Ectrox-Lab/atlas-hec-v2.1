@@ -82,18 +82,78 @@ d < 0.2:   negligible (可忽略)
 > 0.8:     large (大效应)
 ```
 
-### 通过标准
+### 判定标准（修正后）
 
-P3D-gamma 判定为 **COMPLETE** 需要:
-1. ✅ 样本量: ≥ 10 seeds, ≥ 50 episodes/seed
-2. ✅ Intervention 活跃: > 10% intervention rate
-3. ✅ **关键**: 检测到 behavioral shift (|d| ≥ 0.2)
+#### 核心公式
+```python
+# 基础判定
+intervention_active = intervention_rate > 0.10
+effect_detected = abs(cohens_d) >= 0.20
+sample_sufficient = n_episodes_per_condition >= 500
 
-**常见失败模式**（需警惕）:
+# 关键判定（修正：移除 sample_sufficient 作为 shift 替代条件）
+behavioral_shift_detected = intervention_active AND effect_detected
+
+# 证据强度（独立判定）
+evidence_strength = "adequate" if sample_sufficient else "preliminary"
+```
+
+#### 四段式判定逻辑
+```
+if not intervention_active:
+    verdict = "NO_SHIFT: intervention inactive"
+    
+elif not effect_detected:
+    verdict = "NO_SHIFT: no measurable behavioral shift detected"
+    # 关键失败模式：control parameters 未影响 policy dynamics
+    
+elif not sample_sufficient:
+    verdict = "PRELIMINARY_SHIFT: effect detected but sample insufficient"
+    
+else:
+    verdict = "SUPPORTED_SHIFT: measurable behavioral shift detected"
+```
+
+#### 常见失败模式（需警惕）
 ```
 intervention_rate 很高 (如 80%)
 但 behavior metrics 无变化 (d < 0.2)
-→ 说明 control parameter 未真正影响 policy dynamics
+→ verdict: "NO_SHIFT: no measurable behavioral shift detected"
+→ 说明: control parameter 未真正影响 policy dynamics
+```
+
+**重要**: `sample_sufficient` 只影响证据强度，不影响 `behavioral_shift` 判定。
+
+---
+
+### 推荐输出模板
+
+**检测到行为改变时**:
+```json
+{
+  "intervention_rate": 0.284,
+  "intervention_active": true,
+  "cohens_d": 0.31,
+  "effect_detected": true,
+  "sample_sufficient": true,
+  "behavioral_shift_detected": true,
+  "evidence_strength": "adequate",
+  "verdict": "SUPPORTED_SHIFT"
+}
+```
+
+**无行为改变时**:
+```json
+{
+  "intervention_rate": 0.284,
+  "intervention_active": true,
+  "cohens_d": 0.07,
+  "effect_detected": false,
+  "sample_sufficient": true,
+  "behavioral_shift_detected": false,
+  "evidence_strength": "adequate",
+  "verdict": "NO_SHIFT"
+}
 ```
 
 ---
