@@ -1,0 +1,23 @@
+# Rust build artifacts
+source/target/
+**/*.rs.bk
+Cargo.lock
+
+# Logs and data
+source/logs/
+*.log
+*.csv
+
+# Environment
+.env
+*.pid
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -43,10 +43,28 @@ path = "src/bin/atlas_burn.rs"
 name = "atlas_superbrain_real"
 path = "src/bin/atlas_superbrain_real.rs"
 
+[[bin]]
+name = "p1_self_kernel_smoke"
+path = "src/bin/p1_self_kernel_smoke.rs"
+
+[[bin]]
+name = "p2_self_preservation_smoke"
+path = "src/bin/p2_self_preservation_smoke.rs"
+
+[[bin]]
+name = "p3a_runtime_demo"
+path = "src/bin/p3a_runtime_demo.rs"
+
+[[bin]]
+name = "p3b_ab_validation"
+path = "src/bin/p3b_ab_validation.rs"
+
 [dependencies]
 fastrand = "2.3.0"
 rand = "0.8"
 rayon = "1.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 
 [profile.release]
 rpath = true

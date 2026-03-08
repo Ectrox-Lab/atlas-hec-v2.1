@@ -31,3 +31,10 @@ pub use self_preservation::{
     SurvivalRiskModel, SurvivalRiskEstimate,
     PreservationMetrics, ExperimentComparison
 };
+
+// P3: Runtime Integration (P2 验证的关键闭环)
+pub mod p3_runtime_integration;
+pub use p3_runtime_integration::{
+    P3RuntimeIntegration, RuntimeParameters, P3Config,
+    ParameterMappingConfig
+};
