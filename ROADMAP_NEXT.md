@@ -1,73 +1,147 @@
 # ROADMAP_NEXT.md - 下一阶段工程路线图
 
-> 只写未来2-3个阶段，实用导向，不哲学化
+> 只写未来2-3个阶段，实用导向，不哲学化  
+> **当前阶段**: P0完成，准备进入P1
 
 ---
 
-## P0: 项目记忆固定 (IMMEDIATE - 1-2周)
+## P0: 项目记忆固定 (COMPLETED ✅)
 
 **目标**: 建立不会失忆的研究系统
 
-### 任务清单
-- [x] 创建PROJECT_STATE.md (已完成)
-- [x] 创建CLAIMS_REGISTRY.md (已完成)
-- [ ] 创建REPRO_COMMANDS.md (正在进行)
-- [ ] 建立实验命名规范
-- [ ] 建立自动保存结果流程
-- [ ] 每个milestone留下可回放证据
+### 已完成任务
+- [x] 创建PROJECT_STATE.md - 当前架构真相
+- [x] 创建CLAIMS_REGISTRY.md - 声明证据注册表
+- [x] 创建REPRO_COMMANDS.md - 可复现实验命令
+- [x] 创建ROADMAP_NEXT.md - 本路线图
+- [x] 路径标准化 (repo root: `/home/admin/atlas-hec-v2.1-repo`)
 
 ### 产出
-- 4个核心文档固定
-- 所有实验可复现
-- 不再依赖"截图+记忆"
+- 4个核心文档已提交到GitHub
+- 所有路径已标准化
+- 实验可复现
 
 ---
 
-## P1: Self Kernel v0.1 (2-4周)
+## P1: 最小可验证 Self Kernel (CURRENT - 2-4周)
 
-**目标**: 添加internal reference `this_is_me`
+**目标**: 添加internal reference `this_is_me`，跨过第一个关键门槛
 
-### 核心模块
+### 为什么是最小版本？
+GPT建议：不要一开始就做完整的SelfState产品级结构，先做能跑的this_is_me kernel。
+
+### 核心模块 (MVP版本)
 
 ```rust
-// 1. SelfState - 自我状态结构
-struct SelfState {
-    identity: String,              // "atlas-v2.3-instance-001"
-    creation_time: Timestamp,
-    current_goals: Vec<Goal>,      // 自主目标
-    capabilities: Vec<Skill>,      // 能力清单
-    memory_index: MemoryIndex,     // 记忆索引
-    self_model: WorldModel,        // 自我在世界中的模型
-    runtime_metrics: RuntimeMetrics, // 运行指标
+// source/src/self_kernel/mod.rs
+
+/// 1. Identity Token - "这是我"
+pub struct IdentityToken {
+    uuid: String,           // "atlas-v2.3-001"
+    creation_time: Instant,
+    version: String,        // "v2.3.0"
 }
 
-// 2. AutobiographicalMemory - 自传体记忆
-struct AutobiographicalMemory {
-    episodes: Vec<Episode>,        // 时间序列事件
-    consolidation: Consolidation,  // 记忆固化
-    retrieval: Retrieval,          // 检索机制
+/// 2. Current Internal State - "我现在的状态"
+pub struct InternalState {
+    vigilance: VigilanceState,      // 来自DigitalMetabolism
+    energy_budget: f32,
+    compute_load: f32,
+    current_goal: Option<Goal>,
 }
 
-// 3. MetaController - 元控制器
-struct MetaController {
-    self_state: SelfState,
-    memory: AutobiographicalMemory,
-    preservation_drive: PreservationDrive, // 自我维持驱动
+/// 3. Active Goal Vector - "我想维持/达成什么"
+pub struct GoalVector {
+    primary: Goal,          // 当前主要目标
+    secondary: Vec<Goal>,   // 次要目标
+    survival_priority: f32, // 生存优先级
 }
 
-// 4. SelfReportInterface - 自我报告接口
-impl SelfReportInterface {
-    fn who_am_i(&self) -> String;  // 回答"你是谁"
-    fn what_am_i_doing(&self) -> String;
-    fn what_have_i_learned(&self) -> String;
+/// 4. Self History Window - "我刚才做了什么"
+pub struct SelfHistoryWindow {
+    recent_actions: VecDeque<Action>,  // 最近N个动作
+    recent_states: VecDeque<StateSnapshot>, // 最近N个状态快照
+    max_window: usize,      // 窗口大小
+}
+
+/// 5. Prediction of Self Change - "如果我做X，我会变成什么"
+pub struct SelfPredictor {
+    model: WorldModel,      // 简化的自我在世界中的模型
+    prediction_horizon: Duration,
+}
+
+/// Self Kernel - 最小可验证版本
+pub struct SelfKernel {
+    identity: IdentityToken,
+    state: InternalState,
+    goals: GoalVector,
+    history: SelfHistoryWindow,
+    predictor: SelfPredictor,
+}
+
+impl SelfKernel {
+    /// 核心能力1: 回答"我是谁"
+    pub fn who_am_i(&self) -> String {
+        format!(
+            "I am {} ({}), created at {:?}, version {}",
+            self.identity.uuid,
+            self.identity.name(),
+            self.identity.creation_time,
+            self.identity.version
+        )
+    }
+    
+    /// 核心能力2: 回答"我刚才做了什么"
+    pub fn what_did_i_just_do(&self) -> String {
+        let recent = self.history.recent_actions
+            .iter()
+            .map(|a| format!("{:?}", a))
+            .collect::<Vec<_>>()
+            .join(", ");
+        format!("Recent actions: {}", recent)
+    }
+    
+    /// 核心能力3: 回答"如果我继续这样做，我会变成什么状态"
+    pub fn what_if_i_continue(&self, action: Action) -> PredictedState {
+        self.predictor.predict(&self.state, &action)
+    }
+    
+    /// 核心能力4: 自我维持决策
+    pub fn should_preserve_self(&self) -> bool {
+        let survival_threat = self.assess_survival_threat();
+        survival_threat > 0.7  // 学习得来的阈值，非硬编码
+    }
 }
 ```
 
-### 关键验证点
-- [ ] 系统能引用自己的历史 ("Yesterday I...")
-- [ ] 系统能报告自己的状态
-- [ ] 系统能评估过去行为
-- [ ] 存在`this_is_me`神经元/节点激活
+### 验证标准 (P1完成标准)
+
+- [ ] **系统有稳定 identity_token**
+  - 验证: `self_kernel.who_am_i()` 返回一致的身份字符串
+  - 证据: 运行日志中显示相同uuid
+
+- [ ] **系统有可查询 internal state snapshot**
+  - 验证: 能输出当前energy、vigilance、load等状态
+  - 证据: 日志中有结构化的状态记录
+
+- [ ] **系统能持久保存最近 N 个自我事件**
+  - 验证: `self_kernel.what_did_i_just_do()` 返回最近动作
+  - 证据: history window中有内容
+
+- [ ] **系统能回答 3 个固定问题**
+  1. "我是谁?" → 返回identity信息
+  2. "我刚才做了什么?" → 返回recent actions
+  3. "如果我继续这样做，我会变成什么状态?" → 返回predicted state
+
+### 代码位置
+```
+source/src/self_kernel/mod.rs       # SelfKernel实现
+source/src/self_kernel/identity.rs  # IdentityToken
+source/src/self_kernel/state.rs     # InternalState
+source/src/self_kernel/history.rs   # SelfHistoryWindow
+source/src/self_kernel/predictor.rs # SelfPredictor
+source/src/bin/self_kernel_test.rs  # 验证测试
+```
 
 ---
 
@@ -77,20 +151,20 @@ impl SelfReportInterface {
 
 ### 当前问题
 ```rust
-// 硬编码 (v2.1)
-if adenosine_level > 0.6 {
-    enter_rem(); // 硬编码阈值
+// 硬编码 (v2.1) - ❌
+if adenosine_level > 0.6 {  // 硬编码阈值
+    enter_rem();
 }
 ```
 
 ### 目标
 ```rust
-// 学习得来 (v2.3)
-let survival_value = self_model.predict(
+// 学习得来 (v2.4) - ✅
+let survival_value = self.predictor.predict(
     "if I continue at this load, what happens to me?"
 );
-if survival_value < threshold {
-    self.preserve(); // 学习得来的自我保护
+if survival_value < threshold {  // 学习得来的阈值
+    self.preserve();  // 学习得来的自我保护
 }
 ```
 
@@ -98,13 +172,13 @@ if survival_value < threshold {
 - [ ] 实现`avoid_self_damage`学习
 - [ ] 实现`maintain_internal_state`策略
 - [ ] 实现`repair_subsystems`机制
-- [ ] 验证：生存策略是学来的，不是硬编码的
+- [ ] 验证: 生存策略是学来的，不是硬编码的
 
 ---
 
-## P3: MNIST认证重试 (并行 - 3-4周)
+## P3: MNIST认证重试 (次线 - 3-4周)
 
-**目标**: 卷积SNN架构，>95%准确率
+**注意**: 这是**次线**，不是主主。原因：MNIST验证的是"感知/分类能力"，不是"持续自我"。
 
 ### 架构升级
 ```
@@ -133,35 +207,40 @@ if survival_value < threshold {
 ### 验证标准
 - [ ] 72小时零崩溃
 - [ ] 无人工干预
-- [ ] 自我维护行为可被观察
-- [ ] 能生成自我报告 (who_am_i)
+- [ ] 自我诊断日志
+- [ ] 自我修复行为记录
+- [ ] 能生成自我报告 (`who_am_i`)
 
 ---
 
 ## 🎯 优先级决策
 
-**现在不做**:
-- ❌ 扩大神经元规模 (10K→100K) - 先解决self-model
-- ❌ 多GPU分片 - 等P4完成
-- ❌ 数字达尔文生态 - 等单个agent稳定
-- ❌ 哲学声称 - 先硬证据
+### 现在不做 (推迟)
+| 项目 | 原因 |
+|------|------|
+| ❌ 扩大神经元规模 (10K→100K) | 先解决self-model |
+| ❌ 多GPU分片 | 等P4完成 |
+| ❌ 数字达尔文生态 | 等单个agent稳定 |
+| ❌ 哲学声称 | 先硬证据 |
 
-**现在做**:
-- ✅ P0: 项目记忆固定 (防止再次失忆)
-- ✅ P1: Self Kernel v0.1 (跨过agent门槛的关键)
-- ⚠️ P3: MNIST并行 (验证通用性)
+### 现在做 (主主)
+| 项目 | 优先级 |
+|------|--------|
+| ✅ P1: Self Kernel MVP | **最高** - 跨过agent门槛的关键 |
+| ⚠️ P2: 真正自我维持 | 高 - 学习得来的生存策略 |
+| ⏸️ P3: MNIST | 次线 - 感知能力非核心目标 |
 
 ---
 
 ## 📊 里程碑定义
 
-| 里程碑 | 标准 | 验证方式 |
-|--------|------|----------|
-| v2.2-memory | 4个文档+可复现实验 | 任何人可重跑实验 |
-| v2.3-self | SelfState存在+可报告 | 系统能回答"你是谁" |
-| v2.4-alive | 真正自我维持 | 学习得来的生存策略 |
-| v2.5-agent | 72小时自主运行 | 无人工干预日志 |
+| 里程碑 | 验证标准 | 代码证据 | 运行证据 |
+|--------|----------|----------|----------|
+| v2.2-self-mvp | 4个Self Kernel验证点通过 | `self_kernel/mod.rs` | `who_am_i()`输出 |
+| v2.3-self-preservation | 学习得来的生存策略 | `learned_preservation.rs` | 自适应阈值日志 |
+| v2.4-mnist | MNIST >95% | `conv_snn.rs` | 测试准确率 |
+| v2.5-agent | 72小时自主运行 | N/A | 无干预日志 |
 
 ---
 
-*实用导向 - 不追求"最大"，追求"不会失忆的下一步"*
+*实用导向 - 先跑通最小Self Kernel，再扩展*

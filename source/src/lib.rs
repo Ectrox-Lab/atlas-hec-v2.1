@@ -12,3 +12,7 @@ pub mod gridworld;
 pub mod atlas_cuda_bridge;
 pub mod hec_ffi;
 pub mod sensory;
+
+// Self Kernel v0.1: 最小可验证自我核心
+pub mod self_kernel;
+pub use self_kernel::{SelfKernel, Identity, SelfState, RuntimeData, Episode, AutobiographicalMemory, SelfReport};
