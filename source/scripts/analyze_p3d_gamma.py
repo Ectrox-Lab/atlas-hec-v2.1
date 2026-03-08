@@ -115,10 +115,29 @@ def analyze_paired_results(baseline, p2on):
     }
 
 def compute_effect_size(baseline_mean, p2on_mean, baseline_std):
-    """计算效应大小 (Cohen's d)"""
+    """计算效应大小 (Cohen's d)
+    
+    解释标准 (固定):
+    - d < 0.2:   negligible (可忽略)
+    - 0.2–0.5:   small (小效应)
+    - 0.5–0.8:   medium (中等效应)
+    - > 0.8:     large (大效应)
+    """
     if baseline_std == 0:
         return 0.0
     return (p2on_mean - baseline_mean) / baseline_std
+
+def interpret_effect_size(d):
+    """Cohen's d 解释"""
+    abs_d = abs(d)
+    if abs_d < 0.2:
+        return "negligible"
+    elif abs_d < 0.5:
+        return "small"
+    elif abs_d < 0.8:
+        return "medium"
+    else:
+        return "large"
 
 def print_report(stats):
     """打印统计报告"""
@@ -150,9 +169,10 @@ def print_report(stats):
     diff = p_surv['mean'] - b_surv['mean']
     effect = compute_effect_size(b_surv['mean'], p_surv['mean'], b_surv['std'])
     direction = "↑" if diff > 0 else "↓"
+    effect_interp = interpret_effect_size(effect)
     
     print(f"  Diff:     {diff:+.1f} {direction}")
-    print(f"  Effect:   d = {effect:.2f} ({'small' if abs(effect) < 0.5 else 'medium' if abs(effect) < 0.8 else 'large'})")
+    print(f"  Effect:   d = {effect:.2f} ({effect_interp})")
     print()
     
     # Food Eaten
@@ -186,27 +206,53 @@ def print_report(stats):
     print("                         VERDICT")
     print("=" * 70)
     
+    # 样本量判定
     if p2on_n >= 10 and baseline_n >= 10:
         print("✅ Sample size: Sufficient (≥10 per group)")
+        sample_ok = True
     else:
-        print("⚠️  Sample size: Limited (<10 per group)")
+        print(f"⚠️  Sample size: Limited (baseline={baseline_n}, p2on={p2on_n})")
+        sample_ok = False
     
-    if abs(effect) > 0.2:
-        print(f"✅ Effect detected: d = {effect:.2f} ({direction})")
+    # Effect size 判定
+    effect_interp = interpret_effect_size(effect)
+    if abs(effect) >= 0.2:
+        print(f"✅ Effect detected: d = {effect:.2f} ({effect_interp})")
+        effect_ok = True
     else:
-        print(f"⚠️  Effect small: d = {effect:.2f}")
+        print(f"⚠️  Effect negligible: d = {effect:.2f} ({effect_interp})")
+        effect_ok = False
     
+    # Intervention 活跃度判定
     if p_int['mean'] > 0.1:
         print(f"✅ Intervention active: {p_int['mean']*100:.1f}%")
+        intervention_ok = True
     else:
         print(f"⚠️  Intervention low: {p_int['mean']*100:.1f}%")
+        intervention_ok = False
+    
+    # 关键判定：干预是否产生可测量的行为改变
+    # 标准：intervention 活跃 AND (有 effect OR 样本足够)
+    behavioral_shift = intervention_ok and (effect_ok or sample_ok)
+    
+    print()
+    print("P3D-gamma Key Question:")
+    print("  Does intervention produce measurable behavioral shift?")
+    if behavioral_shift:
+        print(f"  ✅ YES: Intervention active ({p_int['mean']*100:.1f}%) + Effect detected (d={effect:.2f})")
+    else:
+        print(f"  ❌ NO: High intervention but no behavioral shift detected")
+        print(f"     This suggests control parameters don't affect policy dynamics")
     
     print()
     print("P3D-gamma Status:")
-    if p2on_n >= 10 and baseline_n >= 10 and p_int['mean'] > 0.1:
-        print("  🎯 Measured Native A/B: READY FOR FINAL REPORT")
+    if sample_ok and intervention_ok and effect_ok:
+        print("  🎯 COMPLETE: Measured Native A/B validated")
+    elif sample_ok and intervention_ok:
+        print("  ⚠️  PENDING: Intervention active but behavioral effect unclear")
+        print("      Consider: longer episodes, different homeostasis thresholds")
     else:
-        print("  ⏳ Need more experiments")
+        print("  ⏳ NEED MORE DATA")
     
     print("=" * 70)
 

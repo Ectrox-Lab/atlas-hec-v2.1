@@ -1,82 +1,139 @@
 # Atlas-HEC v2.1 Self-Preservation System - STATUS
 
 **Date**: 2026-03-09
+**Reviewed By**: 院长
 
 ---
 
 ## 院长最终判定
 
-### P3D-beta: ✅ COMPLETE（限定范围）
+### P3D-beta: ✅ COMPLETE（限定为 Actuation 层）
 
-| 要求 | 状态 | 证据 |
-|-----|------|------|
-| **A. True Parameter Actuation** | ✅ **COMPLETE** | `apply_preservation_to_main_runtime()` 真实调用 Agent API，`[P3] SeekReward: bias_scale=1.30` |
-| **B. Real Intervention Statistics** | ✅ **COMPLETE** | `action_counts` 逐 step 统计，`intervention_rate: 0.284` (142/500) |
-| **C. Native Homeostasis** | ⚠️ **PARTIAL** | Native: world.step, reward_history, step_times; Proxy: energy, fatigue, thermal |
+| 要求 | 状态 | 证据链 |
+|-----|------|--------|
+| **A. True Parameter Actuation** | ✅ **COMPLETE** | preservation decision → `apply_preservation_to_main_runtime()` → Agent runtime control API → 主系统参数改变<br>典型信号: `[P3] SeekReward: bias_scale=1.30` |
+| **B. Real Intervention Statistics** | ✅ **COMPLETE** | `action_counts: {ContinueTask: 358, SeekReward: 142}`<br>`intervention_rate = 142 / (358+142) = 0.284` (逐 step 记录，非写死) |
+| **C. Native Homeostasis** | ⚠️ **PARTIAL** | Native: `world.step`, `reward_history`, `step_times`, `food_eaten`<br>Proxy: `energy`, `fatigue`, `thermal`, `stability`, `prediction_error` |
 
 **对外口径**:
-> P3D-beta 通过：True Parameter Actuation COMPLETE。
-> Homeostasis 仍为 native/proxy 混合来源。
-> Measured Native A/B 属于下一阶段（P3D-gamma）。
+> P3D-beta: True Parameter Actuation ✅ COMPLETE
+> 
+> 已实现：preservation decision → runtime API → 主系统参数改变的完整执行链
+> 
+> 未实现：全 native homeostasis（gridworld 本身无 metabolism 子系统）
 
 ---
 
 ## 阶段总览
 
 ```
-P1: Self Kernel                     ✅ COMPLETE
-P2: Self Preservation Kernel        ✅ COMPLETE  
-P3A: Runtime Integration            ✅ COMPLETE
-P3B: Simulated Validation           ✅ COMPLETE
-P3C: Runtime-like Harness           ✅ COMPLETE
-P3D-alpha: Main-path Native Wiring  ✅ COMPLETE
-P3D-beta:  True Parameter Actuation ✅ COMPLETE
-P3D-gamma: Measured Native A/B      ⏳ FRAMEWORK READY
+P1:        Self Kernel                     ✅ COMPLETE
+P2:        Self Preservation Kernel        ✅ COMPLETE  
+P3A:       Runtime Integration             ✅ COMPLETE
+P3B:       Simulated Validation            ✅ COMPLETE
+P3C:       Runtime-like Harness            ✅ COMPLETE
+P3D-alpha: Main-path Native Wiring         ✅ COMPLETE
+P3D-beta:  True Parameter Actuation        ✅ COMPLETE (Actuation Layer)
+P3D-gamma: Measured Native A/B             ⏳ PENDING (Measurement Layer)
 ```
+
+**关键区分**:
+- **P3D-beta** = Control Layer（控制层完成）
+- **P3D-gamma** = Measurement Layer（测量层待验证）
 
 ---
 
-## P3D-gamma 框架（已就绪）
+## P3D-gamma 实验规范（院长标准）
 
-### 实验规范
-- **种子集合**: [42, 123, 456, 789, 2024, 777, 999, 314, 1618, 2718]
-- **每组规模**: 50 episodes × 500 steps
-- **输出**: mean ± std, effect size (Cohen's d)
+### 目标
+证明 preservation intervention 产生 **measurable behavioral shift**，而非仅证明 actuation 存在。
 
-### 运行命令
-```bash
-# 完整实验（~30分钟）
-./scripts/p3d_gamma_batch.sh
+### 关键问题
+> Does intervention produce measurable behavioral shift?
 
-# 快速测试（~5分钟）
-./scripts/p3d_gamma_quick.sh
+### 实验设计
 
-# 分析结果
-python3 scripts/analyze_p3d_gamma.py logs/p3d/
+| 参数 | 标准 |
+|-----|------|
+| Seeds | ≥ 10 固定种子 |
+| Episodes / seed | ≥ 50 |
+| 总样本 / condition | ≥ 500 episodes |
+| 配对设计 | 每种子跑 Baseline + P2-ON |
+
+### 输出指标
+
+| 指标 | 类型 | 说明 |
+|-----|------|------|
+| survival_steps | 行为 | 平均生存步数 |
+| food_eaten | 资源获取 | 食物获取总数 |
+| reward_total | 奖励 | 累计奖励 |
+| step_time_ms | 稳定性 | 步长时间（方差）|
+| intervention_rate | P3 控制 | 干预比例 |
+| recovery_mode_ratio | P3 控制 | 恢复模式占比 |
+| action_distribution | P3 控制 | 各 action 分布 |
+
+### 统计标准
+
+**Cohen's d 解释**（固定规则）:
+```
+d < 0.2:   negligible (可忽略)
+0.2–0.5:   small (小效应)  
+0.5–0.8:   medium (中等效应)
+> 0.8:     large (大效应)
 ```
 
 ### 通过标准
-- [ ] 至少 10 个固定 seed 的成对实验
-- [ ] 每组 50+ episodes
-- [ ] 输出 mean ± std 统计
-- [ ] 效应方向明确
-- [ ] 可复现脚本
 
-**状态**: 框架完成，待运行完整实验。
+P3D-gamma 判定为 **COMPLETE** 需要:
+1. ✅ 样本量: ≥ 10 seeds, ≥ 50 episodes/seed
+2. ✅ Intervention 活跃: > 10% intervention rate
+3. ✅ **关键**: 检测到 behavioral shift (|d| ≥ 0.2)
+
+**常见失败模式**（需警惕）:
+```
+intervention_rate 很高 (如 80%)
+但 behavior metrics 无变化 (d < 0.2)
+→ 说明 control parameter 未真正影响 policy dynamics
+```
 
 ---
 
-## 关键文件
+## 运行命令
 
-| 文件 | 说明 |
-|-----|------|
-| `src/p3_runtime_integration/` | P3A Runtime Integration |
-| `src/bin/p3b_ab_validation.rs` | P3B Simulated Validation |
-| `src/bin/p3c_real_validation.rs` | P3C Runtime-like Harness |
-| `src/bin/p3d_main_runtime_native.rs` | P3D Main Runtime Native |
-| `src/gridworld/mod.rs` | 主系统（已添加 P3 Control API）|
-| `scripts/analyze_p3d_gamma.py` | P3D-gamma 统计分析 |
-| `P3D_GAMMA_EXPERIMENT_PLAN.md` | P3D-gamma 实验计划 |
+### 完整实验（~30分钟）
+```bash
+./scripts/p3d_gamma_batch.sh
+# 10 seeds × 50 episodes × 500 steps
+# 总样本: 500 episodes / condition
+```
+
+### 快速测试（~5分钟）
+```bash
+./scripts/p3d_gamma_quick.sh
+# 3 seeds × 20 episodes (smoke test)
+```
+
+### 统计分析
+```bash
+python3 scripts/analyze_p3d_gamma.py logs/p3d/
+# 输出: mean ± std, Cohen's d, behavioral shift 判定
+```
+
+---
+
+## 文件索引
+
+| 文件 | 阶段 | 说明 |
+|-----|------|------|
+| `src/p3_runtime_integration/` | P3A | Runtime Integration |
+| `src/bin/p3b_ab_validation.rs` | P3B | Simulated Validation |
+| `src/bin/p3c_real_validation.rs` | P3C | Runtime-like Harness |
+| `src/bin/p3d_main_runtime_native.rs` | P3D | Main Runtime Native |
+| `src/gridworld/mod.rs` | P3D | 主系统（P3 Control API）|
+| `scripts/analyze_p3d_gamma.py` | P3D-γ | 统计分析（Cohen's d）|
+| `scripts/p3d_gamma_batch.sh` | P3D-γ | 批量实验脚本 |
+| `P3D_GAMMA_EXPERIMENT_PLAN.md` | P3D-γ | 实验规范文档 |
+| `STATUS.md` | - | 本文件 |
 
 ---
 
@@ -84,8 +141,9 @@ python3 scripts/analyze_p3d_gamma.py logs/p3d/
 
 **Repo**: https://github.com/Ectrox-Lab/atlas-hec-v2.1
 
-**Latest Commit**: `848c714` - 🎯 P3D-gamma: Measured Native A/B Experiment Framework
+**Latest Commit**: `47d479e` - 📋 STATUS: P3D-beta COMPLETE, P3D-gamma Framework Ready
 
 ---
 
 **Last Updated**: 2026-03-09
+**Next Step**: Run P3D-gamma full experiments and verify behavioral shift
