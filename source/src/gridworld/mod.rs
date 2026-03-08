@@ -295,11 +295,11 @@ pub struct EpisodeStats {
 
 /// 超脑Agent（模拟版，无CUDA依赖）
 pub struct SuperbrainAgent {
-    encoder: VisualEncoder,
-    decoder: MotorDecoder,
-    curiosity: CuriosityEngine,
+    pub encoder: VisualEncoder,
+    pub decoder: MotorDecoder,
+    pub curiosity: CuriosityEngine,
     /// 内部状态（模拟SNN）
-    motor_bias: [f32; 5],
+    pub motor_bias: [f32; 5],
 }
 
 impl SuperbrainAgent {
@@ -365,7 +365,7 @@ impl SuperbrainAgent {
     
     /// 模拟SNN（简化版）
     #[inline(always)]
-    fn simulate_snn(&mut self, sensory: &[u8; 256], output: &mut [f32; 5]) {
+    pub fn simulate_snn(&mut self, sensory: &[u8; 256], output: &mut [f32; 5]) {
         // 检测食物方向（简化启发式）
         let mut food_x_sum = 0i32;
         let mut food_y_sum = 0i32;
@@ -399,7 +399,7 @@ impl SuperbrainAgent {
     
     /// 更新运动bias（模拟STDP）
     #[inline(always)]
-    fn update_bias(&mut self, action: Action, reward: f32) {
+    pub fn update_bias(&mut self, action: Action, reward: f32) {
         let idx = match action {
             Action::Up => 0,
             Action::Down => 1,

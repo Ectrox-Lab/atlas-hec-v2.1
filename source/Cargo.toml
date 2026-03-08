@@ -63,6 +63,10 @@ path = "src/bin/p3b_ab_validation.rs"
 name = "p3c_real_validation"
 path = "src/bin/p3c_real_validation.rs"
 
+[[bin]]
+name = "p3d_main_runtime_native"
+path = "src/bin/p3d_main_runtime_native.rs"
+
 [dependencies]
 fastrand = "2.3.0"
 rand = "0.8"
