@@ -393,7 +393,7 @@ pub struct P3DValidationResult {
 }
 
 impl P3DValidationResult {
-    pub fn save_json(&self) -> Result<(), std::io::Error> {
+    pub fn save_json(&self, seed: u64) -> Result<(), std::io::Error> {
         let json_path = self.log_file.replace(".csv", "_result.json");
         
         // 转换 action_distribution 为 serde_json::Value
@@ -404,6 +404,7 @@ impl P3DValidationResult {
         
         let json = serde_json::json!({
             "p3_enabled": self.p3_enabled,
+            "seed": seed,
             "total_episodes": self.total_episodes,
             "avg_survival_steps": self.avg_survival_steps,
             "total_food_eaten": self.total_food_eaten,
@@ -426,6 +427,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     
     let mut p3_enabled = true;
+    let mut seed: u64 = 42;
     let mut episodes: u32 = 50;
     let mut max_steps: usize = 500;
     
@@ -436,6 +438,12 @@ fn main() {
                 i += 1;
                 if i < args.len() {
                     p3_enabled = args[i] == "on";
+                }
+            }
+            "--seed" => {
+                i += 1;
+                if i < args.len() {
+                    seed = args[i].parse().unwrap_or(42);
                 }
             }
             "--episodes" => {
@@ -469,7 +477,7 @@ fn main() {
     
     match validator.run_validation(episodes, max_steps, &log_file) {
         Ok(result) => {
-            if let Err(e) = result.save_json() {
+            if let Err(e) = result.save_json(seed) {
                 eprintln!("⚠️ Failed to save JSON: {}", e);
             }
             
