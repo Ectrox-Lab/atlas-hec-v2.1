@@ -59,6 +59,10 @@ path = "src/bin/p3a_runtime_demo.rs"
 name = "p3b_ab_validation"
 path = "src/bin/p3b_ab_validation.rs"
 
+[[bin]]
+name = "p3c_real_validation"
+path = "src/bin/p3c_real_validation.rs"
+
 [dependencies]
 fastrand = "2.3.0"
 rand = "0.8"
