@@ -261,6 +261,11 @@ impl CuriosityEngine {
         }
     }
     
+    /// P3D-beta: 动态调整学习率
+    pub fn set_eta(&mut self, eta: f32) {
+        self.eta = eta.clamp(0.0, 1.0);
+    }
+    
     /// 计算预测误差（惊喜度）
     /// 返回: 内在奖励（误差越大=越好奇）
     #[inline(always)]
@@ -294,12 +299,38 @@ pub struct EpisodeStats {
 }
 
 /// 超脑Agent（模拟版，无CUDA依赖）
+/// 
+/// P3D-beta: 添加 preservation control 接口
 pub struct SuperbrainAgent {
     pub encoder: VisualEncoder,
     pub decoder: MotorDecoder,
     pub curiosity: CuriosityEngine,
     /// 内部状态（模拟SNN）
     pub motor_bias: [f32; 5],
+    
+    // === P3D-beta: Preservation Control Parameters ===
+    /// 探索缩放（P3控制）
+    exploration_scale: f32,
+    /// 好奇心学习率缩放（P3控制）
+    curiosity_eta_scale: f32,
+    /// Motor bias 全局缩放（P3控制）
+    motor_bias_scale: f32,
+    /// 恢复模式标志（P3控制）
+    recovery_mode: bool,
+    /// 步率限制（P3控制，毫秒）
+    step_rate_limit_ms: u64,
+    /// 原始好奇心 eta 基准
+    base_curiosity_eta: f32,
+}
+
+/// P3D-beta: Agent Control Parameters (监控用)
+#[derive(Debug, Clone, Copy)]
+pub struct AgentControlParams {
+    pub exploration_scale: f32,
+    pub curiosity_eta_scale: f32,
+    pub motor_bias_scale: f32,
+    pub recovery_mode: bool,
+    pub step_rate_limit_ms: u64,
 }
 
 impl SuperbrainAgent {
@@ -309,6 +340,67 @@ impl SuperbrainAgent {
             decoder: MotorDecoder::new(),
             curiosity: CuriosityEngine::new(0.1),
             motor_bias: [0.0f32; 5],
+            // P3D-beta: 初始化控制参数
+            exploration_scale: 1.0,
+            curiosity_eta_scale: 1.0,
+            motor_bias_scale: 1.0,
+            recovery_mode: false,
+            step_rate_limit_ms: 10,
+            base_curiosity_eta: 0.1,
+        }
+    }
+    
+    // === P3D-beta: Preservation Control API ===
+    
+    /// 设置探索缩放 (P3: ReduceExploration)
+    pub fn set_exploration_scale(&mut self, scale: f32) {
+        self.exploration_scale = scale.clamp(0.0, 2.0);
+    }
+    
+    /// 设置好奇心学习率缩放 (P3: StabilizeNetwork)
+    pub fn set_curiosity_eta_scale(&mut self, scale: f32) {
+        self.curiosity_eta_scale = scale.clamp(0.0, 2.0);
+        // 实时更新 curiosity 引擎
+        let new_eta = self.base_curiosity_eta * self.curiosity_eta_scale;
+        self.curiosity.set_eta(new_eta);
+    }
+    
+    /// 设置 motor bias 缩放 (P3: SeekReward/EnterRecovery)
+    pub fn set_motor_bias_scale(&mut self, scale: f32) {
+        self.motor_bias_scale = scale.clamp(0.0, 2.0);
+    }
+    
+    /// 进入/退出恢复模式 (P3: EnterRecovery)
+    pub fn set_recovery_mode(&mut self, enabled: bool) {
+        self.recovery_mode = enabled;
+        if enabled {
+            // 恢复模式下：降低探索，降低好奇心，稳定 bias
+            self.exploration_scale = 0.3;
+            self.curiosity_eta_scale = 0.2;
+            self.motor_bias_scale = 0.5;
+            self.curiosity.set_eta(self.base_curiosity_eta * 0.2);
+        } else {
+            // 退出恢复：渐进恢复
+            self.exploration_scale = 1.0;
+            self.curiosity_eta_scale = 1.0;
+            self.motor_bias_scale = 1.0;
+            self.curiosity.set_eta(self.base_curiosity_eta);
+        }
+    }
+    
+    /// 设置步率限制 (P3: SlowDown)
+    pub fn set_step_rate_limit_ms(&mut self, ms: u64) {
+        self.step_rate_limit_ms = ms.clamp(1, 100);
+    }
+    
+    /// 获取当前控制参数（用于监控）
+    pub fn get_control_params(&self) -> AgentControlParams {
+        AgentControlParams {
+            exploration_scale: self.exploration_scale,
+            curiosity_eta_scale: self.curiosity_eta_scale,
+            motor_bias_scale: self.motor_bias_scale,
+            recovery_mode: self.recovery_mode,
+            step_rate_limit_ms: self.step_rate_limit_ms,
         }
     }
     

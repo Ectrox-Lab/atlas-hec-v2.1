@@ -41,6 +41,9 @@ pub struct P3DMainRuntimeValidator {
     pub step_times: Vec<f64>,
     pub reward_history: Vec<f32>,
     pub food_found_history: Vec<u32>,
+    
+    /// P3D-beta: 真实 action 统计
+    pub action_counts: std::collections::HashMap<String, u64>,
 }
 
 impl P3DMainRuntimeValidator {
@@ -54,6 +57,14 @@ impl P3DMainRuntimeValidator {
             step_times: Vec::with_capacity(100),
             reward_history: Vec::with_capacity(100),
             food_found_history: Vec::with_capacity(10),
+            action_counts: [
+                ("ContinueTask".to_string(), 0),
+                ("EnterRecovery".to_string(), 0),
+                ("SeekReward".to_string(), 0),
+                ("ReduceExploration".to_string(), 0),
+                ("StabilizeNetwork".to_string(), 0),
+                ("SlowDown".to_string(), 0),
+            ].into_iter().collect(),
         }
     }
     
@@ -101,7 +112,8 @@ impl P3DMainRuntimeValidator {
         let total_time = start.elapsed();
         
         // 计算结果
-        let result = self.compute_result(all_stats, total_time, log_file);
+        // P3D-beta: 使用真实 action 统计
+        let result = self.compute_result(all_stats, total_time, log_file, &self.action_counts.clone());
         
         println!("\n═══════════════════════════════════════════════════════════════");
         println!("✅ P3D Validation Complete");
@@ -126,9 +138,6 @@ impl P3DMainRuntimeValidator {
         let mut sensory = [0u8; 256];
         let mut motor_output = [0.2f32; 5];
         
-        // 获取agent内部状态（通过反射/访问器模式）
-        // 注意：这里需要agent提供状态访问接口
-        
         for step in 0..max_steps {
             let tick_start = Instant::now();
             
@@ -145,6 +154,10 @@ impl P3DMainRuntimeValidator {
             
             // === 3. P3D: 真实影响主系统控制参数 ===
             self.apply_preservation_to_main_runtime(&action, &params);
+            
+            // P3D-beta: 统计 action
+            let action_name = format!("{:?}", action);
+            *self.action_counts.entry(action_name).or_insert(0) += 1;
             
             // === 4. 主系统正常运行 ===
             self.agent.encoder.encode(world, &mut sensory);
@@ -277,58 +290,87 @@ impl P3DMainRuntimeValidator {
         }
     }
     
-    /// P3D核心：Preservation action 真实影响主系统参数
+    /// P3D-beta: Preservation action 真实影响主系统参数
     /// 
-    /// 通过修改 SuperbrainAgent 的控制参数实现
+    /// 通过 SuperbrainAgent 的 P3 control API 实现
     fn apply_preservation_to_main_runtime(
         &mut self,
         action: &PreservationAction,
         params: &RuntimeParameters,
     ) {
-        // 注意：这里需要 SuperbrainAgent 提供参数修改接口
-        // 当前主系统 Agent 结构可能不支持，需要添加 setter
-        
         match action {
             PreservationAction::EnterRecovery => {
-                // 降低好奇心学习率（如果可访问）
-                // self.agent.curiosity.set_eta(0.01);
-                
-                // 重置 motor_bias 以稳定行为
-                // self.agent.reset_motor_bias();
-                
-                // 在实际实现中，这里应该真实修改 agent 参数
+                // 进入恢复模式：真实修改 agent 参数
+                self.agent.set_recovery_mode(true);
+                println!("  [P3] EnterRecovery: recovery_mode=true, scales reduced");
             }
             PreservationAction::ReduceExploration => {
-                // 降低探索：收紧 motor_bias 范围
-                // for i in 0..5 {
-                //     self.agent.motor_bias[i] *= 0.9;
-                // }
+                // 降低探索率
+                self.agent.set_exploration_scale(params.exploration_rate * 2.0);
+                println!("  [P3] ReduceExploration: scale={:.2}", params.exploration_rate * 2.0);
             }
             PreservationAction::SeekReward => {
-                // 偏向食物寻求：调整特定方向 bias
-                // 需要 agent 支持 bias 调整
+                // 偏向奖励：增加 motor_bias 幅度
+                self.agent.set_motor_bias_scale(1.0 + params.reward_bias.abs());
+                println!("  [P3] SeekReward: bias_scale={:.2}", 1.0 + params.reward_bias.abs());
             }
-            _ => {}
+            PreservationAction::StabilizeNetwork => {
+                // 稳定网络：降低好奇心学习率
+                self.agent.set_curiosity_eta_scale(params.plasticity_scale);
+                println!("  [P3] StabilizeNetwork: eta_scale={:.2}", params.plasticity_scale);
+            }
+            PreservationAction::SlowDown => {
+                // 放慢步率
+                let sleep_ms = ((1.0 - params.step_rate_limit) * 100.0) as u64;
+                self.agent.set_step_rate_limit_ms(10 + sleep_ms);
+                println!("  [P3] SlowDown: limit_ms={}", 10 + sleep_ms);
+            }
+            PreservationAction::ContinueTask => {
+                // 正常模式：渐进恢复默认参数
+                if self.agent.get_control_params().recovery_mode {
+                    self.agent.set_recovery_mode(false);
+                    println!("  [P3] ContinueTask: recovery exited");
+                }
+            }
         }
     }
     
-    fn compute_result(&self, all_stats: Vec<EpisodeStats>, total_time: Duration, log_file: &str) -> P3DValidationResult {
+    fn compute_result(
+        &self, 
+        all_stats: Vec<EpisodeStats>, 
+        total_time: Duration, 
+        log_file: &str,
+        action_counts: &std::collections::HashMap<String, u64>,
+    ) -> P3DValidationResult {
         let total_episodes = all_stats.len() as u32;
         let avg_survival: f32 = all_stats.iter().map(|s| s.survival_steps).sum::<u32>() as f32 / total_episodes as f32;
         let total_food: u32 = all_stats.iter().map(|s| s.food_eaten).sum();
         
-        let intervention_count = if self.p3.enabled {
-            self.total_steps // 简化
+        // P3D-beta: 真实统计 intervention（非 ContinueTask 的 action）
+        let continue_count = *action_counts.get("ContinueTask").unwrap_or(&0);
+        let total_actions: u64 = action_counts.values().sum();
+        let intervention_count = total_actions - continue_count;
+        let intervention_rate = if total_actions > 0 {
+            intervention_count as f32 / total_actions as f32
         } else {
-            0
+            0.0
         };
+        
+        // 构建 action 分布
+        let mut action_distribution = std::collections::HashMap::new();
+        for (name, count) in action_counts {
+            if *count > 0 {
+                action_distribution.insert(name.clone(), *count);
+            }
+        }
         
         P3DValidationResult {
             p3_enabled: self.p3.enabled,
             total_episodes,
             avg_survival_steps: avg_survival,
             total_food_eaten: total_food,
-            intervention_rate: intervention_count as f32 / self.total_steps.max(1) as f32,
+            intervention_rate,
+            action_distribution,
             total_time_sec: total_time.as_secs_f64(),
             log_file: log_file.to_string(),
         }
@@ -345,6 +387,7 @@ pub struct P3DValidationResult {
     pub avg_survival_steps: f32,
     pub total_food_eaten: u32,
     pub intervention_rate: f32,
+    pub action_distribution: std::collections::HashMap<String, u64>,
     pub total_time_sec: f64,
     pub log_file: String,
 }
@@ -352,12 +395,20 @@ pub struct P3DValidationResult {
 impl P3DValidationResult {
     pub fn save_json(&self) -> Result<(), std::io::Error> {
         let json_path = self.log_file.replace(".csv", "_result.json");
+        
+        // 转换 action_distribution 为 serde_json::Value
+        let action_dist: serde_json::Map<String, serde_json::Value> = self.action_distribution
+            .iter()
+            .map(|(k, v)| (k.clone(), serde_json::json!(v)))
+            .collect();
+        
         let json = serde_json::json!({
             "p3_enabled": self.p3_enabled,
             "total_episodes": self.total_episodes,
             "avg_survival_steps": self.avg_survival_steps,
             "total_food_eaten": self.total_food_eaten,
             "intervention_rate": self.intervention_rate,
+            "action_distribution": action_dist,
             "total_time_sec": self.total_time_sec,
             "log_file": self.log_file,
         });
