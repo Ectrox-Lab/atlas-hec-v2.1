@@ -6,34 +6,34 @@
       15
     ],
     "peak_gen": 1600,
-    "peak_N": 17544.0,
+    "peak_N": 17558.0,
     "collapse_start_gen": null,
     "extinction_start": 6400
   },
   "parameters": {
     "alpha": 1.0,
     "beta": 0.1,
-    "N_critical": 5263.2
+    "N_critical": 5267.4
   },
   "fit_quality": {
-    "R2": -0.020515429814758068,
-    "RMSE": 6202.082901321482
+    "R2": 0.07197576833456909,
+    "RMSE": 5915.96922274399
   },
   "triggers": {
     "population": {
-      "before_peak": 17533.8,
-      "after_peak": 17544.0,
-      "change_pct": 0.058173356602680124
+      "before_peak": 17546.6,
+      "after_peak": 17558.0,
+      "change_pct": 0.06496985170917133
     },
     "avg_cdi": {
-      "before_peak": 0.67852,
-      "after_peak": 0.67619,
-      "change_pct": -0.34339444673702385
+      "before_peak": 0.6785599999999999,
+      "after_peak": 0.6760900000000001,
+      "change_pct": -0.36400613062954806
     },
     "avg_collaboration": {
-      "before_peak": 0.39981999999999995,
-      "after_peak": 0.3998,
-      "change_pct": -0.005002251012946949
+      "before_peak": 0.40034000000000003,
+      "after_peak": 0.4004,
+      "change_pct": 0.014987260828283205
     },
     "extinct_count": {
       "before_peak": 0.0,

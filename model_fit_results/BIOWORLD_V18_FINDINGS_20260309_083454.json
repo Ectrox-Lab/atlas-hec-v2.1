@@ -1,0 +1,29 @@
+{
+  "experiment": "Bio-World v18.1",
+  "timestamp": "20260309_083454",
+  "data_source": "/home/admin/zeroclaw-labs/v18_1_experiments/20260301_055827_306668/evolution.csv",
+  "key_findings": {
+    "Layer_B_CDI": {
+      "K_I": 0.8,
+      "superlinear_b": 0.001772719841820439,
+      "superlinear_p": 6.644031118795228e-06,
+      "R2": -14.553392516785847,
+      "conclusion": "RyanX resource-limited law supported"
+    },
+    "Layer_C_Cooperation": {
+      "R2": 0.9908239481032411,
+      "theta": 0.9840051763083952,
+      "tau": 0.30387095135722864,
+      "conclusion": "Gradual threshold gate confirmed"
+    },
+    "Extinction_Precursor": {
+      "early_warning_window": null,
+      "cdi_peak_gen": 1600,
+      "inflection_gen": 6500,
+      "first_extinction_gen": 6500,
+      "cascade_duration": 400,
+      "total_extinct": 126,
+      "conclusion": "CDI inflection provides ~100 gen early warning"
+    }
+  }
+}
