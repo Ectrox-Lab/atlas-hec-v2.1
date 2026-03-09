@@ -22,25 +22,47 @@ The contract enforces:
 
 ## 2. Shared Metrics Schema
 
-### 2.1 Core Metrics (Required)
+### 2.1 Required Now (Phase 1)
 
-| Field | Type | Source | Description |
-|-------|------|--------|-------------|
-| `archive_sample_attempts` | u32 | Bio-World | Count of archive sampling attempts per generation |
-| `archive_sample_successes` | u32 | Bio-World | Count of successful archive retrievals |
-| `archive_influenced_births` | u32 | Bio-World | Newborns with archive-derived lessons |
-| `lineage_diversity` | u32 | Bio-World | Count of distinct lineage_id values |
-| `top1_lineage_share` | f32 | Bio-World | Proportion of population from largest lineage |
-| `strategy_entropy` | f32 | Bio-World | Shannon entropy of strategy distribution |
-| `collapse_event_count` | u32 | Bio-World | Number of extinction events in window |
+**Status**: Must be implemented in current sprint  
+**Deadline**: 2026-03-16  
+**Owner**: Bio-World
 
-### 2.2 Extended Metrics (Proposed)
+| Field | Type | Source | Description | Verification |
+|-------|------|--------|-------------|--------------|
+| `archive_sample_attempts` | u32 | Bio-World | Count of archive sampling attempts per generation | `grep -c "archive_sample_attempts" population.csv` |
+| `archive_sample_successes` | u32 | Bio-World | Count of successful archive retrievals | Sum of actual samples taken |
+| `archive_influenced_births` | u32 | Bio-World | Newborns with archive-derived lessons | Count births with lesson injection |
+| `lineage_diversity` | u32 | Bio-World | Count of distinct lineage_id values | `HashSet::len()` of lineage_ids |
+| `top1_lineage_share` | f32 | Bio-World | Proportion of population from largest lineage | `max(lineage_counts) / total_pop` |
+| `strategy_entropy` | f32 | Bio-World | Shannon entropy of strategy distribution | `-Σ p_i * ln(p_i)` over strategies |
+| `collapse_event_count` | u32 | Bio-World | Number of extinction events in window | Rolling count over 100 gens |
 
-| Field | Type | Source | Description |
-|-------|------|--------|-------------|
-| `continuity_signature` | String | Reserved | Lineage continuity hash (TBD) |
-| `oracle_leak_score` | f32 | Atlas-HEC | Computed from information flow analysis |
-| `archive_exposure_gain` | f32 | Atlas-HEC | Per-generation info gain from archive |
+**Acceptance Criteria**:
+- [ ] All 7 fields present in CSV header
+- [ ] All fields have non-zero variance across conditions
+- [ ] Values respond appropriately to experimental conditions
+- [ ] No missing values in any row
+
+### 2.2 Reserved Next (Phase 2)
+
+**Status**: Design complete, implementation deferred  
+**Deadline**: 2026-03-30  
+**Owner**: Atlas-HEC (computation), Bio-World (data export)
+
+| Field | Type | Source | Description | Dependency |
+|-------|------|--------|-------------|------------|
+| `continuity_signature` | String | Atlas-HEC | Lineage continuity hash | Requires Phase 1 metrics stable |
+| `oracle_leak_score` | f32 | Atlas-HEC | Computed from information flow analysis | Requires ContinuityProbe |
+| `archive_exposure_gain` | f32 | Atlas-HEC | Per-generation info gain from archive | Requires archive content analysis |
+| `drift_score` | f32 | Atlas-HEC | Population-level drift measurement | Requires multi-seed analysis |
+| `collapse_risk` | f32 | Atlas-HEC | Computed extinction probability | Requires ML model training |
+
+**Unblock Conditions**:
+1. Phase 1 fields validated
+2. Sentinel run passes falsification
+3. ContinuityProbe operational
+4. Cross-repo data pipeline stable
 
 ### 2.3 CDI/CI/r State Vector
 

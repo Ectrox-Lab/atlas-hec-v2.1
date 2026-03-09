@@ -1,49 +1,65 @@
 {
   "repo": "atlas-hec-v2.1",
-  "branch": "main",
-  "commit": "a21602a",
-  "commit_subject": "docs: Three-Layer Memory Architecture - Master Index",
-  "last_synced_other_repo": "",
+  "branch": "master",
+  "commit": "0c9bc6e",
+  "commit_subject": "audit: Atlas-BioWorld integration contract and repo-grounded architecture audit",
+  "last_synced_other_repo": "bio-world (pending)",
   "interface_version": "v0.1.0",
-  "timestamp": "2026-03-09T19:45:00Z",
+  "timestamp": "2026-03-09T20:05:00Z",
   "owned_modules": [
     "research_audit",
     "integration_contract",
     "falsification_plan",
-    "continuity_probe_design"
+    "continuity_probe_design",
+    "codex_acceptance_criteria",
+    "sentinel_run_spec",
+    "review_template"
   ],
   "audit_status": {
     "repo_grounded_audit": "completed",
     "hidden_oracle_audit": "completed",
-    "spec_code_alignment": "in_review",
-    "metrics_pipeline": "partial"
+    "spec_code_alignment": "completed",
+    "metrics_pipeline": "pending_bio_world"
   },
   "deliverables": {
     "facts_json": "generated (944KB)",
     "matrix_json": "generated (131KB)",
     "forbidden_refs": "checked (0 findings)",
     "archive_flow": "audited (0 findings)",
-    "global_state": "audited (0 findings)"
+    "global_state": "audited (0 findings)",
+    "codex_acceptance_checklist": "generated",
+    "sentinel_run_spec": "generated",
+    "falsification_rules": "generated",
+    "continuity_probe_spec": "generated",
+    "codex_review_template": "generated"
+  },
+  "phase_2_status": {
+    "verification_lead": "active",
+    "cross_repo_contract": "maintained",
+    "codex_acceptance_criteria": "ready",
+    "sentinel_run_ready": "pending_bio_world"
   },
   "blocking_issues": [],
   "next_expected_inputs": [
     {
       "from": "bio-world",
-      "item": "metrics_export_implementation",
-      "contract_ref": "section_2.1_core_metrics"
+      "item": "7_required_now_fields_in_csv",
+      "contract_ref": "section_2.1_required_now",
+      "acceptance_criteria": "CODEX_ACCEPTANCE_CHECKLIST.md"
     },
     {
       "from": "bio-world",
-      "item": "jsonl_stream_endpoint",
-      "contract_ref": "section_3_data_flow"
+      "item": "anti_god_mode_assertions_preserved",
+      "contract_ref": "section_4_anti_god_mode"
     },
     {
-      "from": "codex",
-      "item": "three_layer_memory_validation",
-      "contract_ref": "anti_god_mode_boundaries"
+      "from": "bio-world",
+      "item": "status_sync_json_updated",
+      "contract_ref": "integration_files"
     }
   ],
   "open_questions_count": 5,
   "ready_for_integration": false,
-  "estimated_completion": "2026-03-16"
+  "estimated_completion": "2026-03-16",
+  "sentinel_run_ready": false
 }
