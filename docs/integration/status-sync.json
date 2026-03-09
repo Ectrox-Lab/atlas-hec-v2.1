@@ -1,11 +1,11 @@
 {
   "repo": "atlas-hec-v2.1",
   "branch": "master",
-  "commit": "0c9bc6e",
-  "commit_subject": "audit: Atlas-BioWorld integration contract and repo-grounded architecture audit",
+  "commit": "b38f93b",
+  "commit_subject": "verification: Phase 2 verification lead deliverables",
   "last_synced_other_repo": "bio-world (pending)",
   "interface_version": "v0.1.0",
-  "timestamp": "2026-03-09T20:05:00Z",
+  "timestamp": "2026-03-09T20:30:00Z",
   "owned_modules": [
     "research_audit",
     "integration_contract",
@@ -13,7 +13,8 @@
     "continuity_probe_design",
     "codex_acceptance_criteria",
     "sentinel_run_spec",
-    "review_template"
+    "review_template",
+    "sync_protocol"
   ],
   "audit_status": {
     "repo_grounded_audit": "completed",
@@ -31,15 +32,35 @@
     "sentinel_run_spec": "generated",
     "falsification_rules": "generated",
     "continuity_probe_spec": "generated",
-    "codex_review_template": "generated"
+    "codex_review_template": "generated",
+    "sync_protocol": "generated",
+    "open_questions_reorganized": "completed"
   },
   "phase_2_status": {
-    "verification_lead": "active",
+    "verification_lead": "completed",
     "cross_repo_contract": "maintained",
     "codex_acceptance_criteria": "ready",
-    "sentinel_run_ready": "pending_bio_world"
+    "sentinel_run_ready": "pending_bio_world",
+    "sync_protocol": "active"
   },
-  "blocking_issues": [],
+  "blocking_issues": [
+    {
+      "id": "B1",
+      "category": "blocker",
+      "description": "Missing 7 required_now CSV fields in Bio-World",
+      "owner": "bio-world",
+      "eta": "2026-03-12",
+      "reference": "open-questions.md#B1"
+    },
+    {
+      "id": "B2",
+      "category": "blocker",
+      "description": "Anti-God-Mode verification pending on Codex PR",
+      "owner": "atlas-hec",
+      "eta": "2026-03-13",
+      "reference": "open-questions.md#B2"
+    }
+  ],
   "next_expected_inputs": [
     {
       "from": "bio-world",
@@ -55,11 +76,22 @@
     {
       "from": "bio-world",
       "item": "status_sync_json_updated",
-      "contract_ref": "integration_files"
+      "contract_ref": "SYNC_PROTOCOL.md"
+    },
+    {
+      "from": "bio-world",
+      "item": "open_questions_3_category_update",
+      "contract_ref": "SYNC_PROTOCOL.md"
     }
   ],
-  "open_questions_count": 5,
+  "open_questions": {
+    "blockers": 2,
+    "semantic_mismatch": 3,
+    "next_phase_proposals": 5,
+    "total": 10
+  },
   "ready_for_integration": false,
   "estimated_completion": "2026-03-16",
-  "sentinel_run_ready": false
+  "sentinel_run_ready": false,
+  "sync_protocol_version": "v0.1.0"
 }

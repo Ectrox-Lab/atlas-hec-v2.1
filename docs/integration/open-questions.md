@@ -5,126 +5,196 @@
 
 ---
 
-## Q1: Metrics Export Format
+## Blockers
 
-**Question**: Should Bio-World export metrics as:
-- A) CSV append (current, simple)
-- B) JSONL stream (structured, easier parsing)
-- C) Both (flexibility, more maintenance)
+Questions that prevent progress. Must resolve before next phase.
 
-**Context**: Current CSV format requires parsing and type inference. JSONL would enable direct structured consumption.
+### B1: Missing Required CSV Fields
 
-**Proposed Answer**: Start with CSV enhancement, migrate to JSONL in v0.2.0
+**Question**: Bio-World has not yet implemented the 7 required_now CSV fields. Can we proceed with Sentinel validation without these fields?
 
-**Owner**: Bio-World team
-**Priority**: High
-**Status**: Awaiting decision
+**Impact**: Cannot run Sentinel validation. Cannot compute trends. Cannot validate falsification conditions R5 and R7.
 
----
+**Owner**: Bio-World / Codex
 
-## Q2: Archive Exposure Measurement
+**ETA**: 2026-03-12
 
-**Question**: How to measure `archive_exposure_gain` without violating anti-god-mode?
+**Status**: Open
 
-**Options**:
-1. Track archive read frequency per lineage
-2. Compare lineage behavior with/without archive access
-3. Analyze information-theoretic content of sampled lessons
-
-**Concern**: Measurement itself might create observer effect
-
-**Owner**: Atlas-HEC team  
-**Priority**: High
-**Status**: Needs experiment design
+**Resolution**: None yet. Waiting for Codex PR.
 
 ---
 
-## Q3: Lineage Diversity Metric
+### B2: Anti-God-Mode Verification Gap
 
-**Question**: How to define `lineage_diversity` robustly?
+**Question**: How do we verify that Codex implementation does not introduce new information flow violations?
 
-**Options**:
-- Count unique lineage_id values
-- Shannon entropy of lineage size distribution
-- Effective number of lineages (Hill number)
+**Impact**: If unchecked, new code might violate three-layer memory constraints.
 
-**Concern**: Simple count may not capture structural diversity
+**Owner**: Atlas-HEC (audit) + Bio-World (fix if issues found)
 
-**Proposed Answer**: Use effective number with q=1 (Shannon-equivalent)
+**ETA**: 2026-03-13
 
-**Owner**: Both teams
-**Priority**: Medium
-**Status**: Pending implementation
+**Status**: Open
+
+**Resolution**: Run hidden-oracle-auditor on every Codex PR before merge.
 
 ---
 
-## Q4: ContinuityProbe Access Level
+## Semantic Mismatch
 
-**Question**: What level of archive access should ContinuityProbe have?
+Questions about interpretation differences between repos.
 
-**Options**:
-1. Full read access (complete audit capability)
-2. Sampled read (p=0.01, same as cells)
-3. Summary statistics only (aggregated data)
+### S1: lineage_diversity Definition
 
-**Concern**: Full access might create information asymmetry
+**Atlas Interpretation**: Count of unique lineage_id values in current generation.
 
-**Proposed Answer**: Start with summary statistics, escalate to sampled read if needed
+**Bio-World Interpretation**: May include historical lineages no longer present.
 
-**Owner**: Atlas-HEC team
-**Priority**: Medium
-**Status**: Design phase
+**Mismatch**: If Bio-World counts historical, trends will differ from Atlas calculations.
+
+**Proposed Resolution**: 
+- Use only currently alive cells
+- Document clearly in contract
+- Add `lineage_count` (historical) vs `lineage_diversity` (current) distinction
+
+**Status**: Under Discussion
 
 ---
 
-## Q5: Falsification Experiment Priorities
+### S2: collapse_event_count Window Size
 
-**Question**: Which falsification experiment should run first?
+**Atlas Interpretation**: Rolling count over last 100 generations.
 
-**Options**:
-1. P1-C Boss Pressure (environmental stress → structural response)
-2. Archive Over-Reliance (increased sampling → reduced adaptation)
-3. Memory KO (no inheritance → survival impact)
+**Bio-World Interpretation**: Total count since simulation start.
 
-**Context**: P1-C already shows promising results in Phase 1
+**Mismatch**: If Bio-World uses total, we cannot detect recent trend changes.
 
-**Proposed Answer**: Complete P1-C Phase 2 first, then archive over-reliance
+**Proposed Resolution**: 
+- Use rolling window of 100 generations
+- Or provide both: `collapse_event_total` and `collapse_event_window`
 
-**Owner**: Both teams
-**Priority**: High
-**Status**: Awaiting resource allocation
+**Status**: Under Discussion
+
+---
+
+### S3: strategy_entropy Granularity
+
+**Atlas Interpretation**: Entropy over `preferred_strategy` enum values (cooperate/explore/balanced).
+
+**Bio-World Interpretation**: May use continuous strategy space.
+
+**Mismatch**: Different calculation methods yield incomparable results.
+
+**Proposed Resolution**:
+- Standardize on enum-based calculation
+- Use 3 categories: cooperate, explore, balanced
+- Document exact formula
+
+**Status**: Under Discussion
+
+---
+
+## Next-Phase Proposals
+
+Questions about future enhancements, not blocking current work.
+
+### P1: JSONL Stream Export
+
+**Proposal**: Add JSON Lines export option for real-time streaming.
+
+**Value**: Lower latency, structured parsing, easier integration.
+
+**Effort**: ~1 day implementation.
+
+**Dependencies**: Phase 1 CSV fields must be stable first.
+
+**Status**: Proposed for Phase 2
+
+---
+
+### P2: ContinuityProbe Real-time Alerts
+
+**Proposal**: Add webhook/notification when Probe detects critical conditions.
+
+**Value**: Immediate notification of convergence warnings.
+
+**Effort**: ~2 days implementation.
+
+**Dependencies**: ContinuityProbe MVP operational.
+
+**Status**: Proposed for Phase 2
+
+---
+
+### P3: Cross-Seed Lineage Tracking
+
+**Proposal**: Track lineage persistence across different random seeds.
+
+**Value**: Distinguish robust strategies from seed-dependent luck.
+
+**Effort**: ~3 days implementation.
+
+**Dependencies**: Requires multiple completed runs.
+
+**Status**: Proposed for Phase 3
+
+---
+
+### P4: Oracle Leak Score Computation
+
+**Proposal**: Implement information-theoretic measurement of archive-to-cell leakage.
+
+**Value**: Quantify anti-god-mode effectiveness.
+
+**Effort**: ~5 days research + implementation.
+
+**Dependencies**: Requires archive content analysis capabilities.
+
+**Status**: Proposed for Phase 2/3
+
+---
+
+### P5: Drift Score for Population Divergence
+
+**Proposal**: Measure population-level drift from baseline behavior.
+
+**Value**: Early detection of anomalous evolution paths.
+
+**Effort**: ~2 days implementation.
+
+**Dependencies**: Baseline runs completed.
+
+**Status**: Proposed for Phase 2
 
 ---
 
 ## Resolution Tracking
 
-| ID | Question | Status | Owner | Target Date |
-|----|----------|--------|-------|-------------|
-| Q1 | Metrics Export Format | Open | Bio-World | 2026-03-12 |
-| Q2 | Archive Exposure Measurement | Open | Atlas-HEC | 2026-03-16 |
-| Q3 | Lineage Diversity Metric | Open | Both | 2026-03-14 |
-| Q4 | ContinuityProbe Access | Open | Atlas-HEC | 2026-03-13 |
-| Q5 | Falsification Priorities | Open | Both | 2026-03-11 |
+| ID | Category | Question | Status | Owner | Target Date |
+|----|----------|----------|--------|-------|-------------|
+| B1 | Blocker | Missing CSV fields | Open | Bio-World | 2026-03-12 |
+| B2 | Blocker | Anti-God-Mode verification | Open | Atlas-HEC | 2026-03-13 |
+| S1 | Semantic | lineage_diversity definition | Under Discussion | Both | 2026-03-14 |
+| S2 | Semantic | collapse_event_count window | Under Discussion | Both | 2026-03-14 |
+| S3 | Semantic | strategy_entropy granularity | Under Discussion | Both | 2026-03-14 |
+| P1 | Proposal | JSONL export | Proposed | Bio-World | Phase 2 |
+| P2 | Proposal | Real-time alerts | Proposed | Atlas-HEC | Phase 2 |
+| P3 | Proposal | Cross-seed tracking | Proposed | Both | Phase 3 |
+| P4 | Proposal | Oracle leak score | Proposed | Atlas-HEC | Phase 2/3 |
+| P5 | Proposal | Drift score | Proposed | Atlas-HEC | Phase 2 |
 
 ---
 
-## How to Add New Questions
+## How to Update This File
 
-1. Use Q{N} format for ID
-2. Include: Question, Context, Options, Concern, Proposed Answer
-3. Assign Owner and Priority
+1. Add new questions at the top of appropriate section
+2. Use next available ID (B{N}, S{N}, or P{N})
+3. Fill all fields
 4. Update resolution tracking table
+5. Update "Last Updated" date
+6. Commit with `[atlas-sync]` or `[bioworld-sync]` tag
 
 ---
 
-## Question Resolution Process
-
-1. **Open**: Question identified, no consensus
-2. **Under Discussion**: Active conversation
-3. **Decision Made**: Consensus reached
-4. **Implemented**: Code/docs updated
-5. **Closed**: Verified in production
-
----
-
-**Next Review**: 2026-03-12
+**Sync Protocol**: See `SYNC_PROTOCOL.md`
