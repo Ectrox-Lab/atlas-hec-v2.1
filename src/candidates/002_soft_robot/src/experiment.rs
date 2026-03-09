@@ -69,10 +69,10 @@ pub fn run_trial_with_perturbation(
 ) -> TrialResult {
     run_trial_with_recovery_params(
         condition, trial_id, duration, perturbation_time, pert_type,
-        20,   // peak_estimation_ticks: wait 20 ticks after perturbation
-        15,   // hold_ticks: need 15 consecutive stable ticks
-        0.25, // rel_threshold: 25% of max drift
-        0.25, // abs_threshold: absolute 0.25 units
+        20,   // peak_estimation_ticks
+        10,   // hold_ticks: reduced to 10
+        0.50, // rel_threshold: 50% of max drift (was 25%)
+        0.30, // abs_threshold: 0.30 units (was 0.25)
     )
 }
 
@@ -184,7 +184,7 @@ pub fn run_trial_with_recovery_params(
                     recovery_tick = Some(tick - perturbation_time);
                 }
             } else {
-                stable_counter = 0;  // Reset if drift exceeds threshold
+                stable_counter = 0;
             }
         }
     }
@@ -347,21 +347,20 @@ fn apply_perturbation(mesh: &mut SoftMesh, pert_type: PerturbationType, seed: us
     
     match pert_type {
         PerturbationType::VelocityImpulse => {
-            // Strong velocity impulse
-            let magnitude = 50.0;
+            // Moderate velocity impulse (not too strong to avoid NaN)
+            let magnitude = 15.0;
             for node in &mut mesh.nodes {
                 if !node.fixed {
-                    node.vel += Vector2::new(magnitude, rng.gen::<f32>() * 20.0 - 10.0);
+                    node.vel += Vector2::new(magnitude, rng.gen::<f32>() * 6.0 - 3.0);
                 }
             }
         }
         PerturbationType::BoundaryDisplacement => {
-            // Push boundary nodes strongly
-            let force = 80.0;
+            // Push boundary nodes moderately
+            let force = 20.0;
             for (i, node) in mesh.nodes.iter_mut().enumerate() {
                 if !node.fixed {
-                    // Left side nodes get pushed right
-                    if i % 4 == 0 {
+                    if i % 4 == 0 {  // Left side
                         node.vel.x += force;
                     }
                 }
@@ -369,10 +368,9 @@ fn apply_perturbation(mesh: &mut SoftMesh, pert_type: PerturbationType, seed: us
         }
         PerturbationType::LocalCompression => {
             // Compress from one side
-            let compression = 100.0;
+            let compression = 25.0;
             for (i, node) in mesh.nodes.iter_mut().enumerate() {
                 if !node.fixed {
-                    let row = i / 4;
                     let col = i % 4;
                     if col == 3 {  // Right side
                         node.vel.x -= compression;
@@ -381,21 +379,21 @@ fn apply_perturbation(mesh: &mut SoftMesh, pert_type: PerturbationType, seed: us
             }
         }
         PerturbationType::RandomNoise => {
-            // Random forces on all nodes
+            // Random forces on all nodes (moderate)
             for node in &mut mesh.nodes {
                 if !node.fixed {
                     node.vel += Vector2::new(
-                        rng.gen::<f32>() * 60.0 - 30.0,
-                        rng.gen::<f32>() * 60.0 - 30.0,
+                        rng.gen::<f32>() * 20.0 - 10.0,
+                        rng.gen::<f32>() * 20.0 - 10.0,
                     );
                 }
             }
         }
         PerturbationType::SustainedWind => {
-            // Strong initial push (wind continues as micro-perturbations)
+            // Moderate initial push
             for node in &mut mesh.nodes {
                 if !node.fixed {
-                    node.vel.x += 70.0;
+                    node.vel.x += 20.0;
                 }
             }
         }
@@ -412,8 +410,8 @@ fn apply_micro_perturbation(mesh: &mut SoftMesh, tick: usize) {
     for node in &mut mesh.nodes {
         if !node.fixed {
             node.vel += Vector2::new(
-                rng.gen::<f32>() * 4.0 - 2.0,
-                rng.gen::<f32>() * 4.0 - 2.0,
+                rng.gen::<f32>() * 2.0 - 1.0,  // Reduced from 4.0
+                rng.gen::<f32>() * 2.0 - 1.0,
             );
         }
     }

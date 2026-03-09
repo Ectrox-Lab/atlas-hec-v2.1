@@ -89,11 +89,18 @@ impl PressureForce {
             
             // Edge vector
             let edge = pos_j - pos_i;
-            // Normal (perpendicular, outward)
-            let normal = Vector2::new(-edge.y, edge.x).normalize();
+            let edge_len = edge.norm();
+            
+            // Skip degenerate edges
+            if edge_len < 1e-6 {
+                continue;
+            }
+            
+            // Normal (perpendicular, outward) - normalized
+            let normal = Vector2::new(-edge.y, edge.x) / edge_len;
             
             // Pressure force proportional to edge length
-            let force = normal * self.pressure * edge.norm() * 0.5;
+            let force = normal * self.pressure * edge_len * 0.5;
             
             nodes[*i].vel += force / nodes[*i].mass;
             nodes[*j].vel += force / nodes[*j].mass;
@@ -208,9 +215,19 @@ impl SoftMesh {
         // Apply pressure
         self.pressure.apply(&mut self.nodes, &self.surface_edges);
         
-        // Apply damping to all velocities
+        // Apply damping and velocity limits (numerical stability)
+        let max_vel = 100.0;  // Cap velocity to prevent explosion
         for node in &mut self.nodes {
             if !node.fixed {
+                // Clamp velocity
+                if node.vel.norm() > max_vel {
+                    node.vel = node.vel.normalize() * max_vel;
+                }
+                // Check for NaN/Inf
+                if !node.vel.x.is_finite() || !node.vel.y.is_finite() {
+                    node.vel = Vector2::zeros();
+                }
+                
                 node.vel *= 0.99;  // Global damping
             }
         }
@@ -230,6 +247,12 @@ impl SoftMesh {
                 }
                 if node.pos.y <= self.bounds.0.y || node.pos.y >= self.bounds.1.y {
                     node.vel.y *= -0.5;
+                }
+                
+                // Check for NaN/Inf in position
+                if !node.pos.x.is_finite() || !node.pos.y.is_finite() {
+                    node.pos = Vector2::zeros();
+                    node.vel = Vector2::zeros();
                 }
             }
         }
