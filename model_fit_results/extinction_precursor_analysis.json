@@ -1,0 +1,69 @@
+{
+  "cdi_signals": {
+    "peak": {
+      "gen": 1600,
+      "value": 0.6802
+    },
+    "critical_threshold": {
+      "gen": 6600,
+      "value": 0.5171,
+      "threshold_used": 0.54
+    },
+    "inflection": {
+      "gen": 6500,
+      "value": 0.5416
+    },
+    "degradation_start": {
+      "gen": null
+    }
+  },
+  "population_signals": {},
+  "universes_signals": {},
+  "critical_events": [
+    {
+      "generation": 1600,
+      "type": "cdi_peak",
+      "description": "CDI\u8fbe\u5230\u5cf0\u503c\uff08\u9ad8\u539f\u671f\u7ed3\u675f\uff09",
+      "value": 0.6802
+    },
+    {
+      "generation": 6500,
+      "type": "cdi_inflection",
+      "description": "CDI\u4e0b\u964d\u52a0\u901f\uff08\u62d0\u70b9\uff09",
+      "value": 0.5416
+    },
+    {
+      "generation": 6600,
+      "type": "critical_threshold",
+      "description": "CDI\u964d\u81f3\u4e34\u754c\u503c\u4ee5\u4e0b (0.54)",
+      "value": 0.5171
+    },
+    {
+      "generation": 6600,
+      "type": "first_extinction",
+      "description": "\u9996\u6b21\u5b87\u5b99\u706d\u7edd",
+      "value": 6
+    },
+    {
+      "generation": 6900,
+      "type": "cascade_complete",
+      "description": "\u706d\u7edd\u8fde\u9501\u57fa\u672c\u5b8c\u6210",
+      "value": 116
+    }
+  ],
+  "timing": {
+    "peak_to_extinction": 5000,
+    "critical_to_extinction": null,
+    "early_warning_window": null
+  },
+  "cascade_dynamics": {
+    "active_period": {
+      "start": 6600,
+      "end": 6900
+    },
+    "duration": 300,
+    "avg_speed": 0.3666666666666667,
+    "max_speed": 0.49,
+    "total_extinct": 126
+  }
+}
