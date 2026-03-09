@@ -1,0 +1,12 @@
+[package]
+name = "soft_robot_002"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+nalgebra = "0.32"
+rand = "0.8"
+
+[[bin]]
+name = "soft_robot_002"
+path = "src/main.rs"
