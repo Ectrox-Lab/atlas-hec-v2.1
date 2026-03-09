@@ -1,47 +1,57 @@
 {
-  "phase": "phase6",
-  "phase_name": "Phase 6 H1 - COMPLETE",
+  "phase": "phase7",
+  "phase_name": "Phase 7 Center Axis - COMPLETE",
   "date": "2026-03-10",
-  "decision": "H1_SUPPORTED",
+  "decision": "GENERIC_CHANNEL_VALIDATED",
   "hypothesis": "Archive-as-Generic-Prior",
+  "test_type": "Center Axis (p sweep, α=medium)",
   "execution_summary": {
-    "start_time": "2026-03-10T03:01:00Z",
-    "end_time": "2026-03-10T03:03:00Z",
-    "duration_minutes": 2,
-    "ticks": 5000,
-    "universes": 8,
-    "conditions": 2
+    "start_time": "2026-03-10T03:55:00Z",
+    "end_time": "2026-03-10T03:58:00Z",
+    "duration_minutes": 3,
+    "conditions": 3,
+    "universes_per_condition": 8,
+    "ticks": 5000
   },
   "results": {
-    "L3_constant_p001": {
-      "universes": 8,
-      "lineage_diversity_mean": 0.014088,
-      "top1_lineage_share_mean": 0.645,
-      "strategy_entropy_mean": 0.703
+    "p0.001_medium": {
+      "lineage_diversity_delta": 0.819,
+      "cohens_d": 3.37,
+      "top1_lineage_share_delta": -0.277,
+      "overdriven": false
     },
-    "L3_random_fresh_p001": {
-      "universes": 8,
-      "lineage_diversity_mean": 0.014610,
-      "top1_lineage_share_mean": 0.594,
-      "strategy_entropy_mean": 0.684
+    "p0.01_medium": {
+      "lineage_diversity_delta": 0.939,
+      "cohens_d": 4.75,
+      "top1_lineage_share_delta": -0.287,
+      "overdriven": false,
+      "best": true
+    },
+    "p0.05_medium": {
+      "lineage_diversity_delta": 0.823,
+      "cohens_d": 5.25,
+      "top1_lineage_share_delta": -0.122,
+      "overdriven": false
     }
   },
-  "h1_test": {
-    "constant_vs_random": {
-      "lineage_diversity_delta": -0.036,
-      "cohens_d": -0.232,
-      "p_value": 0.6500,
-      "equivalent": true
-    },
-    "verdict": "SUPPORTED",
-    "interpretation": "Archive acts as generic channel, content shape irrelevant"
+  "verdict": {
+    "classification": "GENERIC_CHANNEL_VALIDATED",
+    "optimal_p": 0.01,
+    "optimal_alpha": "medium",
+    "rationale": "p=0.01 shows highest diversity gain (+93.9%) without overdriven symptoms",
+    "robustness": "Channel effective across all tested p values (0.001-0.05)"
   },
+  "recommendations": [
+    "Lock configuration: p=0.01, α=medium",
+    "Rename Archive→PriorChannel",
+    "Simplify implementation: remove content storage",
+    "Optional: complete full matrix (weak/strong) for completeness"
+  ],
   "scientific_conclusion": {
-    "archive_role": "generic stabilization channel",
-    "not": "content-bearing memory",
-    "is": "weak regularization / low-bandwidth generic prior"
+    "mechanism": "generic prior / weak regularizer / stabilization channel",
+    "content_relevance": "none - frequency matters, content does not",
+    "optimal_operating_point": "p=0.01 (moderate frequency)"
   },
-  "next_phase": "phase7",
-  "next_phase_focus": "optimize generic channel",
-  "last_updated": "2026-03-10T03:03:00Z"
+  "next_phase": "implementation_simplification",
+  "last_updated": "2026-03-10T03:58:00Z"
 }
