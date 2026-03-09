@@ -197,8 +197,19 @@
     "PHASE46_RERUN_MIN_SPEC.md",
     "PHASE46_DATA_SOURCE_RECONCILIATION.md"
   ],
-  "next_action": "EXECUTE_MINIMAL_RERUN",
-  "estimated_completion": "2-3_days",
+  "next_action": "EXECUTE_PHASE5_FORMAL",
+  "execution_plan": {
+    "config": {
+      "ticks": 10000,
+      "universes": 16,
+      "mode": "sentinel",
+      "conditions": ["baseline_full", "no_L2", "L3_real_p001", "L3_shuffled_p001"]
+    },
+    "executor": "kimi_local_server",
+    "assistant": "codex_post_hoc_analysis",
+    "estimated_time": "2-8_hours",
+    "parallelizable": true
+  },
   "expected_outcome": "GO_TO_PHASE5 (if L3_real > L3_shuffled)",
   "fallback_outcome": "NO_GO_HYPOTHESIS_FAIL (if L3_real ≈ L3_shuffled)",
   "threshold_formalization": {
