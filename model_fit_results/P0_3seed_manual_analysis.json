@@ -1,0 +1,62 @@
+[
+  {
+    "seed": "20260301_055827_306668",
+    "cdi_peak": {
+      "gen": 1600,
+      "value": 0.6801
+    },
+    "cdi_final": {
+      "gen": 7000,
+      "value": 0.0087
+    },
+    "danger_entry": {
+      "gen": 6200,
+      "value": 0.5428
+    },
+    "first_extinction": {
+      "gen": 6500,
+      "value": 0.5391
+    },
+    "n_generations": 70
+  },
+  {
+    "seed": "20260301_134507_1258368",
+    "cdi_peak": {
+      "gen": 1600,
+      "value": 0.6802
+    },
+    "cdi_final": {
+      "gen": 7000,
+      "value": 0.0085
+    },
+    "danger_entry": {
+      "gen": 6200,
+      "value": 0.543
+    },
+    "first_extinction": {
+      "gen": 6600,
+      "value": 0.5171
+    },
+    "n_generations": 70
+  },
+  {
+    "seed": "20260301_140655_2330399",
+    "cdi_peak": {
+      "gen": 1600,
+      "value": 0.6806
+    },
+    "cdi_final": {
+      "gen": 7100,
+      "value": 0.0044
+    },
+    "danger_entry": {
+      "gen": 6200,
+      "value": 0.5432
+    },
+    "first_extinction": {
+      "gen": 6500,
+      "value": 0.5385
+    },
+    "n_generations": 71
+  }
+]
