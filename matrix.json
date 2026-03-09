@@ -1,0 +1,3622 @@
+{
+  "rows": [
+    {
+      "component_name": "010727",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "logs/mnist_certification_20260309_010727.log"
+        ],
+        "runtime": [
+          "logs/mnist_certification_20260309_010727.log"
+        ]
+      }
+    },
+    {
+      "component_name": "0114296baaaa02e5",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/quote-0114296baaaa02e5/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/quote-0114296baaaa02e5/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "112ab4d903c70fec",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "1773001504",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "1773001530",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "193018c25ea517ee",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/zmij-193018c25ea517ee/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zmij-193018c25ea517ee/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "1e32de867054ed29",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/quote-1e32de867054ed29/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/quote-1e32de867054ed29/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "20260309",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "logs/mnist_certification_20260309_010727.log"
+        ],
+        "runtime": [
+          "logs/mnist_certification_20260309_010727.log",
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json"
+        ]
+      }
+    },
+    {
+      "component_name": "22990877e2721fb7",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "252a9bbeccb60cd9",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde-252a9bbeccb60cd9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde-252a9bbeccb60cd9/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "268e52edcd329147",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "2c8ea650b6f8d83b",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde_json-2c8ea650b6f8d83b/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_json-2c8ea650b6f8d83b/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "2c9b4383bd88dbb7",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "3921609a075c08e5",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "490efe3d12a3a474",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/serde_core-490efe3d12a3a474/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_core-490efe3d12a3a474/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "65b11749365fc366",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/serde-65b11749365fc366/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde-65b11749365fc366/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "662d3c7444bb3a71",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/serde_json-662d3c7444bb3a71/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_json-662d3c7444bb3a71/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "6795aeef90c3b5b2",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "69f25d1337976ea6",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "6a0b4bd5188c134b",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/zerocopy-6a0b4bd5188c134b/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zerocopy-6a0b4bd5188c134b/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "6e72394e5bdc0f10",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/zmij-6e72394e5bdc0f10/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zmij-6e72394e5bdc0f10/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "6hour",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "logs/CONTROL_BURN_6HOUR.log",
+          "logs/HETERO_BURN_6HOUR.log",
+          "logs/REAL_BURN_6HOUR.log"
+        ]
+      }
+    },
+    {
+      "component_name": "7533cb50f6721529",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/zmij-7533cb50f6721529/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zmij-7533cb50f6721529/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "77565231ca4838fd",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "7cf407d8b6565e2b",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/zerocopy-7cf407d8b6565e2b/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zerocopy-7cf407d8b6565e2b/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "867687eabb521877",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/serde_json-867687eabb521877/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_json-867687eabb521877/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "873323c0ec274de9",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "8976c798ca0530fb",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "8b7438a116294ec9",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "8c2c3543dde7bffc",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "a30c5c8cddd7babd",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "a77d812810bb870a",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "agl",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json"
+        ]
+      }
+    },
+    {
+      "component_name": "analysis",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "docs": [
+          "EVIDENCE_INNOVATION_CURVE_ANALYSIS.md",
+          "EVIDENCE_K_BOUNDARY_ANALYSIS.md",
+          "P3D_GAMMA_NO_SHIFT_ANALYSIS.md",
+          "docs/failure_analysis.md"
+        ],
+        "runtime": [
+          "run_full_analysis.sh"
+        ]
+      }
+    },
+    {
+      "component_name": "analyze",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "analyze_5seed_results.py",
+          "analyze_p1_causal.py",
+          "source/scripts/analyze_p3b.py",
+          "source/scripts/analyze_p3c.py",
+          "source/scripts/analyze_p3d_gamma.py"
+        ],
+        "tests": [
+          "analyze_p1_causal.py"
+        ],
+        "runtime": [
+          "analyze_p1_causal.py",
+          "source/scripts/analyze_p3c.py",
+          "source/scripts/analyze_p3d_gamma.py"
+        ]
+      }
+    },
+    {
+      "component_name": "architecture",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md"
+        ],
+        "docs": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "BIO_WORLD_V18_SYSTEM_ARCHITECTURE.md",
+          "DIGITAL_ORGANISM_ARCHITECTURE.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "docs/architecture.md"
+        ],
+        "runtime": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md"
+        ]
+      }
+    },
+    {
+      "component_name": "atlas",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/bin/atlas_burn.rs",
+          "source/src/bin/atlas_superbrain_real.rs",
+          "source/src/optimized/atlas_runtime_v2.rs"
+        ],
+        "runtime": [
+          "source/src/atlas_backup/gpu_core.rs",
+          "source/src/bin/atlas_hec_fusion_v2.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "b2bf78d088e03c97",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "baseline",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3b/baseline_seed42.csv",
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv",
+          "source/logs/p3d/baseline_1773002033.csv",
+          "source/logs/p3d/baseline_1773003019.csv",
+          "source/logs/p3d/baseline_seed10_1773010341.csv",
+          "source/logs/p3d/baseline_seed123_1773004104.csv",
+          "source/logs/p3d/baseline_seed1_1773005491.csv",
+          "source/logs/p3d/baseline_seed1_1773005814.csv",
+          "source/logs/p3d/baseline_seed2_1773006317.csv",
+          "source/logs/p3d/baseline_seed3_1773006820.csv",
+          "source/logs/p3d/baseline_seed42_1773004064.csv",
+          "source/logs/p3d/baseline_seed4_1773007323.csv",
+          "source/logs/p3d/baseline_seed5_1773007826.csv",
+          "source/logs/p3d/baseline_seed6_1773008329.csv",
+          "source/logs/p3d/baseline_seed7_1773008832.csv",
+          "source/logs/p3d/baseline_seed8_1773009335.csv",
+          "source/logs/p3d/baseline_seed9_1773009838.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "batch",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/scripts/p3b_batch_experiment.sh",
+          "source/scripts/p3d_gamma_batch.sh"
+        ]
+      }
+    },
+    {
+      "component_name": "bc182b6a0d9057a9",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/libc-bc182b6a0d9057a9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/libc-bc182b6a0d9057a9/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "bdf8f05faf73dca4",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "be2c4fc24b837c81",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde-be2c4fc24b837c81/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde-be2c4fc24b837c81/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "bfd7ec89132878e2",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "bin",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/bin/atlas_burn.rs",
+          "source/src/bin/atlas_superbrain_real.rs",
+          "source/src/bin/control_burn_multicore.rs",
+          "source/src/bin/gridworld_quick.rs",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/bin/p2_self_preservation_smoke.rs",
+          "source/src/bin/self_report_test.rs",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json"
+        ],
+        "runtime": [
+          "source/src/bin/atlas_hec_fusion_v2.rs",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/bin/p3a_runtime_demo.rs",
+          "source/src/bin/p3b_ab_validation.rs",
+          "source/src/bin/p3c_real_validation.rs",
+          "source/src/bin/p3d_main_runtime_native.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "bioworld",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ],
+        "docs": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "BIOWORLD_V18_DISCOVERY_SUMMARY.md",
+          "BIOWORLD_V19_MEMORY_INTEGRATION_SPEC.md",
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ],
+        "runtime": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json"
+        ]
+      }
+    },
+    {
+      "component_name": "bridge",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/hetero_bridge/test_bridge.cpp",
+          "source/hetero_bridge/test_v2.cpp",
+          "source/src/optimized/snn_ann_bridge_v2.rs",
+          "source/src/superbrain/cuda_bridge.rs"
+        ],
+        "runtime": [
+          "source/hetero_bridge/bridge_build_v2.log",
+          "source/hetero_bridge/build.log",
+          "source/hetero_bridge/host_build.log",
+          "source/hetero_bridge/kernel_build.log",
+          "source/hetero_bridge/link.log",
+          "source/src/superbrain/cuda_bridge.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "brief",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ],
+        "docs": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ],
+        "runtime": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "build",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/hetero_bridge/bridge_build_v2.log",
+          "source/hetero_bridge/build.log",
+          "source/hetero_bridge/host_build.log",
+          "source/hetero_bridge/kernel_build.log",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "burn",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "experiments/burn_test_readme.md",
+          "source/scripts/burn_test_real.sh",
+          "source/scripts/run_control_burn_multicore.sh",
+          "source/src/bin/atlas_burn.rs",
+          "source/src/bin/control_burn_multicore.rs"
+        ],
+        "docs": [
+          "experiments/burn_test_readme.md"
+        ],
+        "runtime": [
+          "logs/CONTROL_BURN_6HOUR.log",
+          "logs/HETERO_BURN_6HOUR.log",
+          "logs/REAL_BURN_6HOUR.log"
+        ]
+      }
+    },
+    {
+      "component_name": "c837815a07523fe1",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "causal",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "analyze_p1_causal.py"
+        ],
+        "tests": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "analyze_p1_causal.py"
+        ],
+        "docs": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md"
+        ],
+        "runtime": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "analyze_p1_causal.py"
+        ]
+      }
+    },
+    {
+      "component_name": "cb3b51728f52f5cd",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/zerocopy-cb3b51728f52f5cd/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zerocopy-cb3b51728f52f5cd/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "cdi",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_cdi_model.py",
+          "fit_cdi_model_v2.py",
+          "verify_cdi_leading_indicator.py"
+        ],
+        "tests": [
+          "fit_cdi_model_v2.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "certification",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "experiments/mnist_certification.rs",
+          "logs/mnist_certification_20260309_010727.log",
+          "source/src/bin/mnist_certification.rs"
+        ],
+        "runtime": [
+          "experiments/mnist_certification.rs",
+          "logs/mnist_certification_20260309_010727.log",
+          "source/src/bin/mnist_certification.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "claims",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CLAIMS_REGISTRY.md"
+        ],
+        "docs": [
+          "CLAIMS_REGISTRY.md"
+        ],
+        "runtime": [
+          "CLAIMS_REGISTRY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "codex",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ],
+        "docs": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ],
+        "runtime": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "collapse",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_population_collapse_model.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "commands",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "REPRO_COMMANDS.md",
+          "TARGET_COMMANDS.md"
+        ],
+        "docs": [
+          "REPRO_COMMANDS.md",
+          "TARGET_COMMANDS.md"
+        ],
+        "runtime": [
+          "REPRO_COMMANDS.md",
+          "TARGET_COMMANDS.md"
+        ]
+      }
+    },
+    {
+      "component_name": "comparison",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_population_models_comparison.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "complete",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "THREE_LAYER_MEMORY_COMPLETE.md"
+        ],
+        "docs": [
+          "P3_RUNTIME_INTEGRATION_COMPLETE.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md"
+        ],
+        "runtime": [
+          "P3_RUNTIME_INTEGRATION_COMPLETE.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md"
+        ]
+      }
+    },
+    {
+      "component_name": "completion",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ],
+        "runtime": [
+          "source/scripts/check_completion.sh",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ]
+      }
+    },
+    {
+      "component_name": "control",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/scripts/run_control_burn_multicore.sh",
+          "source/src/bin/control_burn_multicore.rs"
+        ],
+        "runtime": [
+          "logs/CONTROL_BURN_6HOUR.log"
+        ]
+      }
+    },
+    {
+      "component_name": "cooperation",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_cooperation_gate.py",
+          "fit_cooperation_gate_v2.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "core",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "docs": [
+          "DIGITAL_ORGANISM_CORE_AXIOMS_v1.md"
+        ],
+        "runtime": [
+          "source/src/atlas_backup/gpu_core.rs",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/serde_core-490efe3d12a3a474/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_core-490efe3d12a3a474/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/serde_core-e7321787ef5b5150/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_core-e7321787ef5b5150/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "cpp",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/hetero_bridge/test_bridge.cpp",
+          "source/hetero_bridge/test_v2.cpp"
+        ]
+      }
+    },
+    {
+      "component_name": "cross",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "P0_cross_seed_protocol.py"
+        ],
+        "tests": [
+          "P0_cross_seed_protocol.py"
+        ],
+        "runtime": [
+          "cross_seed_run.log",
+          "run_cross_seed_experiments.sh"
+        ]
+      }
+    },
+    {
+      "component_name": "crossbeam",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "csv",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3a_demo.csv",
+          "source/logs/p3b/baseline_seed42.csv",
+          "source/logs/p3b/p2on_seed42.csv",
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv",
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv",
+          "source/logs/p3d/baseline_1773002033.csv",
+          "source/logs/p3d/baseline_1773003019.csv",
+          "source/logs/p3d/baseline_seed10_1773010341.csv",
+          "source/logs/p3d/baseline_seed123_1773004104.csv",
+          "source/logs/p3d/baseline_seed1_1773005491.csv",
+          "source/logs/p3d/baseline_seed1_1773005814.csv",
+          "source/logs/p3d/baseline_seed2_1773006317.csv",
+          "source/logs/p3d/baseline_seed3_1773006820.csv",
+          "source/logs/p3d/baseline_seed42_1773004064.csv",
+          "source/logs/p3d/baseline_seed4_1773007323.csv",
+          "source/logs/p3d/baseline_seed5_1773007826.csv",
+          "source/logs/p3d/baseline_seed6_1773008329.csv",
+          "source/logs/p3d/baseline_seed7_1773008832.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "cuda",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/superbrain/cuda_bridge.rs"
+        ],
+        "runtime": [
+          "source/src/superbrain/cuda_bridge.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "d400bd1a767f4e6d",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde_json-d400bd1a767f4e6d/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_json-d400bd1a767f4e6d/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "d5a704041bb0f127",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/libc-d5a704041bb0f127/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/libc-d5a704041bb0f127/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "debug",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/getrandom-adeff2af68bc71c4/lib-getrandom.json",
+          "source/target/debug/.fingerprint/getrandom-c77a075dc849b5f7/lib-getrandom.json",
+          "source/target/debug/.fingerprint/syn-a12814564c798a79/lib-syn.json",
+          "source/target/debug/.fingerprint/syn-ce54db3bd716323a/lib-syn.json"
+        ],
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "demo",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3a_demo.csv",
+          "source/src/bin/p3a_runtime_demo.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "detector",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "extinction_precursor_detector.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "df76cc2405095e9d",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/zerocopy-df76cc2405095e9d/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zerocopy-df76cc2405095e9d/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "digital",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "DIGITAL_ORGANISM_ARCHITECTURE.md",
+          "DIGITAL_ORGANISM_CORE_AXIOMS_v1.md"
+        ]
+      }
+    },
+    {
+      "component_name": "docs",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "docs/architecture.md",
+          "docs/failure_analysis.md"
+        ]
+      }
+    },
+    {
+      "component_name": "e7321787ef5b5150",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/serde_core-e7321787ef5b5150/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_core-e7321787ef5b5150/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "e8c3c623a7135851",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/serde-e8c3c623a7135851/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde-e8c3c623a7135851/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "evidence",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "EVIDENCE_INNOVATION_CURVE_ANALYSIS.md",
+          "EVIDENCE_K_BOUNDARY_ANALYSIS.md"
+        ]
+      }
+    },
+    {
+      "component_name": "execution",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "P0_EXECUTION_CHECKLIST.md",
+          "P1_EXECUTION_READY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "exp0",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "EXP0_CI_probe.py"
+        ],
+        "tests": [
+          "EXP0_CI_probe.py"
+        ],
+        "runtime": [
+          "EXP0_CI_probe.py",
+          "model_fit_results/EXP0_CI_probe_results.json"
+        ]
+      }
+    },
+    {
+      "component_name": "experiment",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "REPRODUCIBLE_EXPERIMENT.md"
+        ],
+        "docs": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "P3D_GAMMA_EXPERIMENT_PLAN.md",
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "REPRODUCIBLE_EXPERIMENT.md",
+          "source/logs/p3d/FINAL_EXPERIMENT_REPORT.md"
+        ],
+        "runtime": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "REPRODUCIBLE_EXPERIMENT.md",
+          "source/logs/p3d/experiment_run.log",
+          "source/scripts/monitor_experiment.sh",
+          "source/scripts/p3b_batch_experiment.sh"
+        ]
+      }
+    },
+    {
+      "component_name": "experiments",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "experiments/burn_test_readme.md",
+          "experiments/mnist_certification.rs"
+        ],
+        "docs": [
+          "HISTORICAL_EXPERIMENTS_ASSET_INVENTORY.md",
+          "experiments/burn_test_readme.md"
+        ],
+        "runtime": [
+          "experiments/mnist_certification.rs",
+          "run_cross_seed_experiments.sh",
+          "run_p1_experiments.sh"
+        ]
+      }
+    },
+    {
+      "component_name": "extinction",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "extinction_precursor_detector.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "f8d1afcf62bc80c7",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/release/.fingerprint/zmij-f8d1afcf62bc80c7/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zmij-f8d1afcf62bc80c7/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "fast",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ],
+        "runtime": [
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "final",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "P0_FINAL_REPORT.md",
+          "P0_FINAL_REPORT_TEMPLATE.md",
+          "source/logs/p3d/FINAL_EXPERIMENT_REPORT.md"
+        ]
+      }
+    },
+    {
+      "component_name": "fingerprint",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/getrandom-adeff2af68bc71c4/lib-getrandom.json",
+          "source/target/debug/.fingerprint/getrandom-c77a075dc849b5f7/lib-getrandom.json",
+          "source/target/debug/.fingerprint/syn-a12814564c798a79/lib-syn.json",
+          "source/target/debug/.fingerprint/syn-ce54db3bd716323a/lib-syn.json",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/.fingerprint/getrandom-1625577818937bd5/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-626dfee4de741b99/lib-getrandom.json",
+          "source/target/release/.fingerprint/syn-4038c475a8284231/lib-syn.json",
+          "source/target/release/.fingerprint/syn-b0523f3df63a8747/lib-syn.json"
+        ],
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "fit",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "fit_cdi_model.py",
+          "fit_cdi_model_v2.py",
+          "fit_cooperation_gate.py",
+          "fit_cooperation_gate_v2.py",
+          "fit_population_collapse_model.py",
+          "fit_population_model.py",
+          "fit_population_model_v2.py",
+          "fit_population_models_comparison.py"
+        ],
+        "tests": [
+          "fit_cdi_model_v2.py"
+        ],
+        "docs": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md"
+        ],
+        "runtime": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md",
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json",
+          "model_fit_results/EXP0_CI_probe_results.json"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "framework",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ],
+        "docs": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+          "RYANX_THEOREM_FRAMEWORK.md"
+        ],
+        "runtime": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ]
+      }
+    },
+    {
+      "component_name": "gamma",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/analyze_p3d_gamma.py",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ],
+        "tests": [
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "source/scripts/p3d_gamma_quick.sh"
+        ],
+        "docs": [
+          "P3D_GAMMA_EXPERIMENT_PLAN.md",
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "P3D_GAMMA_NO_SHIFT_ANALYSIS.md"
+        ],
+        "runtime": [
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "source/scripts/analyze_p3d_gamma.py",
+          "source/scripts/p3d_gamma_batch.sh",
+          "source/scripts/run_p3d_gamma_adequate.sh",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ]
+      }
+    },
+    {
+      "component_name": "gate",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_cooperation_gate.py",
+          "fit_cooperation_gate_v2.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "getrandom",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/getrandom-adeff2af68bc71c4/lib-getrandom.json",
+          "source/target/debug/.fingerprint/getrandom-c77a075dc849b5f7/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-1625577818937bd5/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-626dfee4de741b99/lib-getrandom.json"
+        ]
+      }
+    },
+    {
+      "component_name": "gridworld",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/src/bin/gridworld_quick.rs",
+          "source/src/gridworld/mod.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "hetero",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/hetero_bridge/test_bridge.cpp",
+          "source/hetero_bridge/test_v2.cpp"
+        ],
+        "runtime": [
+          "logs/HETERO_BURN_6HOUR.log",
+          "source/hetero_bridge/bridge_build_v2.log",
+          "source/hetero_bridge/build.log",
+          "source/hetero_bridge/host_build.log",
+          "source/hetero_bridge/kernel_build.log",
+          "source/hetero_bridge/link.log"
+        ]
+      }
+    },
+    {
+      "component_name": "implementation",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ],
+        "docs": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ],
+        "runtime": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "integration",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "V19_INTEGRATION_ROADMAP.md",
+          "source/src/p3_runtime_integration/mod.rs",
+          "source/src/p3_runtime_integration/parameter_mapping.rs",
+          "source/src/p3_runtime_integration/runtime_controller.rs",
+          "source/src/p3_runtime_integration/trace_logger.rs"
+        ],
+        "docs": [
+          "BIOWORLD_V19_MEMORY_INTEGRATION_SPEC.md",
+          "P3_RUNTIME_INTEGRATION_COMPLETE.md",
+          "V19_INTEGRATION_ROADMAP.md"
+        ],
+        "runtime": [
+          "P3_RUNTIME_INTEGRATION_COMPLETE.md",
+          "V19_INTEGRATION_ROADMAP.md"
+        ]
+      }
+    },
+    {
+      "component_name": "interpretation",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "docs": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md"
+        ],
+        "runtime": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md"
+        ]
+      }
+    },
+    {
+      "component_name": "inventory",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "DOCUMENT_INVENTORY_REPORT.md",
+          "HISTORICAL_EXPERIMENTS_ASSET_INVENTORY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "json",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/getrandom-adeff2af68bc71c4/lib-getrandom.json",
+          "source/target/debug/.fingerprint/getrandom-c77a075dc849b5f7/lib-getrandom.json",
+          "source/target/debug/.fingerprint/syn-a12814564c798a79/lib-syn.json",
+          "source/target/debug/.fingerprint/syn-ce54db3bd716323a/lib-syn.json",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/.fingerprint/getrandom-1625577818937bd5/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-626dfee4de741b99/lib-getrandom.json",
+          "source/target/release/.fingerprint/syn-4038c475a8284231/lib-syn.json",
+          "source/target/release/.fingerprint/syn-b0523f3df63a8747/lib-syn.json"
+        ],
+        "runtime": [
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json",
+          "model_fit_results/EXP0_CI_probe_results.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde-252a9bbeccb60cd9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde-be2c4fc24b837c81/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_json-2c8ea650b6f8d83b/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_json-2c8ea650b6f8d83b/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_json-d400bd1a767f4e6d/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_json-d400bd1a767f4e6d/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "kernel",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/self_kernel/episode.rs",
+          "source/src/self_kernel/goal.rs",
+          "source/src/self_kernel/history.rs",
+          "source/src/self_kernel/identity.rs",
+          "source/src/self_kernel/memory.rs",
+          "source/src/self_kernel/mod.rs",
+          "source/src/self_kernel/predictor.rs",
+          "source/src/self_kernel/report.rs",
+          "source/src/self_kernel/self_state.rs"
+        ],
+        "runtime": [
+          "source/hetero_bridge/kernel_build.log"
+        ]
+      }
+    },
+    {
+      "component_name": "layer",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "docs": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "runtime": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ]
+      }
+    },
+    {
+      "component_name": "lib",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/getrandom-adeff2af68bc71c4/lib-getrandom.json",
+          "source/target/debug/.fingerprint/getrandom-c77a075dc849b5f7/lib-getrandom.json",
+          "source/target/debug/.fingerprint/syn-a12814564c798a79/lib-syn.json",
+          "source/target/debug/.fingerprint/syn-ce54db3bd716323a/lib-syn.json",
+          "source/target/release/.fingerprint/getrandom-1625577818937bd5/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-626dfee4de741b99/lib-getrandom.json",
+          "source/target/release/.fingerprint/syn-4038c475a8284231/lib-syn.json",
+          "source/target/release/.fingerprint/syn-b0523f3df63a8747/lib-syn.json"
+        ]
+      }
+    },
+    {
+      "component_name": "libc",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/libc-bc182b6a0d9057a9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/libc-bc182b6a0d9057a9/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/libc-d5a704041bb0f127/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/libc-d5a704041bb0f127/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "log",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "logs/mnist_certification_20260309_010727.log"
+        ],
+        "docs": [
+          "PROJECT_LOG.md"
+        ],
+        "runtime": [
+          "cross_seed_run.log",
+          "logs/CONTROL_BURN_6HOUR.log",
+          "logs/HETERO_BURN_6HOUR.log",
+          "logs/REAL_BURN_6HOUR.log",
+          "logs/mnist_certification_20260309_010727.log",
+          "source/hetero_bridge/bridge_build_v2.log",
+          "source/hetero_bridge/build.log",
+          "source/hetero_bridge/host_build.log",
+          "source/hetero_bridge/kernel_build.log",
+          "source/hetero_bridge/link.log",
+          "source/logs/p3d/experiment_run.log"
+        ]
+      }
+    },
+    {
+      "component_name": "logs",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "logs/mnist_certification_20260309_010727.log"
+        ],
+        "docs": [
+          "source/logs/p3d/FINAL_EXPERIMENT_REPORT.md"
+        ],
+        "runtime": [
+          "logs/CONTROL_BURN_6HOUR.log",
+          "logs/HETERO_BURN_6HOUR.log",
+          "logs/REAL_BURN_6HOUR.log",
+          "logs/mnist_certification_20260309_010727.log",
+          "source/logs/p3a_demo.csv",
+          "source/logs/p3b/baseline_seed42.csv",
+          "source/logs/p3b/p2on_seed42.csv",
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv",
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv",
+          "source/logs/p3d/baseline_1773002033.csv",
+          "source/logs/p3d/baseline_1773003019.csv",
+          "source/logs/p3d/baseline_seed10_1773010341.csv",
+          "source/logs/p3d/baseline_seed123_1773004104.csv",
+          "source/logs/p3d/baseline_seed1_1773005491.csv",
+          "source/logs/p3d/baseline_seed1_1773005814.csv",
+          "source/logs/p3d/baseline_seed2_1773006317.csv",
+          "source/logs/p3d/baseline_seed3_1773006820.csv",
+          "source/logs/p3d/baseline_seed42_1773004064.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "macro2",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "main",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/main.rs",
+          "source/src/main_5k.rs",
+          "source/src/main_optimized.rs",
+          "source/src/main_quick.rs"
+        ],
+        "docs": [
+          "P3D_MAIN_RUNTIME_VALIDATION.md"
+        ],
+        "runtime": [
+          "source/src/bin/p3d_main_runtime_native.rs",
+          "source/src/main.rs",
+          "source/src/main_5k.rs",
+          "source/src/main_optimized.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "memory",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md",
+          "source/src/self_kernel/memory.rs",
+          "source/src/superbrain/memory.rs"
+        ],
+        "docs": [
+          "BIOWORLD_V19_MEMORY_INTEGRATION_SPEC.md",
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "MEMORY_DATA_SCHEMA_v1.md",
+          "MEMORY_FLOW_STATE_MACHINE_v1.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "runtime": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ]
+      }
+    },
+    {
+      "component_name": "mnist",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "experiments/mnist_certification.rs",
+          "logs/mnist_certification_20260309_010727.log",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/sensory/mnist_encoder.rs"
+        ],
+        "runtime": [
+          "experiments/mnist_certification.rs",
+          "logs/mnist_certification_20260309_010727.log",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/mnist/loader.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "mod",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/src/gridworld/mod.rs",
+          "source/src/optimized/mod.rs",
+          "source/src/p3_runtime_integration/mod.rs",
+          "source/src/self_kernel/mod.rs",
+          "source/src/self_preservation/mod.rs",
+          "source/src/superbrain/mod.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "model",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "fit_cdi_model.py",
+          "fit_cdi_model_v2.py",
+          "fit_population_collapse_model.py",
+          "fit_population_model.py",
+          "fit_population_model_v2.py"
+        ],
+        "tests": [
+          "fit_cdi_model_v2.py",
+          "source/src/self_preservation/risk_model.rs"
+        ],
+        "docs": [
+          "EVOLUTION_DYNAMICS_MODEL_v1.md",
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md",
+          "MODEL_VALIDATION_REPORT_v1.md",
+          "MODEL_VALIDATION_REPORT_v2.md"
+        ],
+        "runtime": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md",
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json",
+          "model_fit_results/EXP0_CI_probe_results.json"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "models",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_population_models_comparison.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "multicore",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/scripts/run_control_burn_multicore.sh",
+          "source/src/bin/control_burn_multicore.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "mwe",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json"
+        ]
+      }
+    },
+    {
+      "component_name": "optimized",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/main_optimized.rs",
+          "source/src/optimized/atlas_runtime_v2.rs",
+          "source/src/optimized/cognitive_clock_v2.rs",
+          "source/src/optimized/fast_slow_separation_v2.rs",
+          "source/src/optimized/mod.rs",
+          "source/src/optimized/nvlink_transport_v2.rs",
+          "source/src/optimized/snn_ann_bridge_v2.rs"
+        ],
+        "runtime": [
+          "source/src/main_optimized.rs",
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "organism",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "DIGITAL_ORGANISM_ARCHITECTURE.md",
+          "DIGITAL_ORGANISM_CORE_AXIOMS_v1.md"
+        ]
+      }
+    },
+    {
+      "component_name": "output",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe"
+        ]
+      }
+    },
+    {
+      "component_name": "p2on",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3b/p2on_seed42.csv",
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv",
+          "source/logs/p3d/p2on_1773002077.csv",
+          "source/logs/p3d/p2on_1773002563.csv",
+          "source/logs/p3d/p2on_seed10_1773010593.csv",
+          "source/logs/p3d/p2on_seed123_1773004124.csv",
+          "source/logs/p3d/p2on_seed1_1773005742.csv",
+          "source/logs/p3d/p2on_seed1_1773006066.csv",
+          "source/logs/p3d/p2on_seed2_1773006569.csv",
+          "source/logs/p3d/p2on_seed3_1773007072.csv",
+          "source/logs/p3d/p2on_seed42_1773004084.csv",
+          "source/logs/p3d/p2on_seed4_1773007575.csv",
+          "source/logs/p3d/p2on_seed5_1773008078.csv",
+          "source/logs/p3d/p2on_seed6_1773008581.csv",
+          "source/logs/p3d/p2on_seed7_1773009084.csv",
+          "source/logs/p3d/p2on_seed8_1773009587.csv",
+          "source/logs/p3d/p2on_seed9_1773010090.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "p3a",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3a_demo.csv",
+          "source/src/bin/p3a_runtime_demo.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "p3b",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/analyze_p3b.py"
+        ],
+        "runtime": [
+          "source/logs/p3b/baseline_seed42.csv",
+          "source/logs/p3b/p2on_seed42.csv",
+          "source/scripts/p3b_batch_experiment.sh",
+          "source/src/bin/p3b_ab_validation.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "p3c",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/analyze_p3c.py"
+        ],
+        "tests": [
+          "P3C_REAL_VALIDATION.md"
+        ],
+        "docs": [
+          "P3C_REAL_VALIDATION.md"
+        ],
+        "runtime": [
+          "P3C_REAL_VALIDATION.md",
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv",
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv",
+          "source/scripts/analyze_p3c.py",
+          "source/src/bin/p3c_real_validation.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "p3d",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/analyze_p3d_gamma.py",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ],
+        "tests": [
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "source/scripts/p3d_gamma_quick.sh"
+        ],
+        "docs": [
+          "P3D_GAMMA_EXPERIMENT_PLAN.md",
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "P3D_GAMMA_NO_SHIFT_ANALYSIS.md",
+          "P3D_MAIN_RUNTIME_VALIDATION.md",
+          "source/logs/p3d/FINAL_EXPERIMENT_REPORT.md"
+        ],
+        "runtime": [
+          "P3D_GAMMA_EXPERIMENT_SPEC.md",
+          "source/logs/p3d/baseline_1773002033.csv",
+          "source/logs/p3d/baseline_1773003019.csv",
+          "source/logs/p3d/baseline_seed10_1773010341.csv",
+          "source/logs/p3d/baseline_seed123_1773004104.csv",
+          "source/logs/p3d/baseline_seed1_1773005491.csv",
+          "source/logs/p3d/baseline_seed1_1773005814.csv",
+          "source/logs/p3d/baseline_seed2_1773006317.csv",
+          "source/logs/p3d/baseline_seed3_1773006820.csv",
+          "source/logs/p3d/baseline_seed42_1773004064.csv",
+          "source/logs/p3d/baseline_seed4_1773007323.csv",
+          "source/logs/p3d/baseline_seed5_1773007826.csv",
+          "source/logs/p3d/baseline_seed6_1773008329.csv",
+          "source/logs/p3d/baseline_seed7_1773008832.csv",
+          "source/logs/p3d/baseline_seed8_1773009335.csv",
+          "source/logs/p3d/baseline_seed9_1773009838.csv",
+          "source/logs/p3d/experiment_run.log",
+          "source/logs/p3d/p2on_1773002077.csv",
+          "source/logs/p3d/p2on_1773002563.csv",
+          "source/logs/p3d/p2on_seed10_1773010593.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "population",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "fit_population_collapse_model.py",
+          "fit_population_model.py",
+          "fit_population_model_v2.py",
+          "fit_population_models_comparison.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "precursor",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "partial",
+      "evidence": {
+        "code": [
+          "extinction_precursor_detector.py"
+        ],
+        "kind_hints": [
+          "global"
+        ]
+      }
+    },
+    {
+      "component_name": "preservation",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/src/bin/p2_self_preservation_smoke.rs",
+          "source/src/self_preservation/homeostasis.rs",
+          "source/src/self_preservation/metrics.rs",
+          "source/src/self_preservation/mod.rs",
+          "source/src/self_preservation/preserve_policy.rs",
+          "source/src/self_preservation/risk_model.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "probe",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "EXP0_CI_probe.py"
+        ],
+        "tests": [
+          "EXP0_CI_probe.py"
+        ],
+        "runtime": [
+          "EXP0_CI_probe.py",
+          "model_fit_results/EXP0_CI_probe_results.json"
+        ]
+      }
+    },
+    {
+      "component_name": "proc",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "progress",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ],
+        "docs": [
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ],
+        "runtime": [
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "project",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "PROJECT_STATE.md"
+        ],
+        "docs": [
+          "PROJECT_LOG.md",
+          "PROJECT_STATE.md"
+        ]
+      }
+    },
+    {
+      "component_name": "protocol",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "P0_cross_seed_protocol.py",
+          "P0_hazard_rate_protocol.py"
+        ],
+        "tests": [
+          "P0_cross_seed_protocol.py",
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "docs": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "runtime": [
+          "P1_CAUSAL_EXPERIMENT_PROTOCOL.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ]
+      }
+    },
+    {
+      "component_name": "quick",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/scripts/p3d_gamma_quick.sh",
+          "source/src/bin/gridworld_quick.rs",
+          "source/src/main_quick.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "quote",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/quote-0114296baaaa02e5/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/quote-0114296baaaa02e5/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/quote-1e32de867054ed29/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/quote-1e32de867054ed29/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "rayon",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "readme",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "experiments/burn_test_readme.md"
+        ],
+        "docs": [
+          "README.md",
+          "experiments/burn_test_readme.md",
+          "source/README_SOURCE.md"
+        ]
+      }
+    },
+    {
+      "component_name": "real",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "P3C_REAL_VALIDATION.md",
+          "source/scripts/burn_test_real.sh",
+          "source/src/bin/atlas_superbrain_real.rs"
+        ],
+        "docs": [
+          "P3C_REAL_VALIDATION.md"
+        ],
+        "runtime": [
+          "P3C_REAL_VALIDATION.md",
+          "logs/REAL_BURN_6HOUR.log",
+          "source/src/bin/p3c_real_validation.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "registry",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CLAIMS_REGISTRY.md"
+        ],
+        "docs": [
+          "CLAIMS_REGISTRY.md"
+        ],
+        "runtime": [
+          "CLAIMS_REGISTRY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "release",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/.fingerprint/getrandom-1625577818937bd5/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-626dfee4de741b99/lib-getrandom.json",
+          "source/target/release/.fingerprint/syn-4038c475a8284231/lib-syn.json",
+          "source/target/release/.fingerprint/syn-b0523f3df63a8747/lib-syn.json",
+          "source/target/release/self_report_test.d"
+        ],
+        "runtime": [
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/libc-bc182b6a0d9057a9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/libc-bc182b6a0d9057a9/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/libc-d5a704041bb0f127/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/libc-d5a704041bb0f127/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-22990877e2721fb7/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/proc-macro2-8b7438a116294ec9/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/quote-0114296baaaa02e5/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/quote-0114296baaaa02e5/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/quote-1e32de867054ed29/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/quote-1e32de867054ed29/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-77565231ca4838fd/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/rayon-core-a30c5c8cddd7babd/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "report",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/src/bin/self_report_test.rs",
+          "source/src/self_kernel/report.rs",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/self_report_test.d"
+        ],
+        "docs": [
+          "DOCUMENT_INVENTORY_REPORT.md",
+          "MODEL_VALIDATION_REPORT_v1.md",
+          "MODEL_VALIDATION_REPORT_v2.md",
+          "P0_FINAL_REPORT.md",
+          "P0_FINAL_REPORT_TEMPLATE.md",
+          "P0_STATUS_REPORT.md",
+          "P0_STATUS_REPORT_v2.1.md",
+          "P0_STATUS_REPORT_v2.md",
+          "source/logs/p3d/FINAL_EXPERIMENT_REPORT.md"
+        ]
+      }
+    },
+    {
+      "component_name": "repro",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "REPRO_COMMANDS.md"
+        ],
+        "docs": [
+          "REPRO_COMMANDS.md"
+        ],
+        "runtime": [
+          "REPRO_COMMANDS.md"
+        ]
+      }
+    },
+    {
+      "component_name": "reproducible",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "REPRODUCIBLE_EXPERIMENT.md"
+        ],
+        "docs": [
+          "REPRODUCIBLE_EXPERIMENT.md"
+        ],
+        "runtime": [
+          "REPRODUCIBLE_EXPERIMENT.md"
+        ]
+      }
+    },
+    {
+      "component_name": "research",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ],
+        "docs": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ],
+        "runtime": [
+          "BIOWORLD_RESEARCH_ARCHITECTURE.md",
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "results",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "analyze_5seed_results.py"
+        ],
+        "runtime": [
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json",
+          "model_fit_results/EXP0_CI_probe_results.json"
+        ]
+      }
+    },
+    {
+      "component_name": "roadmap",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "V19_INTEGRATION_ROADMAP.md"
+        ],
+        "docs": [
+          "ROADMAP_NEXT.md",
+          "V19_INTEGRATION_ROADMAP.md"
+        ],
+        "runtime": [
+          "V19_INTEGRATION_ROADMAP.md"
+        ]
+      }
+    },
+    {
+      "component_name": "run",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/scripts/run_control_burn_multicore.sh"
+        ],
+        "runtime": [
+          "cross_seed_run.log",
+          "run_cross_seed_experiments.sh",
+          "run_full_analysis.sh",
+          "run_p1_experiments.sh",
+          "source/logs/p3d/experiment_run.log",
+          "source/scripts/run_p3d_gamma_adequate.sh",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "runtime",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/optimized/atlas_runtime_v2.rs",
+          "source/src/p3_runtime_integration/mod.rs",
+          "source/src/p3_runtime_integration/parameter_mapping.rs",
+          "source/src/p3_runtime_integration/runtime_controller.rs",
+          "source/src/p3_runtime_integration/trace_logger.rs",
+          "source/src/superbrain/runtime.rs"
+        ],
+        "docs": [
+          "P3D_MAIN_RUNTIME_VALIDATION.md",
+          "P3_RUNTIME_INTEGRATION_COMPLETE.md"
+        ],
+        "runtime": [
+          "P3_RUNTIME_INTEGRATION_COMPLETE.md",
+          "source/src/bin/p3a_runtime_demo.rs",
+          "source/src/bin/p3d_main_runtime_native.rs",
+          "source/src/superbrain/runtime.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "ryanx",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "unknown",
+      "evidence": {
+        "docs": [
+          "RYANX_THEOREM_FRAMEWORK.md",
+          "STRATEGIC_SUMMARY_RyanX_Law_and_v18_Direction.md"
+        ]
+      }
+    },
+    {
+      "component_name": "script",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "scripts",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/analyze_p3b.py",
+          "source/scripts/analyze_p3c.py",
+          "source/scripts/analyze_p3d_gamma.py",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ],
+        "tests": [
+          "source/scripts/burn_test_real.sh",
+          "source/scripts/p3d_gamma_quick.sh",
+          "source/scripts/run_control_burn_multicore.sh",
+          "source/scripts/stress_test_v2.1.sh"
+        ],
+        "runtime": [
+          "source/scripts/analyze_p3c.py",
+          "source/scripts/analyze_p3d_gamma.py",
+          "source/scripts/check_completion.sh",
+          "source/scripts/monitor_experiment.sh",
+          "source/scripts/p3b_batch_experiment.sh",
+          "source/scripts/p3d_gamma_batch.sh",
+          "source/scripts/run_p3d_gamma_adequate.sh",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ]
+      }
+    },
+    {
+      "component_name": "seed",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "P0_cross_seed_protocol.py"
+        ],
+        "tests": [
+          "P0_cross_seed_protocol.py"
+        ],
+        "runtime": [
+          "cross_seed_run.log",
+          "run_cross_seed_experiments.sh"
+        ]
+      }
+    },
+    {
+      "component_name": "seed1",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed1_1773005491.csv",
+          "source/logs/p3d/baseline_seed1_1773005814.csv",
+          "source/logs/p3d/p2on_seed1_1773005742.csv",
+          "source/logs/p3d/p2on_seed1_1773006066.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed10",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed10_1773010341.csv",
+          "source/logs/p3d/p2on_seed10_1773010593.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed123",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed123_1773004104.csv",
+          "source/logs/p3d/p2on_seed123_1773004124.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed2",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed2_1773006317.csv",
+          "source/logs/p3d/p2on_seed2_1773006569.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed3",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed3_1773006820.csv",
+          "source/logs/p3d/p2on_seed3_1773007072.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed4",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed4_1773007323.csv",
+          "source/logs/p3d/p2on_seed4_1773007575.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed42",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3b/baseline_seed42.csv",
+          "source/logs/p3b/p2on_seed42.csv",
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv",
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv",
+          "source/logs/p3d/baseline_seed42_1773004064.csv",
+          "source/logs/p3d/p2on_seed42_1773004084.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed5",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed5_1773007826.csv",
+          "source/logs/p3d/p2on_seed5_1773008078.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed6",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed6_1773008329.csv",
+          "source/logs/p3d/p2on_seed6_1773008581.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed7",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed7_1773008832.csv",
+          "source/logs/p3d/p2on_seed7_1773009084.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed8",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed8_1773009335.csv",
+          "source/logs/p3d/p2on_seed8_1773009587.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "seed9",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/logs/p3d/baseline_seed9_1773009838.csv",
+          "source/logs/p3d/p2on_seed9_1773010090.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "self",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/src/bin/p2_self_preservation_smoke.rs",
+          "source/src/bin/self_report_test.rs",
+          "source/src/self_kernel/episode.rs",
+          "source/src/self_kernel/goal.rs",
+          "source/src/self_kernel/history.rs",
+          "source/src/self_kernel/identity.rs",
+          "source/src/self_kernel/memory.rs",
+          "source/src/self_kernel/mod.rs",
+          "source/src/self_kernel/predictor.rs",
+          "source/src/self_kernel/report.rs",
+          "source/src/self_kernel/self_state.rs",
+          "source/src/self_preservation/homeostasis.rs",
+          "source/src/self_preservation/metrics.rs",
+          "source/src/self_preservation/mod.rs",
+          "source/src/self_preservation/preserve_policy.rs",
+          "source/src/self_preservation/risk_model.rs",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/self_report_test.d"
+        ]
+      }
+    },
+    {
+      "component_name": "separation",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ],
+        "runtime": [
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "serde",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/serde-252a9bbeccb60cd9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde-252a9bbeccb60cd9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde-be2c4fc24b837c81/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde-be2c4fc24b837c81/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_core-8c2c3543dde7bffc/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_core-b2bf78d088e03c97/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_json-2c8ea650b6f8d83b/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_json-2c8ea650b6f8d83b/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/serde_json-d400bd1a767f4e6d/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/serde_json-d400bd1a767f4e6d/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/serde-65b11749365fc366/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde-65b11749365fc366/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/serde-e8c3c623a7135851/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde-e8c3c623a7135851/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/serde_core-490efe3d12a3a474/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_core-490efe3d12a3a474/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/serde_core-e7321787ef5b5150/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/serde_core-e7321787ef5b5150/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "slow",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ],
+        "runtime": [
+          "source/src/optimized/fast_slow_separation_v2.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "source",
+      "spec_status": "yes",
+      "code_status": "yes",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/analyze_p3b.py",
+          "source/scripts/analyze_p3c.py",
+          "source/scripts/analyze_p3d_gamma.py",
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ],
+        "tests": [
+          "source/hetero_bridge/test_bridge.cpp",
+          "source/hetero_bridge/test_v2.cpp",
+          "source/scripts/burn_test_real.sh",
+          "source/scripts/p3d_gamma_quick.sh",
+          "source/scripts/run_control_burn_multicore.sh",
+          "source/scripts/stress_test_v2.1.sh",
+          "source/src/bin/atlas_burn.rs",
+          "source/src/bin/atlas_superbrain_real.rs",
+          "source/src/bin/control_burn_multicore.rs",
+          "source/src/bin/gridworld_quick.rs",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/bin/p2_self_preservation_smoke.rs",
+          "source/src/bin/self_report_test.rs",
+          "source/src/gridworld/mod.rs",
+          "source/src/main.rs",
+          "source/src/main_5k.rs",
+          "source/src/main_optimized.rs",
+          "source/src/main_quick.rs",
+          "source/src/optimized/atlas_runtime_v2.rs",
+          "source/src/optimized/cognitive_clock_v2.rs"
+        ],
+        "docs": [
+          "source/README_SOURCE.md",
+          "source/logs/p3d/FINAL_EXPERIMENT_REPORT.md"
+        ],
+        "runtime": [
+          "source/hetero_bridge/bridge_build_v2.log",
+          "source/hetero_bridge/build.log",
+          "source/hetero_bridge/host_build.log",
+          "source/hetero_bridge/kernel_build.log",
+          "source/hetero_bridge/link.log",
+          "source/logs/p3a_demo.csv",
+          "source/logs/p3b/baseline_seed42.csv",
+          "source/logs/p3b/p2on_seed42.csv",
+          "source/logs/p3c/baseline_seed42_1773001504.csv",
+          "source/logs/p3c/baseline_seed42_1773001504_p3.csv",
+          "source/logs/p3c/p2on_seed42_1773001530.csv",
+          "source/logs/p3c/p2on_seed42_1773001530_p3.csv",
+          "source/logs/p3d/baseline_1773002033.csv",
+          "source/logs/p3d/baseline_1773003019.csv",
+          "source/logs/p3d/baseline_seed10_1773010341.csv",
+          "source/logs/p3d/baseline_seed123_1773004104.csv",
+          "source/logs/p3d/baseline_seed1_1773005491.csv",
+          "source/logs/p3d/baseline_seed1_1773005814.csv",
+          "source/logs/p3d/baseline_seed2_1773006317.csv",
+          "source/logs/p3d/baseline_seed3_1773006820.csv"
+        ]
+      }
+    },
+    {
+      "component_name": "spec",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "P3D_GAMMA_EXPERIMENT_SPEC.md"
+        ],
+        "docs": [
+          "BIOWORLD_V19_MEMORY_INTEGRATION_SPEC.md",
+          "P3D_GAMMA_EXPERIMENT_SPEC.md"
+        ],
+        "runtime": [
+          "P3D_GAMMA_EXPERIMENT_SPEC.md"
+        ]
+      }
+    },
+    {
+      "component_name": "src",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/bin/atlas_burn.rs",
+          "source/src/bin/atlas_superbrain_real.rs",
+          "source/src/bin/control_burn_multicore.rs",
+          "source/src/bin/gridworld_quick.rs",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/bin/p2_self_preservation_smoke.rs",
+          "source/src/bin/self_report_test.rs",
+          "source/src/gridworld/mod.rs",
+          "source/src/main.rs",
+          "source/src/main_5k.rs",
+          "source/src/main_optimized.rs",
+          "source/src/main_quick.rs",
+          "source/src/optimized/atlas_runtime_v2.rs",
+          "source/src/optimized/cognitive_clock_v2.rs",
+          "source/src/optimized/fast_slow_separation_v2.rs",
+          "source/src/optimized/mod.rs",
+          "source/src/optimized/nvlink_transport_v2.rs",
+          "source/src/optimized/snn_ann_bridge_v2.rs",
+          "source/src/p3_runtime_integration/mod.rs",
+          "source/src/p3_runtime_integration/parameter_mapping.rs"
+        ],
+        "runtime": [
+          "source/src/atlas_backup/gpu_core.rs",
+          "source/src/bin/atlas_hec_fusion_v2.rs",
+          "source/src/bin/mnist_certification.rs",
+          "source/src/bin/p3a_runtime_demo.rs",
+          "source/src/bin/p3b_ab_validation.rs",
+          "source/src/bin/p3c_real_validation.rs",
+          "source/src/bin/p3d_main_runtime_native.rs",
+          "source/src/main.rs",
+          "source/src/main_5k.rs",
+          "source/src/main_optimized.rs",
+          "source/src/mnist/loader.rs",
+          "source/src/optimized/fast_slow_separation_v2.rs",
+          "source/src/superbrain/cuda_bridge.rs",
+          "source/src/superbrain/runtime.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "state",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "PROJECT_STATE.md",
+          "source/src/self_kernel/self_state.rs"
+        ],
+        "docs": [
+          "MEMORY_FLOW_STATE_MACHINE_v1.md",
+          "PROJECT_STATE.md"
+        ]
+      }
+    },
+    {
+      "component_name": "status",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "STATUS.md"
+        ],
+        "docs": [
+          "P0_STATUS_REPORT.md",
+          "P0_STATUS_REPORT_v2.1.md",
+          "P0_STATUS_REPORT_v2.md",
+          "STATUS.md"
+        ],
+        "runtime": [
+          "STATUS.md"
+        ]
+      }
+    },
+    {
+      "component_name": "summary",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ],
+        "docs": [
+          "BIOWORLD_V18_DISCOVERY_SUMMARY.md",
+          "RESEARCH_PROGRESS_SUMMARY.md",
+          "STRATEGIC_SUMMARY_RyanX_Law_and_v18_Direction.md"
+        ],
+        "runtime": [
+          "RESEARCH_PROGRESS_SUMMARY.md"
+        ]
+      }
+    },
+    {
+      "component_name": "superbrain",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "source/src/bin/atlas_superbrain_real.rs",
+          "source/src/superbrain/compute.rs",
+          "source/src/superbrain/cuda_bridge.rs",
+          "source/src/superbrain/memory.rs",
+          "source/src/superbrain/mod.rs",
+          "source/src/superbrain/runtime.rs",
+          "source/src/superbrain/timing.rs",
+          "source/src/superbrain/transport.rs"
+        ],
+        "runtime": [
+          "source/src/superbrain/cuda_bridge.rs",
+          "source/src/superbrain/runtime.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "syn",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/target/debug/.fingerprint/syn-a12814564c798a79/lib-syn.json",
+          "source/target/debug/.fingerprint/syn-ce54db3bd716323a/lib-syn.json",
+          "source/target/release/.fingerprint/syn-4038c475a8284231/lib-syn.json",
+          "source/target/release/.fingerprint/syn-b0523f3df63a8747/lib-syn.json"
+        ]
+      }
+    },
+    {
+      "component_name": "target",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "TARGET_COMMANDS.md",
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/getrandom-adeff2af68bc71c4/lib-getrandom.json",
+          "source/target/debug/.fingerprint/getrandom-c77a075dc849b5f7/lib-getrandom.json",
+          "source/target/debug/.fingerprint/syn-a12814564c798a79/lib-syn.json",
+          "source/target/debug/.fingerprint/syn-ce54db3bd716323a/lib-syn.json",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/.fingerprint/getrandom-1625577818937bd5/lib-getrandom.json",
+          "source/target/release/.fingerprint/getrandom-626dfee4de741b99/lib-getrandom.json",
+          "source/target/release/.fingerprint/syn-4038c475a8284231/lib-syn.json",
+          "source/target/release/.fingerprint/syn-b0523f3df63a8747/lib-syn.json",
+          "source/target/release/self_report_test.d"
+        ],
+        "docs": [
+          "TARGET_COMMANDS.md"
+        ],
+        "runtime": [
+          "TARGET_COMMANDS.md",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-112ab4d903c70fec/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/libc-a77d812810bb870a/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-2c9b4383bd88dbb7/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/proc-macro2-6795aeef90c3b5b2/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-3921609a075c08e5/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/quote-69f25d1337976ea6/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/rayon-core-bdf8f05faf73dca4/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/rayon-core-c837815a07523fe1/run-build-script-build-script-build"
+        ]
+      }
+    },
+    {
+      "component_name": "template",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "docs": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md",
+          "P0_FINAL_REPORT_TEMPLATE.md"
+        ],
+        "runtime": [
+          "MODEL_FIT_INTERPRETATION_TEMPLATE.md"
+        ]
+      }
+    },
+    {
+      "component_name": "test",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "experiments/burn_test_readme.md",
+          "source/hetero_bridge/test_bridge.cpp",
+          "source/hetero_bridge/test_v2.cpp",
+          "source/scripts/burn_test_real.sh",
+          "source/scripts/stress_test_v2.1.sh",
+          "source/src/bin/self_report_test.rs",
+          "source/target/debug/.fingerprint/agl_mwe-03621ea467d76e79/output-test-lib-agl_mwe",
+          "source/target/debug/.fingerprint/agl_mwe-62d75870ebd4c93a/output-test-lib-agl_mwe",
+          "source/target/release/.fingerprint/agl_mwe-0350006965905292/bin-self_report_test.json",
+          "source/target/release/self_report_test.d"
+        ],
+        "docs": [
+          "experiments/burn_test_readme.md"
+        ]
+      }
+    },
+    {
+      "component_name": "three",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "docs": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "runtime": [
+          "CODEX_IMPLEMENTATION_BRIEF_THREE_LAYER_MEMORY.md",
+          "THREE_LAYER_MEMORY_ARCHITECTURE_v1.md",
+          "THREE_LAYER_MEMORY_COMPLETE.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ]
+      }
+    },
+    {
+      "component_name": "transport",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "unknown",
+      "evidence": {
+        "tests": [
+          "source/src/optimized/nvlink_transport_v2.rs",
+          "source/src/superbrain/transport.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "unified",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ],
+        "docs": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ],
+        "runtime": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md"
+        ]
+      }
+    },
+    {
+      "component_name": "utils",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-268e52edcd329147/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/crossbeam-utils-873323c0ec274de9/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-8976c798ca0530fb/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/crossbeam-utils-bfd7ec89132878e2/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "v18",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "docs": [
+          "BIOWORLD_V18_DISCOVERY_SUMMARY.md",
+          "BIO_WORLD_V18_SYSTEM_ARCHITECTURE.md",
+          "STRATEGIC_SUMMARY_RyanX_Law_and_v18_Direction.md"
+        ],
+        "runtime": [
+          "model_fit_results/BIOWORLD_V18_FINDINGS_20260309_083454.json"
+        ]
+      }
+    },
+    {
+      "component_name": "v19",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+          "V19_INTEGRATION_ROADMAP.md"
+        ],
+        "docs": [
+          "BIOWORLD_V19_MEMORY_INTEGRATION_SPEC.md",
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+          "V19_INTEGRATION_ROADMAP.md"
+        ],
+        "runtime": [
+          "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+          "V19_INTEGRATION_ROADMAP.md"
+        ]
+      }
+    },
+    {
+      "component_name": "validation",
+      "spec_status": "yes",
+      "code_status": "no",
+      "test_status": "yes",
+      "runtime_status": "yes",
+      "evidence": {
+        "tests": [
+          "P3C_REAL_VALIDATION.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "docs": [
+          "MODEL_VALIDATION_REPORT_v1.md",
+          "MODEL_VALIDATION_REPORT_v2.md",
+          "P3C_REAL_VALIDATION.md",
+          "P3D_MAIN_RUNTIME_VALIDATION.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md"
+        ],
+        "runtime": [
+          "P3C_REAL_VALIDATION.md",
+          "THREE_LAYER_MEMORY_VALIDATION_PROTOCOL.md",
+          "source/src/bin/p3b_ab_validation.rs",
+          "source/src/bin/p3c_real_validation.rs"
+        ]
+      }
+    },
+    {
+      "component_name": "verify",
+      "spec_status": "unknown",
+      "code_status": "yes",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "code": [
+          "source/scripts/verify_p3d_gamma_completion.py",
+          "verify_cdi_leading_indicator.py"
+        ],
+        "runtime": [
+          "source/scripts/verify_p3d_gamma_completion.py"
+        ]
+      }
+    },
+    {
+      "component_name": "zerocopy",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/zerocopy-6a0b4bd5188c134b/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zerocopy-6a0b4bd5188c134b/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/zerocopy-cb3b51728f52f5cd/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zerocopy-cb3b51728f52f5cd/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/zerocopy-7cf407d8b6565e2b/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zerocopy-7cf407d8b6565e2b/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/zerocopy-df76cc2405095e9d/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zerocopy-df76cc2405095e9d/run-build-script-build-script-build.json"
+        ]
+      }
+    },
+    {
+      "component_name": "zmij",
+      "spec_status": "unknown",
+      "code_status": "no",
+      "test_status": "unknown",
+      "runtime_status": "yes",
+      "evidence": {
+        "runtime": [
+          "source/target/debug/.fingerprint/zmij-193018c25ea517ee/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zmij-193018c25ea517ee/run-build-script-build-script-build.json",
+          "source/target/debug/.fingerprint/zmij-6e72394e5bdc0f10/run-build-script-build-script-build",
+          "source/target/debug/.fingerprint/zmij-6e72394e5bdc0f10/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/zmij-7533cb50f6721529/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zmij-7533cb50f6721529/run-build-script-build-script-build.json",
+          "source/target/release/.fingerprint/zmij-f8d1afcf62bc80c7/run-build-script-build-script-build",
+          "source/target/release/.fingerprint/zmij-f8d1afcf62bc80c7/run-build-script-build-script-build.json"
+        ]
+      }
+    }
+  ],
+  "count": 189
+}

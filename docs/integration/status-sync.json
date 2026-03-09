@@ -1,0 +1,49 @@
+{
+  "repo": "atlas-hec-v2.1",
+  "branch": "main",
+  "commit": "a21602a",
+  "commit_subject": "docs: Three-Layer Memory Architecture - Master Index",
+  "last_synced_other_repo": "",
+  "interface_version": "v0.1.0",
+  "timestamp": "2026-03-09T19:45:00Z",
+  "owned_modules": [
+    "research_audit",
+    "integration_contract",
+    "falsification_plan",
+    "continuity_probe_design"
+  ],
+  "audit_status": {
+    "repo_grounded_audit": "completed",
+    "hidden_oracle_audit": "completed",
+    "spec_code_alignment": "in_review",
+    "metrics_pipeline": "partial"
+  },
+  "deliverables": {
+    "facts_json": "generated (944KB)",
+    "matrix_json": "generated (131KB)",
+    "forbidden_refs": "checked (0 findings)",
+    "archive_flow": "audited (0 findings)",
+    "global_state": "audited (0 findings)"
+  },
+  "blocking_issues": [],
+  "next_expected_inputs": [
+    {
+      "from": "bio-world",
+      "item": "metrics_export_implementation",
+      "contract_ref": "section_2.1_core_metrics"
+    },
+    {
+      "from": "bio-world",
+      "item": "jsonl_stream_endpoint",
+      "contract_ref": "section_3_data_flow"
+    },
+    {
+      "from": "codex",
+      "item": "three_layer_memory_validation",
+      "contract_ref": "anti_god_mode_boundaries"
+    }
+  ],
+  "open_questions_count": 5,
+  "ready_for_integration": false,
+  "estimated_completion": "2026-03-16"
+}
