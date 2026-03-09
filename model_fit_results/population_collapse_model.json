@@ -1,0 +1,49 @@
+{
+  "model": "Population Collapse (Two-Phase)",
+  "phases": {
+    "maintenance": [
+      0,
+      15
+    ],
+    "peak_gen": 1600,
+    "peak_N": 17544.0,
+    "collapse_start_gen": null,
+    "extinction_start": 6400
+  },
+  "parameters": {
+    "alpha": 1.0,
+    "beta": 0.1,
+    "N_critical": 5263.2
+  },
+  "fit_quality": {
+    "R2": -0.020515429814758068,
+    "RMSE": 6202.082901321482
+  },
+  "triggers": {
+    "population": {
+      "before_peak": 17533.8,
+      "after_peak": 17544.0,
+      "change_pct": 0.058173356602680124
+    },
+    "avg_cdi": {
+      "before_peak": 0.67852,
+      "after_peak": 0.67619,
+      "change_pct": -0.34339444673702385
+    },
+    "avg_collaboration": {
+      "before_peak": 0.39981999999999995,
+      "after_peak": 0.3998,
+      "change_pct": -0.005002251012946949
+    },
+    "extinct_count": {
+      "before_peak": 0.0,
+      "after_peak": 0.0,
+      "change_pct": 0.0
+    },
+    "alive_universes": {
+      "before_peak": 128.0,
+      "after_peak": 128.0,
+      "change_pct": 0.0
+    }
+  }
+}

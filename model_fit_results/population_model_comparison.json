@@ -1,0 +1,45 @@
+{
+  "best_model": "A2_Richards",
+  "all_models": [
+    {
+      "name": "A1_Exponential",
+      "equation": "dN/dt = r\u00b7N",
+      "params": {
+        "r": 0.1
+      },
+      "r2": -Infinity,
+      "rmse": Infinity,
+      "aic": Infinity,
+      "bic": Infinity,
+      "k": 1
+    },
+    {
+      "name": "A2_Richards",
+      "equation": "dN/dt = r\u00b7N\u00b7(1 - (N/K)^\u03bd)",
+      "params": {
+        "r": 0.022109980620032128,
+        "K": 8772.0,
+        "nu": 0.01
+      },
+      "r2": 0.3874174540513261,
+      "rmse": 4805.184732526088,
+      "aic": 1391.4945019671236,
+      "bic": 1398.2399876932716,
+      "k": 3
+    },
+    {
+      "name": "A3_External_Drive",
+      "equation": "dN/dt = r\u00b7N - m\u00b7B_t\u00b7N + u\u00b7E_t",
+      "params": {
+        "r": 0.001,
+        "m": 1.0,
+        "u": 0.0
+      },
+      "r2": -123583.30276836608,
+      "rmse": 2158288.1941954065,
+      "aic": 2246.5270294374022,
+      "bic": 2253.2725151635505,
+      "k": 3
+    }
+  ]
+}
