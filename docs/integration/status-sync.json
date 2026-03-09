@@ -1,89 +1,143 @@
 {
-  "repo": "atlas-hec-v2.1",
-  "branch": "master",
-  "commit": "TBD",
-  "commit_subject": "[atlas-sync] Phase 4 first result triage and go/hold/no-go arbitration",
-  "last_synced_other_repo": "bio-world (awaiting_phase3_output)",
-  "interface_version": "v0.1.0",
-  "phase": "phase4",
-  "timestamp": "2026-03-09T22:00:00Z",
-  "owned_modules": [
-    "result_triage_lead",
-    "go_hold_no_go_arbiter",
-    "phase4_triage_report",
-    "phase4_comparison_decision",
-    "phase4_blocker_disposition",
-    "phase4_next_action"
+  "phase": "phase4.5",
+  "triage_status": "HOLD_FOR_MINIMAL_RERUN",
+  "core_conditions_completed": false,
+  "core_conditions_summary": {
+    "baseline_full": {
+      "status": "completed",
+      "runs": 40,
+      "generations": 2100
+    },
+    "no_L2": {
+      "status": "completed",
+      "runs": 24,
+      "generations": 1500
+    },
+    "L3_off": {
+      "status": "not_started",
+      "runs": 0,
+      "generations": 0
+    },
+    "L3_real_p001": {
+      "status": "not_started",
+      "runs": 0,
+      "generations": 0
+    },
+    "L3_shuffled_p001": {
+      "status": "not_started",
+      "runs": 0,
+      "generations": 0
+    }
+  },
+  "required_now_field_status": "PARTIAL_2_OF_7",
+  "available_fields": [
+    "tick",
+    "population",
+    "births",
+    "deaths",
+    "avg_energy",
+    "lineage_count",
+    "avg_stress_level",
+    "archive_record_count"
   ],
-  "phase_4_status": {
-    "role": "Result Triage Lead + Go/Hold/No-Go Arbiter",
-    "documents_generated": [
-      "PHASE4_TRIAGE_REPORT.md",
-      "PHASE4_COMPARISON_DECISION_TABLE.md",
-      "PHASE4_BLOCKER_DISPOSITION.md",
-      "PHASE4_NEXT_ACTION.md",
-      "PHASE5_PREP_MIN_SPEC.md",
-      "PHASE4_FIELD_FIX_REQUEST.md",
-      "PHASE4_FAILURE_MEMO.md"
-    ],
-    "status": "AWAITING_CODEX_OUTPUT",
-    "triage_status": "NOT_STARTED",
-    "core_conditions_completed": "UNKNOWN",
-    "required_now_field_status": "UNKNOWN",
-    "strongest_evidence": "NONE_YET",
-    "next_action": "WAIT_FOR_CODEX_PHASE3_OUTPUTS"
+  "missing_fields": [
+    "archive_sample_attempts",
+    "archive_sample_successes",
+    "archive_influenced_births",
+    "lineage_diversity",
+    "top1_lineage_share",
+    "strategy_entropy",
+    "collapse_event_count"
+  ],
+  "strongest_evidence": {
+    "type": "partial",
+    "finding": "lineage_count stable across conditions (no_L2 ≈ baseline)",
+    "confidence": "low",
+    "interpretation": "Either weak L2 effect or lineage_count ≠ lineage_diversity"
   },
-  "executed_conditions": [],
-  "generated_outputs": [],
-  "blockers_summary": {
-    "field": "B1: Can all 5 sentinel conditions execute?",
-    "runnable": "B2: Do required_now fields have real values?",
-    "evidence": "B3: Is L3_shuffled actually shuffled?",
-    "interpretation": "B4: Anti-god-mode evidence strength?"
+  "falsification_rules": {
+    "R1_L3_content_irrelevant": {
+      "status": "BLOCKED",
+      "reason": "Missing L3_shuffled data"
+    },
+    "R2_L3_improves_over_off": {
+      "status": "BLOCKED",
+      "reason": "Missing L3_off data"
+    },
+    "R3_L2_degeneration": {
+      "status": "UNCLEAR",
+      "reason": "lineage_count similar, not lower"
+    },
+    "R4_birth_rate_tied_to_L3": {
+      "status": "BLOCKED",
+      "reason": "Missing L3_off data"
+    },
+    "R5_archive_diversity_vs_collapse": {
+      "status": "BLOCKED",
+      "reason": "Missing archive metrics"
+    },
+    "R6_lineage_diversity_decline": {
+      "status": "BLOCKED",
+      "reason": "Missing lineage_diversity field"
+    },
+    "R7_top_lineage_increase": {
+      "status": "BLOCKED",
+      "reason": "Missing top1_lineage_share field"
+    }
   },
-  "blocking_issues": [
+  "semantic_alignment": {
+    "ticks_vs_generations": {
+      "bio_world_term": "tick",
+      "atlas_term": "generation",
+      "equivalent": true,
+      "mapping": "tick == generation (starts at 0, increments by 1)"
+    },
+    "lineage_count_vs_diversity": {
+      "bio_world_field": "lineage_count",
+      "atlas_required": "lineage_diversity",
+      "equivalent": false,
+      "note": "lineage_count = unique lineages; lineage_diversity = effective number (1/Σp²)"
+    },
+    "universes_vs_runs": {
+      "bio_world_structure": "seed_XXX/uY/",
+      "atlas_term": "run",
+      "mapping": "(seed, universe) → run",
+      "count": 8 universes × 3 seeds = 24 runs per condition"
+    }
+  },
+  "blockers": [
     {
-      "id": "B1",
-      "category": "field",
-      "description": "Can all 5 sentinel conditions execute?",
-      "owner": "bio-world",
-      "status": "PENDING_VERIFICATION",
-      "reference": "open-questions.md#B1"
+      "id": "B1-runnable",
+      "description": "Missing L3_off and L3_shuffled conditions",
+      "severity": "CRITICAL",
+      "status": "BLOCKING"
     },
     {
-      "id": "B2",
-      "category": "runnable",
-      "description": "Do required_now fields have real values?",
-      "owner": "bio-world",
-      "status": "PENDING_VERIFICATION",
-      "reference": "open-questions.md#B2"
+      "id": "B2-semantic",
+      "description": "Missing 5 of 7 required_now fields",
+      "severity": "CRITICAL",
+      "status": "BLOCKING"
     },
     {
-      "id": "B3",
-      "category": "evidence",
-      "description": "Is L3_shuffled actually shuffled?",
-      "owner": "bio-world",
-      "status": "PENDING_VERIFICATION",
-      "reference": "open-questions.md#B3"
-    },
-    {
-      "id": "B4",
-      "category": "interpretation",
-      "description": "Anti-god-mode evidence strength?",
-      "owner": "atlas-hec",
-      "status": "PENDING_VERIFICATION",
-      "reference": "open-questions.md#B4"
+      "id": "B3-evidence",
+      "description": "Cannot validate L3_real vs L3_shuffled",
+      "severity": "CRITICAL",
+      "status": "BLOCKING"
     }
   ],
-  "open_questions": {
-    "blockers": 4,
-    "semantic_mismatch": 3,
-    "next_phase_proposals": 5,
-    "total": 12
+  "next_action": "EXECUTE_MINIMAL_RERUN",
+  "minimal_rerun_request": {
+    "runs_needed": 72,
+    "conditions": ["L3_off", "L3_real_p001", "L3_shuffled_p001"],
+    "fields_to_add": 7,
+    "estimated_wall_time": "6 hours",
+    "estimated_compute": "14M cell-steps",
+    "request_status": "PENDING_APPROVAL"
   },
-  "ready_for_integration": false,
-  "estimated_completion": "TBD_PENDING_TRIAGE",
-  "sentinel_run_ready": false,
-  "sync_protocol_version": "v0.1.0",
-  "recommended_next_action": "Receive Codex Phase 3 outputs and execute triage protocol"
+  "documents_updated": [
+    "PHASE4_TRIAGE_REPORT_FILLED.md",
+    "PHASE4_COMPARISON_DECISION_TABLE_FILLED.md",
+    "PHASE45_MINIMAL_RERUN_REQUEST.md"
+  ],
+  "last_updated": "2026-03-09T15:25:00Z"
 }
