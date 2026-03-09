@@ -1,0 +1,47 @@
+{
+  "model": "Cooperation Gate (Layer C) v2",
+  "equation": "C(t) = \u03c3((G(t) - \u03b8)/\u03c4)",
+  "G_definition": "G = w1\u00b7B_reward + w2\u00b7N_support - w3\u00b7S_cost - w4\u00b7M_cost",
+  "parameters": {
+    "w1": {
+      "value": 0.510726662828786,
+      "description": "Boss reward weight"
+    },
+    "w2": {
+      "value": 0.510726662828786,
+      "description": "Neighbor support weight"
+    },
+    "w3": {
+      "value": 0.0,
+      "description": "Signal cost weight"
+    },
+    "w4": {
+      "value": 0.16159297471093245,
+      "description": "Movement cost weight"
+    },
+    "theta0": {
+      "value": 0.9840051763083952,
+      "description": "Base threshold"
+    },
+    "tau": {
+      "value": 0.30387095135722864,
+      "description": "Temperature (steepness)"
+    }
+  },
+  "derived": {
+    "threshold_location": 0.9840051763083952,
+    "threshold_steepness": 3.2908706657662936
+  },
+  "behavior_test": {
+    "sigmoid_r2": 0.9908239481032411,
+    "linear_r2": 0.9928699261516469,
+    "threshold_behavior": false,
+    "interpretation": "Gradual behavior"
+  },
+  "fit_quality": {
+    "RMSE": 0.006999200808082031,
+    "R_squared": 0.9908239481032411,
+    "n_points": 70
+  },
+  "success": true
+}
