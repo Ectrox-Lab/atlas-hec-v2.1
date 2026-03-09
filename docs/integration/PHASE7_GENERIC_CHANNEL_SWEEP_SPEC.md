@@ -127,6 +127,13 @@ A condition is "INEFFECTIVE" if:
   1. No significant difference vs baseline
   2. Cohen's d < 0.2
 
+A condition is "OVERDRIVEN" (overly strong channel) if:
+  1. top1_lineage_share > 0.8 (excessive dominance)
+  2. OR strategy_entropy < baseline -20% (reduced behavioral diversity)
+  3. OR lineage_diversity < baseline by >10% (fragmentation or collapse)
+  4. OR extinction_event_count > 0 (system instability)
+  5. OR Cohen's d < -0.3 (negative effect)
+
 A condition is "HARMFUL" if:
   1. lineage_diversity < baseline by >10%
   2. OR extinction events increase
@@ -174,15 +181,39 @@ done
 **Parallelization**: Up to 15 simultaneous (if CPU permits)  
 **Estimated time**: 15-30 minutes (parallel) or 2-4 hours (sequential)
 
-### 6.2 Execution Order (if sequential)
+### 6.2 Execution Strategy (Recommended)
 
+**Phase A: Center Axis First (Recommended)**
 ```
-Priority 1: p=0.001 (baseline from Phase 6)
-Priority 2: p=0.0 (true baseline)
-Priority 3: p=0.01 (10x test)
-Priority 4: p=0.05, p=0.1 (high freq test)
+Run α=medium for 3 p values:
+  1. p=0.001 (baseline from Phase 6)
+  2. p=0.01 (10x test)
+  3. p=0.05 (50x test)
 
-Within each p: weak → medium → strong
+If curve direction clear:
+  → Proceed to Phase B (weak/strong wings)
+If ambiguous:
+  → Add p=0.0 or p=0.1
+```
+
+**Rationale**: 
+- Center axis (medium) most likely to show effect
+- 3 runs = quick validation of hypothesis
+- ~15-20 minutes vs 2-4 hours for full matrix
+- Decision point before full investment
+
+**Phase B: Full Matrix (if Phase A promising)**
+```
+Complete remaining 12 conditions:
+  - weak/medium/strong for all 5 p values
+  - Filling gaps identified in Phase A
+```
+
+**Alternative: Full Matrix (if compute abundant)**
+```
+Run all 15 conditions simultaneously
+Requires: 15+ CPU cores
+Time: 15-30 minutes total
 ```
 
 ---
@@ -312,6 +343,22 @@ Then:
 - Re-examine channel design
 - Consider removing L3 entirely
 ```
+
+### 10.4 Terminology Migration (Post-Phase 7)
+
+**Code Rename**: "Archive" → "PriorChannel" or "Stabilizer"
+
+**Rationale**:
+- Experimental semantics now clearly: weak prior / stabilization channel / low-bandwidth regularizer
+- "Archive" carries wrong connotations (storage, history, content)
+- New terms prevent old narrative resurrection
+
+**Migration checklist**:
+- [ ] Rename struct CausalArchive → PriorChannel
+- [ ] Rename variables: archive → channel, prior, stabilizer
+- [ ] Update comments: remove "memory", "historical", "content"
+- [ ] Update docs: "three-layer control" not "three-layer memory"
+- [ ] Commit message: "[terminology] Archive→PriorChannel (Phase 7 validation)"
 
 ---
 
