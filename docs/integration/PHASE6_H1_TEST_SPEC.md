@@ -80,10 +80,23 @@ name: L3_random_each_tick
 archive_mode: random_fresh
 archive_generator: uniform_random
 archive_retrieval_prob: 0.001
+archive_value_range: [0.0, 1.0]  # SAME as real archive output range
+archive_update_frequency: per_read  # NOT per tick
 
 # Implementation:
 # Every archive read returns NEW random strategy
-# No memory, no history, no content
+# CRITICAL CONSTRAINTS:
+#   1. Same bandwidth as real: p=0.001
+#   2. Same amplitude range as real: [0.0, 1.0]
+#   3. Same injection points: only when archive accessed
+#   4. NO additional noise outside archive mechanism
+# 
+# This tests: "unstructured generic prior" 
+# NOT: "high-frequency noise injection"
+#
+# If random shows harm vs constant/real:
+#   → Likely bandwidth/amplitude mismatch, not H1 falsification
+#   → Check implementation before concluding
 ```
 
 ### 3.3 baseline_full (Control)

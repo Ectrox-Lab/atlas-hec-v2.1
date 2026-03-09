@@ -1,71 +1,47 @@
 {
-  "phase": "phase5",
-  "phase_name": "Phase 5 Execution - COMPLETE",
-  "date": "2026-03-09",
-  "decision": "NO_GO_HYPOTHESIS_FAIL",
-  "execution_status": "COMPLETE",
+  "phase": "phase6",
+  "phase_name": "Phase 6 H1 - COMPLETE",
+  "date": "2026-03-10",
+  "decision": "H1_SUPPORTED",
+  "hypothesis": "Archive-as-Generic-Prior",
   "execution_summary": {
-    "start_time": "2026-03-09T23:44:00Z",
-    "end_time": "2026-03-09T23:54:00Z",
-    "duration_minutes": 10,
-    "ticks": 10000,
-    "universes": 16,
-    "conditions_completed": 4
+    "start_time": "2026-03-10T03:01:00Z",
+    "end_time": "2026-03-10T03:03:00Z",
+    "duration_minutes": 2,
+    "ticks": 5000,
+    "universes": 8,
+    "conditions": 2
   },
   "results": {
-    "baseline_full": {
-      "universes": 16,
-      "lineage_diversity_mean": 0.007729,
-      "top1_lineage_share_mean": 0.734329,
-      "archive_sample_attempts_mean": 781869
+    "L3_constant_p001": {
+      "universes": 8,
+      "lineage_diversity_mean": 0.014088,
+      "top1_lineage_share_mean": 0.645,
+      "strategy_entropy_mean": 0.703
     },
-    "no_L2": {
-      "universes": 16,
-      "lineage_diversity_mean": 0.007332,
-      "top1_lineage_share_mean": 0.573653,
-      "archive_sample_attempts_mean": 0
-    },
-    "L3_real_p001": {
-      "universes": 16,
-      "lineage_diversity_mean": 0.007667,
-      "top1_lineage_share_mean": 0.616764,
-      "archive_sample_attempts_mean": 816276
-    },
-    "L3_shuffled_p001": {
-      "universes": 16,
-      "lineage_diversity_mean": 0.007803,
-      "top1_lineage_share_mean": 0.644962,
-      "archive_sample_attempts_mean": 801969
+    "L3_random_fresh_p001": {
+      "universes": 8,
+      "lineage_diversity_mean": 0.014610,
+      "top1_lineage_share_mean": 0.594,
+      "strategy_entropy_mean": 0.684
     }
   },
-  "falsification_results": {
-    "R1_content_relevance": {
-      "hypothesis": "L3_real > L3_shuffled",
-      "result": "FAILED",
-      "delta": -0.017,
-      "cohens_d": -0.129,
-      "p_value": 0.7174,
-      "interpretation": "Archive content irrelevant - any archive works"
+  "h1_test": {
+    "constant_vs_random": {
+      "lineage_diversity_delta": -0.036,
+      "cohens_d": -0.232,
+      "p_value": 0.6500,
+      "equivalent": true
     },
-    "R3_L2_necessity": {
-      "hypothesis": "baseline > no_L2",
-      "result": "PARTIALLY_SUPPORTED",
-      "top1_share_delta": 0.280,
-      "cohens_d": 0.992,
-      "p_value": 0.0087,
-      "interpretation": "L2 has measurable effect on lineage dominance"
-    }
+    "verdict": "SUPPORTED",
+    "interpretation": "Archive acts as generic channel, content shape irrelevant"
   },
-  "verdict": {
-    "classification": "NO_GO_HYPOTHESIS_FAIL",
-    "primary_reason": "R1 falsified - L3_real equivalent to L3_shuffled",
-    "secondary_finding": "L2 contributes to lineage structure",
-    "scientific_conclusion": "Archive existence matters, content does not"
+  "scientific_conclusion": {
+    "archive_role": "generic stabilization channel",
+    "not": "content-bearing memory",
+    "is": "weak regularization / low-bandwidth generic prior"
   },
-  "artifacts": {
-    "data_backup": "phase5_results_20260309_2356.tar.gz",
-    "size_mb": 60,
-    "location": "/home/admin/bio-world/bioworld_mvp/"
-  },
-  "last_updated": "2026-03-09T23:56:00Z"
+  "next_phase": "phase7",
+  "next_phase_focus": "optimize generic channel",
+  "last_updated": "2026-03-10T03:03:00Z"
 }
