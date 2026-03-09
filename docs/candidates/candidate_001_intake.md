@@ -1,121 +1,139 @@
-# Candidate 001: Multi-Agent Meta-Game Identity Tokens
+# Candidate 001: Multi-Agent Consistency Markers
 
-**Status**: BUILD_NOW  
+**Status**: REVISE_FIRST → BUILD_NOW (after compliance update)  
 **Date**: 2026-03-10  
 **Risk**: Medium  
-**Readiness**: High (minor refinement needed)  
+**Readiness**: High (terminology updated)  
 
 ---
 
 ## 1. Intake Memo (1 Page)
 
 ### Core Hypothesis
-Multi-agent systems develop persistent self-models when individual agents carry "identity tokens" that:
-- Track their own action history
-- Are observable by other agents
-- Create selection pressure for consistent (identifiable) behavior
+Multi-agent systems develop persistent behavioral patterns when individual agents carry **consistency markers** that:
+- Are observable by other agents (public signal)
+- Change slowly (low bandwidth)
+- Create selection pressure for coherent (identifiable) behavior
 
-The token serves as an anchor for self-representation and other-model formation.
+The marker acts as a **generic prior** for partner predictions, not as content storage.
 
 ### Minimal Mechanism
-- **Agents**: N identical agents in repeated game
-- **Identity Token**: Observable but non-transferable agent ID + action history summary
+- **Agents**: N agents in repeated game
+- **Consistency Marker**: Observable agent ID + slow-varying consistency score (<= 32 bits total)
 - **Game**: Mixture of cooperation and deception scenarios
-- **Learning**: Policy that depends on own token state and observed other tokens
+- **Learning**: Policy influenced by marker visibility and partner predictions
 
-### Required State Variables
+### Required State Variables (COMPLIANT)
 ```python
 {
-  "self_token": {
-    "agent_id": int,
-    "action_history": List[Action],
-    "strategy_fingerprint": Vector[traits]
+  "consistency_marker": {
+    "agent_id": 8 bits,              # Fixed identifier
+    "coherence_score": 8 bits,       # How consistent is behavior? (slow update)
+    "behavioral_bias": 16 bits       # Generic prior direction (not specific content)
   },
-  "other_tokens": Dict[agent_id, Observation],
-  "self_model": {
-    "predicted_own_actions": Distribution[Action],
-    "consistency_score": float  # How predictable am I?
-  },
-  "other_models": Dict[agent_id, PredictedStrategy],
-  "reputation_state": Dict[agent_id, TrustScore]
+  "observed_markers": Dict[agent_id, ConsistencyScore],  # Partner coherence only
+  "prior_prediction": {
+    "expected_partner_coherence": float,  # Generic expectation, not specific strategy
+    "consistency_pressure": float         # Selection pressure for coherence
+  }
 }
 ```
+
+**Bandwidth Check**: <= 32 bits per observation ✅  
+**Timescale**: Marker updates every 10+ ticks (10x separation from actions) ✅
 
 ### Minimal Experimental Environment
 - **Game**: Repeated social dilemmas (Prisoner's Dilemma, Stag Hunt, Chicken)
 - **Episodes**: 100-1000 rounds with same partners
-- **Observations**: Actions + tokens of all agents
+- **Observations**: Current actions + slow markers (not history)
 - **Metrics**:
-  - Self-model stability (consistency of self-prediction)
-  - Strategy persistence (action distribution stability)
-  - Other-model accuracy (prediction of others)
+  - Behavioral coherence (entropy of action distribution)
+  - Partner prediction accuracy (generic, not specific)
+  - Marker consistency stability
 
 ### Minimal Falsification Condition
-- **Fail**: Removing tokens doesn't degrade self-model stability
-- **Fail**: Tokens only improve cooperation rate without forming self-representation
-- **Fail**: Agents don't show consistent strategy when tokens are visible
+- **Fail**: Removing markers doesn't degrade coherence metrics
+- **Fail**: Markers only improve cooperation rate without creating consistency pressure
+- **Fail**: Agents don't show behavioral coherence when markers are visible
 
 ### Most Likely Illusion
-Treating token as "identity" when it's actually:
-- Just a coordination device (no self-model formation)
-- External reputation tracker (no internal representation)
-- Memory aid (no emergent identity)
+Treating marker as "identity" when it's actually:
+- Just a coordination device (no consistency pressure)
+- External pressure only (no internal prior)
+- Pure reputation tracking (not generic bias)
 
 ---
 
-## 2. Minimal Mechanism Spec
+## 2. Minimal Mechanism Spec (COMPLIANT)
 
 ### Agent Definition
 ```
-Agent: TokenAwareAgent
-- State: (own_token, observed_other_tokens, memory)
-- Policy: π(action | own_token, history, other_models)
-- Learning: RL update based on game rewards + consistency bonus
+Agent: ConsistencyMarkerAgent
+- State: (own_marker, observed_partner_coherence, prior_bias)
+- Policy: π(action | own_marker, prior_prediction, game_state)
+- Learning: RL with consistency bonus (slow signal, not history)
 ```
 
 ### Environment Definition
 ```
-Environment: MetaGameArena
+Environment: MarkerGameArena
 - Population: N agents, repeated pairing
 - Games: {Prisoner's Dilemma, Stag Hunt, Chicken} sampled each episode
-- Token visibility: All agents observe all tokens (or subset)
-- Reward: Game payoff + consistency bonus (optional)
+- Marker visibility: All agents observe all markers (bandwidth-limited)
+- Marker update: Every 10 ticks (10x slower than actions)
+- Reward: Game payoff + λ*consistency_bonus (slow feedback)
 ```
 
-### Key Feedback Loop
+### Key Feedback Loop (COMPLIANT)
 ```
-1. OBSERVE: See other agents' tokens and last actions
-2. PREDICT: Use other_models to predict their actions
-3. ACT: Choose action based on own_token + predictions
-4. UPDATE_TOKEN: Append action to own_token.history
-5. UPDATE_MODELS: 
-   - self_model ← consistency(own_token.history)
-   - other_models[partner] ← observed behavior
-6. LEARN: Policy gradient on (game_reward + λ*consistency)
+1. OBSERVE: See partner markers (<= 32 bits each)
+   - agent_id (fixed)
+   - coherence_score (slow update)
+   - NO action history
+   - NO specific strategy content
+
+2. PREDICT: Use generic prior from marker
+   - High coherence → expect consistent behavior
+   - Low coherence → expect variable behavior
+   - NOT predicting specific actions
+
+3. ACT: Choose action based on game + prior
+
+4. UPDATE_MARKER (every 10 ticks):
+   - coherence_score ← variance(recent_actions)
+   - Slow update maintains 10x timescale separation
+
+5. LEARN: Policy gradient on (game_reward + λ*consistency)
+   - Consistency bonus from slow marker feedback
+   - NOT from specific action rewards
 ```
 
-### Self-Model Variable
+### Generic Prior Variable (COMPLIANT)
 ```python
-# self_model.consistency_score = coherence of own action history
-# self_model.predicted_own_actions = policy(own_token) distribution
-# Identity emerges when consistency_score > threshold AND stable
+# prior_prediction.coherence_expectation = f(observed_marker.coherence_score)
+# This is a GENERIC prior about partner consistency, NOT specific content
+
+# Consistency emerges when:
+# - Agents maintain stable coherence scores
+# - Partners use these as priors for predictions
+# - Selection pressure favors coherent agents
 ```
 
 ### Emergence Criteria
 - **Appears**: 
-  - Self-prediction accuracy > baseline (random/no-token)
-  - Strategy consistent across episodes with same partner
-  - Other-model accuracy improves over time
+  - Behavioral coherence (low action entropy) > baseline
+  - Partner prediction accuracy (generic) > random
+  - Coherence scores stabilize over time
 - **Absent**: 
-  - Actions independent of token
-  - No other-model formation
-  - Purely reactive (no history dependence)
+  - Actions independent of marker visibility
+  - No coherence pressure
+  - Purely reactive (no prior formation)
 
 ---
 
 ## 3. Minimal Experiment Design
 
-### Experiment A: Token Effect on Self-Model Stability
+### Experiment A: Marker Effect on Coherence
 
 **Setup**:
 - Population of 10 agents
@@ -123,98 +141,141 @@ Environment: MetaGameArena
 - Mixed games (PD, Stag, Chicken)
 
 **Conditions**:
-- **With tokens**: Full mechanism
-- **Without tokens**: Agents see only current actions, no IDs
+- **With markers**: Full mechanism (<= 32 bits, 10x timescale)
+- **Without markers**: Agents see only current actions
 
 **Metrics**:
 ```python
 {
-  "self_prediction_accuracy": P(a_t | history, own_token),
-  "strategy_entropy": -Σ p(a) log p(a) over episode,
-  "partner_prediction_accuracy": P(partner_a | other_model),
+  "behavioral_coherence": 1 / entropy(action_distribution),
+  "partner_prediction_accuracy": P(coherence | marker),
+  "coherence_stability": variance(coherence_score) over time,
   "cooperation_rate": fraction of cooperate actions
 }
 ```
 
-**Success**: With-tokens shows higher self-prediction + strategy consistency
+**Success**: With-markers shows higher coherence + better generic prediction
 
-### Experiment B: Token Deception Resistance
-
-**Setup**:
-- Introduce "deceiver" agents who randomize strategy
-- Measure if honest agents maintain self-model
-
-**Metrics**:
-- Self-model stability under deception pressure
-- Identification of deceivers (model accuracy drop)
-
-**Success**: Self-model persists despite deception attempts
-
-### Experiment C: Transfer to New Partners
+### Experiment B: Bandwidth Constraint Test
 
 **Setup**:
-- Train with partner set A
-- Test with partner set B
+- Vary marker information content: 8 bits vs 32 bits vs 128 bits
 
-**Metrics**:
-- Strategy consistency across partner change
-- Speed of new other-model formation
+**Prediction**: 
+- 8-32 bits: Effective (within PriorChannel constraint)
+- 128 bits: Violates bandwidth, should NOT show additional benefit
 
-**Success**: Positive transfer (uses learned self-strategy)
+**Verification**: PriorChannel bandwidth limit is meaningful constraint
+
+### Experiment C: Timescale Separation Test
+
+**Setup**:
+- Vary marker update frequency: every tick vs every 10 ticks vs every 100 ticks
+
+**Prediction**:
+- Every tick (1x): No separation, may not work
+- Every 10 ticks (10x): Optimal (default)
+- Every 100 ticks (100x): Too slow, reduced effect
+
+**Verification**: 10x timescale separation is optimal
 
 ---
 
-## 4. Falsification Checklist
+## 4. Falsification Checklist (COMPLIANT)
 
 ### Definite Fail Conditions
 
 | # | Condition | If True |
 |---|-----------|---------|
-| F1 | Removing tokens doesn't affect self-model metrics | Token is not identity anchor |
-| F2 | Tokens improve cooperation but not self-prediction | External coordination only |
-| F3 | Strategy consistency doesn't correlate with token visibility | Token irrelevant to identity |
-| F4 | Other-model accuracy doesn't improve over time | No learning of others |
-| F5 | Agents with tokens are equally exploitable as without | No self-model benefit for protection |
+| F1 | Removing markers doesn't affect coherence metrics | Marker is not consistency anchor |
+| F2 | Markers improve cooperation but not coherence | External pressure only |
+| F3 | Coherence doesn't correlate with marker visibility | Marker irrelevant |
+| F4 | High-bandwidth markers (>32 bits) work better | Violates PriorChannel constraint |
+| F5 | Fast-updating markers (every tick) work better | Violates timescale separation |
 
-### Warning Signs
-- Self-model converges to "always cooperate" or "always defect" (trivial)
-- Requires hand-crafted consistency bonus to show any effect
-- Performance improvement is purely coordination (no prediction)
+### PriorChannel Compliance Tests
+
+| Test | Expected | Violation |
+|------|----------|-----------|
+| Bandwidth <= 32 bits | Effect saturates at 32 bits | Continues improving beyond 32 bits |
+| Timescale >= 10x | Effect optimal at 10x | Best at 1x (no separation) |
+| Generic prior | Predicts coherence, not actions | Predicts specific strategies |
 
 ### Success Criteria
-- [ ] Δ self-prediction accuracy > 25% with tokens
-- [ ] Strategy entropy lower (more consistent) with tokens
-- [ ] Other-model accuracy improves > 20% over episodes
-- [ ] Performance advantage persists against novel partners
+- [ ] Δ behavioral coherence > 25% with markers
+- [ ] Partner coherence prediction > baseline
+- [ ] Effect saturates at ~32 bits (bandwidth limit)
+- [ ] Effect optimal at ~10x timescale separation
+- [ ] NO specific action prediction (generic only)
 
 ---
 
 ## 5. Priority Decision
 
-**Decision**: BUILD_NOW
+**Decision**: BUILD_NOW (after terminology compliance update)
 
 **Rationale**:
-- Clear game-theoretic mechanism
-- Extensible from simple to complex
-- Well-defined metrics
-- Falsifiable through token removal
-
-**Refinement Needed**:
-- Define exact "consistency score" computation
-- Specify token information structure (what history is included)
-- Choose RL algorithm (Q-learning, policy gradient, or evolutionary)
+- Mechanism uses generic prior (not content storage) ✅
+- Complies with bandwidth constraint (<= 32 bits) ✅
+- Complies with timescale separation (10x) ✅
+- Clear falsification conditions ✅
 
 **Implementation Path**:
-1. Week 1: Basic multi-agent PD with tokens
-2. Week 2: Add token history + learning
-3. Week 3: Extend to game mixtures
-4. Week 4: Measure self-model metrics
+1. Week 1: Basic multi-agent PD with markers (32-bit, 10x update)
+2. Week 2: Add consistency learning
+3. Week 3: Test bandwidth and timescale constraints
+4. Week 4: Measure coherence and generic prediction
 
 **Fallback if Fails**:
-- Simplify to 2-agent repeated game
-- Try different token structures
-- Test if issue is credit assignment vs identity
+- Check if bandwidth limit is real constraint
+- Test different timescale separations
+- Verify generic vs specific prediction
 
 ---
 
-**Sign-off**: Ready with minor refinement on token structure
+## Terminology Compliance Notes
+
+### Changes Made (from v0.1 to v0.2)
+
+| Old (Non-compliant) | New (Compliant) | Rationale |
+|---------------------|-----------------|-----------|
+| "identity token" | "consistency marker" | Avoids "identity" baggage |
+| "action history" | "coherence score" | Removes content storage implication |
+| "token history" | "slow coherence update" | Emphasizes timescale separation |
+| "strategy fingerprint" | "behavioral bias" | Generic, not specific content |
+| "self_model" | "prior_prediction" | Mechanism, not entity |
+| "memory" | "slow signal" | Removes storage implication |
+
+### Bandwidth Verification
+
+```
+Marker structure:
+- agent_id: 8 bits (fixed)
+- coherence_score: 8 bits (0-255)
+- behavioral_bias: 16 bits (generic direction)
+Total: 32 bits ✅
+```
+
+### Timescale Verification
+
+```
+Agent actions: Every tick (fast)
+Marker updates: Every 10 ticks (slow)
+Separation: 10x ✅
+```
+
+### Generic Prior Verification
+
+```
+Marker provides:
+- Coherence expectation (generic)
+- NOT specific action predictions
+- NOT historical content
+- NOT strategy transfer
+```
+
+---
+
+**Sign-off**: Compliant with FROZEN_STATE_v1  
+**Reviewer**: Super Brain Group  
+**Date**: 2026-03-10
