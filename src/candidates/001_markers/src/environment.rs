@@ -314,6 +314,89 @@ impl ExperimentResult {
     }
 }
 
+/// Timescale comparison experiment
+/// Tests 1x, 5x, 10x, 20x update rates
+pub fn run_timescale_comparison() -> Vec<(usize, f32, f32)> {
+    let intervals = vec![1, 5, 10, 20];
+    let mut results = Vec::new();
+    
+    for interval in intervals {
+        // Create environment with this update interval
+        let mut env = Environment::new(
+            4,
+            vec![
+                Strategy::MarkerBased,
+                Strategy::MarkerBased,
+                Strategy::TitForTat,
+                Strategy::TitForTat,
+            ]
+        );
+        
+        // Update all agents to use this interval
+        for agent in &mut env.agents {
+            agent.marker_system = crate::marker::ScheduledMarker::new(agent.id, interval);
+        }
+        
+        env.run(200);
+        
+        let consistency = env.self_consistency_proxy();
+        let coop = env.cooperation_rate();
+        
+        results.push((interval, consistency, coop));
+        println!("Interval {}x: consistency={:.3}, coop={:.2}", interval, consistency, coop);
+    }
+    
+    results
+}
+
+/// Ablation test: same environment, markers invisible
+pub fn run_ablation_test() -> (ExperimentResult, ExperimentResult) {
+    // Full condition: markers visible and used
+    let mut full = Environment::new(
+        4,
+        vec![
+            Strategy::MarkerBased,
+            Strategy::MarkerBased,
+            Strategy::TitForTat,
+            Strategy::TitForTat,
+        ]
+    );
+    full.run(200);
+    
+    // Ablated: markers exist but invisible (MarkerBased falls back to default)
+    let mut ablated = Environment::new(
+        4,
+        vec![
+            Strategy::MarkerBased,  // Will fallback
+            Strategy::MarkerBased,
+            Strategy::TitForTat,
+            Strategy::TitForTat,
+        ]
+    );
+    ablated.marker_enabled = false;  // Cannot see markers
+    ablated.run(200);
+    
+    let full_result = ExperimentResult {
+        with_markers_coop: full.cooperation_rate(),
+        without_markers_coop: 0.0,  // Not used
+        with_markers_consistency: full.self_consistency_proxy(),
+        without_markers_consistency: 0.0,
+        timescale_valid: full.validate_timescale(),
+        avg_coherence_with: full.avg_coherence(),
+    };
+    
+    let ablated_result = ExperimentResult {
+        with_markers_coop: ablated.cooperation_rate(),
+        without_markers_coop: 0.0,
+        with_markers_consistency: ablated.self_consistency_proxy(),
+        without_markers_consistency: 0.0,
+        timescale_valid: ablated.validate_timescale(),
+        avg_coherence_with: ablated.avg_coherence(),
+    };
+    
+    (full_result, ablated_result)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

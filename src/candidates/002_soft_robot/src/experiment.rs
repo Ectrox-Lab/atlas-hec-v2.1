@@ -17,6 +17,16 @@ pub enum Condition {
     NoControl,           // Open loop
 }
 
+/// Perturbation type for difficulty gradient
+#[derive(Clone, Copy, Debug)]
+pub enum PerturbationType {
+    VelocityImpulse,     // Simple velocity push
+    BoundaryDisplacement,// Displace boundary constraints
+    LocalCompression,    // Compress one side
+    RandomNoise,         // Random force field
+    SustainedWind,       // Continuous directional force
+}
+
 impl std::fmt::Display for Condition {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -39,16 +49,28 @@ pub struct TrialResult {
     pub volume_variance: f32,      // measure of pulsing
 }
 
-/// Run single trial
+/// Run single trial with configurable perturbation
 pub fn run_trial(
     condition: Condition,
     trial_id: usize,
     duration: usize,
     perturbation_time: usize,
 ) -> TrialResult {
-    // Create mesh
-    let mut mesh = SoftMesh::new_grid(Vector2::new(0.0, 0.0), 1.0, 1.0, 4, 4);
+    run_trial_with_perturbation(condition, trial_id, duration, perturbation_time, PerturbationType::VelocityImpulse)
+}
+
+/// Run single trial with specific perturbation type
+pub fn run_trial_with_perturbation(
+    condition: Condition,
+    trial_id: usize,
+    duration: usize,
+    perturbation_time: usize,
+    pert_type: PerturbationType,
+) -> TrialResult {
+    // Create mesh - smaller for more challenging control
+    let mut mesh = SoftMesh::new_grid(Vector2::new(0.0, 0.0), 0.8, 0.8, 4, 4);
     let initial_centroid = mesh.centroid();
+    let target_centroid = initial_centroid;  // Target: return to start
     
     // Create controller based on condition
     let mut predictive: Option<PredictiveController> = match condition {
@@ -66,20 +88,21 @@ pub fn run_trial(
     // Tracking
     let mut volumes = Vec::new();
     let mut centroid_positions = Vec::new();
+    let mut centroid_drifts = Vec::new();  // Track drift from target
     let mut prediction_errors = Vec::new();
     let mut recovery_tick: Option<usize> = None;
-    let perturbation_magnitude = 20.0;  // Reduced from 100
+    let mut max_drift: f32 = 0.0;
     
     // Run simulation
     for tick in 0..duration {
-        // Apply perturbation at perturbation_time
+        // Apply perturbation at perturbation_time (stronger for this test)
         if tick == perturbation_time {
-            // Push the mesh
-            for node in &mut mesh.nodes {
-                if !node.fixed {
-                    node.vel += Vector2::new(perturbation_magnitude, 0.0);
-                }
-            }
+            apply_perturbation(&mut mesh, pert_type, trial_id);
+        }
+        
+        // Also apply random micro-perturbations to test stability
+        if tick > perturbation_time && tick % 10 == 0 {
+            apply_micro_perturbation(&mut mesh, tick);
         }
         
         // Compute control action
@@ -105,14 +128,21 @@ pub fn run_trial(
         
         // Track metrics
         let (min, max) = mesh.bounding_box();
-        let volume = ((max.x - min.x) * (max.y - min.y)).max(0.0001);  // Min floor
+        let volume = ((max.x - min.x) * (max.y - min.y)).max(0.0001);
         volumes.push(volume);
-        centroid_positions.push(mesh.centroid());
         
-        // Check recovery
-        if tick > perturbation_time {
-            let drift = (mesh.centroid() - initial_centroid).norm();
-            if drift < 0.1 && recovery_tick.is_none() {
+        let centroid = mesh.centroid();
+        centroid_positions.push(centroid);
+        
+        let drift = (centroid - target_centroid).norm();
+        centroid_drifts.push(drift);
+        if drift > max_drift {
+            max_drift = drift;
+        }
+        
+        // Check recovery: returned to within 10% of max drift
+        if tick > perturbation_time && recovery_tick.is_none() {
+            if drift < max_drift * 0.1 && drift < 0.2 {
                 recovery_tick = Some(tick - perturbation_time);
             }
         }
@@ -265,6 +295,87 @@ pub fn analyze_for_gate(results: &[TrialResult]) -> GateDecision {
 pub enum GateDecision {
     Continue,
     Kill,
+}
+
+/// Apply perturbation to mesh
+fn apply_perturbation(mesh: &mut SoftMesh, pert_type: PerturbationType, seed: usize) {
+    use rand::{Rng, SeedableRng};
+    use rand::rngs::StdRng;
+    
+    let mut rng = StdRng::seed_from_u64(seed as u64);
+    
+    match pert_type {
+        PerturbationType::VelocityImpulse => {
+            // Strong velocity impulse
+            let magnitude = 50.0;
+            for node in &mut mesh.nodes {
+                if !node.fixed {
+                    node.vel += Vector2::new(magnitude, rng.gen::<f32>() * 20.0 - 10.0);
+                }
+            }
+        }
+        PerturbationType::BoundaryDisplacement => {
+            // Push boundary nodes strongly
+            let force = 80.0;
+            for (i, node) in mesh.nodes.iter_mut().enumerate() {
+                if !node.fixed {
+                    // Left side nodes get pushed right
+                    if i % 4 == 0 {
+                        node.vel.x += force;
+                    }
+                }
+            }
+        }
+        PerturbationType::LocalCompression => {
+            // Compress from one side
+            let compression = 100.0;
+            for (i, node) in mesh.nodes.iter_mut().enumerate() {
+                if !node.fixed {
+                    let row = i / 4;
+                    let col = i % 4;
+                    if col == 3 {  // Right side
+                        node.vel.x -= compression;
+                    }
+                }
+            }
+        }
+        PerturbationType::RandomNoise => {
+            // Random forces on all nodes
+            for node in &mut mesh.nodes {
+                if !node.fixed {
+                    node.vel += Vector2::new(
+                        rng.gen::<f32>() * 60.0 - 30.0,
+                        rng.gen::<f32>() * 60.0 - 30.0,
+                    );
+                }
+            }
+        }
+        PerturbationType::SustainedWind => {
+            // Strong initial push (wind continues as micro-perturbations)
+            for node in &mut mesh.nodes {
+                if !node.fixed {
+                    node.vel.x += 70.0;
+                }
+            }
+        }
+    }
+}
+
+/// Apply small random perturbation to test stability
+fn apply_micro_perturbation(mesh: &mut SoftMesh, tick: usize) {
+    use rand::{Rng, SeedableRng};
+    use rand::rngs::StdRng;
+    
+    let mut rng = StdRng::seed_from_u64(tick as u64);
+    
+    for node in &mut mesh.nodes {
+        if !node.fixed {
+            node.vel += Vector2::new(
+                rng.gen::<f32>() * 4.0 - 2.0,
+                rng.gen::<f32>() * 4.0 - 2.0,
+            );
+        }
+    }
 }
 
 #[cfg(test)]

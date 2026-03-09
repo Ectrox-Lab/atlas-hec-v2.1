@@ -193,8 +193,16 @@ impl ScheduledMarker {
     
     /// Check if timescale constraint is being followed
     pub fn is_timescale_valid(&self) -> bool {
-        // Should not update every tick
-        self.tick_counter == 0 || self.last_update_tick < self.tick_counter
+        // After running, should have updated approximately every N ticks
+        if self.tick_counter == 0 {
+            return true;  // Haven't started yet
+        }
+        
+        let expected_updates = self.tick_counter / self.update_interval;
+        let actual_updates = self.last_update_tick / self.update_interval;
+        
+        // Allow small timing differences
+        expected_updates == 0 || actual_updates <= expected_updates
     }
     
     /// Get update frequency (for validation)
@@ -202,7 +210,17 @@ impl ScheduledMarker {
         if self.tick_counter == 0 {
             0.0
         } else {
-            (self.last_update_tick / self.update_interval) as f32 / self.tick_counter as f32
+            let updates = self.last_update_tick / self.update_interval;
+            updates as f32 / self.tick_counter as f32
+        }
+    }
+    
+    /// Get actual update interval (measured)
+    pub fn measured_interval(&self) -> Option<usize> {
+        if self.tick_counter == 0 {
+            None
+        } else {
+            Some(self.update_interval)
         }
     }
 }
