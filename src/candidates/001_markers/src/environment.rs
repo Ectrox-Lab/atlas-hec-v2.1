@@ -397,6 +397,83 @@ pub fn run_ablation_test() -> (ExperimentResult, ExperimentResult) {
     (full_result, ablated_result)
 }
 
+/// Marker site-of-action dissection experiment
+/// Tests 4 conditions to locate where marker causes harm:
+/// 1. Baseline: No marker at all
+/// 2. Write-only: Marker updates but not read
+/// 3. Read-only: Frozen marker, agents read it
+/// 4. Full: Write + read (standard)
+#[derive(Clone, Copy, Debug)]
+pub enum MarkerMode {
+    Baseline,      // No markers
+    WriteOnly,     // Update marker but don't use for decisions
+    ReadOnly,      // Use markers but don't update (frozen)
+    Full,          // Standard: write + read
+}
+
+pub fn run_site_dissection_experiment() -> Vec<(MarkerMode, f32, f32)> {
+    use MarkerMode::*;
+    let modes = vec![Baseline, WriteOnly, ReadOnly, Full];
+    let mut results = Vec::new();
+    
+    for mode in modes {
+        let mut env = Environment::new(
+            4,
+            vec![
+                Strategy::TitForTat,
+                Strategy::TitForTat,
+                Strategy::TitForTat,
+                Strategy::TitForTat,
+            ]
+        );
+        
+        // Configure based on mode
+        match mode {
+            Baseline => {
+                env.marker_enabled = false;
+            }
+            WriteOnly => {
+                // Markers update but agents ignore them
+                env.marker_enabled = true;
+                // All agents use TitForTat (don't read markers)
+            }
+            ReadOnly => {
+                // Markers frozen at initial value, but agents try to read
+                env.marker_enabled = true;
+                for agent in &mut env.agents {
+                    // Override marker to fixed value
+                    agent.marker_system = crate::marker::ScheduledMarker::new_with_fixed(agent.id, 128);
+                }
+            }
+            Full => {
+                env.marker_enabled = true;
+                // Standard behavior
+            }
+        }
+        
+        env.run(200);
+        
+        let consistency = env.self_consistency_proxy();
+        let coop = env.cooperation_rate();
+        results.push((mode, consistency, coop));
+        
+        println!("{:?}: consistency={:.3}, coop={:.2}", mode, consistency, coop);
+    }
+    
+    results
+}
+
+impl std::fmt::Display for MarkerMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            MarkerMode::Baseline => write!(f, "Baseline"),
+            MarkerMode::WriteOnly => write!(f, "WriteOnly"),
+            MarkerMode::ReadOnly => write!(f, "ReadOnly"),
+            MarkerMode::Full => write!(f, "Full"),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

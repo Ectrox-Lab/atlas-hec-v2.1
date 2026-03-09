@@ -1,48 +1,57 @@
-//! 001 Consistency Markers - Week 1 Sprint Runner
+//! 001 Consistency Markers - FINAL DIAGNOSTIC EXPERIMENT
 
-use markers_001::{run_week1_experiment, run_timescale_comparison, run_ablation_test};
+use markers_001::run_site_dissection_experiment;
 
 fn main() {
-    println!("=== 001 Consistency Markers - Week 1 Experiment ===\n");
+    println!("=== 001 FINAL: Site-of-Action Dissection ===\n");
+    println!("Testing where marker causes harm:\n");
     
-    // 1. Basic experiment
-    println!("--- Basic Experiment ---");
-    let result = run_week1_experiment();
-    println!("\n{:#?}", result);
+    let results = run_site_dissection_experiment();
     
-    // 2. Timescale comparison
-    println!("\n--- Timescale Comparison (1x/5x/10x/20x) ---");
-    let timescale_results = run_timescale_comparison();
+    // Analysis
+    let baseline = results.iter().find(|(m, _, _)| matches!(m, markers_001::MarkerMode::Baseline)).unwrap();
+    let write_only = results.iter().find(|(m, _, _)| matches!(m, markers_001::MarkerMode::WriteOnly)).unwrap();
+    let read_only = results.iter().find(|(m, _, _)| matches!(m, markers_001::MarkerMode::ReadOnly)).unwrap();
+    let full = results.iter().find(|(m, _, _)| matches!(m, markers_001::MarkerMode::Full)).unwrap();
     
-    // Find optimal
-    let optimal = timescale_results.iter()
-        .max_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
-        .unwrap();
-    println!("Optimal timescale: {}x (consistency={:.3})", optimal.0, optimal.1);
+    println!("\n=== DIAGNOSIS ===");
     
-    // 3. Ablation test
-    println!("\n--- Ablation Test (Full vs Ablated) ---");
-    let (full, ablated) = run_ablation_test();
-    println!("Full:    consistency={:.3}, coop={:.2}", 
-        full.with_markers_consistency, full.with_markers_coop);
-    println!("Ablated: consistency={:.3}, coop={:.2}", 
-        ablated.with_markers_consistency, ablated.with_markers_coop);
+    // Test 1: Write path
+    let write_harm = baseline.1 - write_only.1;
+    println!("\n1. Write path harm: {:.3}", write_harm);
+    if write_harm > 0.1 {
+        println!("   → Write mechanism itself disturbs system");
+    } else {
+        println!("   → Write mechanism OK");
+    }
     
-    let ablation_delta = full.with_markers_consistency - ablated.with_markers_consistency;
-    println!("Ablation delta: {:.3} (positive = marker effect)", ablation_delta);
+    // Test 2: Read path
+    let read_harm = baseline.1 - read_only.1;
+    println!("\n2. Read path harm: {:.3}", read_harm);
+    if read_harm > 0.1 {
+        println!("   → Marker signal semantics wrong");
+    } else {
+        println!("   → Read mechanism OK");
+    }
     
-    // Gate decision
-    println!("\n--- Gate Decision ---");
-    let decision = result.gate_decision();
+    // Test 3: Full coupling
+    let full_harm = baseline.1 - full.1;
+    println!("\n3. Full loop harm: {:.3}", full_harm);
+    if full_harm > read_harm.max(write_harm) + 0.05 {
+        println!("   → Closed-loop coupling unstable");
+    }
     
-    match decision {
-        "CONTINUE" => {
-            println!("\n✓ Week 1 PASSED - Proceeding to Week 2");
-            std::process::exit(0);
+    // Final verdict
+    println!("\n=== VERDICT ===");
+    if full_harm > 0.2 {
+        if write_harm > 0.15 {
+            println!("KILL: Write mechanism fundamentally harmful");
+        } else if read_harm > 0.15 {
+            println!("KILL: Marker signal semantics don't match task");
+        } else {
+            println!("KILL: Closed-loop coupling unstable");
         }
-        _ => {
-            println!("\n✗ Week 1 FAILED - Kill signal received");
-            std::process::exit(1);
-        }
+    } else {
+        println!("UNCLEAR: Need more data");
     }
 }

@@ -49,6 +49,28 @@ pub struct TrialResult {
     pub volume_variance: f32,      // measure of pulsing
 }
 
+/// Recovery dynamics metrics for single-shot experiment
+#[derive(Debug, Clone)]
+pub struct RecoveryMetrics {
+    pub condition: Condition,
+    pub trial_id: usize,
+    pub peak_drift: f32,           // maximum drift after perturbation
+    pub time_to_50pct: Option<f32>, // time to reach 50% of peak
+    pub time_to_90pct: Option<f32>, // time to reach 90% recovery (10% of peak)
+    pub residual_drift: f32,       // final drift at end
+    pub recovered: bool,           // whether recovery criteria met
+    pub recovery_time: Option<f32>, // full recovery time if achieved
+}
+
+impl RecoveryMetrics {
+    pub fn print_summary(&self) {
+        println!("  {:?} trial {}: peak={:.3}, t50={:?}, t90={:?}, residual={:.3}, recovered={}",
+            self.condition, self.trial_id,
+            self.peak_drift, self.time_to_50pct, self.time_to_90pct,
+            self.residual_drift, self.recovered);
+    }
+}
+
 /// Run single trial with configurable perturbation
 pub fn run_trial(
     condition: Condition,
@@ -414,6 +436,135 @@ fn apply_micro_perturbation(mesh: &mut SoftMesh, tick: usize) {
                 rng.gen::<f32>() * 2.0 - 1.0,
             );
         }
+    }
+}
+
+/// Single-shot strong perturbation recovery experiment
+/// Tests if feedback advantage appears in recovery dynamics
+pub fn run_single_shot_recovery_experiment() -> Vec<RecoveryMetrics> {
+    let conditions = vec![
+        Condition::PredictiveFeedback,
+        Condition::ReactiveOnly,
+        Condition::NoControl,
+    ];
+    
+    let mut all_metrics = Vec::new();
+    
+    for condition in &conditions {
+        for trial in 0..3 {
+            let metrics = run_single_shot_trial(*condition, trial);
+            metrics.print_summary();
+            all_metrics.push(metrics);
+        }
+    }
+    
+    all_metrics
+}
+
+/// Run single trial with strong single perturbation and detailed recovery tracking
+fn run_single_shot_trial(condition: Condition, trial_id: usize) -> RecoveryMetrics {
+    // Larger mesh for more interesting dynamics
+    let mut mesh = SoftMesh::new_grid(Vector2::new(0.0, 0.0), 1.0, 1.0, 4, 4);
+    let target_centroid = mesh.centroid();
+    
+    // Controllers
+    let mut predictive: Option<PredictiveController> = match condition {
+        Condition::PredictiveFeedback => Some(PredictiveController::new(20, 50.0)),
+        _ => None,
+    };
+    let reactive = match condition {
+        Condition::ReactiveOnly => Some(ReactiveController::new(50.0)),
+        _ => None,
+    };
+    
+    // Tracking
+    let mut peak_drift: f32 = 0.0;
+    let mut time_to_50pct: Option<f32> = None;
+    let mut time_to_90pct: Option<f32> = None;
+    let mut recovery_time: Option<f32> = None;
+    let mut drift_history: Vec<(usize, f32)> = Vec::new();
+    
+    let perturbation_time = 200;
+    let duration = 800;
+    
+    // Run simulation
+    for tick in 0..duration {
+        // Single strong perturbation at perturbation_time
+        if tick == perturbation_time {
+            // Strong boundary displacement
+            for (i, node) in mesh.nodes.iter_mut().enumerate() {
+                if !node.fixed && i % 4 == 0 {
+                    node.vel.x += 40.0;  // Strong push
+                }
+            }
+        }
+        
+        // NO micro-perturbations - clean recovery
+        
+        // Control
+        match condition {
+            Condition::PredictiveFeedback => {
+                if let Some(ref mut ctrl) = predictive {
+                    ctrl.compute_action(&mut mesh, true);
+                }
+            }
+            Condition::ReactiveOnly => {
+                if let Some(ref ctrl) = reactive {
+                    let mut m = mesh.clone();
+                    ctrl.compute_action(&mut m);
+                    mesh.pressure.pressure = m.pressure.pressure;
+                }
+            }
+            Condition::NoControl => {}
+        }
+        
+        mesh.step(0.01);
+        
+        // Track drift
+        let drift = (mesh.centroid() - target_centroid).norm();
+        drift_history.push((tick, drift));
+        
+        if tick >= perturbation_time {
+            if drift > peak_drift {
+                peak_drift = drift;
+            }
+            
+            // Time to 50% recovery (drift < 50% of peak)
+            if time_to_50pct.is_none() && drift < peak_drift * 0.5 {
+                time_to_50pct = Some((tick - perturbation_time) as f32 * 0.01);
+            }
+            
+            // Time to 90% recovery (drift < 10% of peak)
+            if time_to_90pct.is_none() && drift < peak_drift * 0.1 {
+                time_to_90pct = Some((tick - perturbation_time) as f32 * 0.01);
+            }
+            
+            // Full recovery (drift < threshold for sustained period)
+            if recovery_time.is_none() && drift < 0.15 {
+                // Check if sustained for 20 ticks
+                let sustained = drift_history.iter()
+                    .rev()
+                    .take(20)
+                    .all(|(_, d)| *d < 0.15);
+                if sustained {
+                    recovery_time = Some((tick - perturbation_time) as f32 * 0.01);
+                }
+            }
+        }
+    }
+    
+    let residual_drift = drift_history.last().map(|(_, d)| *d).unwrap_or(0.0);
+    let recovered = recovery_time.is_some();
+    
+    RecoveryMetrics {
+        condition,
+        trial_id,
+        peak_drift,
+        time_to_50pct,
+        time_to_90pct,
+        residual_drift,
+        recovered,
+        recovery_time,
     }
 }
 

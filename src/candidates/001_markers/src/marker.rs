@@ -202,6 +202,18 @@ impl ScheduledMarker {
         }
     }
     
+    /// Create a marker with fixed coherence value (for ReadOnly mode)
+    pub fn new_with_fixed(agent_id: u8, fixed_coherence: u8) -> Self {
+        Self {
+            marker: Marker::new(agent_id, fixed_coherence, 0),
+            tracker: CoherenceTracker::new(20, 20),
+            update_interval: usize::MAX,  // Never update
+            tick_counter: 0,
+            last_update_tick: 0,
+            last_action: 0.5,
+        }
+    }
+    
     /// Record action every tick, but only update marker every N ticks
     pub fn tick(&mut self, action: f32) -> Option<Marker> {
         self.tick_counter += 1;
