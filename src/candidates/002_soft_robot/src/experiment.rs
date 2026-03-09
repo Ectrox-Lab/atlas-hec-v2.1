@@ -67,10 +67,31 @@ pub fn run_trial_with_perturbation(
     perturbation_time: usize,
     pert_type: PerturbationType,
 ) -> TrialResult {
+    run_trial_with_recovery_params(
+        condition, trial_id, duration, perturbation_time, pert_type,
+        20,   // peak_estimation_ticks: wait 20 ticks after perturbation
+        15,   // hold_ticks: need 15 consecutive stable ticks
+        0.25, // rel_threshold: 25% of max drift
+        0.25, // abs_threshold: absolute 0.25 units
+    )
+}
+
+/// Full trial with configurable recovery detection
+pub fn run_trial_with_recovery_params(
+    condition: Condition,
+    trial_id: usize,
+    duration: usize,
+    perturbation_time: usize,
+    pert_type: PerturbationType,
+    peak_estimation_ticks: usize,
+    hold_ticks: usize,
+    rel_threshold: f32,
+    abs_threshold: f32,
+) -> TrialResult {
     // Create mesh - smaller for more challenging control
     let mut mesh = SoftMesh::new_grid(Vector2::new(0.0, 0.0), 0.8, 0.8, 4, 4);
     let initial_centroid = mesh.centroid();
-    let target_centroid = initial_centroid;  // Target: return to start
+    let target_centroid = initial_centroid;
     
     // Create controller based on condition
     let mut predictive: Option<PredictiveController> = match condition {
@@ -88,19 +109,21 @@ pub fn run_trial_with_perturbation(
     // Tracking
     let mut volumes = Vec::new();
     let mut centroid_positions = Vec::new();
-    let mut centroid_drifts = Vec::new();  // Track drift from target
+    let mut centroid_drifts = Vec::new();
     let mut prediction_errors = Vec::new();
     let mut recovery_tick: Option<usize> = None;
+    let mut stable_counter: usize = 0;
     let mut max_drift: f32 = 0.0;
+    let mut peak_detected: bool = false;
     
     // Run simulation
     for tick in 0..duration {
-        // Apply perturbation at perturbation_time (stronger for this test)
+        // Apply perturbation at perturbation_time
         if tick == perturbation_time {
             apply_perturbation(&mut mesh, pert_type, trial_id);
         }
         
-        // Also apply random micro-perturbations to test stability
+        // Micro-perturbations after main perturbation
         if tick > perturbation_time && tick % 10 == 0 {
             apply_micro_perturbation(&mut mesh, tick);
         }
@@ -136,14 +159,32 @@ pub fn run_trial_with_perturbation(
         
         let drift = (centroid - target_centroid).norm();
         centroid_drifts.push(drift);
-        if drift > max_drift {
-            max_drift = drift;
+        
+        // Phase 1: Peak estimation (first N ticks after perturbation)
+        if tick > perturbation_time && tick <= perturbation_time + peak_estimation_ticks {
+            if drift > max_drift {
+                max_drift = drift;
+            }
         }
         
-        // Check recovery: returned to within 10% of max drift
-        if tick > perturbation_time && recovery_tick.is_none() {
-            if drift < max_drift * 0.1 && drift < 0.2 {
-                recovery_tick = Some(tick - perturbation_time);
+        // Phase 2: Recovery detection (after peak estimation)
+        if tick > perturbation_time + peak_estimation_ticks && recovery_tick.is_none() {
+            if !peak_detected {
+                peak_detected = true;
+                // Ensure max_drift is at least some minimum to avoid division issues
+                max_drift = max_drift.max(0.1);
+            }
+            
+            let rel_ok = drift < max_drift * rel_threshold;
+            let abs_ok = drift < abs_threshold;
+            
+            if rel_ok && abs_ok {
+                stable_counter += 1;
+                if stable_counter >= hold_ticks {
+                    recovery_tick = Some(tick - perturbation_time);
+                }
+            } else {
+                stable_counter = 0;  // Reset if drift exceeds threshold
             }
         }
     }

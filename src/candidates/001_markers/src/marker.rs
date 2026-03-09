@@ -56,87 +56,125 @@ impl std::fmt::Display for Marker {
     }
 }
 
-/// Coherence score computer
+/// Coherence score computer with dual metrics
 /// 
-/// Measures behavioral consistency over a window of actions.
-/// Higher score = lower variance = more consistent.
+/// Two separate tracking systems:
+/// 1. tick_smoothness: per-tick action stream (actuator jitter)
+/// 2. decision_coherence: per-decision consistency (policy stability)
 pub struct CoherenceTracker {
-    window_size: usize,
-    action_history: VecDeque<f32>,  // normalized action values
-    current_score: u8,
+    tick_window_size: usize,
+    decision_window_size: usize,
+    tick_action_history: VecDeque<f32>,  // per-tick actions
+    decision_history: VecDeque<f32>,     // per-decision actions
+    tick_smoothness: u8,      // actuator-level smoothness
+    decision_coherence: u8,   // policy-level consistency
 }
 
 impl CoherenceTracker {
-    pub fn new(window_size: usize) -> Self {
+    pub fn new(tick_window: usize, decision_window: usize) -> Self {
         Self {
-            window_size,
-            action_history: VecDeque::with_capacity(window_size),
-            current_score: 128,  // neutral starting point
+            tick_window_size: tick_window,
+            decision_window_size: decision_window,
+            tick_action_history: VecDeque::with_capacity(tick_window),
+            decision_history: VecDeque::with_capacity(decision_window),
+            tick_smoothness: 128,
+            decision_coherence: 128,
         }
     }
     
-    /// Record an action and update coherence score
-    /// 
-    /// Action should be normalized to [0, 1] range.
-    pub fn record_action(&mut self, action: f32) {
+    /// Record a tick-level action (always recorded)
+    pub fn record_tick_action(&mut self, action: f32) {
         let clamped = action.clamp(0.0, 1.0);
         
-        // Add to history
-        if self.action_history.len() >= self.window_size {
-            self.action_history.pop_front();
+        if self.tick_action_history.len() >= self.tick_window_size {
+            self.tick_action_history.pop_front();
         }
-        self.action_history.push_back(clamped);
+        self.tick_action_history.push_back(clamped);
         
-        // Compute coherence only if we have enough history
-        if self.action_history.len() >= 3 {
-            self.current_score = self.compute_coherence();
+        // Update tick smoothness
+        if self.tick_action_history.len() >= 3 {
+            self.tick_smoothness = self.compute_tick_smoothness();
         }
     }
     
-    /// Compute coherence score from history
-    /// 
-    /// Uses inverse of coefficient of variation (normalized std/mean)
-    /// Returns 0-255, where 255 = perfectly consistent.
-    fn compute_coherence(&self) -> u8 {
-        if self.action_history.len() < 2 {
+    /// Record a decision-level action (only when marker updates)
+    pub fn record_decision(&mut self, action: f32) {
+        let clamped = action.clamp(0.0, 1.0);
+        
+        if self.decision_history.len() >= self.decision_window_size {
+            self.decision_history.pop_front();
+        }
+        self.decision_history.push_back(clamped);
+        
+        // Update decision coherence
+        if self.decision_history.len() >= 2 {
+            self.decision_coherence = self.compute_decision_coherence();
+        }
+    }
+    
+    /// Compute tick-level smoothness (actuator jitter)
+    fn compute_tick_smoothness(&self) -> u8 {
+        if self.tick_action_history.len() < 2 {
             return 128;
         }
         
-        let n = self.action_history.len() as f32;
-        let mean: f32 = self.action_history.iter().sum::<f32>() / n;
+        let n = self.tick_action_history.len() as f32;
+        let mean: f32 = self.tick_action_history.iter().sum::<f32>() / n;
         
-        if mean < 0.01 {
-            return 128;  // Avoid division by near-zero
+        // Use MAD (Mean Absolute Deviation) instead of CV for stability
+        let mad: f32 = self.tick_action_history.iter()
+            .map(|x| (x - mean).abs())
+            .sum::<f32>() / n;
+        
+        // Higher score = smoother (lower MAD)
+        // MAD=0 -> 255, MAD=0.5 -> 128, MAD>=1 -> 0
+        let score = 255.0 - (mad * 255.0 * 2.0).clamp(0.0, 255.0);
+        score as u8
+    }
+    
+    /// Compute decision-level coherence (policy consistency)
+    fn compute_decision_coherence(&self) -> u8 {
+        if self.decision_history.len() < 2 {
+            return 128;
         }
         
-        let variance: f32 = self.action_history.iter()
+        let n = self.decision_history.len() as f32;
+        let mean: f32 = self.decision_history.iter().sum::<f32>() / n;
+        
+        // Use std_dev / (|mean| + epsilon) for CV
+        let variance: f32 = self.decision_history.iter()
             .map(|x| (x - mean).powi(2))
             .sum::<f32>() / n;
         let std_dev = variance.sqrt();
         
-        // Coefficient of variation (lower = more consistent)
-        let cv = std_dev / mean;
+        // Robust denominator: |mean| clamped to avoid division by near-zero
+        let denom = mean.abs().max(0.1);
+        let cv = std_dev / denom;
         
-        // Convert to 0-255 score (higher = more consistent)
-        // cv=0 -> 255, cv=1 -> 128, cv=2 -> 0
+        // cv=0 -> 255, cv=1 -> 128, cv>=2 -> 0
         let score = 255.0 - (cv * 128.0).clamp(0.0, 255.0);
         score as u8
     }
     
-    /// Get current coherence score
-    pub fn current_score(&self) -> u8 {
-        self.current_score
+    /// Get tick-level smoothness score
+    pub fn tick_smoothness(&self) -> u8 {
+        self.tick_smoothness
     }
     
-    /// Get action variance (for debugging)
-    pub fn variance(&self) -> f32 {
-        if self.action_history.len() < 2 {
+    /// Get decision-level coherence score (MAIN METRIC)
+    pub fn decision_coherence(&self) -> u8 {
+        self.decision_coherence
+    }
+    
+    /// Get decision variance (for debugging)
+    pub fn decision_variance(&self) -> f32 {
+        if self.decision_history.len() < 2 {
             return 0.0;
         }
         
-        let n = self.action_history.len() as f32;
-        let mean: f32 = self.action_history.iter().sum::<f32>() / n;
-        self.action_history.iter()
+        let n = self.decision_history.len() as f32;
+        let mean: f32 = self.decision_history.iter().sum::<f32>() / n;
+        self.decision_history.iter()
             .map(|x| (x - mean).powi(2))
             .sum::<f32>() / n
     }
@@ -149,34 +187,41 @@ pub struct ScheduledMarker {
     update_interval: usize,  // ticks between updates (10 for 10x)
     tick_counter: usize,
     last_update_tick: usize,
+    last_action: f32,  // remember last action for decision recording
 }
 
 impl ScheduledMarker {
     pub fn new(agent_id: u8, update_interval: usize) -> Self {
         Self {
             marker: Marker::new(agent_id, 128, 0),
-            tracker: CoherenceTracker::new(20),
+            tracker: CoherenceTracker::new(20, 20),  // 20 ticks, 20 decisions
             update_interval,
             tick_counter: 0,
             last_update_tick: 0,
+            last_action: 0.5,
         }
     }
     
     /// Record action every tick, but only update marker every N ticks
     pub fn tick(&mut self, action: f32) -> Option<Marker> {
         self.tick_counter += 1;
+        self.last_action = action;
         
-        // Record action for coherence computation
-        self.tracker.record_action(action);
+        // Always record tick-level action
+        self.tracker.record_tick_action(action);
         
         // Update marker only at interval
         if self.tick_counter - self.last_update_tick >= self.update_interval {
             self.last_update_tick = self.tick_counter;
             
-            // Update marker with new coherence score
+            // Record decision-level action at update time
+            self.tracker.record_decision(action);
+            
+            // Update marker with DECISION coherence (main metric)
+            let decision_score = self.tracker.decision_coherence();
             self.marker = Marker::new(
                 self.marker.agent_id(),
-                self.tracker.current_score(),
+                decision_score,
                 self.marker.bias(),
             );
             
@@ -238,38 +283,56 @@ mod tests {
     }
     
     #[test]
-    fn test_coherence_consistent_actions() {
-        let mut tracker = CoherenceTracker::new(10);
+    fn test_decision_coherence_consistent() {
+        let mut tracker = CoherenceTracker::new(10, 10);
         
-        // Record consistent actions
+        // Record consistent decisions
         for _ in 0..10 {
-            tracker.record_action(0.5);
+            tracker.record_decision(0.5);
         }
         
-        // Should have high coherence
-        assert!(tracker.current_score() > 200, "Consistent actions should have high coherence");
+        // Should have high decision coherence
+        assert!(tracker.decision_coherence() > 200, 
+            "Consistent decisions should have high coherence, got {}", tracker.decision_coherence());
     }
     
     #[test]
-    fn test_coherence_variable_actions() {
-        let mut tracker = CoherenceTracker::new(10);
+    fn test_decision_coherence_variable() {
+        let mut tracker = CoherenceTracker::new(10, 10);
         
-        // Record variable actions (high variance)
+        // Record variable decisions
         for i in 0..10 {
-            tracker.record_action(if i % 2 == 0 { 0.01 } else { 0.99 });
+            tracker.record_decision(if i % 2 == 0 { 0.01 } else { 0.99 });
         }
         
         // Should have lower coherence than consistent
-        assert!(tracker.current_score() < 200, "Variable actions should have lower coherence");
+        let variable_score = tracker.decision_coherence();
+        assert!(variable_score < 200, 
+            "Variable decisions should have lower coherence, got {}", variable_score);
         
         // Compare to consistent
-        let mut consistent = CoherenceTracker::new(10);
+        let mut consistent = CoherenceTracker::new(10, 10);
         for _ in 0..10 {
-            consistent.record_action(0.5);
+            consistent.record_decision(0.5);
         }
         
-        assert!(tracker.current_score() < consistent.current_score(),
-            "Variable should be less coherent than consistent");
+        assert!(variable_score < consistent.decision_coherence(),
+            "Variable ({}) should be less coherent than consistent ({})", 
+            variable_score, consistent.decision_coherence());
+    }
+    
+    #[test]
+    fn test_tick_smoothness() {
+        let mut tracker = CoherenceTracker::new(10, 10);
+        
+        // Record smooth tick actions
+        for _ in 0..10 {
+            tracker.record_tick_action(0.5);
+        }
+        
+        let smooth_score = tracker.tick_smoothness();
+        assert!(smooth_score > 200, 
+            "Smooth ticks should have high smoothness, got {}", smooth_score);
     }
     
     #[test]
