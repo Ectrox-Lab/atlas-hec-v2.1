@@ -9,11 +9,12 @@
 
 Questions that prevent progress. Must resolve before next phase.
 
-### B1: Missing Required CSV Fields
+### B1: Runnability (Phase 3 Critical)
 
-**Question**: Bio-World has not yet implemented the 7 required_now CSV fields. Can we proceed with Sentinel validation without these fields?
+**Category**: runnable  
+**Question**: Can all 5 sentinel conditions (baseline_full, no_L2, L3_off, L3_real_p001, L3_shuffled_p001) actually execute without error?
 
-**Impact**: Cannot run Sentinel validation. Cannot compute trends. Cannot validate falsification conditions R5 and R7.
+**Impact**: If any condition fails to run, we cannot perform falsification comparison.
 
 **Owner**: Bio-World / Codex
 
@@ -21,23 +22,71 @@ Questions that prevent progress. Must resolve before next phase.
 
 **Status**: Open
 
-**Resolution**: None yet. Waiting for Codex PR.
+**Resolution Criteria**:
+- [ ] All 5 conditions run with exit code 0
+- [ ] All produce CSV output
+- [ ] Execution time < 5 minutes per condition (100-gen test)
 
 ---
 
-### B2: Anti-God-Mode Verification Gap
+### B2: CSV Field Semantics (Phase 3 Critical)
 
-**Question**: How do we verify that Codex implementation does not introduce new information flow violations?
+**Category**: semantic  
+**Question**: Do the 7 required_now fields contain real computed values or placeholders?
 
-**Impact**: If unchecked, new code might violate three-layer memory constraints.
+**Impact**: Placeholder data makes falsification impossible.
 
-**Owner**: Atlas-HEC (audit) + Bio-World (fix if issues found)
+**Owner**: Bio-World / Codex (implementation) + Atlas-HEC (verification)
+
+**ETA**: 2026-03-12
+
+**Status**: Open
+
+**Resolution Criteria**:
+- [ ] archive_sample_attempts > 0 after gen 100
+- [ ] lineage_diversity varies (std > 0.1)
+- [ ] top1_lineage_share in [0,1]
+- [ ] No fields constant at 0
+
+---
+
+### B3: Shuffled Control Validity (Phase 3 Critical)
+
+**Category**: evidence  
+**Question**: Does L3_shuffled_p001 condition actually use shuffled archive content, or is it identical to L3_real_p001?
+
+**Impact**: If not actually shuffled, falsification R1 is invalid.
+
+**Owner**: Bio-World / Codex
 
 **ETA**: 2026-03-13
 
 **Status**: Open
 
-**Resolution**: Run hidden-oracle-auditor on every Codex PR before merge.
+**Resolution Criteria**:
+- [ ] L3_shuffled code path exists
+- [ ] Archive content randomized
+- [ ] MD5 of archive different from L3_real
+
+---
+
+### B4: Anti-God-Mode Evidence Strength (Phase 3)
+
+**Category**: evidence  
+**Question**: Is the evidence for anti-god-mode preservation strong enough to proceed?
+
+**Impact**: If boundaries violated, all results suspect.
+
+**Owner**: Atlas-HEC (audit)
+
+**ETA**: 2026-03-13
+
+**Status**: Open
+
+**Resolution Criteria**:
+- [ ] hidden-oracle-auditor finds 0 violations
+- [ ] No new Cell→Archive patterns
+- [ ] Sampling rate = 0.01 ± 0.005
 
 ---
 
