@@ -1,220 +1,204 @@
 # Atlas-BioWorld Integration Open Questions
 
-**Last Updated**: 2026-03-09  
-**Status**: Active - Pending Resolution
+**Last Updated**: 2026-03-09 (Phase 4.6 Update)  
+**Status**: Phase 4.6 Complete - HOLD_FOR_MINIMAL_RERUN
 
 ---
 
-## Blockers
+## Phase 4.6 Summary
 
-Questions that prevent progress. Must resolve before next phase.
+**Decision**: ☑ **HOLD_FOR_MINIMAL_RERUN**  
+**Primary Blocker**: L3_shuffled missing (R1 validation)  
+**Secondary Blocker**: no_L2 missing (R3 validation)  
+**Strongest Evidence**: L3 effect validated (+405% adaptation gain) [Verified]
 
-### B1: Runnability (Phase 3 Critical)
+---
 
-**Category**: runnable  
-**Question**: Can all 5 sentinel conditions (baseline_full, no_L2, L3_off, L3_real_p001, L3_shuffled_p001) actually execute without error?
+## Critical Blockers (Phase 4.6)
 
-**Impact**: If any condition fails to run, we cannot perform falsification comparison.
+### B1: L3_shuffled Missing (CRITICAL)
 
-**Owner**: Bio-World / Codex
+**Category**: blocker  
+**Question**: Is there a L3_shuffled condition to validate R1 (content relevance)?
+
+**Status**: ❌ **MISSING** - Blocking falsification validation
+
+**Impact**: Cannot test if archive content matters or just existence
+
+**Owner**: Bio-World
+
+**Resolution**:
+- [ ] Run 8 universes × 5000 ticks with archive_shuffle=true
+- [ ] Compare adaptation: L3_real vs L3_shuffled
+- [ ] If L3_real > L3_shuffled: ✅ GO
+- [ ] If L3_real ≈ L3_shuffled: ❌ NO-GO
 
 **ETA**: 2026-03-12
 
-**Status**: Open
-
-**Resolution Criteria**:
-- [ ] All 5 conditions run with exit code 0
-- [ ] All produce CSV output
-- [ ] Execution time < 5 minutes per condition (100-gen test)
-
 ---
 
-### B2: CSV Field Semantics (Phase 3 Critical)
+### B2: no_L2 Missing (HIGH)
 
-**Category**: semantic  
-**Question**: Do the 7 required_now fields contain real computed values or placeholders?
+**Category**: blocker  
+**Question**: Is there a no_L2 condition to validate R3 (lineage necessity)?
 
-**Impact**: Placeholder data makes falsification impossible.
+**Status**: ❌ **MISSING** - Weakens lineage mechanism evidence
 
-**Owner**: Bio-World / Codex (implementation) + Atlas-HEC (verification)
+**Impact**: Cannot prove L2 maintains diversity
+
+**Owner**: Bio-World
+
+**Resolution**:
+- [ ] Run 8 universes × 5000 ticks with L2_enabled=false
+- [ ] Compare lineage_diversity: baseline vs no_L2
+- [ ] If baseline > no_L2: R3 validated
 
 **ETA**: 2026-03-12
 
-**Status**: Open
+---
 
-**Resolution Criteria**:
-- [ ] archive_sample_attempts > 0 after gen 100
-- [ ] lineage_diversity varies (std > 0.1)
-- [ ] top1_lineage_share in [0,1]
-- [ ] No fields constant at 0
+### B3: Archive Instrumentation Missing
+
+**Category**: blocker  
+**Question**: Can we measure actual archive engagement (attempts, successes)?
+
+**Status**: ⚠️ **MISSING** - Non-blocking but limits analysis depth
+
+**Impact**: Cannot quantify CDI engagement rates
+
+**Owner**: Bio-World
+
+**Resolution**:
+- [ ] Add archive_sample_attempts counter to CDI
+- [ ] Add archive_sample_successes counter
+- [ ] Re-export CSV or regenerate
+
+**ETA**: 2026-03-13 (lower priority)
 
 ---
 
-### B3: Shuffled Control Validity (Phase 3 Critical)
+## Resolved Questions (Phase 4.6)
 
-**Category**: evidence  
-**Question**: Does L3_shuffled_p001 condition actually use shuffled archive content, or is it identical to L3_real_p001?
+### ✅ R1: Data Source Reconciliation
 
-**Impact**: If not actually shuffled, falsification R1 is invalid.
+**Status**: **RESOLVED**
 
-**Owner**: Bio-World / Codex
+**Decision**: Use GitHub data exclusively, do not merge with Local
 
-**ETA**: 2026-03-13
+**Rationale**:
+- GitHub has 19 columns vs Local 8 columns
+- GitHub has critical L3_off and L3_real
+- GitHub has adaptation_gain metric
+- Local data incompatible (different schema, metrics)
 
-**Status**: Open
-
-**Resolution Criteria**:
-- [ ] L3_shuffled code path exists
-- [ ] Archive content randomized
-- [ ] MD5 of archive different from L3_real
+**Document**: `PHASE46_DATA_SOURCE_RECONCILIATION.md`
 
 ---
 
-### B4: Anti-God-Mode Evidence Strength (Phase 3)
+### ✅ R2: L3 Effect Validation
 
-**Category**: evidence  
-**Question**: Is the evidence for anti-god-mode preservation strong enough to proceed?
+**Status**: **RESOLVED - POSITIVE**
 
-**Impact**: If boundaries violated, all results suspect.
+**Finding**: L3 system provides substantial benefit
 
-**Owner**: Atlas-HEC (audit)
+**Evidence**:
+- Adaptation gain: +405.5% (12.77 → 64.56) [Verified]
+- Lineage count: +18.5% (38.4 → 45.5) [Verified]
+- CDI: +16.3% (0.842 → 0.979) [Verified]
 
-**ETA**: 2026-03-13
+**Conclusion**: L3 mechanism works as hypothesized
 
-**Status**: Open
-
-**Resolution Criteria**:
-- [ ] hidden-oracle-auditor finds 0 violations
-- [ ] No new Cell→Archive patterns
-- [ ] Sampling rate = 0.01 ± 0.005
+**Document**: `PHASE46_ANALYSIS_WITH_GAPS.md`
 
 ---
 
-## Semantic Mismatch
+### ✅ R3: Strongest Conclusions Identified
 
-Questions about interpretation differences between repos.
+**Status**: **RESOLVED**
+
+**Conclusion 1**: L3 system works (+405% adaptation) [Verified]  
+**Conclusion 2**: System is stable (56 runs, no crashes) [Verified]
+
+**Remaining gaps**: R1, R3 validation blocked by missing conditions
+
+**Document**: `PHASE4_TRIAGE_REPORT.md`
+
+---
+
+## Remaining Open Questions
 
 ### S1: lineage_diversity Definition
 
-**Atlas Interpretation**: Count of unique lineage_id values in current generation.
-
-**Bio-World Interpretation**: May include historical lineages no longer present.
-
-**Mismatch**: If Bio-World counts historical, trends will differ from Atlas calculations.
-
-**Proposed Resolution**: 
-- Use only currently alive cells
-- Document clearly in contract
-- Add `lineage_count` (historical) vs `lineage_diversity` (current) distinction
+**Atlas Interpretation**: 1/Σ(p²) effective number of lineages  
+**Bio-World Current**: lineage_count (unique IDs only)
 
 **Status**: Under Discussion
-
----
-
-### S2: collapse_event_count Window Size
-
-**Atlas Interpretation**: Rolling count over last 100 generations.
-
-**Bio-World Interpretation**: Total count since simulation start.
-
-**Mismatch**: If Bio-World uses total, we cannot detect recent trend changes.
-
-**Proposed Resolution**: 
-- Use rolling window of 100 generations
-- Or provide both: `collapse_event_total` and `collapse_event_window`
-
-**Status**: Under Discussion
-
----
-
-### S3: strategy_entropy Granularity
-
-**Atlas Interpretation**: Entropy over `preferred_strategy` enum values (cooperate/explore/balanced).
-
-**Bio-World Interpretation**: May use continuous strategy space.
-
-**Mismatch**: Different calculation methods yield incomparable results.
 
 **Proposed Resolution**:
-- Standardize on enum-based calculation
-- Use 3 categories: cooperate, explore, balanced
-- Document exact formula
-
-**Status**: Under Discussion
+- Calculate lineage_diversity from existing data
+- lineage_count remains as raw count
+- Add both to CSV export
 
 ---
 
-## Next-Phase Proposals
+### S2: CSV Schema Finalization
 
-Questions about future enhancements, not blocking current work.
+**Current (GitHub)**: 19 columns  
+**Required**: 15 columns minimum (Atlas contract)
 
-### P1: JSONL Stream Export
+**Missing from Atlas contract**:
+- generation (redundant with tick)
+- dna_variance
+- cooperation_rate
+- mean_cluster_size
+- multi_cell_boss_success_rate
+- energy_transfer_count
+- signal_synchrony
+- mutation_count
+- nonzero_mutation_generations
+- elite_lineage_survival
+- cdi
 
-**Proposal**: Add JSON Lines export option for real-time streaming.
+**Status**: GitHub schema richer than required
 
-**Value**: Lower latency, structured parsing, easier integration.
-
-**Effort**: ~1 day implementation.
-
-**Dependencies**: Phase 1 CSV fields must be stable first.
-
-**Status**: Proposed for Phase 2
-
----
-
-### P2: ContinuityProbe Real-time Alerts
-
-**Proposal**: Add webhook/notification when Probe detects critical conditions.
-
-**Value**: Immediate notification of convergence warnings.
-
-**Effort**: ~2 days implementation.
-
-**Dependencies**: ContinuityProbe MVP operational.
-
-**Status**: Proposed for Phase 2
+**Decision**: ✅ Use GitHub V2 schema (19 columns)
 
 ---
 
-### P3: Cross-Seed Lineage Tracking
+### S3: Ticks Extension
 
-**Proposal**: Track lineage persistence across different random seeds.
+**Current**: 1000 ticks  
+**Minimal Rerun Spec**: 5000 ticks
 
-**Value**: Distinguish robust strategies from seed-dependent luck.
+**Rationale**: Better statistical power
 
-**Effort**: ~3 days implementation.
-
-**Dependencies**: Requires multiple completed runs.
-
-**Status**: Proposed for Phase 3
+**Status**: Approved for minimal rerun
 
 ---
 
-### P4: Oracle Leak Score Computation
+## Phase 5 Preparation
 
-**Proposal**: Implement information-theoretic measurement of archive-to-cell leakage.
+### P1: Minimal Rerun Execution
 
-**Value**: Quantify anti-god-mode effectiveness.
+**Tasks**:
+1. Generate L3_shuffled (8 universes, 5000 ticks)
+2. Generate no_L2 (8 universes, 5000 ticks)
+3. Add archive instrumentation
+4. Re-triage with complete data
 
-**Effort**: ~5 days research + implementation.
+**Expected Outcome**: GO decision (if L3_real > L3_shuffled)
 
-**Dependencies**: Requires archive content analysis capabilities.
+**Timeline**: 2-3 days
 
-**Status**: Proposed for Phase 2/3
+**Document**: `PHASE46_RERUN_MIN_SPEC.md`
 
 ---
 
-### P5: Drift Score for Population Divergence
+### P2: Phase 5 Readiness
 
-**Proposal**: Measure population-level drift from baseline behavior.
-
-**Value**: Early detection of anomalous evolution paths.
-
-**Effort**: ~2 days implementation.
-
-**Dependencies**: Baseline runs completed.
-
-**Status**: Proposed for Phase 2
+**Current Blockers**: 2 (L3_shuffled, no_L2)  
+**After Rerun**: Expected 0 blockers  
+**Decision**: GO_TO_PHASE5_MINI_SCALEUP
 
 ---
 
@@ -222,16 +206,31 @@ Questions about future enhancements, not blocking current work.
 
 | ID | Category | Question | Status | Owner | Target Date |
 |----|----------|----------|--------|-------|-------------|
-| B1 | Blocker | Missing CSV fields | Open | Bio-World | 2026-03-12 |
-| B2 | Blocker | Anti-God-Mode verification | Open | Atlas-HEC | 2026-03-13 |
-| S1 | Semantic | lineage_diversity definition | Under Discussion | Both | 2026-03-14 |
-| S2 | Semantic | collapse_event_count window | Under Discussion | Both | 2026-03-14 |
-| S3 | Semantic | strategy_entropy granularity | Under Discussion | Both | 2026-03-14 |
-| P1 | Proposal | JSONL export | Proposed | Bio-World | Phase 2 |
-| P2 | Proposal | Real-time alerts | Proposed | Atlas-HEC | Phase 2 |
-| P3 | Proposal | Cross-seed tracking | Proposed | Both | Phase 3 |
-| P4 | Proposal | Oracle leak score | Proposed | Atlas-HEC | Phase 2/3 |
-| P5 | Proposal | Drift score | Proposed | Atlas-HEC | Phase 2 |
+| B1 | Blocker | L3_shuffled missing | 🔴 Open | Bio-World | 2026-03-12 |
+| B2 | Blocker | no_L2 missing | 🟡 Open | Bio-World | 2026-03-12 |
+| B3 | Blocker | Archive instrumentation | 🟡 Open | Bio-World | 2026-03-13 |
+| R1 | Resolved | Data source reconciliation | ✅ Resolved | Atlas-HEC | 2026-03-09 |
+| R2 | Resolved | L3 effect validation | ✅ Resolved | Atlas-HEC | 2026-03-09 |
+| R3 | Resolved | Strongest conclusions | ✅ Resolved | Atlas-HEC | 2026-03-09 |
+| S1 | Semantic | lineage_diversity calc | 🟡 Discussion | Both | 2026-03-14 |
+| S2 | Semantic | CSV schema | ✅ Resolved | Both | 2026-03-09 |
+| S3 | Semantic | Ticks extension | ✅ Resolved | Both | 2026-03-09 |
+| P1 | Phase 5 | Minimal rerun | 🟡 Planned | Bio-World | 2026-03-12 |
+| P2 | Phase 5 | Phase 5 readiness | 🟡 Pending | Atlas-HEC | 2026-03-14 |
+
+---
+
+## Phase 4.6 Deliverables
+
+| Document | Status | Purpose |
+|----------|--------|---------|
+| PHASE46_MISSING_DATA_LEDGER.md | ✅ Complete | List all missing data with blocking status |
+| PHASE46_ANALYSIS_WITH_GAPS.md | ✅ Complete | What can/cannot be concluded |
+| PHASE4_TRIAGE_REPORT.md | ✅ Final | Complete triage with actual data |
+| PHASE4_COMPARISON_DECISION_TABLE.md | ✅ Final | Comparison matrix filled |
+| PHASE46_RERUN_MIN_SPEC.md | ✅ Complete | Minimal rerun specification |
+| PHASE46_DATA_SOURCE_RECONCILIATION.md | ✅ Complete | GitHub vs Local resolution |
+| status-sync.json | ✅ Updated | Current status with blockers |
 
 ---
 
@@ -246,4 +245,7 @@ Questions about future enhancements, not blocking current work.
 
 ---
 
+**Current Phase**: 4.6  
+**Next Phase**: 5 (pending minimal rerun)  
+**Decision**: HOLD_FOR_MINIMAL_RERUN  
 **Sync Protocol**: See `SYNC_PROTOCOL.md`

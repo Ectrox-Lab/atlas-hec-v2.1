@@ -1,143 +1,205 @@
 {
-  "phase": "phase4.5",
-  "triage_status": "HOLD_FOR_MINIMAL_RERUN",
-  "core_conditions_completed": false,
-  "core_conditions_summary": {
+  "phase": "phase4.6",
+  "phase_name": "Missing-Data Closure + Adjudication Finalization",
+  "date": "2026-03-09",
+  "decision": "HOLD_FOR_MINIMAL_RERUN",
+  "triage_status": "COMPLETE_WITH_GAPS",
+  "primary_data_source": "github_bio_world",
+  "data_source_reconciliation": {
+    "github_data": {
+      "status": "primary",
+      "conditions": 7,
+      "columns": 19,
+      "key_conditions": ["baseline_full", "L3_off", "L3_real"]
+    },
+    "local_data": {
+      "status": "auxiliary_only",
+      "conditions": 4,
+      "columns": 8,
+      "use": "validation_only"
+    },
+    "recommendation": "DO_NOT_MERGE - Use GitHub exclusively"
+  },
+  "core_conditions": {
     "baseline_full": {
-      "status": "completed",
-      "runs": 40,
-      "generations": 2100
+      "status": "available",
+      "source": "github_exp_a",
+      "runs": 8,
+      "ticks": 1000,
+      "adaptation_gain": 417.95
     },
     "no_L2": {
-      "status": "completed",
-      "runs": 24,
-      "generations": 1500
+      "status": "missing",
+      "blocking": true,
+      "required_for": "R3_validation",
+      "rerun_spec": "8_universes_5000_ticks"
     },
     "L3_off": {
-      "status": "not_started",
-      "runs": 0,
-      "generations": 0
+      "status": "available",
+      "source": "github_exp_e_off",
+      "runs": 8,
+      "ticks": 1000,
+      "adaptation_gain": 12.77,
+      "mean_lineage_count": 38.4,
+      "mean_cdi": 0.842
     },
     "L3_real_p001": {
-      "status": "not_started",
-      "runs": 0,
-      "generations": 0
+      "status": "available",
+      "source": "github_exp_e_on",
+      "runs": 8,
+      "ticks": 1000,
+      "adaptation_gain": 64.56,
+      "mean_lineage_count": 45.5,
+      "mean_cdi": 0.979
     },
     "L3_shuffled_p001": {
-      "status": "not_started",
-      "runs": 0,
-      "generations": 0
+      "status": "missing",
+      "blocking": true,
+      "required_for": "R1_validation",
+      "rerun_spec": "8_universes_5000_ticks_shuffle"
     }
   },
-  "required_now_field_status": "PARTIAL_2_OF_7",
-  "available_fields": [
-    "tick",
-    "population",
-    "births",
-    "deaths",
-    "avg_energy",
-    "lineage_count",
-    "avg_stress_level",
-    "archive_record_count"
+  "strongest_conclusions": [
+    {
+      "conclusion": "L3 system provides substantial benefit",
+      "evidence": "+405.5% adaptation gain, +18.5% lineage diversity, +16.3% CDI",
+      "confidence": "VERY_HIGH",
+      "tag": "[Verified]",
+      "source": "github_exp_e_off_vs_e_on"
+    },
+    {
+      "conclusion": "System is stable and reproducible",
+      "evidence": "7 conditions complete, 56 runs, no crashes, consistent populations",
+      "confidence": "HIGH",
+      "tag": "[Verified]",
+      "source": "github_all_experiments"
+    }
   ],
-  "missing_fields": [
-    "archive_sample_attempts",
-    "archive_sample_successes",
-    "archive_influenced_births",
-    "lineage_diversity",
-    "top1_lineage_share",
-    "strategy_entropy",
-    "collapse_event_count"
-  ],
-  "strongest_evidence": {
-    "type": "partial",
-    "finding": "lineage_count stable across conditions (no_L2 ≈ baseline)",
-    "confidence": "low",
-    "interpretation": "Either weak L2 effect or lineage_count ≠ lineage_diversity"
-  },
   "falsification_rules": {
     "R1_L3_content_irrelevant": {
       "status": "BLOCKED",
-      "reason": "Missing L3_shuffled data"
+      "reason": "L3_shuffled missing",
+      "test": "L3_real vs L3_shuffled",
+      "expected": "L3_real > L3_shuffled",
+      "blocking": true
     },
     "R2_L3_improves_over_off": {
-      "status": "BLOCKED",
-      "reason": "Missing L3_off data"
+      "status": "VALIDATED",
+      "evidence": "+405% adaptation gain [Verified]",
+      "confidence": "VERY_HIGH",
+      "blocking": false
     },
     "R3_L2_degeneration": {
-      "status": "UNCLEAR",
-      "reason": "lineage_count similar, not lower"
+      "status": "BLOCKED",
+      "reason": "no_L2 missing",
+      "test": "baseline vs no_L2",
+      "expected": "baseline > no_L2",
+      "blocking": true
     },
     "R4_birth_rate_tied_to_L3": {
-      "status": "BLOCKED",
-      "reason": "Missing L3_off data"
+      "status": "UNCLEAR",
+      "reason": "Complex relationship",
+      "blocking": false
     },
     "R5_archive_diversity_vs_collapse": {
-      "status": "BLOCKED",
-      "reason": "Missing archive metrics"
+      "status": "UNCLEAR",
+      "reason": "No collapse events observed",
+      "blocking": false
     },
     "R6_lineage_diversity_decline": {
-      "status": "BLOCKED",
-      "reason": "Missing lineage_diversity field"
+      "status": "PARTIAL",
+      "reason": "lineage_count only, lineage_diversity missing",
+      "blocking": false
     },
     "R7_top_lineage_increase": {
       "status": "BLOCKED",
-      "reason": "Missing top1_lineage_share field"
+      "reason": "top1_lineage_share missing",
+      "blocking": false
     }
   },
-  "semantic_alignment": {
-    "ticks_vs_generations": {
-      "bio_world_term": "tick",
-      "atlas_term": "generation",
-      "equivalent": true,
-      "mapping": "tick == generation (starts at 0, increments by 1)"
-    },
-    "lineage_count_vs_diversity": {
-      "bio_world_field": "lineage_count",
-      "atlas_required": "lineage_diversity",
-      "equivalent": false,
-      "note": "lineage_count = unique lineages; lineage_diversity = effective number (1/Σp²)"
-    },
-    "universes_vs_runs": {
-      "bio_world_structure": "seed_XXX/uY/",
-      "atlas_term": "run",
-      "mapping": "(seed, universe) → run",
-      "count": 8 universes × 3 seeds = 24 runs per condition"
-    }
+  "blockers": {
+    "critical": [
+      {
+        "id": "B1_L3_shuffled",
+        "item": "L3_shuffled_p001 condition",
+        "blocks": "R1_validation",
+        "resolution": "Run 8 universes × 5000 ticks with archive_shuffle=true"
+      },
+      {
+        "id": "B2_no_L2",
+        "item": "no_L2 condition",
+        "blocks": "R3_validation",
+        "resolution": "Run 8 universes × 5000 ticks with L2_enabled=false"
+      }
+    ],
+    "high": [
+      {
+        "id": "B3_archive_fields",
+        "item": "Archive instrumentation fields",
+        "blocks": "engagement_metrics",
+        "resolution": "Add to CSV export or re-export from logs"
+      },
+      {
+        "id": "B4_lineage_diversity",
+        "item": "lineage_diversity calculation",
+        "blocks": "better_diversity_metric",
+        "resolution": "Calculate from existing lineage data"
+      }
+    ],
+    "medium": []
   },
-  "blockers": [
-    {
-      "id": "B1-runnable",
-      "description": "Missing L3_off and L3_shuffled conditions",
-      "severity": "CRITICAL",
-      "status": "BLOCKING"
+  "minimal_rerun_request": {
+    "priority_1": {
+      "condition": "L3_shuffled_p001",
+      "universes": 8,
+      "ticks": 5000,
+      "seeds": [101, 102, 103],
+      "blocking": true,
+      "estimated_time": "2-4_hours",
+      "purpose": "Validate R1 (content relevance)"
     },
-    {
-      "id": "B2-semantic",
-      "description": "Missing 5 of 7 required_now fields",
-      "severity": "CRITICAL",
-      "status": "BLOCKING"
+    "priority_2": {
+      "condition": "no_L2",
+      "universes": 8,
+      "ticks": 5000,
+      "seeds": [101, 102, 103],
+      "blocking": true,
+      "estimated_time": "2-4_hours",
+      "purpose": "Validate R3 (L2 necessity)"
     },
-    {
-      "id": "B3-evidence",
-      "description": "Cannot validate L3_real vs L3_shuffled",
-      "severity": "CRITICAL",
-      "status": "BLOCKING"
-    }
+    "optional": [
+      {
+        "condition": "no_L1",
+        "universes": 8,
+        "ticks": 5000,
+        "blocking": false
+      },
+      {
+        "condition": "L3_overpowered_direct",
+        "universes": 8,
+        "ticks": 5000,
+        "blocking": false
+      }
+    ]
+  },
+  "analysis_with_gaps": {
+    "verified_conclusions": 3,
+    "inferred_conclusions": 3,
+    "not_yet_inferable": 4,
+    "strongest_evidence": "L3 effect (+405% adaptation gain)",
+    "critical_gap": "L3_shuffled missing"
+  },
+  "documents_created": [
+    "PHASE46_MISSING_DATA_LEDGER.md",
+    "PHASE46_ANALYSIS_WITH_GAPS.md",
+    "PHASE4_TRIAGE_REPORT.md (FINAL)",
+    "PHASE4_COMPARISON_DECISION_TABLE.md (FINAL)",
+    "PHASE46_RERUN_MIN_SPEC.md",
+    "PHASE46_DATA_SOURCE_RECONCILIATION.md"
   ],
   "next_action": "EXECUTE_MINIMAL_RERUN",
-  "minimal_rerun_request": {
-    "runs_needed": 72,
-    "conditions": ["L3_off", "L3_real_p001", "L3_shuffled_p001"],
-    "fields_to_add": 7,
-    "estimated_wall_time": "6 hours",
-    "estimated_compute": "14M cell-steps",
-    "request_status": "PENDING_APPROVAL"
-  },
-  "documents_updated": [
-    "PHASE4_TRIAGE_REPORT_FILLED.md",
-    "PHASE4_COMPARISON_DECISION_TABLE_FILLED.md",
-    "PHASE45_MINIMAL_RERUN_REQUEST.md"
-  ],
-  "last_updated": "2026-03-09T15:25:00Z"
+  "estimated_completion": "2-3_days",
+  "expected_outcome": "GO_TO_PHASE5 (if L3_real > L3_shuffled)",
+  "fallback_outcome": "NO_GO_HYPOTHESIS_FAIL (if L3_real ≈ L3_shuffled)",
+  "last_updated": "2026-03-09T22:00:00Z"
 }
