@@ -1,0 +1,162 @@
+{
+  "phase": "phase4.5-github",
+  "date": "2026-03-09",
+  "data_source": "https://github.com/Ectrox-Lab/bio-world",
+  "triage_status": "HOLD_AWAITING_L3_SHUFFLED",
+  "discovery": "GitHub repo has more complete data than local P1",
+  "core_conditions_summary": {
+    "baseline_full": {
+      "status": "completed",
+      "file": "experiment_a_survival.csv",
+      "runs": 8,
+      "generations": 1000,
+      "adaptation_gain": 417.95
+    },
+    "no_L2": {
+      "status": "not_found",
+      "runs": 0,
+      "note": "Missing from GitHub repo"
+    },
+    "L3_off": {
+      "status": "completed",
+      "file": "experiment_e_akashic_off.csv",
+      "runs": 8,
+      "generations": 1000,
+      "adaptation_gain": 12.77,
+      "mean_lineage_count": 38.4,
+      "mean_cdi": 0.8420
+    },
+    "L3_real_p001": {
+      "status": "completed",
+      "file": "experiment_e_akashic_on.csv",
+      "runs": 8,
+      "generations": 1000,
+      "adaptation_gain": 64.56,
+      "mean_lineage_count": 45.5,
+      "mean_cdi": 0.9792
+    },
+    "L3_shuffled_p001": {
+      "status": "not_found",
+      "runs": 0,
+      "note": "CRITICAL MISSING - needed for R1 validation"
+    }
+  },
+  "key_findings": {
+    "L3_effect": {
+      "finding": "L3_on significantly outperforms L3_off",
+      "adaptation_gain_delta": "+405.5%",
+      "lineage_count_delta": "+18.5%",
+      "cdi_delta": "+16.3%",
+      "confidence": "HIGH"
+    },
+    "R2_validation": {
+      "rule": "L3 improves over off",
+      "status": "VALIDATED",
+      "evidence": "All 3 key metrics show positive effect"
+    },
+    "R1_blocker": {
+      "rule": "L3 content irrelevant",
+      "status": "CANNOT_TEST",
+      "reason": "L3_shuffled data missing"
+    }
+  },
+  "csv_analysis": {
+    "total_columns": 19,
+    "columns": [
+      "tick", "generation", "population", "births", "deaths",
+      "average_energy", "dna_variance", "lineage_count", "cooperation_rate",
+      "mean_cluster_size", "multi_cell_boss_success_rate", "energy_transfer_count",
+      "signal_synchrony", "mutation_count", "nonzero_mutation_generations",
+      "elite_lineage_survival", "adaptation_gain", "extinction_events", "cdi"
+    ],
+    "atlas_required_present": [
+      "lineage_count",
+      "extinction_events (proxy for collapse_event_count)"
+    ],
+    "atlas_required_missing": [
+      "archive_sample_attempts",
+      "archive_sample_successes",
+      "archive_influenced_births",
+      "lineage_diversity",
+      "top1_lineage_share",
+      "strategy_entropy"
+    ]
+  },
+  "falsification_rules": {
+    "R1_L3_content_irrelevant": {
+      "status": "BLOCKED",
+      "reason": "Missing L3_shuffled data"
+    },
+    "R2_L3_improves_over_off": {
+      "status": "VALIDATED",
+      "evidence": "+405% adaptation, +18.5% lineage, +16.3% CDI"
+    },
+    "R3_L2_degeneration": {
+      "status": "BLOCKED",
+      "reason": "Missing no_L2 data"
+    },
+    "R4_birth_rate_tied_to_L3": {
+      "status": "UNCLEAR",
+      "reason": "Complex relationship, needs more analysis"
+    },
+    "R5_archive_diversity_vs_collapse": {
+      "status": "UNCLEAR",
+      "reason": "No extinction events observed"
+    },
+    "R6_lineage_diversity_decline": {
+      "status": "PARTIAL",
+      "reason": "lineage_count available, lineage_diversity missing"
+    },
+    "R7_top_lineage_increase": {
+      "status": "BLOCKED",
+      "reason": "top1_lineage_share field missing"
+    }
+  },
+  "blockers": [
+    {
+      "id": "B1-shuffled",
+      "description": "L3_shuffled data missing - blocks R1 validation",
+      "severity": "CRITICAL",
+      "action": "Generate L3_shuffled experiment"
+    },
+    {
+      "id": "B2-noL2",
+      "description": "no_L2 data missing - blocks R3 validation",
+      "severity": "MEDIUM",
+      "action": "Generate no_L2 experiment"
+    },
+    {
+      "id": "B3-fields",
+      "description": "Archive instrumentation fields missing",
+      "severity": "MEDIUM",
+      "action": "Update CSV export in Bio-World"
+    }
+  ],
+  "next_action": "GENERATE_L3_SHUFFLED",
+  "minimal_rerun_request": {
+    "priority_1": {
+      "condition": "L3_shuffled",
+      "runs": 8,
+      "generations": 1000,
+      "purpose": "Validate R1 (content relevance)"
+    },
+    "priority_2": {
+      "condition": "no_L2",
+      "runs": 8,
+      "generations": 1000,
+      "purpose": "Validate R3 (L2 necessity)"
+    }
+  },
+  "decision": {
+    "classification": "HOLD",
+    "reason": "Missing L3_shuffled prevents complete falsification validation",
+    "confidence_in_L3_effect": "HIGH",
+    "confidence_in_full_validation": "LOW"
+  },
+  "documents_updated": [
+    "PHASE4_TRIAGE_REPORT_GITHUB_DATA.md",
+    "PHASE4_COMPARISON_DECISION_TABLE_GITHUB.md",
+    "status-sync-github.json"
+  ],
+  "last_updated": "2026-03-09T21:30:00Z"
+}
