@@ -201,5 +201,51 @@
   "estimated_completion": "2-3_days",
   "expected_outcome": "GO_TO_PHASE5 (if L3_real > L3_shuffled)",
   "fallback_outcome": "NO_GO_HYPOTHESIS_FAIL (if L3_real ≈ L3_shuffled)",
-  "last_updated": "2026-03-09T22:00:00Z"
+  "threshold_formalization": {
+    "real_vs_shuffled": {
+      "primary_metric": "adaptation_gain",
+      "go_threshold": "δ > 0.20 (real > shuffled + 20%)",
+      "no_go_threshold": "-0.10 ≤ δ ≤ 0.10 (equivalence)",
+      "ambiguous_range": "0.10 < |δ| < 0.20",
+      "statistical_requirements": "p < 0.05, Cohen's d > 0.5, n ≥ 8",
+      "composite_score": "1.0×δ(adaptation) + 0.3×δ(lineage) + 0.3×δ(cdi)"
+    }
+  },
+  "phase5_standards": {
+    "effect_size_thresholds": {
+      "negligible": "d < 0.2",
+      "small": "0.2 ≤ d < 0.5",
+      "medium": "0.5 ≤ d < 0.8 (minimum for GO)",
+      "large": "0.8 ≤ d < 1.2",
+      "very_large": "d ≥ 2.0 (hypothesis proven)"
+    },
+    "comparison_matrix": {
+      "L3_real_vs_shuffled": "d > 0.5 required for GO",
+      "baseline_vs_no_L2": "d > 0.3 supports R3",
+      "L3_real_vs_off": "d > 2.0 already validated"
+    },
+    "power_requirements": {
+      "universes_minimum": 8,
+      "universes_target": 12,
+      "alpha": "0.05 (minimum), 0.01 (target)",
+      "power_1_minus_beta": "0.80 (minimum), 0.90 (target)"
+    }
+  },
+  "invariant_test_spec": {
+    "shuffled_equivalence": {
+      "structural_invariants": [
+        "population ∈ [500, 700]",
+        "exit_code == 0",
+        "archive_sample_attempts > 0",
+        "births/tick ∈ [0.5, 2.0]",
+        "mutation_count > 0"
+      ],
+      "content_difference": [
+        "hash(archive_shuffled) ≠ hash(archive_real)",
+        "correlation(ordered, shuffled) < 0.1"
+      ],
+      "acceptance_criteria": "All invariants pass + structural equivalence + content difference"
+    }
+  },
+  "last_updated": "2026-03-09T23:00:00Z"
 }

@@ -63,6 +63,46 @@ elif adaptation_gain(shuffled) ≈ adaptation_gain(real):
     decision = "NO-GO"
 ```
 
+### Real-vs-Shuffled Threshold Formalization
+
+**Primary Metric**: `adaptation_gain` (mean across universes)
+
+**Decision Thresholds**:
+| Comparison | Threshold | Decision | Rationale |
+|------------|-----------|----------|-----------|
+| `real > shuffled + 20%` | δ > 0.20 | ✅ **GO** | Content clearly matters |
+| `shuffled - 10% ≤ real ≤ shuffled + 10%` | -0.10 ≤ δ ≤ 0.10 | ❌ **NO-GO** | Content irrelevant (falsified) |
+| `real < shuffled - 20%` | δ < -0.20 | ❌ **NO-GO** | Shuffled better (design flaw) |
+| `10% < δ < 20%` or `-20% < δ < -10%` | Ambiguous | 🟡 **EXTEND** | Insufficient power, run more universes |
+
+**Effect Size Calculation**:
+```
+δ = (adaptation_gain(real) - adaptation_gain(shuffled)) / adaptation_gain(shuffled)
+
+Statistical validation:
+- Required: p < 0.05 (t-test)
+- Required: n ≥ 8 universes per condition
+- Required: Cohen's d > 0.5 (medium effect)
+```
+
+**Secondary Metrics** (supporting evidence):
+| Metric | Expected Direction | Weight |
+|--------|-------------------|--------|
+| lineage_diversity | real > shuffled | 0.3 |
+| CDI | real > shuffled | 0.3 |
+| adaptation_gain | real > shuffled | 1.0 (primary) |
+
+**Composite Score**:
+```
+If primary metric is AMBIGUOUS, use weighted composite:
+score = 1.0×δ(adaptation) + 0.3×δ(lineage) + 0.3×δ(cdi)
+
+Decision on composite:
+- score > 0.15: GO
+- score < -0.05: NO-GO
+- else: EXTEND
+```
+
 **Resource Estimate**:
 - Compute: 8 universes × 5000 ticks = 40k ticks
 - Time: ~2-4 hours (parallel)
@@ -395,3 +435,142 @@ Hour 22-24:
 **Estimated Duration**: 2-3 days  
 **Estimated Cost**: 8 person-hours + compute  
 **Expected Outcome**: Resolution of HOLD status
+
+
+---
+
+## 11. Phase 5 Comparison Matrix & Effect-Size Standards
+
+### 11.1 Phase 5 Comparison Matrix (Minimal Set)
+
+| Comparison | Metric | Effect Size Threshold | p-value | Decision |
+|------------|--------|----------------------|---------|----------|
+| **L3_real vs L3_shuffled** | adaptation_gain | Cohen's d > 0.5 | < 0.05 | GO if d > 0.5 |
+| **baseline vs no_L2** | lineage_diversity | Cohen's d > 0.3 | < 0.05 | Strengthens if d > 0.3 |
+| **L3_real vs L3_off** | adaptation_gain | Cohen's d > 2.0 | < 0.001 | Already validated |
+| **baseline vs C_HIGH** | adaptation_gain | Cohen's d > 3.0 | < 0.001 | Pressure effect |
+
+### 11.2 Effect-Size Standards
+
+| Effect Size | Cohen's d | Interpretation | Required For |
+|-------------|-----------|----------------|--------------|
+| Negligible | < 0.2 | Not meaningful | Reject claim |
+| Small | 0.2 - 0.5 | Weak evidence | Not sufficient |
+| **Medium** | **0.5 - 0.8** | **Clear effect** | **Minimum for GO** |
+| Large | 0.8 - 1.2 | Strong evidence | Strong support |
+| **Very Large** | **> 2.0** | **Overwhelming** | **Hypothesis proven** |
+
+**Phase 5 Decision Criteria**:
+```
+Primary comparison (L3_real vs L3_shuffled):
+  d > 0.8 + p < 0.01 → STRONG GO
+  d > 0.5 + p < 0.05 → GO
+  d > 0.3 + p < 0.10 → WEAK GO (with caveats)
+  d < 0.2 or p > 0.10 → NO-GO (hypothesis fails)
+
+Secondary comparisons (supporting):
+  baseline vs no_L2: d > 0.3 required
+  L3_real vs L3_off: d > 2.0 already observed
+```
+
+### 11.3 Statistical Power Requirements
+
+| Parameter | Minimum | Target | Notes |
+|-----------|---------|--------|-------|
+| Universes per condition | 8 | 12 | Current: 8, Extend if ambiguous |
+| Ticks per universe | 5000 | 10000 | Current: 5000 |
+| Alpha (significance) | 0.05 | 0.01 | Primary comparison |
+| Power (1-β) | 0.80 | 0.90 | 80% chance detect medium effect |
+
+---
+
+## 12. Shuffled Equivalence Invariant-Test Spec
+
+### 12.1 Purpose
+Test that shuffling archive entries produces a valid control condition without breaking system invariants.
+
+### 12.2 Invariant Tests (Must Pass Before Comparison)
+
+| Invariant | Test | Expected | If Failed |
+|-----------|------|----------|-----------|
+| **Population Stability** | Final population ∈ [500, 700] | Stable | Discard run, check config |
+| **No Crash** | Exit code 0, no exceptions | Clean exit | Debug implementation |
+| **Archive Accessibility** | archive_sample_attempts > 0 | CDI functional | Check L3 enabled |
+| **Birth Rate Normal** | births/tick ∈ [0.5, 2.0] | Healthy | Check parameters |
+| **Mutation Present** | mutation_count > 0 | Evolution active | Check mutation rate |
+
+### 12.3 Equivalence Test (Shuffled vs Real Structure)
+
+**Structural Invariants** (should be identical):
+```python
+# Archive structure
+assert len(archive_shuffled) == len(archive_real)
+assert set(archive_shuffled.keys()) == set(archive_real.keys())
+
+# Retrieval rate
+assert abs(retrieval_rate_shuffled - retrieval_rate_real) < 0.001
+
+# Cell lifecycle
+assert abs(birth_rate_shuffled - birth_rate_real) < 0.1
+assert abs(death_rate_shuffled - death_rate_real) < 0.1
+```
+
+**Content Difference** (should differ):
+```python
+# Strategy values shuffled
+assert hash(archive_shuffled) != hash(archive_real)
+assert correlation(ordered_strategies, shuffled_strategies) < 0.1
+```
+
+### 12.4 Acceptance Criteria for Shuffled Condition
+
+| Criterion | Threshold | Action if Failed |
+|-----------|-----------|------------------|
+| Passes all invariants | 100% | Re-run with fixed config |
+| Structural equivalence | δ < 0.05 | Validate implementation |
+| Content difference | corr < 0.1 | Verify shuffle algorithm |
+| Valid for comparison | All above | Include in analysis |
+
+### 12.5 Invariant Violation Response
+
+| Violation Type | Response | Retry? |
+|----------------|----------|--------|
+| Population crash | Check boss pressure, L1 settings | Yes |
+| No archive access | Check L3_enabled, retrieval_prob | Yes |
+| Exit code error | Debug traceback | Yes |
+| Structural divergence | Check shuffle implementation | Yes |
+| Content not shuffled | Fix shuffle algorithm | Yes |
+
+---
+
+## 13. Final Decision Matrix (Post-Rerun)
+
+```
+After L3_shuffled and no_L2 complete:
+
+Step 1: Validate invariants
+  └─ All pass? → Continue
+  └─ Any fail? → Re-run failed universes
+
+Step 2: Calculate effect sizes
+  └─ L3_real vs L3_shuffled: Cohen's d = ?
+  └─ baseline vs no_L2: Cohen's d = ?
+
+Step 3: Apply thresholds
+  ├─ d > 0.5, p < 0.05 → GO_TO_PHASE5
+  ├─ d > 0.3, p < 0.10 → GO_WITH_CAVEATS
+  ├─ d < 0.2 or p > 0.10 → NO_GO
+  └─ Ambiguous → EXTEND (more universes)
+
+Step 4: Final classification
+  ├─ STRONG GO: d > 0.8 + supporting evidence
+  ├─ GO: d > 0.5 + R3 validated
+  ├─ WEAK GO: d > 0.3 + partial R3
+  └─ NO_GO: d < 0.2 or equivalence demonstrated
+```
+
+---
+
+**Specification Version**: 1.1-FINAL  
+**Includes**: Threshold formalization, Phase 5 standards, Invariant tests  
+**Updated**: 2026-03-09
