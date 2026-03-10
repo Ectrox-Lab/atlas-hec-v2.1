@@ -280,6 +280,11 @@ impl ScheduledMarker {
             Some(self.update_interval)
         }
     }
+    
+    /// Get reference to coherence tracker (for D4 analysis)
+    pub fn tracker(&self) -> &CoherenceTracker {
+        &self.tracker
+    }
 }
 
 #[cfg(test)]

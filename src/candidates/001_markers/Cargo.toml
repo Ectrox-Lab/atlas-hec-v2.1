@@ -9,3 +9,7 @@ rand = "0.8"
 [[bin]]
 name = "markers_001"
 path = "src/main.rs"
+
+[[bin]]
+name = "d4_runner"
+path = "src/bin/d4_runner.rs"
