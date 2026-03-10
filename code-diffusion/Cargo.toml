@@ -81,6 +81,10 @@ path = "src/bin/round19_backprop_minimal.rs"
 name = "round20_full_integration"
 path = "src/bin/round20_full_integration.rs"
 
+[[bin]]
+name = "p0_4_rerun"
+path = "src/bin/p0_4_rerun.rs"
+
 [profile.release]
 opt-level = 3
 lto = true
