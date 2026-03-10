@@ -94,36 +94,53 @@
 - **时限**: D4完成后24小时
 - **Kill条件**: 若新metrics对现有和新batch都不分离, 升级"controller no advantage"假设
 
-### P1: E1 Critical Coupling Sweep [PENDING-高优先级]
-- [ ] **E1.1** 与Bio-World v19对接
-  - 确认r (Kuramoto order parameter)接口
-  - 确认CI (condensation)接口
-  - 确认P (percolation)接口
-- [ ] **E1.2** 设计coupling强度扫描实验
-  - 参数范围: communication_strength / sync_coupling
-  - 观察: r(t)是否从低同步区突然跳到高同步区
-- [ ] **E1.3** 记录关键指标
-  - [ ] Phase-lock onset time
-  - [ ] Variance collapse
-  - [ ] Population stability / hazard
-- [ ] **E1.4** 运行sweep (建议48-64并发)
-- [ ] **E1.5** 分析是否存在临界点
-- **资源**: 48-64核, <32GB内存, 理想sweep任务
-- **前置条件**: D4 001部分完成 (理解指标语义)
-- **与v19对接**: 直接使用S(t)=[CDI, CI, r, N, E]状态向量
-- **发现临界点**: 开启E2/E4/E5/E6; **无临界点**: Family 10降级
+### P1: E1 Critical Coupling Sweep [READY-等待D4间隙]
+**实验规格**: `E_CLASS_EXPERIMENT_SPEC.md` - E1章节
 
-### P1: E3 Density/Percolation Threshold [PENDING-高优先级]
-- [ ] **E3.1** 设计density/connectivity扫描
-  - 参数: agent/cell density + 连线概率/耦合半径
-- [ ] **E3.2** 观察三阶段transition
-  - P先跨threshold → r上升 → 节律稳定
-- [ ] **E3.3** 与E1结果对比
-  - 是否同一临界机制?
-- [ ] **E3.4** 运行sweep
-- **资源**: 48-64核, <32GB内存
-- **前置条件**: 与E1并行或先后
-- **与v19对接**: 使用P (giant component ratio)
+#### Phase A: 粗筛 (Coarse Sweep) [READY]
+- [ ] **E1-A.1** 确认v19接口: r, P, CI
+- [ ] **E1-A.2** 配置参数空间:
+  - N: [1e3, 3e3, 1e4, 3e4, 1e5] (5点)
+  - K: 0.1-5.0 (15-20点, 对数均匀)
+  - σ: [0.1, 0.5, 1.0] (3点)
+  - μ: 1.0 (固定)
+- [ ] **E1-A.3** 准备相位模型 (θ, 非精确Hz)
+- [ ] **E1-A.4** 启动sweep: ~1200-1500 runs, 48-64并发
+- [ ] **E1-A.5** 观测r跃迁: 从<0.2到>0.8?
+
+#### Phase B: 局部加密 [BLOCKED-A结果]
+- [ ] **E1-B.1** 仅在发现跃迁区域加密K到50-100点
+- [ ] **E1-B.2** 增加N: [5e4, 7e4, 1e5, 3e5]
+- [ ] **E1-B.3** 计算临界指数、滞后效应
+
+#### Phase C: 机制验证 [BLOCKED-B结果]
+- [ ] **E1-C.1** 准备E2/E4/E5/E6测试
+
+**资源**: 48-64核, <32GB, Phase A约4-6小时
+**前置条件**: D4 001部分完成 (理解指标语义)
+**策略**: Coarse-to-fine, 避免暴力穷举
+**Kill条件**: Phase A无相变(r始终<0.3或始终>0.9) → Family 10降级
+
+### P1: E3 Density/Percolation Threshold [READY-等待D4间隙]
+**实验规格**: `E_CLASS_EXPERIMENT_SPEC.md` - E3章节
+
+#### Phase A: 粗筛 [READY]
+- [ ] **E3-A.1** 配置参数空间:
+  - N: [1e3, 1e4, 1e5] (3点, 固定规模)
+  - K: E1中找到的临界区值 (3点)
+  - ⟨k⟩ (average degree): 0.5-5.0 (15-20点, 覆盖k≈1)
+- [ ] **E3-A.2** 启动sweep: ~900 runs, 48-64并发
+- [ ] **E3-A.3** 观测P跳变 (percolation threshold)
+- [ ] **E3-A.4** 观测r是否滞后于P上升
+
+#### Phase B: 因果验证 [BLOCKED-A结果]
+- [ ] **E3-B.1** 固定P值，变化其他参数，看r响应
+- [ ] **E3-B.2** 扰动实验: 切断连接使P下降，观察r跟随
+
+**资源**: 48-64核, <32GB, Phase A约3-4小时
+**前置条件**: 可与E1 Phase A并行启动
+**与v19对接**: 使用P (giant component ratio)
+**通过标准**: P先上升，r后上升 → 确认"连通性→同步"链条
 
 ### P3: C1 Episodic Failure Recall [PENDING]
 - [ ] **C1.1** 设计实验环境
