@@ -1,0 +1,12 @@
+=== E3 Phase A Complete ===
+Total configs: 180
+Total time: 0.1 min
+Avg rate: 44.1 configs/sec
+Output: ../../../results/e3_phase_a/causality_results.csv
+
+Causality Test (P precedes r):
+- P precedes r: 90/180 (50.0%)
+- Time lag available: 0 configs
+
+Interpretation:
+✗ Weak evidence, alternative mechanisms may dominate

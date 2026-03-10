@@ -1,0 +1,9 @@
+=== E1 Phase B Complete ===
+Total configs: 1200
+Total time: 14.7 min
+Avg rate: 1.4 configs/sec
+Output: ../../../results/e1_phase_b/refinement_results.csv
+
+Hysteresis detection:
+- Cases with |r_ordered - r_disordered| > 0.3: 166
+- Hysteresis present: LIKELY (first-order transition)
