@@ -3,10 +3,12 @@ use ndarray::{Array1, Array3};
 pub mod layers;
 pub mod unet_real;
 pub mod realunet_gradient;
+pub mod realunet_full;
 
 pub use layers::*;
 pub use unet_real::{RealUNet, ParamStats};
 pub use realunet_gradient::{RealUNetGradientPilot, InputProjGradient};
+pub use realunet_full::{RealUNetFull, FullGradient};
 
 /// UNet model configuration
 #[derive(Debug, Clone)]

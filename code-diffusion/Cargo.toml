@@ -77,6 +77,10 @@ path = "src/bin/round18_gradient_pilot.rs"
 name = "round19_backprop_minimal"
 path = "src/bin/round19_backprop_minimal.rs"
 
+[[bin]]
+name = "round20_full_integration"
+path = "src/bin/round20_full_integration.rs"
+
 [profile.release]
 opt-level = 3
 lto = true
