@@ -1,9 +1,11 @@
 # Kimi 超脑组最终研究指令
 
-**版本**: 融合版 v1  
+**版本**: 融合版 v1.1  
 **日期**: 2026-03-10  
 **状态**: 立即执行  
-**目标**: 将32个候选方向收敛为可执行的实验序列
+**目标**: 将32+6个候选方向收敛为可执行的实验序列
+
+**更新**: 新增E类 - Critical Synchronization & Emergent Rhythm (6个方向)
 
 ---
 
@@ -13,11 +15,19 @@
 
 | 优先级 | 任务 | 目标 |
 |--------|------|------|
-| P0 | **D4 Semantic Metric Validation** | 确认001/002指标语义正确，避免基于错metric迭代 |
-| P1 | **D1 Paired-Seed Comparative Harness** | 建立低方差实验框架，让后续比较可信 |
-| P2 | **A1 × A5 2×2因子诊断** | 定位001问题在write/read/semantic哪一层 |
-| P3 | **B6 Recovery Dynamics Metrics** | 确认002 signal是被metric压扁还是真的不存在 |
-| P4 | **C1 Episodic Failure Recall** | 第一个进主线的Hyperbrain候选验证 |
+| P0 | **D4 Semantic Metric Validation** | 确认001/002指标语义正确 (001部分✅, 002待完成) |
+| P0 | **D1 Paired-Seed Comparative Harness** | 建立低方差实验框架 (与D4并行) |
+| P1 | **E1 Critical Coupling Sweep** | 寻找节律起始临界点 (与v19 r/CI/P对接) |
+| P1 | **E3 Density/Percolation Threshold** | 测试percolation→同步→节律阈值 (与v19对接) |
+| P2 | **A1 × A5 2×2因子诊断** | 定位001问题在write/read/semantic哪一层 (D4完成后) |
+| P2 | **B6 Recovery Dynamics Metrics** | 确认002 signal是被metric压扁还是真的不存在 (D4完成后) |
+| P3 | **C1 Episodic Failure Recall** | 第一个进主线的Hyperbrain候选验证 |
+
+**执行顺序调整**:
+1. D4 (继续) + D1 (并行启动) - 现在
+2. E1 + E3 (新增) - D4 001部分完成后立即启动
+3. A1×A5 + B6 - D4全部完成后启动
+4. C1 - D1框架验证后启动
 
 ### 现在最不该做什么
 
@@ -72,9 +82,19 @@
 - D7 Cross-Mechanism Interaction Mapping
 - D8 Automated Negative Control Generation
 
+### E类：临界同步与节律涌现 (新增)
+**核心假设**: 全局节律不是中心命令触发，而是大量局部可激发单元耦合增强后跨越临界点涌现
+
+- E1 Critical Coupling Sweep - 寻找节律起始临界点
+- E2 Pacemaker Emergence vs No-Center - 测试是否需中心节律源
+- E3 Density / Percolation Threshold - 测试percolation阈值假说
+- E4 Hub Knockout After Rhythm Onset - 测试节律是否依赖少数hub
+- E5 Noise-Assisted Synchronization - 测试微噪声是否帮助跨越临界点
+- E6 Phase Reset / Re-entrainment - 测试节律是否可重置再锁相
+
 ---
 
-## Deliverable C: 9个机制家族
+## Deliverable C: 10个机制家族
 
 | 家族 | 成员 | 核心机制 | 依赖 | 优先级 |
 |------|------|----------|------|--------|
@@ -87,6 +107,11 @@
 | **Family 7** Episodic Memory | C1, C3, C7 | 情景记忆与自我评估 | D1/D4 | P1 |
 | **Family 8** Continuity & Identity | C4, C8 | 连续性与身份追踪 | C1有正信号 | P2 |
 | **Family 9** Structured Internal Models | C2, C5, C6 | 规划与假设管理 | 高前置依赖 | P3 |
+| **Family 10** Critical Synchronization | E1-E6 | 临界同步与节律涌现 | Bio-World v19框架 | **P1** |
+
+**Family 10 与v19对接**:
+- E1/E3: 与r (Kuramoto order parameter)、CI (condensation)、P (percolation)直接兼容
+- 短期优先: E1 + E3 (最便宜，phase transition探测)
 
 ---
 
@@ -148,34 +173,61 @@
 | **可否retrospective** | ❌ 否，需新实验 |
 | **可否batch** | ✅ 是 |
 
+### E1 Critical Coupling Sweep (新增)
+
+| 属性 | 内容 |
+|------|------|
+| **核心假设** | 存在"第一声心跳"式的临界点，同步突然涌现 |
+| **最小实验** | 扫描communication_strength/sync_coupling，观察r(t)从低同步区突然跳到高同步区 |
+| **记录指标** | phase-lock onset time, variance collapse, population stability/hazard |
+| **与v19对接** | 直接使用r (Kuramoto order parameter)、CI (condensation)、P (percolation) |
+| **资源建议** | 高并发(48-64核)，参数sweep友好，内存<32GB |
+| **可否retrospective** | ❌ 否，需新实验 |
+| **可否batch** | ✅ 是，参数sweep ideal |
+
+### E3 Density/Percolation Threshold (新增)
+
+| 属性 | 内容 |
+|------|------|
+| **核心假设** | 细胞增多→连接增多→跨越percolation threshold后突然能同步 |
+| **最小实验** | 扫描agent/cell density + 连线概率/耦合半径，观察P先跨threshold，接着r上升，再接节律稳定 |
+| **与v19对接** | 直接使用P (giant component ratio)和r指标 |
+| **资源建议** | 高并发(48-64核)，参数sweep，内存<32GB |
+| **可否retrospective** | ❌ 否，需新实验 |
+| **可否batch** | ✅ 是 |
+
 ---
 
 ## Deliverable E: 1-2周条件式路线图
 
 ```
-Week 1
-├── D4 (P0) → 指标语义验证通过
-│   └── 开启: A1×A5, B6, D1
-├── A1×A5 (P1) → 表明marker salvageable
-│   └── 开启: A2 refinement
-├── B6 (P1) → dynamics metrics能分离
-│   └── 开启: B1, B2
-├── C1 (P1) → 稳定正信号
-│   └── 开启: C3 (与C1并行探索)
-│   └── temporal fragmentation明显 → C4优先级上升
-└── D1 (P0) → 框架验证通过
-    └── 所有后续实验使用paired design
+Week 1 (当前)
+├── D4 (P0) → 001指标语义验证✅, 002待完成
+│   └── 并行开启: D1
+├── D1 (P0) → 框架验证
+│   └── 所有后续实验使用paired design
+├── E1 + E3 (P1) → 临界同步/节律涌现 (D4 001后启动)
+│   └── 与v19 r/CI/P指标直接对接
+│   └── 若发现临界点 → E2/E4/E5/E6进入队列
+└── A1×A5 (P2) → 001诊断 (D4全部完成后)
 
 Week 2 (条件满足时)
-├── A5后續精煉 or A2 (若A1/A5表明read gating成立)
-├── B1/B2 (若B6显示dynamics metrics能分离)
-├── C3 Self-Critique (若C1有稳定正信号)
-└── C4 Continuity Signature (若C1成功，可并行)
+├── A1×A5 (若D4完成) → marker诊断
+│   └── 若salvageable → A2 refinement
+├── B6 (若D4完成) → 002 dynamics验证
+│   └── 若分离 → B1, B2
+├── E1/E3结果分析
+│   └── 若发现临界点 → E2/E4/E5/E6
+│   └── 若无临界点 → Family 10降级
+├── C1 (若D1完成) → Episodic Failure
+│   └── 若正信号 → C3, C4
+└── E4 Hub Knockout (若E1/E3成功)
 
 Kill/Archive条件
 ├── A1×A5全无效 → 001进入ARCHIVE评估
 ├── B6新metrics仍不分离 → 002 KILL确认
-└── C1无法击败random → C1降级，探索其他C类
+├── C1无法击败random → C1降级
+└── E1/E3无临界点 → Family 10暂不扩展(E2/E4/E5/E6暂缓)
 ```
 
 ---
@@ -188,6 +240,7 @@ Kill/Archive条件
 | **B类延后** | B1, B2, B3, B4, B7, B8 | B6验证metrics能分离signal |
 | **C类延后** | C2, C5, C6 | C1有正信号且需要扩展 |
 | **D类延后** | D2, D3, D5, D7, D8 | D1/D4已落地，需要进阶工具 |
+| **E类延后** | E2, E4, E5, E6 | E1/E3发现临界点后扩展 |
 
 ---
 
@@ -198,9 +251,10 @@ Kill/Archive条件
 | 任务类型 | 建议并发 | CPU分配 | 优先级 |
 |----------|----------|---------|--------|
 | 基础设施型(D4, D1验证) | 低(4-8核) | 观测为主 | P0 |
-| A1/A5 sweep | 中高(32-48核) | 批量实验 | P1 |
-| B6 retrospective | 低(8核) | 后处理分析 | P1 |
-| C1 | 中等(16-24核) | 高内存观察 | P1 |
+| E1/E3 sweep | 高(48-64核) | 参数sweep | P1 |
+| A1/A5 sweep | 中高(32-48核) | 批量实验 | P2 |
+| B6 retrospective | 低(8核) | 后处理分析 | P2 |
+| C1 | 中等(16-24核) | 高内存观察 | P3 |
 
 ### 内存保护策略
 
@@ -225,6 +279,8 @@ Kill/Archive条件
 |------|----------|----------|----------|
 | D4 retrospective | 4-8核 | <16GB | ❌ |
 | D1 A/A测试 | 16-32核 | <32GB | ✅ |
+| E1 Critical Coupling | 48-64核 | <32GB | ✅ (ideal sweep) |
+| E3 Percolation | 48-64核 | <32GB | ✅ (ideal sweep) |
 | A1×A5 2×2 | 32-48核 | <48GB | ✅ |
 | B6 analysis | 8核 | <16GB | ⚠️ |
 | C1 | 16-24核 | 24-48GB | ✅ |
@@ -247,4 +303,11 @@ Kill/Archive条件
 
 **一句话目标**: 将Hyperbrain研究从"很多想法+异常结果"收敛为**可执行、可证伪、可调度、可进主线、可快速kill错误方向**的正式研究指令。
 
-**立即开始**: D4 Semantic Metric Validation (retrospective分析现有001/002 logs)
+**立即开始**:
+1. **D4继续**: 完成002部分 (stability→dynamics metrics)
+2. **D1并行**: Paired-Seed框架启动
+3. **准备E1/E3**: 与Bio-World v19对接，准备临界同步实验
+
+**版本更新**:
+- v1.0: 初始版本 (32候选, 9家族)
+- v1.1: 新增E类 (6方向), 调整执行顺序, Family 10加入
