@@ -78,24 +78,32 @@ Why not 1000+ epochs:
 - More training on wrong task = optimizing wrong objective
 - Low expected return for P0-4
 
-### Next: Round 21 - Task Alignment
+### Round 21: Task Alignment ⚠️ PARTIAL
 
-When ready, implement **B (noise prediction training)**:
+**Date**: 2026-03-11  
+**Result**: Task-aligned pilot executed, effect limited
 
-```rust
-// Current (Round 20): Regression
-let pred = unet.forward(&x);
-let loss = mse(&pred, &target);  // Learn to copy
+| Metric | Result | Target | Status |
+|--------|--------|--------|--------|
+| Noise loss reduction | 7.9% | > 30% | ⚠️ WEAK |
+| Denoising improvement | stagnant | > 0.01 | ⚠️ STAGNANT |
+| Gradient activity | active | > 0.01 | ✅ PASS |
 
-// Round 21: Noise prediction
-let noise_pred = unet.forward(&x_t, t, class);
-let loss = mse(&noise_pred, &noise);  // Learn to denoise
-```
+**Implementation**:
+- Timestep sinusoidal embedding
+- Noise prediction objective
+- Forward diffusion q(x_t | x_0)
 
-**Success criteria**:
-- Training loss on noise prediction decreases
-- Single-step denoising quality improves
-- Then: Re-run P0-4 with task-aligned model
+**Analysis**:
+- ✅ Task alignment: Implemented correctly
+- ⚠️ Effect magnitude: Below expectation
+- Possible causes:
+  1. Insufficient training (200 epochs)
+  2. Learning rate too high/low
+  3. Architecture needs refinement
+  4. Single-step denoising metric may be too noisy
+
+**Decision**: Further investigation needed
 
 ---
 
