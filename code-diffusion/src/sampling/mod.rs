@@ -2,8 +2,9 @@ use crate::data::{EditDNA, PatchCategory};
 use crate::diffusion::Diffusion;
 use crate::models::UNet;
 use ndarray::{Array1, Array3};
-use rand::distributions::{Distribution, StandardNormal};
+use rand::distributions::Distribution;
 use rand::thread_rng;
+use rand_distr::StandardNormal;
 
 /// Generator for Code-DNA samples
 pub struct CodeDNAGenerator {
@@ -59,8 +60,8 @@ impl CodeDNAGenerator {
         // Convert tensors back to EditDNA
         (0..num_samples)
             .map(|i| {
-                let sample = x.slice(ndarray::s![i, .., ..]);
-                EditDNA::from_tensor(&sample.to_owned().insert_axis(ndarray::Axis(0)), condition)
+                let sample: ndarray::Array2<f64> = x.slice(ndarray::s![i, .., ..]).to_owned();
+                EditDNA::from_tensor(&sample, condition)
             })
             .collect()
     }

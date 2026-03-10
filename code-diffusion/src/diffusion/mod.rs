@@ -1,6 +1,7 @@
 use ndarray::{Array, Array1, Array2, Array3, Axis, Ix1, Ix2, Ix3};
-use rand::distributions::{Distribution, StandardNormal};
+use rand::distributions::Distribution;
 use rand::thread_rng;
+use rand_distr::StandardNormal;
 
 pub mod schedule;
 pub use schedule::*;

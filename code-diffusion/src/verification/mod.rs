@@ -66,6 +66,7 @@ impl DNADecoder for PatchDecoder {
                 EditToken::MoveAlloc => patch.push_str("~ let resource = acquire();\n"),
                 EditToken::FreeResource => patch.push_str("+ drop(resource);\n"),
                 EditToken::ReduceRetry => patch.push_str("~ retry_count -= 1;\n"),
+                EditToken::ChangeType => patch.push_str("~ type NewType = OldType;\n"),
                 EditToken::ContextBefore | EditToken::ContextAfter => {}
                 EditToken::Padding => break,
                 EditToken::Unknown => patch.push_str("? unknown\n"),
