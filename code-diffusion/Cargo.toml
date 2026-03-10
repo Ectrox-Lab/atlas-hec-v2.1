@@ -85,6 +85,10 @@ path = "src/bin/round20_full_integration.rs"
 name = "p0_4_rerun"
 path = "src/bin/p0_4_rerun.rs"
 
+[[bin]]
+name = "round21_conditional_pilot"
+path = "src/bin/round21_conditional_pilot.rs"
+
 [profile.release]
 opt-level = 3
 lto = true

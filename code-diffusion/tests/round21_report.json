@@ -1,0 +1,26 @@
+{
+  "config": {
+    "dim": 64,
+    "epochs": 200,
+    "hidden_dim": 128,
+    "learning_rate": 0.005,
+    "time_embed_dim": 32,
+    "timesteps": 100
+  },
+  "hashes": {
+    "final": "3622974cc9a3efc4",
+    "initial": "58713de0a42b9772"
+  },
+  "results": {
+    "denoise_improvement_early": -0.003146657742549676,
+    "denoise_improvement_gain": -0.0035488845741128427,
+    "denoise_improvement_late": -0.006695542316662519,
+    "gradient_norm_avg": 0.4687875551144867,
+    "noise_loss_final": 1.0885806902903215,
+    "noise_loss_initial": 1.182053646162351,
+    "noise_loss_reduction_pct": 7.907674594592075,
+    "params_changed": true
+  },
+  "round": 21,
+  "status": "PARTIAL"
+}

@@ -4,11 +4,13 @@ pub mod layers;
 pub mod unet_real;
 pub mod realunet_gradient;
 pub mod realunet_full;
+pub mod realunet_conditional;
 
 pub use layers::*;
 pub use unet_real::{RealUNet, ParamStats};
 pub use realunet_gradient::{RealUNetGradientPilot, InputProjGradient};
 pub use realunet_full::{RealUNetFull, FullGradient};
+pub use realunet_conditional::{RealUNetConditional, ConditionalGradient};
 
 /// UNet model configuration
 #[derive(Debug, Clone)]
