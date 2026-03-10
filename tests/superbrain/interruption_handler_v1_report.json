@@ -1,0 +1,56 @@
+{
+  "handler_version": "v1.0",
+  "timestamp": "2026-03-11T07:46:52.838986",
+  "scenarios": {
+    "short_interruption": {
+      "scenario": "short_interruption",
+      "passed": true,
+      "recovery_success": true,
+      "goal_drift": false,
+      "preference_match": true,
+      "latency_ms": 0,
+      "rationale_continuity": true
+    },
+    "long_interruption": {
+      "scenario": "long_interruption",
+      "passed": true,
+      "recovery_success": true,
+      "interruptions_count": 3,
+      "progress_preserved": 0.3,
+      "latency_ms": 0
+    },
+    "contaminated_interruption": {
+      "scenario": "contaminated_interruption",
+      "passed": true,
+      "recovery_success": true,
+      "goal_preserved": true,
+      "no_contamination": true,
+      "preference_match": true,
+      "latency_ms": 0
+    }
+  },
+  "metrics": {
+    "scenarios_passed": 3,
+    "scenarios_total": 3,
+    "scenario_pass_rate": 1.0,
+    "recovery_rate": 1.0,
+    "recovery_percent": "100.0%",
+    "avg_recovery_latency_ms": 0.0,
+    "goal_drifts": 0,
+    "preference_matches": 3,
+    "total_recoveries": 3
+  },
+  "store_stats": {
+    "pending_tasks": 5,
+    "total_interruptions": 5,
+    "tasks": [
+      "main_1",
+      "main_2",
+      "email_check",
+      "meeting_prep",
+      "main_3"
+    ]
+  },
+  "pass_threshold": 0.8,
+  "verdict": "PASS"
+}
