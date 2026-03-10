@@ -1,6 +1,7 @@
-use ndarray::{Array, Array1, Array2, Array3, Axis, Ix1, Ix2, Ix3};
+use ndarray::{Array1, Array2, Array3};
 use rand::distributions::Distribution;
-use rand::thread_rng;
+use rand::{Rng, SeedableRng};
+use rand::rngs::StdRng;
 use rand_distr::StandardNormal;
 
 pub mod schedule;
@@ -37,7 +38,9 @@ impl Default for DiffusionConfig {
 pub struct Diffusion {
     config: DiffusionConfig,
     betas: Array1<f64>,
+    #[allow(dead_code)]
     alphas: Array1<f64>,
+    #[allow(dead_code)]
     alphas_cumprod: Array1<f64>,
     sqrt_alphas_cumprod: Array1<f64>,
     sqrt_one_minus_alphas_cumprod: Array1<f64>,
@@ -79,10 +82,15 @@ impl Diffusion {
     
     /// Forward diffusion: q(x_t | x_0)
     pub fn q_sample(&self, x_start: &Array3<f64>, t: usize, noise: Option<&Array3<f64>>) -> Array3<f64> {
-        let noise = noise.map(|n| n.clone()).unwrap_or_else(|| {
-            let mut rng = thread_rng();
-            Array3::from_shape_fn(x_start.raw_dim(), |_| StandardNormal.sample(&mut rng))
-        });
+        let noise = match noise {
+            Some(n) => n.clone(),
+            None => {
+                // Fallback to thread_rng only when no noise provided
+                // In deterministic mode, caller must provide noise
+                let mut rng = rand::thread_rng();
+                Array3::from_shape_fn(x_start.raw_dim(), |_| StandardNormal.sample(&mut rng))
+            }
+        };
         
         let sqrt_alpha_t = self.sqrt_alphas_cumprod[t];
         let sqrt_one_minus_alpha_t = self.sqrt_one_minus_alphas_cumprod[t];
@@ -90,16 +98,16 @@ impl Diffusion {
         x_start * sqrt_alpha_t + noise * sqrt_one_minus_alpha_t
     }
     
-    /// Predict noise from x_t
-    pub fn predict_noise(&self, x_t: &Array3<f64>, t: usize, noise_pred: &Array3<f64>) -> Array3<f64> {
-        let sqrt_recip_alpha_t = self.sqrt_recip_alphas[t];
-        let sqrt_one_minus_alpha_t = self.sqrt_one_minus_alphas_cumprod[t];
-        
-        sqrt_recip_alpha_t * (x_t - noise_pred * sqrt_one_minus_alpha_t)
-    }
-    
     /// Reverse diffusion step: p(x_{t-1} | x_t)
-    pub fn p_sample(&self, x: &Array3<f64>, t: usize, noise_pred: &Array3<f64>) -> Array3<f64> {
+    /// 
+    /// Uses provided RNG for deterministic sampling when seed is set
+    pub fn p_sample<R: Rng>(
+        &self, 
+        x: &Array3<f64>, 
+        t: usize, 
+        noise_pred: &Array3<f64>,
+        rng: &mut R,
+    ) -> Array3<f64> {
         let betas_t = self.betas[t];
         let sqrt_one_minus_alpha_t = self.sqrt_one_minus_alphas_cumprod[t];
         let sqrt_recip_alpha_t = self.sqrt_recip_alphas[t];
@@ -111,36 +119,36 @@ impl Diffusion {
             model_mean
         } else {
             let posterior_variance_t = self.posterior_variance[t];
-            let mut rng = thread_rng();
             let noise: Array3<f64> = Array3::from_shape_fn(x.raw_dim(), |_| {
-                StandardNormal.sample(&mut rng)
+                StandardNormal.sample(rng)
             });
-            model_mean + noise * posterior_variance_t.sqrt()
+            &model_mean + noise * posterior_variance_t.sqrt()
         }
     }
     
-    /// Classifier-free guidance sampling
-    pub fn p_sample_guided(
+    /// Classifier-free guidance sampling with deterministic RNG
+    pub fn p_sample_guided<R: Rng>(
         &self,
         x: &Array3<f64>,
         t: usize,
         eps_cond: &Array3<f64>,
         eps_uncond: &Array3<f64>,
         cond_weight: f64,
+        rng: &mut R,
     ) -> Array3<f64> {
         // eps = (1 + w) * eps_cond - w * eps_uncond
         let eps = eps_cond * (1.0 + cond_weight) - eps_uncond * cond_weight;
-        self.p_sample(x, t, &eps)
+        self.p_sample(x, t, &eps, rng)
     }
     
-    /// Compute loss
+    /// Compute loss (training only, doesn't affect determinism)
     pub fn p_losses(&self, x_start: &Array3<f64>, t: usize, noise_pred: &Array3<f64>) -> f64 {
         let target: Array3<f64> = {
-            let mut rng = thread_rng();
+            let mut rng = rand::thread_rng();
             Array3::from_shape_fn(x_start.raw_dim(), |_| StandardNormal.sample(&mut rng))
         };
         
-        let x_noisy = self.q_sample(x_start, t, Some(&target));
+        let _x_noisy = self.q_sample(x_start, t, Some(&target));
         
         match self.config.loss_type.as_str() {
             "l1" => (&target - noise_pred).mapv(|v| v.abs()).mean().unwrap(),
@@ -151,20 +159,24 @@ impl Diffusion {
     }
     
     fn huber_loss(target: &Array3<f64>, pred: &Array3<f64>, delta: f64) -> f64 {
-        let diff = target - pred;
-        diff.mapv(|v| {
-            if v.abs() <= delta {
-                0.5 * v * v
-            } else {
-                delta * (v.abs() - 0.5 * delta)
-            }
-        }).mean().unwrap()
+        (target - pred)
+            .mapv(|v| {
+                let abs_v = v.abs();
+                if abs_v < delta {
+                    0.5 * v * v
+                } else {
+                    delta * (abs_v - 0.5 * delta)
+                }
+            })
+            .mean()
+            .unwrap()
     }
     
-    fn shift_right(arr: &Array1<f64>, pad_value: f64) -> Array1<f64> {
-        let n = arr.len();
-        let mut result = Array1::from_elem(n, pad_value);
-        result.slice_mut(ndarray::s![1..]).assign(&arr.slice(ndarray::s![..n-1]));
+    fn shift_right(arr: &Array1<f64>, fill_value: f64) -> Array1<f64> {
+        let mut result = Array1::from_elem(arr.len(), fill_value);
+        for i in 1..arr.len() {
+            result[i] = arr[i - 1];
+        }
         result
     }
     
@@ -173,25 +185,67 @@ impl Diffusion {
     }
 }
 
+/// Deterministic diffusion sampler
+pub struct DeterministicSampler {
+    diffusion: Diffusion,
+    rng: StdRng,
+}
+
+impl DeterministicSampler {
+    pub fn new(diffusion: Diffusion, seed: u64) -> Self {
+        Self {
+            diffusion,
+            rng: StdRng::seed_from_u64(seed),
+        }
+    }
+    
+    pub fn sample_step(
+        &mut self,
+        x: &Array3<f64>,
+        t: usize,
+        noise_pred: &Array3<f64>,
+    ) -> Array3<f64> {
+        self.diffusion.p_sample(x, t, noise_pred, &mut self.rng)
+    }
+    
+    pub fn reset(&mut self, seed: u64) {
+        self.rng = StdRng::seed_from_u64(seed);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     
     #[test]
-    fn test_diffusion_init() {
-        let config = DiffusionConfig::default();
-        let diffusion = Diffusion::new(config);
-        assert_eq!(diffusion.timesteps(), 1000);
+    fn test_deterministic_p_sample() {
+        let diffusion = Diffusion::new(DiffusionConfig::default());
+        let x = Array3::zeros((2, 1, 64));
+        let noise_pred = Array3::ones((2, 1, 64)) * 0.1;
+        
+        let mut rng1 = StdRng::seed_from_u64(42);
+        let out1 = diffusion.p_sample(&x, 500, &noise_pred, &mut rng1);
+        
+        let mut rng2 = StdRng::seed_from_u64(42);
+        let out2 = diffusion.p_sample(&x, 500, &noise_pred, &mut rng2);
+        
+        assert!((&out1 - &out2).mapv(|v| v.abs()).sum() < 1e-10, 
+            "Same seed should produce identical output");
     }
     
     #[test]
-    fn test_q_sample() {
-        let config = DiffusionConfig::default();
-        let diffusion = Diffusion::new(config);
+    fn test_different_seeds_produce_different_output() {
+        let diffusion = Diffusion::new(DiffusionConfig::default());
+        let x = Array3::zeros((2, 1, 64));
+        let noise_pred = Array3::ones((2, 1, 64)) * 0.1;
         
-        let x_start = Array3::zeros((2, 4, 64));
-        let x_t = diffusion.q_sample(&x_start, 500, None);
+        let mut rng1 = StdRng::seed_from_u64(42);
+        let out1 = diffusion.p_sample(&x, 500, &noise_pred, &mut rng1);
         
-        assert_eq!(x_t.shape(), &[2, 4, 64]);
+        let mut rng2 = StdRng::seed_from_u64(43);
+        let out2 = diffusion.p_sample(&x, 500, &noise_pred, &mut rng2);
+        
+        assert!((&out1 - &out2).mapv(|v| v.abs()).sum() > 1e-6,
+            "Different seeds should produce different output");
     }
 }

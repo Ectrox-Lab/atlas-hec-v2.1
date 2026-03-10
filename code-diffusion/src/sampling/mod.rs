@@ -3,7 +3,7 @@ use crate::diffusion::Diffusion;
 use crate::models::RealUNet;
 use ndarray::{Array1, Array3};
 use rand::distributions::Distribution;
-use rand::{Rng, SeedableRng};
+use rand::{SeedableRng};
 use rand::rngs::StdRng;
 use rand_distr::StandardNormal;
 
@@ -19,15 +19,6 @@ impl CodeDNAGenerator {
     }
     
     /// Generate samples with classifier-free guidance
-    /// 
-    /// Args:
-    ///   condition: Patch category condition
-    ///   num_samples: Number of samples to generate
-    ///   cond_weight: Guidance scale (1.0 = no guidance, higher = stronger condition)
-    ///   seed: Optional random seed for reproducibility
-    /// 
-    /// Returns:
-    ///   Generated EditDNA samples
     pub fn generate(
         &self,
         condition: PatchCategory,
@@ -38,6 +29,11 @@ impl CodeDNAGenerator {
     }
     
     /// Generate with explicit seed for P0-4 reproducibility testing
+    /// 
+    /// Full deterministic chain:
+    /// 1. Initial noise from seeded RNG
+    /// 2. Each reverse step uses the same seeded RNG for posterior noise
+    /// 3. Output is 100% reproducible given same seed
     pub fn generate_with_seed(
         &self,
         condition: PatchCategory,
@@ -60,16 +56,16 @@ impl CodeDNAGenerator {
         // Class tensor
         let classes = Array1::from_elem(num_samples, condition as usize as f64);
         
-        // Reverse diffusion process
+        // Reverse diffusion process with DETERMINISTIC RNG
         for t in (0..timesteps).rev() {
             let t_tensor = Array1::from_elem(num_samples, t as f64);
             
             if cond_weight > 1.0 {
-                // Classifier-free guidance
-                x = self.p_sample_guided(&x, &t_tensor, &classes, t, cond_weight);
+                // Classifier-free guidance with seeded RNG
+                x = self.p_sample_guided(&x, &t_tensor, &classes, t, cond_weight, &mut rng);
             } else {
-                // Unconditional sampling
-                x = self.p_sample(&x, &t_tensor, t);
+                // Unconditional sampling with seeded RNG
+                x = self.p_sample(&x, &t_tensor, t, &mut rng);
             }
         }
         
@@ -82,22 +78,31 @@ impl CodeDNAGenerator {
             .collect()
     }
     
-    fn p_sample(&self, x: &Array3<f64>, t: &Array1<f64>, t_index: usize) -> Array3<f64> {
+    /// Deterministic p_sample using provided RNG
+    fn p_sample<R: rand::Rng>(
+        &self, 
+        x: &Array3<f64>, 
+        t: &Array1<f64>, 
+        t_index: usize,
+        rng: &mut R,
+    ) -> Array3<f64> {
         // Predict noise using REAL model
         let classes = Array1::zeros(x.shape()[0]);
         let noise_pred = self.unet.forward(x, t, &classes);
         
-        // Apply reverse diffusion
-        self.diffusion.p_sample(x, t_index, &noise_pred)
+        // Apply reverse diffusion with DETERMINISTIC RNG
+        self.diffusion.p_sample(x, t_index, &noise_pred, rng)
     }
     
-    fn p_sample_guided(
+    /// Deterministic guided sampling using provided RNG
+    fn p_sample_guided<R: rand::Rng>(
         &self,
         x: &Array3<f64>,
         t: &Array1<f64>,
         classes: &Array1<f64>,
         t_index: usize,
         cond_weight: f64,
+        rng: &mut R,
     ) -> Array3<f64> {
         let batch_size = x.shape()[0];
         
@@ -111,8 +116,8 @@ impl CodeDNAGenerator {
         // Classifier-free guidance: eps = (1+w)*eps_cond - w*eps_uncond
         let eps = &eps_cond * (1.0 + cond_weight) - &eps_uncond * cond_weight;
         
-        // Apply reverse diffusion
-        self.diffusion.p_sample(x, t_index, &eps)
+        // Apply reverse diffusion with DETERMINISTIC RNG
+        self.diffusion.p_sample(x, t_index, &eps, rng)
     }
 }
 
@@ -163,5 +168,36 @@ mod tests {
         
         let samples = generator.generate(PatchCategory::BugFix, 5, 1.0);
         assert_eq!(samples.len(), 5);
+    }
+    
+    #[test]
+    fn test_deterministic_generation() {
+        let diffusion = Diffusion::new(DiffusionConfig::default());
+        let unet = RealUNet::new(64, 128, 64, 8);
+        let generator = CodeDNAGenerator::new(diffusion, unet);
+        
+        // Same seed should produce identical outputs
+        let samples1 = generator.generate_with_seed(PatchCategory::BugFix, 5, 2.0, Some(42));
+        let samples2 = generator.generate_with_seed(PatchCategory::BugFix, 5, 2.0, Some(42));
+        
+        assert_eq!(samples1.len(), samples2.len());
+        for (s1, s2) in samples1.iter().zip(samples2.iter()) {
+            assert_eq!(s1.tokens, s2.tokens, "Same seed should produce identical tokens");
+        }
+    }
+    
+    #[test]
+    fn test_different_seeds_produce_different_results() {
+        let diffusion = Diffusion::new(DiffusionConfig::default());
+        let unet = RealUNet::new(64, 128, 64, 8);
+        let generator = CodeDNAGenerator::new(diffusion, unet);
+        
+        // Different seeds should produce different outputs
+        let samples1 = generator.generate_with_seed(PatchCategory::BugFix, 5, 2.0, Some(42));
+        let samples2 = generator.generate_with_seed(PatchCategory::BugFix, 5, 2.0, Some(43));
+        
+        let all_same: bool = samples1.iter().zip(samples2.iter())
+            .all(|(s1, s2)| s1.tokens == s2.tokens);
+        assert!(!all_same, "Different seeds should produce different results");
     }
 }
