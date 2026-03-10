@@ -74,21 +74,34 @@
 
 ## Pending Work
 
-### P0-4 Revalidation 🟢 READY
+### P0-4 Revalidation ⚠️ PARTIAL
 
-**Prerequisites**: ✅ ALL COMPLETE
-- Round 20 gradient learning verified
-- Full RealUNet backprop implemented
-- Deterministic reload confirmed
+**Date**: 2026-03-11  
+**Result**: Post-R20 divergence 0.34% (< 5% threshold)
 
-**When to Run**: Now ready
+| Metric | Result | Target | Status |
+|--------|--------|--------|--------|
+| JS divergence | 0.34% | > 5% | ❌ FAIL |
+| Gradient training | ✅ Verified | N/A | ✅ PASS |
+| Generation quality | Minimal diff | Significant | ❌ FAIL |
 
-**Expected Outcome**:
-- JS divergence > 5% (vs old 0.88%)
-- Win rate > 50% (vs old 0%)
-- Reload determinism maintained
+**Analysis**:
+- ✅ Gradient mechanism: Working (R20: 13.8% loss reduction)
+- ❌ System-level effect: Insufficient for generation task
 
-**If Successful**: Tier 3 (Task Effective) can be marked PASS
+**Root Cause Hypothesis**:
+1. Training task (identity regression) ≠ generation task
+2. 200 epochs insufficient for diffusion quality
+3. Architecture needs conditioning (timestep, class)
+
+**Next Options**:
+| Option | Action | Effort | Risk |
+|--------|--------|--------|------|
+| A | Increase training (1000+ epochs) | 2-4 hours | May not solve task mismatch |
+| B | Add diffusion conditioning | 1 day | Architecture change |
+| C | Document as mechanism proof | 30 min | Accept limitation |
+
+**Current Status**: Tier 3 remains **NOT YET PROVEN** at system level
 
 ---
 
