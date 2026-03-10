@@ -93,50 +93,67 @@ Missing: chain rule through frozen layers, ReLU derivatives, proper gradient flo
 
 **Evidence**: ROUND18_PILOT_REPORT.md
 
+### Round 19: Backprop Implementation ✅ COMPLETE
+
+**Date**: 2026-03-11  
+**Status**: ✅ **PASS**
+
+**Achievement**: Complete gradient-connected learning in minimal slice
+
+| Check | Result | Evidence |
+|-------|--------|----------|
+| Loss reduction | ✅ PASS | 62.4% (0.169 → 0.063) |
+| Gradient active | ✅ PASS | Avg norm 0.129 |
+| Frozen unchanged | ✅ PASS | Hash identical |
+| Trainable changed | ✅ PASS | Hash different |
+| Reload deterministic | ✅ PASS | Bitwise identical |
+
+**Implementation**: 
+- Two-layer network: input → Linear → ReLU → Linear → output
+- Complete chain rule through ReLU derivative
+- Layer 1 (trainable): gradient via dL/dy @ w2.T * I(z1>0)
+- Layer 2 (frozen): no update
+
+**Evidence**: tests/round19_report.json
+
 ---
 
 ## Pending Work
 
-### Round 19: RealUNet Backprop Implementation (NOT STARTED)
+### Round 20: RealUNet Full Integration (NOT STARTED)
 
-**Goal**: Implement complete backpropagation for minimal RealUNet slice
+**Goal**: Scale Round 19 mechanism to full RealUNet architecture
 
-**Scope** (strictly limited):
-- [ ] Implement full chain rule: output → hidden → input_proj
-- [ ] Add ReLU derivative handling
-- [ ] Target: ONE gradient-connected path only
-- [ ] Verify: loss decreases with gradient (not perturbation)
+**Scope**:
+- [ ] Replace RealUNetGradientPilot with full RealUNet backprop
+- [ ] Handle 4-layer architecture (input → hidden1 → hidden2 → output)
+- [ ] Integrate with diffusion timestep conditioning
+- [ ] Verify: loss decreases on actual diffusion task
 
 **Explicitly Out of Scope**:
-- Multi-layer simultaneous training
-- Full P0-4 revalidation
-- System-wide task effectiveness claims
-- Adam/momentum/advanced optimizers
+- P0-4 revalidation (deferred until full integration proven)
+- Multi-condition training
+- Production-quality hyperparameters
 
 **Success Criteria**:
 ```
-1. Loss decreases 50%+ from baseline
-2. Gradient norm correlates with update direction
-3. Frozen layers remain unchanged
-4. Reload deterministic
+1. RealUNet shows gradient-connected loss decrease
+2. All layers respect freeze/trainable boundaries
+3. Checkpoint/reload functionality preserved
+4. Deterministic sampling maintained
 ```
 
-**Failure Mode**:
-- Document specific numerical issue
-- Do NOT extend scope
-- Do NOT claim partial learning
-
-### P0-4 Revalidation (BLOCKED)
+### P0-4 Revalidation (BLOCKED → Round 20)
 
 **Prerequisites**: 
-1. Round 19 complete and successful (full backprop)
-2. Gradient learning verified in RealUNet slice
+1. Round 20 complete and successful (full RealUNet backprop)
+2. Gradient learning verified on actual diffusion task
 
-**When to Run**: Only after Round 19 proves gradient-connected learning
+**When to Run**: Only after Round 20 proves full integration
 
-**Expected Outcome** (if Round 19 succeeds):
-- JS divergence > 5%
-- Win rate > 50%
+**Expected Outcome** (if Round 20 succeeds):
+- JS divergence > 5% (vs current 0.88%)
+- Win rate > 50% (vs current 0%)
 - Reload determinism maintained
 
 ---
