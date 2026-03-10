@@ -37,6 +37,16 @@
 - **状态**: D4.1/D4.2完成, 等待D4.3-D4.5
 - **Kill条件**: 若指标语义验证失败, 暂停001/002基于这些指标的所有结论
 
+### P0: D1 Paired-Seed Comparative Harness [PENDING-可并行]
+- [ ] **D1.1** 设计paired-seed实验框架
+- [ ] **D1.2** 实施A/A测试 (验证无偏差)
+- [ ] **D1.3** 计算variance reduction ratio
+- [ ] **D1.4** 撰写D1验证报告
+- **资源**: 16-32核, 适合sweep
+- **状态**: 可与D4并行启动
+- **时限**: 48小时
+- **Kill条件**: 若配对设计无增益或有偏差, 直接kill D1
+
 ### P0: D1 Paired-Seed Comparative Harness [PENDING]
 - [ ] **D1.1** 设计paired-seed实验框架
 - [ ] **D1.2** 实施A/A测试 (验证无偏差)
@@ -84,7 +94,38 @@
 - **时限**: D4完成后24小时
 - **Kill条件**: 若新metrics对现有和新batch都不分离, 升级"controller no advantage"假设
 
-### P1: C1 Episodic Failure Recall [PENDING]
+### P1: E1 Critical Coupling Sweep [PENDING-高优先级]
+- [ ] **E1.1** 与Bio-World v19对接
+  - 确认r (Kuramoto order parameter)接口
+  - 确认CI (condensation)接口
+  - 确认P (percolation)接口
+- [ ] **E1.2** 设计coupling强度扫描实验
+  - 参数范围: communication_strength / sync_coupling
+  - 观察: r(t)是否从低同步区突然跳到高同步区
+- [ ] **E1.3** 记录关键指标
+  - [ ] Phase-lock onset time
+  - [ ] Variance collapse
+  - [ ] Population stability / hazard
+- [ ] **E1.4** 运行sweep (建议48-64并发)
+- [ ] **E1.5** 分析是否存在临界点
+- **资源**: 48-64核, <32GB内存, 理想sweep任务
+- **前置条件**: D4 001部分完成 (理解指标语义)
+- **与v19对接**: 直接使用S(t)=[CDI, CI, r, N, E]状态向量
+- **发现临界点**: 开启E2/E4/E5/E6; **无临界点**: Family 10降级
+
+### P1: E3 Density/Percolation Threshold [PENDING-高优先级]
+- [ ] **E3.1** 设计density/connectivity扫描
+  - 参数: agent/cell density + 连线概率/耦合半径
+- [ ] **E3.2** 观察三阶段transition
+  - P先跨threshold → r上升 → 节律稳定
+- [ ] **E3.3** 与E1结果对比
+  - 是否同一临界机制?
+- [ ] **E3.4** 运行sweep
+- **资源**: 48-64核, <32GB内存
+- **前置条件**: 与E1并行或先后
+- **与v19对接**: 使用P (giant component ratio)
+
+### P3: C1 Episodic Failure Recall [PENDING]
 - [ ] **C1.1** 设计实验环境
   - Repeated task with failure modes
   - Retrievable failure memory
@@ -129,6 +170,18 @@
 - [ ] **C4** Continuity Signature / Identity Trace
 - **触发条件**: C1显示agent行为有明显时间碎片化
 - **优先级**: 可提升, 但不抢C1短期优先
+
+#### 若 E1/E3 发现临界点 [CONDITIONAL]
+- [ ] **E2** Pacemaker Emergence vs No-Center
+  - 测试: 中心节律源 vs 自发节律 vs 多seeds
+- [ ] **E4** Hub Knockout After Rhythm Onset
+  - 测试: 节律形成后移除top 5% hub, 观察是否崩溃
+- [ ] **E5** Noise-Assisted Synchronization
+  - 测试: 微噪声是否帮助跨越临界点
+- [ ] **E6** Phase Reset / Re-entrainment
+  - 测试: 节律是否可重置、可再锁相
+- **触发条件**: E1/E3明确发现percolation/sync临界点
+- **若E1/E3无临界点**: E2/E4/E5/E6暂缓, Family 10降级
 
 ---
 
@@ -195,22 +248,31 @@
 ## 📊 任务状态图
 
 ```
-[P0] D4 ─────────────────────────────┐
-     (retrospective)                 │
-                                      ▼
-[P0] D1 ────────────────────────────┬┴──┐
-     (framework)                    │   │
-                                     ▼   ▼
-[P1] A1×A5 ────────────────────────┬┐  │
-     (factorial)                   ││  │
-                                    ▼│  ▼
-[P1] B6 ──────────────────────────┬┴┘  │
-     (metrics)                    │    │
-                                   ▼    ▼
-[P1] C1 ──────────────────────────┴────┘
-     (episodic memory)
+[P0] D4 (001✅, 002 ongoing) ────────┬──┐
+     (metrics)                      │  │
+                                     ▼  │
+[P0] D1 ────────────────────────────┘  │
+     (framework)                        │
+                                        ▼
+[P1] E1 + E3 ─────────────────────┬─────┘
+     (critical sync)               │
+                                   ├── 若发现临界点 ─→ E2, E4, E5, E6
+                                   └── 若无临界点 ───→ Family 10降级
+                                        │
+                                        ▼
+[P2] A1×A5 ──────────────────────┬┐
+     (factorial)                 ││
+                                  ▼│
+[P2] B6 ───────────────────────┬┴┘
+     (metrics)                 │
+                                ▼
+[P3] C1 ──────────────────────┬┘
+     (episodic memory)        │
+                               ├── ✓ → C3, C4
+                               └── ✗ → 降级
 
 分支:
+E1/E3 ✓ → E2, E4, E5, E6
 A1×A5 ✓ → A2, A5-refined
 B6 ✓ → B1, B2
 C1 ✓ → C3, C4
