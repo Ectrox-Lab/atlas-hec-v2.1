@@ -37,20 +37,35 @@
 - **状态**: D4.1/D4.2完成, 等待D4.3-D4.5
 - **Kill条件**: 若指标语义验证失败, 暂停001/002基于这些指标的所有结论
 
-### P0: D1 Paired-Seed Comparative Harness [IN-PROGRESS-已启动]
+### P0: D1 Paired-Seed Comparative Harness [COMPLETE] ✅
 - [x] **D1.1** 设计paired-seed实验框架 [DONE]
-- [ ] **D1.2** 实施A/A测试 (验证无偏差) [IN-PROGRESS]
-  - 目标: 相同种子, 相同条件, 验证结果一致性
-  - 预期: variance应接近0
-- [ ] **D1.3** 计算variance reduction ratio [PENDING-D1.2后]
-  - 对比: paired-seed vs independent-seed
-  - 目标: reduction ratio > 30%
-- [ ] **D1.4** 撰写D1验证报告 [PENDING]
+- [x] **D1.2** 实施A/A测试 (验证无偏差) [DONE]
+  - 结果: PASS ✓
+  - Independent variance: 0.019578
+  - Paired variance: 0.003898
+- [x] **D1.3** 计算variance reduction ratio [DONE]
+  - 结果: **80.1%** (>30%阈值)
+- [x] **D1.4** 撰写D1验证报告 [DONE]
+  - 结论: Framework validated and operational
 - **资源**: 16-32核, 适合sweep
-- **状态**: 🟢 **IN-PROGRESS - 与D4并行**
-- **开始时间**: 2026-03-10
-- **时限**: 48小时
-- **Kill条件**: 若配对设计无增益或有偏差, 直接kill D1
+- **状态**: ✅ **COMPLETE** 
+- **完成时间**: 2026-03-10
+- **执行**: `cargo run --bin d1_runner`
+- **后续可用**: A1×A5, E1/E3, C1
+
+### 当前执行状态更新
+```
+[COMPLETE] D1 ✅        - 基础设施就绪, 方差减少80.1%
+[IN-PROGRESS] D4 🟡     - 001完成, 002 ongoing  
+[READY] E1/E3 ⏸️        - 等D4 002收尾后大跑
+[WAITING] A1×A5/B6 ⏸️   - 等D4全部完成
+```
+
+### 今日8小时执行清单
+- [x] **Hour 0-1**: 启动D1, 完成A/A测试 ✅
+- [ ] **Hour 1-4**: 继续D4.3-D4.5 (002 dynamics metrics)
+- [ ] **Hour 4-6**: E1/E3接口准备和脚手架
+- [ ] **Hour 6-8**: D4收尾, 准备E1/E3大规模sweep
 
 ### 今日执行顺序 (已确认)
 1. **D1** (启动) - 基础设施, 低风险高杠杆
