@@ -89,6 +89,10 @@ path = "src/bin/p0_4_rerun.rs"
 name = "round21_conditional_pilot"
 path = "src/bin/round21_conditional_pilot.rs"
 
+[[bin]]
+name = "round21b_falsification_run"
+path = "src/bin/round21b_falsification_run.rs"
+
 [profile.release]
 opt-level = 3
 lto = true

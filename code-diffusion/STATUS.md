@@ -78,32 +78,31 @@ Why not 1000+ epochs:
 - More training on wrong task = optimizing wrong objective
 - Low expected return for P0-4
 
-### Round 21: Task Alignment ⚠️ PARTIAL
+### Round 21-21b: Task Alignment ⚠️ PARTIAL (Bounded)
 
 **Date**: 2026-03-11  
-**Result**: Task-aligned pilot executed, effect limited
+**Result**: Task-aligned objective shows moderate improvement
 
-| Metric | Result | Target | Status |
-|--------|--------|--------|--------|
-| Noise loss reduction | 7.9% | > 30% | ⚠️ WEAK |
-| Denoising improvement | stagnant | > 0.01 | ⚠️ STAGNANT |
-| Gradient activity | active | > 0.01 | ✅ PASS |
+| Round | Epochs | Noise Loss ↓ | Proxy Gain | Verdict |
+|-------|--------|--------------|------------|---------|
+| 21 | 200 | 7.9% | stagnant | Weak |
+| 21b | 1000 | 13.9% | 0.07 | Moderate |
 
-**Implementation**:
-- Timestep sinusoidal embedding
-- Noise prediction objective
-- Forward diffusion q(x_t | x_0)
+**Key Finding**:
+> Extended training (1000 epochs) improves metrics but not dramatically.
+> Architecture/task alignment may need fundamental revision.
 
-**Analysis**:
-- ✅ Task alignment: Implemented correctly
-- ⚠️ Effect magnitude: Below expectation
-- Possible causes:
-  1. Insufficient training (200 epochs)
-  2. Learning rate too high/low
-  3. Architecture needs refinement
-  4. Single-step denoising metric may be too noisy
+**Stop Rules Applied**:
+- ✅ Rule 3: 11.8% at epoch 500 (>10%, continue)
+- ✅ Rule 4: Not triggered
+- ✅ Max 1000 epochs completed
 
-**Decision**: Further investigation needed
+**Interpretation**:
+- ❌ Not "training insufficiency" (would need >30% improvement)
+- ❌ Not "architecture limitation" (would need <10% at 500)
+- ⚠️ "Ambiguous zone" - moderate gains, diminishing returns
+
+**Decision**: Document boundary, do not extend further
 
 ---
 
