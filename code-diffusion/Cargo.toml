@@ -73,6 +73,10 @@ path = "src/bin/round16_gradient_verify.rs"
 name = "round18_gradient_pilot"
 path = "src/bin/round18_gradient_pilot.rs"
 
+[[bin]]
+name = "round19_backprop_minimal"
+path = "src/bin/round19_backprop_minimal.rs"
+
 [profile.release]
 opt-level = 3
 lto = true
