@@ -13,3 +13,7 @@ path = "src/main.rs"
 [[bin]]
 name = "d4_runner"
 path = "src/bin/d4_runner.rs"
+
+[[bin]]
+name = "d1_runner"
+path = "src/bin/d1_runner.rs"

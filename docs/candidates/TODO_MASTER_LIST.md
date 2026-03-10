@@ -37,15 +37,26 @@
 - **状态**: D4.1/D4.2完成, 等待D4.3-D4.5
 - **Kill条件**: 若指标语义验证失败, 暂停001/002基于这些指标的所有结论
 
-### P0: D1 Paired-Seed Comparative Harness [PENDING-可并行]
-- [ ] **D1.1** 设计paired-seed实验框架
-- [ ] **D1.2** 实施A/A测试 (验证无偏差)
-- [ ] **D1.3** 计算variance reduction ratio
-- [ ] **D1.4** 撰写D1验证报告
+### P0: D1 Paired-Seed Comparative Harness [IN-PROGRESS-已启动]
+- [x] **D1.1** 设计paired-seed实验框架 [DONE]
+- [ ] **D1.2** 实施A/A测试 (验证无偏差) [IN-PROGRESS]
+  - 目标: 相同种子, 相同条件, 验证结果一致性
+  - 预期: variance应接近0
+- [ ] **D1.3** 计算variance reduction ratio [PENDING-D1.2后]
+  - 对比: paired-seed vs independent-seed
+  - 目标: reduction ratio > 30%
+- [ ] **D1.4** 撰写D1验证报告 [PENDING]
 - **资源**: 16-32核, 适合sweep
-- **状态**: 可与D4并行启动
+- **状态**: 🟢 **IN-PROGRESS - 与D4并行**
+- **开始时间**: 2026-03-10
 - **时限**: 48小时
 - **Kill条件**: 若配对设计无增益或有偏差, 直接kill D1
+
+### 今日执行顺序 (已确认)
+1. **D1** (启动) - 基础设施, 低风险高杠杆
+2. **D4** (继续) - 完成002部分
+3. **E1/E3** (准备) - 接口+脚手架, 等大sweep时机
+4. **A1×A5/B6** (等待) - 等D4全完成
 
 ### P0: D1 Paired-Seed Comparative Harness [PENDING]
 - [ ] **D1.1** 设计paired-seed实验框架
