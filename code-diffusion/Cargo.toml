@@ -41,6 +41,9 @@ clap = { version = "4.5", features = ["derive"] }
 # Progress bars
 indicatif = "0.17"
 
+# Time
+chrono = "0.4"
+
 [features]
 default = []
 # candle-backend = ["candle-core", "candle-nn"]
@@ -57,6 +60,10 @@ path = "src/bin/train.rs"
 [[bin]]
 name = "sample"
 path = "src/bin/sample.rs"
+
+[[bin]]
+name = "p0_4_verify"
+path = "src/bin/p0_4_verify.rs"
 
 [profile.release]
 opt-level = 3

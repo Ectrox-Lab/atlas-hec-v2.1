@@ -1,19 +1,20 @@
 use crate::data::{EditDNA, PatchCategory};
 use crate::diffusion::Diffusion;
-use crate::models::UNet;
+use crate::models::RealUNet;
 use ndarray::{Array1, Array3};
 use rand::distributions::Distribution;
-use rand::thread_rng;
+use rand::{Rng, SeedableRng};
+use rand::rngs::StdRng;
 use rand_distr::StandardNormal;
 
 /// Generator for Code-DNA samples
 pub struct CodeDNAGenerator {
     diffusion: Diffusion,
-    unet: UNet,
+    unet: RealUNet,
 }
 
 impl CodeDNAGenerator {
-    pub fn new(diffusion: Diffusion, unet: UNet) -> Self {
+    pub fn new(diffusion: Diffusion, unet: RealUNet) -> Self {
         Self { diffusion, unet }
     }
     
@@ -23,6 +24,7 @@ impl CodeDNAGenerator {
     ///   condition: Patch category condition
     ///   num_samples: Number of samples to generate
     ///   cond_weight: Guidance scale (1.0 = no guidance, higher = stronger condition)
+    ///   seed: Optional random seed for reproducibility
     /// 
     /// Returns:
     ///   Generated EditDNA samples
@@ -32,10 +34,24 @@ impl CodeDNAGenerator {
         num_samples: usize,
         cond_weight: f64,
     ) -> Vec<EditDNA> {
+        self.generate_with_seed(condition, num_samples, cond_weight, None)
+    }
+    
+    /// Generate with explicit seed for P0-4 reproducibility testing
+    pub fn generate_with_seed(
+        &self,
+        condition: PatchCategory,
+        num_samples: usize,
+        cond_weight: f64,
+        seed: Option<u64>,
+    ) -> Vec<EditDNA> {
         let timesteps = self.diffusion.timesteps();
-        let mut rng = thread_rng();
+        let mut rng: StdRng = match seed {
+            Some(s) => StdRng::seed_from_u64(s),
+            None => StdRng::from_entropy(),
+        };
         
-        // Start from noise
+        // Start from noise (deterministic if seed provided)
         let mut x: Array3<f64> = Array3::from_shape_fn(
             (num_samples, EditDNA::NUM_CHANNELS, EditDNA::SEQ_LEN),
             |_| StandardNormal.sample(&mut rng),
@@ -67,7 +83,7 @@ impl CodeDNAGenerator {
     }
     
     fn p_sample(&self, x: &Array3<f64>, t: &Array1<f64>, t_index: usize) -> Array3<f64> {
-        // Predict noise
+        // Predict noise using REAL model
         let classes = Array1::zeros(x.shape()[0]);
         let noise_pred = self.unet.forward(x, t, &classes);
         
@@ -85,7 +101,7 @@ impl CodeDNAGenerator {
     ) -> Array3<f64> {
         let batch_size = x.shape()[0];
         
-        // Conditional prediction
+        // Conditional prediction using REAL model
         let eps_cond = self.unet.forward(x, t, classes);
         
         // Unconditional prediction (classes = 0)
@@ -138,12 +154,11 @@ impl BatchGenerator {
 mod tests {
     use super::*;
     use crate::diffusion::DiffusionConfig;
-    use crate::models::UNetConfig;
     
     #[test]
     fn test_generator() {
-        let diffusion = crate::diffusion::Diffusion::new(DiffusionConfig::default());
-        let unet = crate::models::UNet::new(UNetConfig::default());
+        let diffusion = Diffusion::new(DiffusionConfig::default());
+        let unet = RealUNet::new(64, 128, 64, 8);
         let generator = CodeDNAGenerator::new(diffusion, unet);
         
         let samples = generator.generate(PatchCategory::BugFix, 5, 1.0);

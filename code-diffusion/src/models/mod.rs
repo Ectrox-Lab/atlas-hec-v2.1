@@ -1,7 +1,13 @@
 use ndarray::{Array1, Array3};
 
 pub mod layers;
+pub mod unet_real;
 pub use layers::*;
+// Re-export RealUNet and related types
+pub use unet_real::{RealUNet, ParamStats};
+
+// Re-export methods that are used by external modules
+pub use unet_real::RealUNet as RealUNetImpl;
 
 /// UNet model configuration
 #[derive(Debug, Clone)]
