@@ -69,39 +69,74 @@ Quality:    BASELINE ❌ (no improvement over random init)
 
 ---
 
+## Completed Work
+
+### Round 18: Gradient Integration Pilot ✅ COMPLETE
+
+**Date**: 2026-03-11  
+**Status**: Infrastructure ✅ PASS / Learning ❌ FAIL
+
+**Verdict**: 
+> Round 18 verified RealUNet integration infrastructure, but not full learning.
+
+**Infrastructure Verified** (4/6):
+- ✅ Gradient computation (non-zero, but simplified)
+- ✅ Layer freezing (hidden/output unchanged)
+- ✅ Trainable updates (input_proj changes)
+- ✅ Reload determinism (identical re-runs)
+- ❌ Loss decrease (1.4% reduction, not significant)
+- ❌ Task improvement (no quality gain)
+
+**Root Cause**: 
+`backward()` used simplified gradient without full backprop chain. 
+Missing: chain rule through frozen layers, ReLU derivatives, proper gradient flow.
+
+**Evidence**: ROUND18_PILOT_REPORT.md
+
+---
+
 ## Pending Work
 
-### Round 18: Gradient Integration Pilot (NOT STARTED)
+### Round 19: RealUNet Backprop Implementation (NOT STARTED)
 
-**Goal**: Integrate Round 16 gradient mechanism into RealUNet (pilot scale)
+**Goal**: Implement complete backpropagation for minimal RealUNet slice
 
-**Scope** (deliberately limited):
-- [ ] Replace `apply_noise()` with true gradient update for ONE layer only
-- [ ] Verify loss decreases with gradient (not perturbation)
-- [ ] Confirm checkpoint save/load still works
-- [ ] Do NOT require full P0-4 passage yet
+**Scope** (strictly limited):
+- [ ] Implement full chain rule: output → hidden → input_proj
+- [ ] Add ReLU derivative handling
+- [ ] Target: ONE gradient-connected path only
+- [ ] Verify: loss decreases with gradient (not perturbation)
 
 **Explicitly Out of Scope**:
-- Full RealUNet backpropagation (all layers)
-- Re-running complete P0-4 matrix
-- Claiming system-wide learning capability
+- Multi-layer simultaneous training
+- Full P0-4 revalidation
+- System-wide task effectiveness claims
+- Adam/momentum/advanced optimizers
 
-**Success Criteria for Round 18**:
+**Success Criteria**:
 ```
-1. Selected layer shows gradient-driven loss decrease
-2. Parameter updates correlate with gradient direction
-3. No regression in existing checkpoint/reload functionality
+1. Loss decreases 50%+ from baseline
+2. Gradient norm correlates with update direction
+3. Frozen layers remain unchanged
+4. Reload deterministic
 ```
+
+**Failure Mode**:
+- Document specific numerical issue
+- Do NOT extend scope
+- Do NOT claim partial learning
 
 ### P0-4 Revalidation (BLOCKED)
 
-**Prerequisite**: Round 18 complete and successful
+**Prerequisites**: 
+1. Round 19 complete and successful (full backprop)
+2. Gradient learning verified in RealUNet slice
 
-**When to Run**: Only after gradient integration proven at pilot scale
+**When to Run**: Only after Round 19 proves gradient-connected learning
 
-**Expected Outcome** (if mechanism scales):
-- JS divergence > 5% (vs current 0.88%)
-- Win rate > 50% (vs current 0%)
+**Expected Outcome** (if Round 19 succeeds):
+- JS divergence > 5%
+- Win rate > 50%
 - Reload determinism maintained
 
 ---
@@ -147,7 +182,20 @@ Quality:    BASELINE ❌ (no improvement over random init)
 - Gradient mechanism: ✅ VERIFIED in isolation
 - Loss: 1.51 → 0.000069
 - Accuracy: weight 0.069 → 1.998 (target 2.0)
-- **Significance**: Learning is possible, but not yet integrated
+- **Significance**: Learning mechanism exists
+
+### Round 18 (2026-03-11)
+- Infrastructure: ✅ PASS (layer freezing, updates, reload)
+- Learning: ❌ FAIL (simplified gradient, no backprop chain)
+- Loss: 0.402 → 0.397 (1.4% reduction)
+- **Significance**: Integration infrastructure ready, needs full backprop
+
+**Key Separation**:
+```
+Round 16: Mechanism exists (isolated)
+Round 18: Infrastructure works (integrated)
+Round 19: Full backprop needed (not started)
+```
 
 ---
 
@@ -183,18 +231,30 @@ cat ROUND_16_OBJECTIVE.md
 
 ## Sign-off
 
-**Current System**: 
-- P0 Structural MVP: Production-ready for architecture testing
-- Round 16 Proof: Scientifically valid learning mechanism
-- Integration Status: **DELIBERATELY SEPARATED**
+**Current System Status**:
 
-**Next Milestone**: Round 18 (Gradient Integration Pilot)
+| Component | Status | Evidence |
+|-----------|--------|----------|
+| P0 Structural MVP | ✅ PASS | Full pipeline operational |
+| Round 16 Gradient Proof | ✅ PASS | Isolated learning verified |
+| Round 18 Infrastructure | ✅ PASS | Integration layer ready |
+| **Round 19 Backprop** | ⏸️ **NOT STARTED** | Required for RealUNet learning |
+| **P0-4 Revalidation** | ⏸️ **BLOCKED** | Requires Round 19 completion |
 
-**Blocked Until**: Round 18 success
-- System-wide gradient training
-- P0-4 revalidation
-- Production learning claims
+**Key Principle Maintained**:
+> Round 16 proved mechanism exists.  
+> Round 18 proved infrastructure works.  
+> RealUNet full training remains blocked until complete backprop is implemented.
+
+**Next Decision Point**:
+- **Option A**: Implement Round 19 (full backprop) — when ready to commit 2-3 days
+- **Option B**: Maintain current boundary — document as known limitation
+
+**Do Not**:
+- Claim RealUNet can learn (Round 18 failed at this)
+- Extend perturbation-based training to claim learning
+- Re-run P0-4 until Round 19 succeeds
 
 ---
 
-*This document maintains strict separation between "structure exists", "mechanism works", and "system learns". Do not conflate these tiers.*
+*This document maintains strict separation between "structure exists", "mechanism works", "infrastructure ready", and "system learns". Do not conflate these tiers.*
