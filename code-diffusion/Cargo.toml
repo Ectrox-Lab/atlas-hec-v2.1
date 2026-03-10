@@ -69,6 +69,10 @@ path = "src/bin/p0_4_verify.rs"
 name = "round16_gradient_verify"
 path = "src/bin/round16_gradient_verify.rs"
 
+[[bin]]
+name = "round18_gradient_pilot"
+path = "src/bin/round18_gradient_pilot.rs"
+
 [profile.release]
 opt-level = 3
 lto = true
