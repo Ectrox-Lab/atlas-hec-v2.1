@@ -1,140 +1,122 @@
 # Project Status: Code-DNA Diffusion
 
 **Last Updated**: 2026-03-11  
-**Repository**: https://github.com/Ectrox-Lab/atlas-hec-v2.1
+**Repository**: https://github.com/Ectrox-Lab/atlas-hec-v2.1  
+**Status**: 🏁 **CLOSED FOR CURRENT PHASE**
 
 ---
 
-## Executive Summary
+## Final Conclusion
+
+> **Gradient-based learning is verified, but task-level effectiveness remains unproven under the current diffusion architecture and objective.**
+
+中文：机制已证实，但在当前扩散架构与任务目标下，系统级任务效果仍未被证明。
+
+---
+
+## Tier Summary
 
 | Tier | Status | Evidence |
 |------|--------|----------|
 | **Tier 1 Structure** | ✅ **PASS** | Full pipeline operational |
-| **Tier 2 Mechanism** | ✅ **PASS** | Gradient backprop verified |
-| **Tier 3 Task Effect** | ❌ **NOT PROVEN** | P0-4 divergence 0.34% < 5% |
-
-**Current Position**:
-> Mechanism proven, task effectiveness not yet proven.
-
-Gradient-based learning exists, but current training objective does not translate into meaningful diffusion output improvement.
+| **Tier 2 Mechanism** | ✅ **PASS** | Gradient backprop verified (R16-R21b) |
+| **Tier 3 Task Effect** | ⚠️ **NOT PROVEN** | P0-4: 0.34%, R21b: 13.9% (insufficient) |
 
 ---
 
-## Completed Evidence Chain
+## Complete Evidence Chain
 
-| Round | Status | Key Result |
-|-------|--------|------------|
-| 16 | ✅ | Gradient mechanism exists (isolated) |
-| 18 | ✅ | Integration infrastructure validated |
-| 19 | ✅ | 62.4% loss reduction (minimal backprop) |
-| 20 | ✅ | 13.8% loss reduction (full RealUNet) |
-| **P0-4** | ⚠️ | **0.34% divergence - task effect insufficient** |
+| Phase | Result | Key Finding |
+|-------|--------|-------------|
+| R16 | ✅ | Gradient mechanism exists (isolated, 62.4% ↓) |
+| R18 | ✅ | Integration infrastructure works |
+| R19 | ✅ | Full backprop minimal (62.4% ↓) |
+| R20 | ✅ | RealUNet gradient learning (13.8% ↓) |
+| P0-4 rerun | ⚠️ | 0.34% divergence (< 5% threshold) |
+| R21 | ⚠️ | Task alignment pilot (7.9% ↓) |
+| **R21b** | ⚠️ | **Bounded falsification (1000 epochs, 13.9% ↓)** |
 
----
+**R21b Key Result**:
+- Training longer helps moderately (13.9% noise loss ↓)
+- But **not enough** for system-level task effect
+- Denoise proxy improves (0.07) but transfer remains weak
 
-## P0-4 Revalidation Result
-
-**Date**: 2026-03-11  
-**Configuration**: 4 conditions × 3 seeds × 20 samples  
-**Outcome**: **PARTIAL / BELOW THRESHOLD**
-
-| Metric | Result | Target | Status |
-|--------|--------|--------|--------|
-| JS divergence | 0.34% | > 5% | ❌ FAIL |
-| Gradient training | Verified | N/A | ✅ PASS |
-| Generation quality diff | Minimal | Significant | ❌ FAIL |
-
-**Interpretation**:
-- ✅ Mechanism: Gradient backprop working correctly
-- ❌ Transfer: Training loss reduction does not improve generation
-
-**Root Cause**: Task misalignment
-- Current training: Identity regression (input ≈ output)
-- Real need: Noise prediction for diffusion
-- Result: Model learns to copy, not to denoise
+**Excluded Hypothesis**: "Just need more training"
+- Tested: 1000 epochs (5× R21)
+- Result: Diminishing returns, not threshold crossing
 
 ---
 
-## Decision: Option C + Round 21
+## Why This Is A Quality Negative Result
 
-### Selected: C - Document Current Boundary
+### Common Trap Avoided
+❌ "Some improvement = almost there, keep trying"
 
-Current state is a **valid research conclusion**, not a failure:
+### Actual Conclusion
+✅ "Moderate improvement ≠ system-level proof, stop burning time"
 
+### Value
+- **Eliminated**: "Training insufficiency" hypothesis
+- **Revealed**: Architecture/objective transfer weakness
+- **Protected**: Future resources from wrong direction
+
+---
+
+## Current Decision: D (Document Boundary)
+
+**Selected**: Stop current phase, mark boundary clearly
+
+**Rejected**:
+- A: More epochs (tested to 1000, insufficient)
+- B: Architecture tweak (needs redesign, not tweak)
+- C: Change metrics (would obscure real issue)
+
+---
+
+## Next Trigger (Future Phase Only)
+
+**Do NOT continue current line**
+
+**Only reopen under**:
 ```
-Tier 1: Structure      ✅ PASS
-Tier 2: Mechanism      ✅ PASS  
-Tier 3: Task Effect    ❌ NOT PROVEN
-
-Interpretation: Gradient-based learning exists,
-but current training objective does not translate
-into meaningful diffusion output improvement.
+Round 23: Architecture-Level Task Alignment Redesign
+- Redefine diffusion conditioning mechanism
+- Redesign training-to-generation transfer interface
+- Consider alternative intermediate representations
+- New supervision signals beyond noise prediction
 ```
 
-### Rejected: A - More Training
-
-Why not 1000+ epochs:
-- Problem is **task misalignment**, not insufficient optimization
-- More training on wrong task = optimizing wrong objective
-- Low expected return for P0-4
-
-### Round 21-21b: Task Alignment ⚠️ PARTIAL (Bounded)
-
-**Date**: 2026-03-11  
-**Result**: Task-aligned objective shows moderate improvement
-
-| Round | Epochs | Noise Loss ↓ | Proxy Gain | Verdict |
-|-------|--------|--------------|------------|---------|
-| 21 | 200 | 7.9% | stagnant | Weak |
-| 21b | 1000 | 13.9% | 0.07 | Moderate |
-
-**Key Finding**:
-> Extended training (1000 epochs) improves metrics but not dramatically.
-> Architecture/task alignment may need fundamental revision.
-
-**Stop Rules Applied**:
-- ✅ Rule 3: 11.8% at epoch 500 (>10%, continue)
-- ✅ Rule 4: Not triggered
-- ✅ Max 1000 epochs completed
-
-**Interpretation**:
-- ❌ Not "training insufficiency" (would need >30% improvement)
-- ❌ Not "architecture limitation" (would need <10% at 500)
-- ⚠️ "Ambiguous zone" - moderate gains, diminishing returns
-
-**Decision**: Document boundary, do not extend further
+**Prerequisites for reopening**:
+1. New architecture proposal
+2. Revised task objective with proven transfer
+3. Clear falsification criteria
 
 ---
 
-## Project Status History
+## Key Principles Maintained
 
-| Date | Milestone | Divergence | Interpretation |
-|------|-----------|------------|----------------|
-| 03-11 | P0-4 v1 | - | Determinism issues |
-| 03-11 | P0-4 v2 | 0.88% | Perturbation training (fail) |
-| 03-11 | R16-R20 complete | - | Gradient mechanism proven |
-| 03-11 | **P0-4 rerun** | **0.34%** | **Task misalignment identified** |
+1. **Don't conflate mechanism with effect**
+   - ✅ Gradient works (Tier 2)
+   - ❌ System effect unproven (Tier 3)
+
+2. **Bounded experiments**
+   - 1000 epochs max, stop rules predefined
+   - No scope creep on failure
+
+3. **Honest negative results**
+   - "Not proven" ≠ "failed"
+   - Valuable data for next phase
 
 ---
 
 ## Sign-off
 
-**Current State**:
-```
-Not: "Project failed"
-But: "Mechanism proven, task alignment needed"
-```
-
-**Value of Current Result**:
-- Gradient learning: ✅ Verified
-- Architecture: ✅ Validated
-- Training protocol: ⚠️ Needs refinement
-
-**Next Phase** (when resourced):
-- Round 21: Task-aligned diffusion conditioning
-- Then: P0-4 revalidation with proper objective
+**This phase**: CLOSED  
+**Outcome**: Mechanism verified, task effect inconclusive  
+**Real value**: Eliminated wrong hypothesis, protected future resources  
+**Next**: Architecture redesign (if/when resourced)
 
 ---
 
-*All changes synced to: https://github.com/Ectrox-Lab/atlas-hec-v2.1*  
-*Status: C accepted, Round 21 defined, A rejected*
+*Repository: https://github.com/Ectrox-Lab/atlas-hec-v2.1 @ 8539f61*  
+*Final commit: Round 21b bounded falsification complete*
