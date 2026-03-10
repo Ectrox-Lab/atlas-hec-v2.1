@@ -10,11 +10,15 @@
 ## 🎯 当前活跃任务 (Active)
 
 ### P0: D4 Semantic Metric Validation [IN-PROGRESS]
-- [ ] **D4.1** 收集001现有实验logs (coherence/consistency数据)
-- [ ] **D4.2** 拆解aggregate coherence → sub-metrics
-  - [ ] Decision-level vs tick-level variance
-  - [ ] Temporal stability of coherence signal
-  - [ ] Cross-agent coherence correlation
+- [x] **D4.1** 收集001现有实验logs (coherence/consistency数据) ✅
+  - 已生成12个CSV文件 (4 modes × 3 trials)
+  - 包含tick/decision/action/marker_coherence时间序列
+- [x] **D4.2** 拆解aggregate coherence → sub-metrics ✅
+  - [x] Decision-level vs tick-level variance
+  - [x] Temporal stability (trend analysis)
+  - [x] Decision-tick correlation
+  - [x] Signal-to-noise ratio
+  - [x] Coherence-action correlation
 - [ ] **D4.3** 收集002现有实验logs (stability/recovery数据)
 - [ ] **D4.4** 拆解stability → dynamics-aware metrics
   - [ ] Overshoot magnitude
@@ -23,10 +27,14 @@
   - [ ] Smoothness/jerk
   - [ ] Final deviation
 - [ ] **D4.5** 撰写D4验证报告
+  - [x] 001初步发现:
+    - ReadOnly: decision_variance=0, SNR=0 (fixed marker无变化)
+    - Baseline/WriteOnly/Full: decision_variance=1451, SNR=6.36
+    - 所有模式tick_smoothness相同(253)
   - [ ] 判断: 当前指标语义是否可靠?
   - [ ] 若不可靠, 列出受影响的001/002结论
 - **资源**: 4-8核, <16GB内存
-- **时限**: 24小时内完成retrospective分析
+- **状态**: D4.1/D4.2完成, 等待D4.3-D4.5
 - **Kill条件**: 若指标语义验证失败, 暂停001/002基于这些指标的所有结论
 
 ### P0: D1 Paired-Seed Comparative Harness [PENDING]
