@@ -8,8 +8,8 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::Write;
 
-const MAX_TICKS: usize = 1000;
-const N_SEEDS: usize = 1;
+const MAX_TICKS: usize = 3000;
+const N_SEEDS: usize = 5;
 const INITIAL_AGENTS: usize = 100;
 const PASS_THRESHOLD_POP: usize = 20; // 20% of initial
 const PASS_THRESHOLD_COORD: f32 = 0.5;
@@ -226,7 +226,7 @@ impl OpenWorldSimulator {
                     let recent: f32 = agent.memory_l1.iter().rev().take(5).sum();
                     1.0 + (recent / 25.0).min(0.3)
                 } else { 1.0 };
-                agent.energy += 10.0 * bonus;
+                agent.energy += 8.0 * bonus;
             }
             
             // Metabolism
@@ -245,7 +245,7 @@ impl OpenWorldSimulator {
             // L2 lineage bonus reduces reproduction threshold
             let threshold = 40.0 - agent.memory_l2 * 10.0;
             
-            if agent.energy > threshold && fastrand::f32() < 0.008 {
+            if agent.energy > threshold && fastrand::f32() < 0.005 {
                 let mut child = Agent::new(
                     (agent.x + fastrand::f32() * 10.0 - 5.0).clamp(0.0, 100.0),
                     (agent.y + fastrand::f32() * 10.0 - 5.0).clamp(0.0, 100.0),
