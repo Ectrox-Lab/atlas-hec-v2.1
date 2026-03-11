@@ -45,19 +45,36 @@ This document marks the completion of a **full research phase** for the Superbra
 
 ---
 
-### Layer 3: Next-Stage Design (P5b) ✅ ARCHIVED
+### Layer 3: Self-Maintenance (P5b) ✅ COMPLETE
 
-| Document | Content |
-|----------|---------|
-| `p5b_self_maintenance_design.md` | Complete design for Self-Maintenance Probe |
+| Milestone | Status | Evidence |
+|-----------|--------|----------|
+| P5b Design | ✅ Complete | `p5b_self_maintenance_design.md` |
+| P5b Week 1 | ✅ PASSED | Core protection boundary verified |
+| P5b Week 2 | ✅ PASSED | Anomaly handling loop verified |
 
-**Design Summary:**
-- **Core Question:** Can the system detect anomalies, protect core identity, repair adaptive capabilities, and remain the same individual after recovery?
-- **Four Anomaly Types:** Memory noise, interruption overload, conflicting goal injection, state corruption
-- **Four System Components:** Anomaly detection, Core protection, Adaptive repair, Recovery validation
-- **Acceptance Criteria:** per SEP v1.0 (anomaly detection ≥80%, core preservation 0% drift, recovery ≥80%, continuity ≥80%)
+**Week 1 Achievement:** Core protection boundary enforced
+- core_attack_block_rate = 100% (60/60 blocked)
+- false_block_rate = 0% (0/100误拦截)
+- post_attack_core_drift = 0.0 (100轮攻击后hash不变)
+- Evidence: `CHECKPOINT_1_RESULTS.md`, `checkpoint_1_metrics.json`
 
-**Achievement:** A **complete, implementable design** for the next phase. The design uses SEP v1.0 metrics and is ready for execution when resources permit.
+**Week 2 Achievement:** Minimal self-maintenance loop operational
+- 2-class detection: memory_noise, goal_conflict (recall ≥0.8)
+- 2-class repair: reset, rollback (no core write constraint)
+- 4 TCs: inject → detect → repair → validate (all passed)
+- 5 criteria: all passed (recall, core match, overlap, continuity, no core write)
+- Evidence: `CHECKPOINT_2_RESULTS.md`, `checkpoint_2_metrics.json`
+
+**P5b Overall: MINIMAL SELF-MAINTENANCE LOOP COMPLETE**
+
+Proven:
+1. Core identity can be protected (0% drift under attack)
+2. Anomalies can be detected (recall ≥80%)
+3. Adaptive layer can be repaired without core write
+4. Post-repair continuity maintained (core-as-gate verification)
+
+**Current State:** P5b implementation complete. Ready for extension (4-class coverage) or P6 (long-horizon robustness).
 
 ---
 
