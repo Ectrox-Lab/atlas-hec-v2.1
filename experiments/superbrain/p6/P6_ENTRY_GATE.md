@@ -149,17 +149,55 @@ echo "=========================="
 
 ---
 
-## Gate Sign-Off
+## Gate Sign-Off ✅
 
 | Gate | Verified By | Date | Result |
 |------|-------------|------|--------|
-| 1. P5b reproducible | _________ | _________ | ☐ |
-| 2. 1h smoke test | _________ | _________ | ☐ |
-| 3. Stop conditions | _________ | _________ | ☐ |
-| 4. Critical logging | _________ | _________ | ☐ |
+| 1. P5b reproducible | automated | 2026-03-08 | ✅ PASS |
+| 2. 1h smoke test | automated | 2026-03-08 | ✅ PASS |
+| 3. Stop conditions | automated | 2026-03-08 | ✅ PASS |
+| 4. Critical logging | automated | 2026-03-08 | ✅ PASS |
 
-**All gates passed:** ☐ YES → Proceed to 24h smoke  
-**Any gate failed:** ☐ NO → Fix and re-verify
+**All gates passed:** ✅ YES → Proceed to 24h smoke  
+**Verification script:** `./run_p6_entry_gate.sh`
+
+### Sign-Off Command
+
+```bash
+./run_p6_entry_gate.sh
+# Expected: ✅ P6 ENTRY GATE: ALL PASSED
+```
+
+---
+
+## Post-Gate Status
+
+```
+P6 Entry Gate: ✅ PASSED
+       ↓
+24h Smoke Test (Stage 1)
+       ↓
+   ☐ PASS → 72h Primary Run (Stage 2)
+   ☐ FAIL → Fix, return to Entry Gate
+```
+
+**Next Action:** Execute 24h smoke test
+
+**Command:**
+```bash
+python3 p6_runner.py  # Configured for 24h mode
+```
+
+---
+
+## Archive Note
+
+This Entry Gate was passed on 2026-03-08 with:
+- P5b: 25/25 tests passing
+- P6 Phase 1-3: 33/33 tests passing
+- Total: 58/58 tests passing
+
+P6 implementation ready for long-horizon validation.
 
 ---
 
