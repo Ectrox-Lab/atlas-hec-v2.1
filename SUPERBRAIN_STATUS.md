@@ -6,7 +6,7 @@
 
 ---
 
-## 🎉 Executive Summary: SUPERBRAIN P1-P4 COMPLETE
+## 🎉 Executive Summary: SUPERBRAIN P1-P5a STATUS
 
 | Priority | Status | Result | Score |
 |----------|--------|--------|-------|
@@ -14,9 +14,16 @@
 | **P2** Autobiographical Memory | ✅ **COMPLETE** | **PASS** | 100% |
 | **P3** Self-Model | ✅ **COMPLETE** | **PASS** | 86.7% |
 | **P4** Self-Directed Learning | ✅ **COMPLETE** | **PASS** | 100% |
-| **OVERALL** | **✅ ARCHIVED** | **COMPLETE** | **PASS** |
+| **P5a** Persistent Loop | 🔄 **COMPLETE** | **PARTIAL** | 75.0% |
+| **P1-P4** | **✅ ARCHIVED** | **COMPLETE** | **PASS** |
 
-**Status:** All four phases of the Superbrain research line are now **COMPLETE**.
+**Status:** P1-P4 complete and archived. P5a shows structural persistence but identity drift under learning.
+
+### P5a Key Finding
+
+**PARTIAL (75%)** - System demonstrates **structural persistence** (goal: 100%, preference: 99.2%, contradiction: 0) but shows **identity hash drift** (12.5%) under learning updates.
+
+**Interpretation:** The "self" persists in terms of values, goals, and behavior, but the exact identity hash changes with learning. This reveals a design question: Should learning change identity, or should identity be a stable core?
 
 ---
 
@@ -181,6 +188,7 @@ This **is**:
 | P2a | `P2A_AUTOBIOGRAPHICAL_MEMORY_REPORT.md` | `p2a_autobiographical_memory_report.json` | `p2a_autobiographical_memory.py` |
 | P3a | `P3A_SELF_MODEL_REPORT.md` | `p3a_self_model_report.json` | `p3a_self_model_probe.py` |
 | **P4a** | `P4A_LEARNING_STRATEGY_REPORT.md` | `p4a_learning_strategy_report.json` | `p4a_learning_strategy_probe.py` |
+| **P5a** | `P5A_PERSISTENT_LOOP_REPORT.md` | `p5a_persistent_loop_report.json` | `p5a_persistent_loop_probe.py` |
 
 ---
 
@@ -223,13 +231,43 @@ If continuing this line, possible extensions could include:
 
 ---
 
-## Conclusion
+## P5a: Persistent Loop ⚠️ PARTIAL (75%)
 
-> **The Superbrain research line has achieved its goal:** Demonstrate a system with stable identity, integrated memory, functional self-model, and self-directed learning capability.
+### Results
 
-**P1-P4 represents a complete, minimal, verifiable demonstration of self-aware, self-improving system architecture.**
+| Test | Score | Threshold | Status |
+|------|-------|-----------|--------|
+| Goal persistence | 100% | ≥85% | ✅ PASS |
+| Preference stability | 99.2% | ≥85% | ✅ PASS |
+| Contradiction control | 100% | ≤2 | ✅ PASS |
+| Recovery success | 80% | ≥80% | ✅ PASS |
+| **Identity drift** | **12.5%** | **≥85%** | **❌ FAIL** |
+
+### Interpretation
+
+**Structural persistence verified:** System maintains goals, preferences, and coherence over time with interruptions and errors.
+
+**Identity drift under learning:** Learning updates change the identity hash (expected behavior), but 12.5% similarity is below threshold. This suggests need for:
+- Core vs. peripheral identity distinction
+- Bounded learning updates
+- Identity versioning
+
+### Conclusion
+
+P5a demonstrates **partial** long-horizon robustness. The "self" persists in all meaningful ways (values, goals, behavior) but the **exact identity representation** changes with learning.
+
+---
+
+## Overall Assessment
+
+> **P1-P4: COMPLETE** — Minimal self-aware, self-improving system demonstrated.  
+> **P5a: PARTIAL** — Structural persistence verified; identity stability under learning needs refinement.
+
+**P1-P4 represents a complete, minimal, verifiable demonstration of self-aware system architecture.**
+
+**P5a reveals a design question:** How should learning affect identity? Should identity be stable while capabilities evolve, or is identity the sum of all attributes including learned ones?
 
 ---
 
 *Last Updated: 2026-03-11*  
-*Status: ✅ SUPERBRAIN P1-P4 COMPLETE AND ARCHIVED*
+*Status: P1-P4 ✅ ARCHIVED | P5a ⚠️ PARTIAL | P5b TBD*
