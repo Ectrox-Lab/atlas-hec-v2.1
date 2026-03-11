@@ -19,7 +19,7 @@ pub use cell_adapter::{CellAdapter, PriorInCell, LocalSignal};
 pub use lineage_adapter::{LineageAdapter, IdentityInheritance};
 pub use strategy_bridge::{StrategyBridge, BioDecisionContext};
 pub use experiment_runner::{ExperimentAtoE, RunConfig, run_matrix, ExperimentResult};
-pub use v19_runner::{ExperimentV19, V19Config, V19Result, run_exp123, export_to_csv};
+pub use v19_runner::{V19Experiment, run_matrix_v19};
 
 /// Integration version
 pub const VERSION: &str = "v0.1.0";

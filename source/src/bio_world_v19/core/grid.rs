@@ -65,8 +65,8 @@ impl Food {
 
 /// 3D Grid World
 pub struct GridWorld {
-    /// Agent positions (index in agents vector)
-    pub grid: [[[Option<usize>; GRID_Z]; GRID_Y]; GRID_X],
+    /// Agent positions (index in agents vector) - Boxed to avoid stack overflow
+    pub grid: Box<[[[Option<usize>; GRID_Z]; GRID_Y]; GRID_X]>,
     /// Agents
     pub agents: Vec<Agent>,
     /// Food sources
@@ -80,7 +80,7 @@ pub struct GridWorld {
 impl GridWorld {
     pub fn new() -> Self {
         Self {
-            grid: [[[None; GRID_Z]; GRID_Y]; GRID_X],
+            grid: Box::new([[[None; GRID_Z]; GRID_Y]; GRID_X]),
             agents: Vec::new(),
             food: Vec::new(),
             tick: 0,

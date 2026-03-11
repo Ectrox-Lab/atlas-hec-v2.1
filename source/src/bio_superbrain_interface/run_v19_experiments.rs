@@ -4,7 +4,7 @@
 
 use std::fs;
 use std::path::Path;
-use bio_superbrain_interface::v19_runner::{run_exp123, export_to_csv, V19Result};
+use crate::bio_superbrain_interface::v19_runner::{run_exp123, export_to_csv, V19Result};
 
 fn main() {
     println!("="*70);

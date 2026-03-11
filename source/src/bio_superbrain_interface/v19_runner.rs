@@ -1,388 +1,260 @@
-//! V19 Experiment Runner - EXP-1/2/3 for Bio-World v19 × Superbrain
+//! Bio-World v19 Real Simulation Runner
 //! 
-//! Replaces stub simulation with real v19 core:
-//! - GridWorld (50×50×16)
-//! - PopulationDynamics  
-//! - StateVector [CDI, CI, r, N, E, h]
-//! - HazardRateTracker
+//! Replaces stub simulation with actual GridWorld + PopulationDynamics
 
-use bio_world_v19::{
-    GridWorld, PopulationDynamics, PopulationParams,
-    StateVector, compute_sync_order_parameter, compute_condensation_index, compute_percolation_ratio,
+use crate::bio_world_v19::{
+    GridWorld, Agent, Position, PopulationDynamics, PopulationParams,
     HazardRateTracker, MultiUniverseHazard,
-    GRID_X, GRID_Y, GRID_Z,
+    compute_sync_order_parameter, compute_condensation_index,
+    StateVector, GRID_X, GRID_Y, GRID_Z,
 };
+use super::{ExperimentAtoE, RunConfig, ExperimentResult};
+
 use std::collections::HashMap;
 
-/// Experiment types (EXP-1/2/3)
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ExperimentV19 {
-    /// EXP-1: Condensation Test - CI early warning validation
-    CondensationTest,
-    /// EXP-2: Synchronization Stress - r vs hazard causality  
-    SyncStress,
-    /// EXP-3: Hub Knockout - Network resilience test
-    HubKnockout,
+/// v19 Experiment with real simulation
+pub struct V19Experiment {
+    pub exp_type: ExperimentAtoE,
+    pub world: GridWorld,
+    pub population_dynamics: PopulationDynamics,
+    pub hazard_tracker: HazardRateTracker,
+    pub state_history: Vec<StateVector>,
 }
 
-impl ExperimentV19 {
-    pub fn name(&self) -> &'static str {
-        match self {
-            ExperimentV19::CondensationTest => "EXP-1-Condensation",
-            ExperimentV19::SyncStress => "EXP-2-Sync-Stress",
-            ExperimentV19::HubKnockout => "EXP-3-Hub-Knockout",
+impl V19Experiment {
+    pub fn new(exp_type: ExperimentAtoE, seed: u64) -> Self {
+        let mut world = GridWorld::new();
+        
+        // Genesis population based on experiment type
+        let genesis_count = match exp_type {
+            ExperimentAtoE::Survival => 100,
+            ExperimentAtoE::Evolution => 80,
+            ExperimentAtoE::Stress => 120,
+            ExperimentAtoE::Collaboration => 90,
+            ExperimentAtoE::Akashic => 100,
+        };
+        
+        // Spawn genesis agents
+        for i in 0..genesis_count {
+            let x = (i * 7) % GRID_X;  // Pseudo-random spread
+            let y = (i * 13) % GRID_Y;
+            let z = (i * 3) % GRID_Z;
+            world.spawn_agent(x, y, z);
         }
-    }
-}
-
-/// Experiment configuration
-pub struct V19Config {
-    pub grid_size: (usize, usize, usize),
-    pub max_generations: usize,
-    pub initial_population: usize,
-    pub seed: u64,
-    // EXP-2 specific
-    pub sync_coupling: f64,
-    // EXP-3 specific
-    pub knockout_fraction: f64,
-    pub knockout_generation: usize,
-}
-
-impl V19Config {
-    /// Standard v19 configuration
-    pub fn standard() -> Self {
+        
+        // Spawn initial food
+        world.spawn_food_random(50, 30.0);
+        
+        // Configure population params based on experiment
+        let params = match exp_type {
+            ExperimentAtoE::Stress => PopulationParams {
+                reproduction_cost: 50.0,  // Higher cost
+                food_energy: 20.0,        // Less food
+                food_regen_interval: 150, // Slower regen
+                carrying_capacity: 2,     // Lower capacity
+                random_death_prob: 0.005,
+            },
+            ExperimentAtoE::Collaboration => PopulationParams {
+                reproduction_cost: 30.0,  // Lower cost
+                food_energy: 40.0,        // More food
+                food_regen_interval: 80,
+                carrying_capacity: 6,     // Higher capacity
+                random_death_prob: 0.001,
+            },
+            _ => PopulationParams::default(),
+        };
+        
         Self {
-            grid_size: (GRID_X, GRID_Y, GRID_Z),
-            max_generations: 500,
-            initial_population: 1000,
-            seed: 42,
-            sync_coupling: 0.5,
-            knockout_fraction: 0.05,
-            knockout_generation: 100,
+            exp_type,
+            world,
+            population_dynamics: PopulationDynamics::new(params),
+            hazard_tracker: HazardRateTracker::new(1000),
+            state_history: Vec::new(),
         }
     }
     
-    /// EXP-2: High sync coupling
-    pub fn high_sync() -> Self {
-        let mut cfg = Self::standard();
-        cfg.sync_coupling = 0.9;
-        cfg
-    }
-    
-    /// EXP-3: Hub knockout config
-    pub fn knockout() -> Self {
-        Self::standard()
-    }
-}
-
-/// Unified state record for system_state.csv
-#[derive(Clone, Debug)]
-pub struct StateRecord {
-    pub generation: usize,
-    pub n: usize,              // Population
-    pub cdi: f64,             // Complexity-Diversity Index
-    pub ci: f64,              // Condensation Index
-    pub r: f64,               // Sync order parameter
-    pub p: f64,               // Percolation ratio
-    pub e: f64,               // Energy/activity
-    pub h: f64,               // Hazard rate
-    pub extinct_count: usize,
-    pub alive_universes: usize,
-}
-
-/// Experiment result
-#[derive(Clone, Debug)]
-pub struct V19Result {
-    pub experiment: String,
-    pub success: bool,
-    pub state_history: Vec<StateRecord>,
-    pub metrics: ExperimentMetrics,
-    pub notes: String,
-}
-
-/// Per-experiment metrics
-#[derive(Clone, Debug, Default)]
-pub struct ExperimentMetrics {
-    // EXP-1: Condensation
-    pub ci_lead_time: Option<usize>,
-    pub ci_cdi_correlation: Option<f64>,
-    // EXP-2: Sync stress
-    pub r_hazard_correlation: Option<f64>,
-    pub sync_fragility_score: Option<f64>,
-    // EXP-3: Hub knockout
-    pub recovery_time: Option<usize>,
-    pub final_extinct_rate: Option<f64>,
-    pub cdi_stability: Option<f64>,
-}
-
-/// Run single experiment
-pub fn run_experiment(exp: ExperimentV19, config: &V19Config) -> V19Result {
-    println!("Running {}...", exp.name());
-    
-    let mut world = GridWorld::new(config.seed);
-    let mut population = PopulationDynamics::new(
-        config.initial_population,
-        PopulationParams::default()
-    );
-    let mut hazard_tracker = HazardRateTracker::new(100);
-    
-    let mut state_history = Vec::new();
-    let mut extinct_count = 0;
-    
-    // Run simulation
-    for gen in 0..config.max_generations {
-        // Update population
-        population.step(&mut world);
+    /// Run simulation for N ticks
+    pub fn run(&mut self, ticks: usize) -> ExperimentResult {
+        use fastrand::Rng;
+        let mut rng = Rng::new();
         
-        // Apply experiment-specific interventions
-        match exp {
-            ExperimentV19::SyncStress => {
-                // EXP-2: Adjust sync coupling
-                population.set_sync_coupling(config.sync_coupling);
+        for tick in 0..ticks {
+            // 1. Population dynamics
+            self.population_dynamics.step(&mut self.world);
+            
+            // 2. Track deaths for hazard rate
+            let deaths = self.population_dynamics.deaths_this_tick;
+            for _ in 0..deaths {
+                self.hazard_tracker.record_death(tick);
             }
-            ExperimentV19::HubKnockout if gen == config.knockout_generation => {
-                // EXP-3: Remove top connectivity agents
-                population.remove_top_agents(config.knockout_fraction);
+            
+            // 3. Agent movement and interaction
+            self.agent_step(&mut rng);
+            
+            // 4. Collect state vector every 100 ticks
+            if tick % 100 == 0 {
+                let state = self.collect_state_vector();
+                self.state_history.push(state);
             }
-            _ => {}
+            
+            // 5. Advance world tick
+            self.world.step();
         }
         
-        // Check extinction
-        if population.is_extinct() {
-            extinct_count += 1;
-            if extinct_count >= 10 {
-                break; // Early stop if too many extinctions
-            }
-        }
+        // Generate result
+        self.generate_result()
+    }
+    
+    fn agent_step(&mut self, rng: &mut fastrand::Rng) {
+        // Simple random movement for now
+        let agent_ids: Vec<usize> = self.world.agents.iter()
+            .filter(|a| a.alive)
+            .map(|a| a.id)
+            .collect();
         
-        // Compute metrics every 10 generations
-        if gen % 10 == 0 {
-            let agents = population.get_agents();
-            let n = agents.len();
-            
-            // Core metrics
-            let cdi = population.compute_cdi();
-            let ci = compute_condensation_index(&agents);
-            let r = compute_sync_order_parameter(&agents, config.sync_coupling);
-            let p = compute_percolation_ratio(&world, &agents);
-            
-            // Energy estimate
-            let e = population.compute_total_energy();
-            
-            // Hazard rate
-            let h = hazard_tracker.update(&agents, cdi, ci, r);
-            
-            state_history.push(StateRecord {
-                generation: gen,
-                n,
-                cdi,
-                ci,
-                r,
-                p,
-                e,
-                h,
-                extinct_count,
-                alive_universes: if n > 0 { 1 } else { 0 },
-            });
+        for id in agent_ids {
+            if let Some(agent) = self.world.agents.get(id) {
+                if !agent.alive { continue; }
+                
+                // Random walk with 20% probability
+                if rng.u32(0..100) < 20 {
+                    let dx = rng.i32(-1..2) as isize;
+                    let dy = rng.i32(-1..2) as isize;
+                    let dz = rng.i32(-1..2) as isize;
+                    
+                    let current = agent.pos;
+                    let new_x = ((current.x as isize + dx).max(0).min(GRID_X as isize - 1)) as usize;
+                    let new_y = ((current.y as isize + dy).max(0).min(GRID_Y as isize - 1)) as usize;
+                    let new_z = ((current.z as isize + dz).max(0).min(GRID_Z as isize - 1)) as usize;
+                    
+                    let new_pos = Position::new(new_x, new_y, new_z);
+                    self.world.move_agent(id, new_pos);
+                }
+            }
         }
     }
     
-    // Compute experiment-specific metrics
-    let metrics = compute_experiment_metrics(exp, &state_history);
+    fn collect_state_vector(&self) -> StateVector {
+        let alive_agents: Vec<&Agent> = self.world.agents.iter()
+            .filter(|a| a.alive)
+            .collect();
+        
+        // N = population
+        let n = alive_agents.len();
+        
+        // CDI = average of agent CDI contributions
+        let cdi = if n > 0 {
+            alive_agents.iter().map(|a| a.cdi_contribution() as f64).sum::<f64>() / n as f64
+        } else {
+            0.0
+        };
+        
+        // r, CI from agent phases
+        let phases: Vec<f64> = alive_agents.iter().map(|a| a.phase).collect();
+        let r = compute_sync_order_parameter(&phases);
+        let ci = compute_condensation_index(&phases);
+        
+        // E = average energy
+        let e = if n > 0 {
+            alive_agents.iter().map(|a| a.energy as f64).sum::<f64>() / n as f64
+        } else {
+            0.0
+        };
+        
+        // h = hazard rate
+        let h = self.hazard_tracker.hazard_rate();
+        
+        StateVector { cdi, ci, r, n, e, h }
+    }
     
-    // Determine success
-    let success = check_success_criteria(exp, &metrics);
+    fn generate_result(&self) -> ExperimentResult {
+        let final_pop = self.world.population();
+        let genesis_count = match self.exp_type {
+            ExperimentAtoE::Survival => 100,
+            ExperimentAtoE::Evolution => 80,
+            ExperimentAtoE::Stress => 120,
+            ExperimentAtoE::Collaboration => 90,
+            ExperimentAtoE::Akashic => 100,
+        };
+        
+        let survival_rate = final_pop as f32 / genesis_count as f32;
+        
+        // Get final CDI
+        let cdi_final = if let Some(last) = self.state_history.last() {
+            last.cdi as f32
+        } else {
+            0.0
+        };
+        
+        // Success criteria varies by experiment
+        let success = match self.exp_type {
+            ExperimentAtoE::Survival => final_pop > genesis_count / 3,
+            ExperimentAtoE::Evolution => survival_rate > 0.8,
+            ExperimentAtoE::Stress => final_pop > 0, // Any survival under stress
+            ExperimentAtoE::Collaboration => survival_rate > 1.0, // Growth
+            ExperimentAtoE::Akashic => final_pop > genesis_count / 3,
+        };
+        
+        ExperimentResult {
+            experiment: self.exp_type.name().to_string(),
+            seed: 0, // TODO: track seed
+            success,
+            final_population: final_pop,
+            survival_rate,
+            cdi_final,
+            notes: format!("v19 real simulation, {} state vectors collected", self.state_history.len()),
+        }
+    }
     
-    V19Result {
-        experiment: exp.name().to_string(),
-        success,
-        state_history,
-        metrics,
-        notes: format!("Completed {} generations", config.max_generations),
+    /// Export state history to CSV
+    pub fn export_csv(&self, path: &str) -> std::io::Result<()> {
+        use std::io::Write;
+        let mut file = std::fs::File::create(path)?;
+        
+        writeln!(file, "tick,{}", StateVector::csv_header())?;
+        for (i, state) in self.state_history.iter().enumerate() {
+            writeln!(file, "{},{}", i * 100, state.to_csv())?;
+        }
+        
+        Ok(())
     }
 }
 
-/// Run all three experiments
-pub fn run_exp123() -> HashMap<String, V19Result> {
-    let mut results = HashMap::new();
+/// Run A-E matrix with real v19 simulation
+pub fn run_matrix_v19(config: &RunConfig) -> Vec<ExperimentResult> {
+    let experiments = vec![
+        ExperimentAtoE::Survival,
+        ExperimentAtoE::Evolution,
+        ExperimentAtoE::Stress,
+        ExperimentAtoE::Collaboration,
+        ExperimentAtoE::Akashic,
+    ];
     
-    // EXP-1: Condensation Test
-    let exp1 = run_experiment(ExperimentV19::CondensationTest, &V19Config::standard());
-    results.insert(exp1.experiment.clone(), exp1);
+    let mut results = Vec::new();
     
-    // EXP-2: Sync Stress (standard vs high sync)
-    let exp2_standard = run_experiment(ExperimentV19::SyncStress, &V19Config::standard());
-    results.insert(format!("{}-standard", exp2_standard.experiment), exp2_standard);
-    
-    let exp2_high = run_experiment(ExperimentV19::SyncStress, &V19Config::high_sync());
-    results.insert(format!("{}-high", exp2_high.experiment), exp2_high);
-    
-    // EXP-3: Hub Knockout
-    let exp3 = run_experiment(ExperimentV19::HubKnockout, &V19Config::knockout());
-    results.insert(exp3.experiment.clone(), exp3);
+    for (idx, exp) in experiments.iter().enumerate() {
+        println!("Running {} (v19 real)...", exp.name());
+        
+        let seed = config.seeds.get(idx).copied().unwrap_or(42 + idx as u64);
+        let mut experiment = V19Experiment::new(*exp, seed);
+        
+        // Run shorter simulation for faster testing
+        let ticks = if config.is_research_scale() { 10000 } else { 1000 };
+        let result = experiment.run(ticks);
+        
+        println!("  Result: {} (pop={}, CDI={:.3})", 
+            if result.success { "PASS" } else { "FAIL" },
+            result.final_population,
+            result.cdi_final);
+        
+        // Export state history
+        let csv_path = format!("/tmp/{}_state.csv", exp.name());
+        let _ = experiment.export_csv(&csv_path);
+        
+        results.push(result);
+    }
     
     results
-}
-
-/// Compute experiment-specific metrics
-fn compute_experiment_metrics(exp: ExperimentV19, history: &[StateRecord]) -> ExperimentMetrics {
-    let mut metrics = ExperimentMetrics::default();
-    
-    match exp {
-        ExperimentV19::CondensationTest => {
-            // EXP-1: CI lead time and correlation with 1/CDI
-            if let Some((lead_time, corr)) = compute_ci_metrics(history) {
-                metrics.ci_lead_time = Some(lead_time);
-                metrics.ci_cdi_correlation = Some(corr);
-            }
-        }
-        ExperimentV19::SyncStress => {
-            // EXP-2: r vs hazard correlation
-            if let Some(corr) = compute_r_hazard_correlation(history) {
-                metrics.r_hazard_correlation = Some(corr);
-                metrics.sync_fragility_score = Some(corr * 100.0);
-            }
-        }
-        ExperimentV19::HubKnockout => {
-            // EXP-3: Recovery metrics
-            if let Some((recovery, final_extinct, cdi_stab)) = compute_knockout_metrics(history) {
-                metrics.recovery_time = Some(recovery);
-                metrics.final_extinct_rate = Some(final_extinct);
-                metrics.cdi_stability = Some(cdi_stab);
-            }
-        }
-    }
-    
-    metrics
-}
-
-/// Check success criteria per experiment
-fn check_success_criteria(exp: ExperimentV19, metrics: &ExperimentMetrics) -> bool {
-    match exp {
-        ExperimentV19::CondensationTest => {
-            // EXP-1: CI lead time > 100, Correlation > 0.7
-            metrics.ci_lead_time.map(|t| t > 100).unwrap_or(false)
-                && metrics.ci_cdi_correlation.map(|c| c > 0.7).unwrap_or(false)
-        }
-        ExperimentV19::SyncStress => {
-            // EXP-2: Measurable correlation
-            metrics.r_hazard_correlation.map(|c| c.abs() > 0.3).unwrap_or(false)
-        }
-        ExperimentV19::HubKnockout => {
-            // EXP-3: System shows resilience (recovery or controlled collapse)
-            metrics.final_extinct_rate.map(|r| r < 0.5).unwrap_or(false)
-        }
-    }
-}
-
-// Helper metric functions
-fn compute_ci_metrics(history: &[StateRecord]) -> Option<(usize, f64)> {
-    if history.len() < 10 {
-        return None;
-    }
-    
-    // Find when CI starts rising before collapse
-    let collapse_point = history.iter()
-        .position(|s| s.n < 100)?;
-    
-    let ci_rise_point = history[..collapse_point].iter()
-        .rposition(|s| s.ci > 0.5)?;
-    
-    let lead_time = collapse_point - ci_rise_point;
-    
-    // Correlation with 1/CDI
-    let cdi_inv: Vec<f64> = history.iter()
-        .map(|s| if s.cdi > 0.0 { 1.0 / s.cdi } else { 0.0 })
-        .collect();
-    let cis: Vec<f64> = history.iter().map(|s| s.ci).collect();
-    
-    let corr = pearson_correlation(&cdi_inv, &cis)?;
-    
-    Some((lead_time * 10, corr)) // Multiply by sampling interval
-}
-
-fn compute_r_hazard_correlation(history: &[StateRecord]) -> Option<f64> {
-    let rs: Vec<f64> = history.iter().map(|s| s.r).collect();
-    let hs: Vec<f64> = history.iter().map(|s| s.h).collect();
-    pearson_correlation(&rs, &hs)
-}
-
-fn compute_knockout_metrics(history: &[StateRecord]) -> Option<(usize, f64, f64)> {
-    let knockout_gen = 100;
-    let post_knockout: Vec<_> = history.iter()
-        .filter(|s| s.generation >= knockout_gen)
-        .collect();
-    
-    if post_knockout.is_empty() {
-        return None;
-    }
-    
-    // Recovery time: when population stabilizes
-    let recovery = post_knockout.iter()
-        .position(|s| s.n > 500)
-        .map(|p| p * 10)
-        .unwrap_or(0);
-    
-    // Final extinction rate
-    let final_extinct = if post_knockout.last()?.n == 0 { 1.0 } else { 0.0 };
-    
-    // CDI stability (coefficient of variation)
-    let cdi_values: Vec<f64> = post_knockout.iter().map(|s| s.cdi).collect();
-    let cdi_mean = cdi_values.iter().sum::<f64>() / cdi_values.len() as f64;
-    let cdi_var = cdi_values.iter()
-        .map(|v| (v - cdi_mean).powi(2))
-        .sum::<f64>() / cdi_values.len() as f64;
-    let cdi_cv = cdi_var.sqrt() / cdi_mean;
-    
-    Some((recovery, final_extinct, cdi_cv))
-}
-
-fn pearson_correlation(x: &[f64], y: &[f64]) -> Option<f64> {
-    if x.len() != y.len() || x.len() < 2 {
-        return None;
-    }
-    
-    let n = x.len() as f64;
-    let mean_x = x.iter().sum::<f64>() / n;
-    let mean_y = y.iter().sum::<f64>() / n;
-    
-    let num: f64 = x.iter().zip(y.iter())
-        .map(|(xi, yi)| (xi - mean_x) * (yi - mean_y))
-        .sum();
-    
-    let den_x: f64 = x.iter().map(|xi| (xi - mean_x).powi(2)).sum();
-    let den_y: f64 = y.iter().map(|yi| (yi - mean_y).powi(2)).sum();
-    
-    let den = (den_x * den_y).sqrt();
-    
-    if den > 0.0 {
-        Some(num / den)
-    } else {
-        None
-    }
-}
-
-/// Export state history to CSV format
-pub fn export_to_csv(history: &[StateRecord]) -> String {
-    let mut csv = String::from("generation,N,CDI,CI,r,P,E,h,extinct_count,alive_universes\n");
-    
-    for record in history {
-        csv.push_str(&format!(
-            "{},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{},{}\n",
-            record.generation,
-            record.n,
-            record.cdi,
-            record.ci,
-            record.r,
-            record.p,
-            record.e,
-            record.h,
-            record.extinct_count,
-            record.alive_universes
-        ));
-    }
-    
-    csv
 }
 
 #[cfg(test)]
@@ -390,13 +262,33 @@ mod tests {
     use super::*;
     
     #[test]
-    fn exp123_runs() {
-        let results = run_exp123();
-        assert_eq!(results.len(), 4); // EXP-1, EXP-2×2, EXP-3
+    fn test_v19_survival() {
+        let mut exp = V19Experiment::new(ExperimentAtoE::Survival, 42);
+        let result = exp.run(100);
         
-        // Check EXP-1
-        let exp1 = results.get("EXP-1-Condensation").expect("EXP-1 result");
-        println!("EXP-1: CI lead time = {:?}, correlation = {:?}", 
-            exp1.metrics.ci_lead_time, exp1.metrics.ci_cdi_correlation);
+        println!("Survival: pop={}, CDI={:.3}", result.final_population, result.cdi_final);
+        assert!(result.final_population > 0);
+    }
+    
+    #[test]
+    fn test_v19_collaboration() {
+        let mut exp = V19Experiment::new(ExperimentAtoE::Collaboration, 42);
+        let result = exp.run(100);
+        
+        println!("Collaboration: pop={}, rate={:.2}", result.final_population, result.survival_rate);
+        // Collaboration should have higher survival due to better params
+    }
+    
+    #[test]
+    fn test_state_vector_collection() {
+        let mut exp = V19Experiment::new(ExperimentAtoE::Survival, 42);
+        exp.run(500); // 5 state vectors (every 100 ticks)
+        
+        assert!(!exp.state_history.is_empty());
+        
+        let state = &exp.state_history[0];
+        assert!(state.n > 0); // Has population
+        assert!(state.cdi >= 0.0 && state.cdi <= 1.0);
+        assert!(state.r >= 0.0 && state.r <= 1.0);
     }
 }
