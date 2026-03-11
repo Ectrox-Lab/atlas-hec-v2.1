@@ -2,7 +2,7 @@
 //! 
 //! 让系统能够维护"我想达成什么"。
 
-use crate::self_kernel::self_state::InternalState;
+use crate::self_kernel::{self_state::InternalState, identity::Identity};
 
 /// 目标状态
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -160,7 +160,7 @@ mod tests {
         gv.add_goal(Goal::new("g1", "reach 100 reward").with_target_reward(100.0));
         
         // 模拟状态达到目标
-        let mut state = InternalState::new("test", 0);
+        let mut state = InternalState::new(Identity::new(0), 0);
         state.reward_total = 100.0;
         
         gv.update_progress_from_state(&state);

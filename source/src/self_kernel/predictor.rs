@@ -121,7 +121,7 @@ mod tests {
 
     fn create_test_state() -> InternalState {
         let identity = Identity::new(1);
-        let mut state = InternalState::new(identity);
+        let mut state = InternalState::new(identity, 0);
         state.energy_level = 0.8;
         state.reward_total = 50.0;
         state

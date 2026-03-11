@@ -5,11 +5,15 @@ pub mod mlp;
 
 // PriorChannel: Post-Phase 7 Engineering Convergence
 // FROZEN_STATE_v1: Generic prior channel only
+// Candidate 001: Multi-Agent Consistency Markers = MAINLINE DEFAULT
 pub mod prior_channel;
 pub use prior_channel::{
     PriorChannel, PriorSample,
     sample_prior, prior_inject,
-    PRIOR_SAMPLE_PROB, PRIOR_STRENGTH
+    PRIOR_SAMPLE_PROB, PRIOR_STRENGTH,
+    // Candidate 001 Integration (Mainline Default)
+    PriorChannelMarkerAdapter, Marker, MarkerScheduler, PolicyModulation,
+    MainlinePriorChannel, ConstraintReport,
 };
 
 // 重导出主要类型

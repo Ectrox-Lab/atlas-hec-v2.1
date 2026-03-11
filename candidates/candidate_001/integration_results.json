@@ -1,0 +1,27 @@
+{
+  "results": {
+    "A": {
+      "consistency_mean": 0.9964639865843307,
+      "consistency_std": 0.010608040679816333,
+      "coherence_mean": 1.0,
+      "coherence_std": 0.0,
+      "n_trials": 10
+    },
+    "B": {
+      "consistency_mean": 0.9858559459045143,
+      "consistency_std": 0.023455260463851598,
+      "coherence_mean": 0.9984999999999999,
+      "coherence_std": 0.004500000000000004,
+      "n_trials": 10
+    },
+    "C": {
+      "consistency_mean": 1.0000000001442693,
+      "consistency_std": 2.220446049250313e-16,
+      "coherence_mean": 1.0,
+      "coherence_std": 0.0,
+      "n_trials": 10
+    }
+  },
+  "recommendation": "INTEGRATE",
+  "timestamp": "2026-03-11T10:53:15"
+}
