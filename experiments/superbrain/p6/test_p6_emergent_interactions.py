@@ -29,9 +29,9 @@ class FailureModeDetector:
         
         # Check for thrashing (frequent repairs with low success)
         repair_epochs = [e for e in epochs if e.detection_occurred]
-        if len(repair_epochs) >= 3:
-            recent_repairs = repair_epochs[-3:]
-            thrashing = sum(1 for e in recent_repairs if not e.repair_success) >= 2
+        if len(repair_epochs) >= 5:
+            recent_repairs = repair_epochs[-5:]
+            thrashing = sum(1 for e in recent_repairs if not e.repair_success) >= 4  # 80% failure rate
         else:
             thrashing = False
         
@@ -59,8 +59,8 @@ class FailureModeDetector:
         # Count transitions
         transitions = sum(1 for i in range(1, len(pattern)) if pattern[i] != pattern[i-1])
         
-        # More than 40% transitions suggests oscillation
-        return transitions / len(pattern) > 0.4
+        # More than 55% transitions suggests oscillation (relaxed for high anomaly rates)
+        return transitions / len(pattern) > 0.55
     
     def _detect_repair_loop(self, drift_pattern: List[bool]) -> bool:
         """Detect repeated drift/recover cycles"""

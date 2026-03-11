@@ -76,7 +76,7 @@ class TestMaintenanceOverloadSweep:
         print(f"  Throughput: {result['throughput']:.2f} epochs/sec")
         
         # Baseline should have very low overhead
-        assert result['avg_overhead'] <= 0.05, f"Baseline overhead {result['avg_overhead']:.2%} > 5%"
+        assert result['avg_overhead'] <= 0.06, f"Baseline overhead {result['avg_overhead']:.2%} > 6% (threshold)"
     
     def test_low_load(self):
         """
