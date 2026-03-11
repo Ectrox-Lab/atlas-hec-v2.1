@@ -4,7 +4,7 @@
 use std::fs::File;
 use std::io::Write;
 
-const MAX_TICKS: usize = 1500;
+const MAX_TICKS: usize = 1200;
 const INITIAL_AGENTS: usize = 100;
 
 #[derive(Clone)]
