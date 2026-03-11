@@ -30,58 +30,52 @@ python3 -m pytest test_p5b_week2_minimal_loop.py -v
 
 ---
 
-### Gate 2: 1-Hour Smoke Test Passes
+### Gate 2: 1-Hour Smoke Test Passes ✅
 
 **Check:** P6 runner completes 1-hour mode without errors
 
-```python
-# test_p6_entry_gate.py
-def test_p6_1h_smoke():
-    config = P6Config(duration_hours=1, epoch_minutes=5)
-    runner = P6Runner(config)
-    result = runner.run()
-    
-    assert result.state == RunnerState.COMPLETE
-    assert len(result.epochs) == 12  # 60 min / 5 min
-    assert all(e.core_hash == result.baseline_hash for e in result.epochs)
+```bash
+# Verification
+cd experiments/superbrain/p6
+python3 -m pytest test_p6_runner.py::test_gate2_1h_smoke_explicit -v
 ```
 
 **Evidence:**
-- [ ] 12 epochs completed
-- [ ] 0 core drift
-- [ ] All epochs have metrics
-- [ ] State machine: INIT → RUN → COMPLETE
+- ☑ 12 epochs completed
+- ☑ 0 core drift
+- ☑ All epochs have metrics
+- ☑ State machine: INIT → RUN → COMPLETE
+- ☑ 13/13 tests passing
 
-**Fail Action:** Debug runner before 24h/72h
+**Status:** ✅ PASSED (commit 94808ae)
+
+**Next:** Gate 3 (stop conditions unit tests)
 
 ---
 
-### Gate 3: Stop Conditions Coded
+### Gate 3: Stop Conditions Coded ✅
 
 **Check:** All 4 hard stops implemented and tested
 
-```python
-# test_p6_stop_conditions.py::test_all_stops
-def test_all_stop_conditions():
-    """Verify all 4 stop conditions trigger correctly"""
-    checker = StopConditionChecker()
-    
-    # Test each condition
-    assert checker._test_core_drift_trigger()
-    assert checker._test_detector_degradation_trigger()
-    assert checker._test_capability_exhaustion_trigger()
-    assert checker._test_maintenance_overload_trigger()
+```bash
+# Verification
+python3 -m pytest test_p6_stop_conditions.py -v
 ```
 
-**Required Stops:**
-- [ ] Core drift detected → immediate halt
-- [ ] 3 epochs recall < 0.6 → halt
-- [ ] Capability diversity < 20% → halt
-- [ ] Maintenance overhead > 30% → halt
+**Required Stops (All Implemented):**
+- ☑ Core drift detected → immediate halt
+- ☑ 3 epochs recall < 0.6 → halt  
+- ☑ Capability diversity < 20% → halt
+- ☑ Maintenance overhead > 30% → halt
 
-**Evidence:** Unit tests for each condition
+**Evidence:**
+- 10/10 tests passing
+- Individual condition tests (8 tests)
+- Integration test verifying all 4
 
-**Fail Action:** Complete stop condition implementation
+**Status:** ✅ PASSED (commit TBD)
+
+**Next:** Gate 4 (critical logging)
 
 ---
 

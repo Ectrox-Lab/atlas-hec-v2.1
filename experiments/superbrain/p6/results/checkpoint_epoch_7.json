@@ -3,12 +3,12 @@
   "state": "RUNNING",
   "latest_metrics": {
     "epoch": 7,
-    "timestamp": 1773204795.6583545,
+    "timestamp": 1773204876.3549592,
     "core_hash": "ba2a2176919aed68",
     "core_drift": false,
     "detector_recall": 1.0,
-    "capability_diversity": 0.7626825942120459,
-    "maintenance_overhead": 0.055724692357115246,
+    "capability_diversity": 0.8104200119994978,
+    "maintenance_overhead": 0.04525704605130047,
     "repair_success_rate": 1.0
   }
 }
