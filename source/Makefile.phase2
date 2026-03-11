@@ -3,7 +3,7 @@
 
 .PHONY: all smoke clean results
 
-BINS = phase2/hub_failure phase2/regime_shift phase2/resource_competition phase2/multigame_cycle
+BINS = phase2_hub_failure phase2_regime_shift phase2_resource_competition phase2_multigame_cycle
 
 all: smoke results
 
@@ -22,10 +22,10 @@ smoke: build
 # Sequential fallback
 smoke-seq:
 	@echo "Running Phase 2 Smoke Tests (sequential)..."
-	cargo run --release --bin phase2/hub_failure --no-default-features
-	cargo run --release --bin phase2/regime_shift --no-default-features
-	cargo run --release --bin phase2/resource_competition --no-default-features
-	cargo run --release --bin phase2/multigame_cycle --no-default-features
+	cargo run --release --bin phase2_hub_failure --no-default-features
+	cargo run --release --bin phase2_regime_shift --no-default-features
+	cargo run --release --bin phase2_resource_competition --no-default-features
+	cargo run --release --bin phase2_multigame_cycle --no-default-features
 
 # Aggregate results
 results:

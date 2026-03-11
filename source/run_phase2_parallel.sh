@@ -10,23 +10,23 @@ echo ""
 
 # Build all first
 echo "Building all environments..."
-cargo build --release --bin phase2/hub_failure --no-default-features 2>&1 | tail -3
-cargo build --release --bin phase2/regime_shift --no-default-features 2>&1 | tail -3
-cargo build --release --bin phase2/resource_competition --no-default-features 2>&1 | tail -3
-cargo build --release --bin phase2/multigame_cycle --no-default-features 2>&1 | tail -3
+cargo build --release --bin phase2_hub_failure --no-default-features 2>&1 | tail -3
+cargo build --release --bin phase2_regime_shift --no-default-features 2>&1 | tail -3
+cargo build --release --bin phase2_resource_competition --no-default-features 2>&1 | tail -3
+cargo build --release --bin phase2_multigame_cycle --no-default-features 2>&1 | tail -3
 
 echo ""
 echo "Running 4 environments in parallel..."
 echo ""
 
 # Run all 4 in background
-./target/release/phase2/hub_failure > /tmp/phase2_hub.log 2>&1 &
+./target/release/phase2_hub_failure > /tmp/phase2_hub.log 2>&1 &
 PID1=$!
-./target/release/phase2/regime_shift > /tmp/phase2_regime.log 2>&1 &
+./target/release/phase2_regime_shift > /tmp/phase2_regime.log 2>&1 &
 PID2=$!
-./target/release/phase2/resource_competition > /tmp/phase2_resource.log 2>&1 &
+./target/release/phase2_resource_competition > /tmp/phase2_resource.log 2>&1 &
 PID3=$!
-./target/release/phase2/multigame_cycle > /tmp/phase2_multigame.log 2>&1 &
+./target/release/phase2_multigame_cycle > /tmp/phase2_multigame.log 2>&1 &
 PID4=$!
 
 # Wait for all
