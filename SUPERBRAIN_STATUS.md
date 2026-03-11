@@ -210,7 +210,11 @@ This is a **closed loop** of self-awareness and self-improvement with **identity
 | Document | Content |
 |----------|---------|
 | `docs/atlaschen_superbrain_charter.md` | Research line charter |
-| `docs/superbrain/p5a1_identity_boundary_redefinition.md` | Two-layer identity model |
+| `docs/superbrain/superbrain_evaluation_protocol.md` | **SEP v1.0: Unified evaluation framework** |
+| `docs/superbrain/metric_definitions.md` | Detailed metric specifications |
+| `docs/superbrain/report_template.md` | Standard report format |
+| `docs/superbrain/identity_boundary_method.md` | Two-layer identity assessment method |
+| `docs/superbrain/p5a1_identity_boundary_redefinition.md` | P5a.1 design rationale |
 
 ---
 
@@ -245,4 +249,5 @@ From `docs/atlaschen_superbrain_charter.md`:
 
 *Last Updated: 2026-03-11*  
 *Status: ✅ MINIMAL PERSISTENT SELF-IMPROVING LOOP ESTABLISHED*  
-*Next: P5b Self-Maintenance Probe (optional, future work)*
+*Status: ✅ SUPERBRAIN EVALUATION PROTOCOL v1.0 COMPLETE*  
+*Next: P5b Self-Maintenance Probe (design ready, optional)*
