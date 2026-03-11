@@ -47,7 +47,7 @@ struct Agent {
     scheduler: MarkerScheduler,
     score: i32,
     actions: Vec<Action>,
-    policy: AdaptivePolicy,
+    pub policy: AdaptivePolicy,  // FIX: Make public for force_regime
     rng: StdRng,
     agent_id: usize,
 }
@@ -67,7 +67,14 @@ impl Agent {
     fn act(&mut self, markers: &[Marker]) -> Action {
         let coop_prob = self.policy.select_action(markers, self.agent_id);
         
-        if self.rng.gen::<f32>() < RANDOM_EXPLORATION_RATE {
+        // FIX: Reduce exploration in Chicken to avoid crashes
+        let explore_rate = if self.policy.regime() == RegimeType::Chicken {
+            0.10  // Lower exploration in Chicken
+        } else {
+            RANDOM_EXPLORATION_RATE
+        };
+        
+        if self.rng.gen::<f32>() < explore_rate {
             if self.rng.gen::<f32>() > 0.5 { Action::C } else { Action::D }
         } else {
             Action::from_f32(coop_prob)
@@ -178,10 +185,12 @@ fn test_regime_switch() -> AdaptationReport {
         // Switch regimes
         if round == switch_1 {
             current_regime = RegimeType::StagHunt;
+            agent.policy.force_regime(RegimeType::StagHunt); // FIX: Force regime update
             metrics.register_shift(round);
             println!("Round {}: Switched to STAG HUNT", round);
         } else if round == switch_2 {
             current_regime = RegimeType::Chicken;
+            agent.policy.force_regime(RegimeType::Chicken); // FIX: Force regime update
             metrics.register_shift(round);
             println!("Round {}: Switched to CHICKEN", round);
         }

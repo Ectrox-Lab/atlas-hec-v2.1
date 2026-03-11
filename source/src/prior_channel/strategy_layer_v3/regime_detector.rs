@@ -37,6 +37,14 @@ pub struct RegimeDetector {
     confidence: f32,
     /// Shift detection threshold
     shift_threshold: f32,
+    /// FIX 1: Chicken detection counter (catastrophic loss pattern)
+    chicken_counter: usize,
+    /// FIX 1: PD violation counter (negative payoffs in PD)
+    pd_violation_counter: usize,
+    /// FIX 3: In recovery mode after switch
+    in_recovery: bool,
+    /// FIX 3: Recovery start round
+    recovery_start_round: usize,
 }
 
 impl RegimeDetector {
@@ -47,7 +55,25 @@ impl RegimeDetector {
             current_round: 0,
             confidence: 0.0,
             shift_threshold: 0.7,
+            chicken_counter: 0,
+            pd_violation_counter: 0,
+            in_recovery: false,
+            recovery_start_round: 0,
         }
+    }
+    
+    /// FIX 3: Check if in recovery window
+    pub fn in_recovery(&self) -> bool {
+        if !self.in_recovery {
+            return false;
+        }
+        // Recovery window: 30 rounds
+        self.current_round < self.recovery_start_round + 30
+    }
+    
+    /// FIX 3: Clear recovery flag
+    pub fn clear_recovery(&mut self) {
+        self.in_recovery = false;
     }
     
     /// Observe a payoff outcome
@@ -60,26 +86,63 @@ impl RegimeDetector {
             self.payoff_history.remove(0);
         }
         
+        // FIX 1: Hard trigger for Chicken detection
+        // Check for catastrophic loss pattern (Chicken signature: DD = -10)
+        if payoff <= -8 {
+            self.chicken_counter += 1;
+            if self.chicken_counter >= 3 && self.current_regime != RegimeType::Chicken {
+                // Hard trigger: force switch to Chicken
+                self.force_switch(RegimeType::Chicken, 0.9);
+                return;
+            }
+        } else {
+            self.chicken_counter = self.chicken_counter.saturating_sub(1);
+        }
+        
+        // FIX 1: Check for PD-Chicken conflict (high DD penalty vs expected)
+        if self.current_regime == RegimeType::PrisonersDilemma && payoff < 0 {
+            // In PD, payoffs should never be negative
+            // If we see negative payoff, likely in Chicken
+            self.pd_violation_counter += 1;
+            if self.pd_violation_counter >= 5 {
+                self.force_switch(RegimeType::Chicken, 0.85);
+                return;
+            }
+        } else {
+            self.pd_violation_counter = self.pd_violation_counter.saturating_sub(1);
+        }
+        
         // Update regime estimate
         if self.payoff_history.len() >= 20 {
             let (new_regime, new_confidence) = identify_regime(&self.payoff_history, &self.payoff_outcomes(payoff));
             
             if new_regime != self.current_regime && new_confidence > self.shift_threshold {
-                // Regime shift detected
-                let shift = RegimeShift {
-                    from: self.current_regime,
-                    to: new_regime,
-                    round: self.current_round,
-                    confidence: new_confidence,
-                };
-                self.current_regime = new_regime;
-                self.confidence = new_confidence;
-                // Signal shift (in real implementation, would emit event)
+                self.force_switch(new_regime, new_confidence);
             } else {
                 self.current_regime = new_regime;
                 self.confidence = new_confidence;
             }
         }
+    }
+    
+    /// FIX 1: Force regime switch with reset
+    fn force_switch(&mut self, new_regime: RegimeType, confidence: f32) {
+        let shift = RegimeShift {
+            from: self.current_regime,
+            to: new_regime,
+            round: self.current_round,
+            confidence,
+        };
+        self.current_regime = new_regime;
+        self.confidence = confidence;
+        
+        // Reset counters on switch
+        self.chicken_counter = 0;
+        self.pd_violation_counter = 0;
+        
+        // FIX 3: Enter recovery mode
+        self.in_recovery = true;
+        self.recovery_start_round = self.current_round;
     }
     
     /// Get current regime estimate
