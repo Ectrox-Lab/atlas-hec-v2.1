@@ -76,12 +76,13 @@ pub fn detect_population(markers: &[Marker]) -> PopulationType {
     }
 }
 
-/// v2.1 Game bias with population awareness
+/// v2.9 Game bias with population awareness + agent diversity
 ///
 /// KEY INSIGHT:
 /// 1. Random population (Baseline): Defect to exploit
 /// 2. Coordinated population (all ON): Cooperate for mutual benefit
-pub fn game_bias_v2(game: GameType, coherence: f32, pop: PopulationType) -> f32 {
+/// 3. Chicken: needs agent diversity to avoid correlated crashes
+pub fn game_bias_v2(game: GameType, coherence: f32, pop: PopulationType, agent_id: usize) -> f32 {
     match game {
         GameType::PD => {
             match pop {
@@ -93,14 +94,12 @@ pub fn game_bias_v2(game: GameType, coherence: f32, pop: PopulationType) -> f32 
                     -0.30  // Strong defection
                 }
                 PopulationType::Coordinated => {
-                    // Against coordinated ON agents: COOPERATE!
-                    // If all agents cooperate: mutual CC = 3 each
-                    // If all defect: mutual DD = 1 each
-                    // Cooperation beats baseline (which gets ~2.25 vs random)
-                    if coherence > 0.60 {
-                        0.25  // Strong cooperation
+                    // v2.10 PD: Maximize cooperation for mutual CC
+                    // Target: ON > Baseline (248 gap to close)
+                    if coherence > 0.50 {
+                        0.40  // Maximum cooperation
                     } else {
-                        0.10  // Moderate cooperation
+                        0.25  // Strong cooperation
                     }
                 }
                 PopulationType::Mixed => {
@@ -140,45 +139,59 @@ pub fn game_bias_v2(game: GameType, coherence: f32, pop: PopulationType) -> f32 
         }
         
         GameType::Chicken => {
+            // v2.9: PURE MIXED STRATEGY for Chicken
+            // Key insight: Chicken rewards anti-correlation
+            // If all agents use same deterministic logic → crash
+            // Solution: Fixed mixed strategy + agent diversity
+            let base_rates = [0.45, 0.50, 0.55, 0.60];  // Different for each agent
+            let base = base_rates[agent_id % 4];
+            
             match pop {
                 PopulationType::Random => {
-                    // Against random: cooperate to avoid -10 crash
-                    // Random has 25% chance of mutual DD = -10
-                    0.15  // Cooperation bias
+                    // Against random: slightly more defection
+                    base - 0.10
                 }
                 PopulationType::Coordinated => {
-                    // Coordinated: can use mixed strategy
-                    if coherence > 0.65 {
-                        -0.10  // Slight defection (commitment)
-                    } else {
-                        0.20  // Cooperate to avoid crash
-                    }
+                    // Coordinated: can optimize slightly
+                    if coherence > 0.50 { base + 0.05 } else { base }
                 }
                 PopulationType::Mixed => {
-                    // Mixed: cooperate more to be safe
-                    0.12
+                    base  // Pure mixed
                 }
             }
         }
     }
 }
 
-/// Compute final cooperation probability - v2.4
+/// Compute final cooperation probability - v2.8
 ///
-/// KEY FIX: Extended bootstrap with sustained cooperation
+/// KEY FIX: Game-specific bootstrap + agent diversity for Chicken
 pub fn coop_probability_v2(
     policy: &GamePolicyV2,
     markers: &[Marker],
     round: usize,
+    agent_id: usize,  // NEW: for anti-correlation
 ) -> f32 {
-    // Phase 1: Bootstrap (0-200 rounds) - Sustained high cooperation
-    if round < 200 {
-        return 0.75;  // 75% cooperation during bootstrap
+    // Game-specific bootstrap parameters
+    let (bootstrap_rounds, bootstrap_coop, transition_rounds) = match policy.game {
+        // Chicken: Shorter bootstrap, lower cooperation to avoid crash buildup
+        GameType::Chicken => (100, 0.60, 200),
+        // PD: Longer bootstrap for stronger coordination
+        GameType::PD => (250, 0.80, 350),
+        // Stag: Standard
+        _ => (200, 0.75, 300),
+    };
+    
+    let transition_end = bootstrap_rounds + transition_rounds;
+    
+    // Phase 1: Bootstrap
+    if round < bootstrap_rounds {
+        return bootstrap_coop;
     }
     
-    // Phase 2: Transition (200-500 rounds) - Gradual adjustment
-    if round < 500 {
-        let t = (round - 200) as f32 / 300.0;  // 0 to 1
+    // Phase 2: Transition
+    if round < transition_end {
+        let t = (round - bootstrap_rounds) as f32 / transition_rounds as f32;
         
         let coherence = if markers.is_empty() { 0.5 } else {
             markers.iter().map(|m| m.coherence() as f32 / 255.0).sum::<f32>() 
@@ -186,17 +199,21 @@ pub fn coop_probability_v2(
         };
         
         let pop = detect_population(markers);
-        let target_prob = match pop {
-            PopulationType::Coordinated => 0.65,
-            PopulationType::Random => 0.35,
-            PopulationType::Mixed => 0.5 + (coherence - 0.5) * 0.3,
+        let target_prob = match (policy.game, pop) {
+            // Chicken: use game_bias_v2 for target
+            (GameType::Chicken, _) => {
+                0.5 + game_bias_v2(policy.game, coherence, pop, agent_id)
+            }
+            // Others
+            (_, PopulationType::Coordinated) => 0.65,
+            (_, PopulationType::Random) => 0.35,
+            (_, PopulationType::Mixed) => 0.5 + (coherence - 0.5) * 0.3,
         };
         
-        // Interpolate from 0.75 to target
-        return 0.75 + (target_prob - 0.75) * t;
+        return bootstrap_coop + (target_prob - bootstrap_coop) * t;
     }
     
-    // Phase 3: Steady state (>500 rounds) - Full strategy
+    // Phase 3: Steady state
     let base = 0.5;
     let coherence = if markers.is_empty() { 0.5 } else {
         markers.iter().map(|m| m.coherence() as f32 / 255.0).sum::<f32>() 
@@ -204,7 +221,7 @@ pub fn coop_probability_v2(
     };
     
     let pop = detect_population(markers);
-    let game_adj = game_bias_v2(policy.game, coherence, pop);
+    let game_adj = game_bias_v2(policy.game, coherence, pop, agent_id);
     
     let opp_adj = if policy.use_opponent_model && pop == PopulationType::Mixed {
         opponent_bias_v2(&classify_opponent_v2(markers))
@@ -245,7 +262,7 @@ mod tests {
         let policy = GamePolicyV2::new(GameType::PD);
         let markers = vec![Marker::new(1, 255, 0, 0)];
         
-        let p = coop_probability_v2(&policy, &markers, 100);
+        let p = coop_probability_v2(&policy, &markers, 100, 0);
         assert!(p >= 0.05 && p <= 0.95);
     }
     

@@ -33,10 +33,11 @@ struct Agent {
     rng: StdRng,
     condition: Condition,
     game: GameType,
+    agent_id: usize,
 }
 
 impl Agent {
-    fn new(seed: u64, condition: Condition, game: GameType) -> Self {
+    fn new(seed: u64, condition: Condition, game: GameType, agent_id: usize) -> Self {
         Self {
             scheduler: MarkerScheduler::new(0),
             score: 0,
@@ -45,6 +46,7 @@ impl Agent {
             rng: StdRng::seed_from_u64(seed),
             condition,
             game,
+            agent_id,
         }
     }
     
@@ -72,9 +74,9 @@ impl Agent {
             }
             
             Condition::On => {
-                // Strategy Layer v2 - population-aware
+                // Strategy Layer v2 - population-aware + agent diversity
                 let policy = GamePolicyV2::new(self.game);
-                let coop_prob = coop_probability_v2(&policy, markers, round);
+                let coop_prob = coop_probability_v2(&policy, markers, round, self.agent_id);
                 
                 if self.rng.gen::<f32>() < RANDOM_EXPLORATION_RATE {
                     if self.rng.gen::<f32>() > 0.5 { Action::C } else { Action::D }
@@ -143,7 +145,7 @@ fn run_game(game: GameType, rounds: usize, seeds: usize, condition: Condition) -
     
     for seed in 0..seeds {
         let mut agents: Vec<Agent> = (0..4)
-            .map(|i| Agent::new(seed as u64 * 1000 + i as u64, condition, game))
+            .map(|i| Agent::new(seed as u64 * 1000 + i as u64, condition, game, i))
             .collect();
         
         for round in 0..rounds {
