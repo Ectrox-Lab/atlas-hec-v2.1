@@ -63,3 +63,17 @@ pub use bio_superbrain_interface::{
     ExperimentAtoE, RunConfig,
     integration_health, HealthStatus,
 };
+
+// Bio-World v19 Core
+// Unified multi-agent evolution framework
+pub mod bio_world_v19;
+pub use bio_world_v19::{
+    StateVector, 
+    compute_sync_order_parameter,
+    compute_condensation_index,
+    compute_percolation_ratio,
+    GridWorld, Agent, Position,
+    PopulationDynamics, PopulationParams,
+    HazardRateTracker, MultiUniverseHazard,
+    GRID_X, GRID_Y, GRID_Z,
+};
