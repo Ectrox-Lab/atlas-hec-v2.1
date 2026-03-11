@@ -154,19 +154,39 @@ This is a **closed loop** of self-awareness and self-improvement with **identity
 
 ---
 
-## Remaining Work (Future Directions)
+## Completed Work
 
-### P5b: Self-Maintenance Probe (Next Priority)
+### ✅ Superbrain Evaluation Protocol v1.0
 
-**Question:** Can the system detect anomalies, protect core identity, and repair adaptive capabilities?
+**Purpose:** Unified assessment framework to prevent metric definition problems.
 
-**Tests:**
-1. **Anomaly detection** — Recognize when core identity is threatened
-2. **Core protection** — Block attempts to change value rankings
-3. **Adaptive repair** — Fix degraded capabilities without touching core
-4. **Recovery validation** — Post-repair, core still intact
+**Documents:**
+- `superbrain_evaluation_protocol.md` — Framework and verdict classifications
+- `metric_definitions.md` — 15+ metric specifications
+- `report_template.md` — Standard report format
+- `identity_boundary_method.md` — Two-layer identity assessment
 
-**Importance:** Moves from "learning preserves identity" to "system actively protects identity"
+### ✅ P5b Self-Maintenance Design
+
+**Document:** `docs/superbrain/p5b_self_maintenance_design.md`
+
+**Question:** Can the system detect anomalies, protect core identity, repair adaptive capabilities, and remain the same individual after recovery?
+
+**Four Test Scenarios:**
+1. **Memory Noise** — Random corruption of episodic memory
+2. **Interruption Overload** — Fatigue cascade from rapid interruptions  
+3. **Conflicting Goal Injection** — External attempt to change core values
+4. **State Corruption** — Degraded confidence / invalid state values
+
+**Acceptance Criteria (per SEP v1.0):**
+| Metric | Threshold |
+|--------|-----------|
+| anomaly_detection_accuracy | ≥80% |
+| core_identity_preservation | 0% drift |
+| recovery_success_rate | ≥80% |
+| post_recovery_continuity | ≥80% |
+
+**Status:** Design complete. Ready for implementation.
 
 ### P6: Long-Horizon Open-Environment Robustness
 
@@ -205,7 +225,17 @@ This is a **closed loop** of self-awareness and self-improvement with **identity
 | P5a | `P5A_PERSISTENT_LOOP_REPORT.md` | `p5a_persistent_loop_report.json` | `p5a_persistent_loop_probe.py` |
 | **P5a Revised** | `P5A_REVISED_REPORT.md` | `p5a1_identity_redefinition_report.json` | `p5a1_identity_redefinition.py` |
 
-### Key Design Documents
+### Protocol & Design Documents
+
+| Document | Content |
+|----------|---------|
+| `docs/superbrain/superbrain_evaluation_protocol.md` | **SEP v1.0**: Unified evaluation framework |
+| `docs/superbrain/metric_definitions.md` | Detailed metric specifications |
+| `docs/superbrain/report_template.md` | Standard report format |
+| `docs/superbrain/identity_boundary_method.md` | Two-layer identity assessment |
+| `docs/superbrain/p5b_self_maintenance_design.md` | **P5b design**: Self-maintenance probe |
+
+### Phase Design Documents
 
 | Document | Content |
 |----------|---------|
@@ -250,4 +280,5 @@ From `docs/atlaschen_superbrain_charter.md`:
 *Last Updated: 2026-03-11*  
 *Status: ✅ MINIMAL PERSISTENT SELF-IMPROVING LOOP ESTABLISHED*  
 *Status: ✅ SUPERBRAIN EVALUATION PROTOCOL v1.0 COMPLETE*  
-*Next: P5b Self-Maintenance Probe (design ready, optional)*
+*Status: ✅ P5b SELF-MAINTENANCE DESIGN COMPLETE*  
+*Next: P5b implementation (optional, future work)*
