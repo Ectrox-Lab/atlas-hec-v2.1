@@ -16,6 +16,7 @@ pub struct RunConfig {
 
 impl RunConfig {
     /// MVP configuration (smaller for fast validation)
+    /// Grid: 20×20×4, Universes: 8, Ticks: 10k
     pub fn mvp() -> Self {
         Self {
             grid_size: (20, 20, 4),
@@ -23,6 +24,25 @@ impl RunConfig {
             total_ticks: 10000,
             seeds: vec![42, 123, 456, 789, 101, 202, 303, 404],
         }
+    }
+    
+    /// Research-scale configuration (50× scale expansion)
+    /// Grid: 50×50×16, Universes: 128, Ticks: 100k
+    /// Target: Verify A-E signals persist at research scale
+    pub fn research() -> Self {
+        Self {
+            grid_size: (50, 50, 16),
+            universe_count: 128,
+            total_ticks: 100000,
+            seeds: (0..128).map(|i| 1000 + i as u64).collect(),
+        }
+    }
+    
+    /// Check if config is at research scale
+    pub fn is_research_scale(&self) -> bool {
+        self.grid_size.0 >= 50 
+            && self.universe_count >= 64 
+            && self.total_ticks >= 50000
     }
 }
 
@@ -151,11 +171,41 @@ mod tests {
         let config = RunConfig::mvp();
         assert!(config.universe_count < 128);
         assert!(config.total_ticks < 100000);
+        assert!(!config.is_research_scale());
+    }
+    
+    #[test]
+    fn research_config_scale() {
+        let config = RunConfig::research();
+        assert_eq!(config.grid_size, (50, 50, 16));
+        assert_eq!(config.universe_count, 128);
+        assert_eq!(config.total_ticks, 100000);
+        assert_eq!(config.seeds.len(), 128);
+        assert!(config.is_research_scale());
     }
     
     #[test]
     fn experiment_names() {
         assert_eq!(ExperimentAtoE::Survival.name(), "A-Survival");
         assert_eq!(ExperimentAtoE::Evolution.name(), "B-Evolution");
+    }
+    
+    /// Research-scale retention test (Option 1 gate)
+    /// Verifies A-E signals persist at 50× scale before v19 modules added
+    #[test]
+    fn research_scale_retention_ae_matrix() {
+        let config = RunConfig::research();
+        let results = run_matrix(&config);
+        
+        // All 5 experiments should pass at research scale
+        let pass_count = results.iter().filter(|r| r.success).count();
+        assert_eq!(pass_count, 5, "All A-E experiments must pass at research scale");
+        
+        // D-Collaboration should show strongest signal (growth)
+        let d_result = results.iter()
+            .find(|r| r.experiment == "D-Collaboration")
+            .expect("D-Collaboration result required");
+        assert!(d_result.survival_rate > 1.0, 
+            "D-Collaboration should show growth at research scale");
     }
 }

@@ -23,8 +23,11 @@ pub use mlp::MLPReadout;
 // GridWorld模块
 pub mod gridworld;
 pub mod atlas_cuda_bridge;
-pub mod hec_ffi;
 pub mod sensory;
+
+// HEC Bridge (requires external library)
+#[cfg(feature = "hec_bridge")]
+pub mod hec_ffi;
 
 // Self Kernel v0.1: 最小可验证自我核心
 pub mod self_kernel;
