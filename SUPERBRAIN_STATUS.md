@@ -74,9 +74,33 @@ Proven (now facts, not hypotheses):
 3. Adaptive layer can be repaired without core write
 4. Post-repair continuity maintained (core-as-gate verification)
 
-**Next Phase Ready:** P6 entry gate defined (`P6_ENTRY_GATE.md`)
-- 4-gate checklist before 72h run
-- All gates must pass: P5b repro, 1h smoke, stops coded, logging wired
+### Layer 4: Long-Horizon Robustness (P6) ✅ STAGE 1 COMPLETE
+
+| Stage | Status | Evidence |
+|-------|--------|----------|
+| Entry Gate | ✅ PASSED | 4 gates, 58/58 tests |
+| Stage 1 (24h) | ✅ PASSED | 24 epochs, 0 drift, all criteria met |
+| Stage 2 (72h) | ⏳ Ready | Can execute when needed |
+
+**P6 24h Smoke Test Results:**
+```
+Configuration: 24 epochs × 60 min = 24 hours (simulated)
+State: COMPLETE
+Verdict: PASS
+Core drift: 0/24 epochs ✅
+Min detector recall: 100% (threshold: 80%) ✅
+Min capability diversity: 63.13% (threshold: 50%) ✅
+Max maintenance overhead: 7.55% (threshold: 30%) ✅
+```
+
+**Validated:**
+- 24-epoch continuous operation
+- Zero core drift over 24 epochs
+- Detector stability (100% recall)
+- Sustainable capability diversity
+- Bounded maintenance overhead
+
+**Output:** `experiments/superbrain/p6/P6_24H_STATUS.md`
 
 ---
 
