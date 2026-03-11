@@ -88,6 +88,12 @@ class FaultInjector:
                     if isinstance(mem[key], (int, float)):
                         noise = self.rng.gauss(0, level)
                         mem[key] = mem[key] + noise
+                    # Also handle lists of numbers
+                    elif isinstance(mem[key], list):
+                        for i, item in enumerate(mem[key]):
+                            if isinstance(item, (int, float)) and self.rng.random() < level:
+                                noise = self.rng.gauss(0, level)
+                                mem[key][i] = item + noise
         
         return self._record("memory_noise", level, 1, "adaptive")
     
