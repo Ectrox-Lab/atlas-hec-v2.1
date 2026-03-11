@@ -45,7 +45,7 @@ This document marks the completion of a **full research phase** for the Superbra
 
 ---
 
-### Layer 3: Self-Maintenance (P5b) ✅ COMPLETE
+### Layer 3: Self-Maintenance (P5b) ✅ COMPLETE & VERIFIED
 
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
@@ -66,15 +66,17 @@ This document marks the completion of a **full research phase** for the Superbra
 - 5 criteria: all passed (recall, core match, overlap, continuity, no core write)
 - Evidence: `CHECKPOINT_2_RESULTS.md`, `checkpoint_2_metrics.json`
 
-**P5b Overall: MINIMAL SELF-MAINTENANCE LOOP COMPLETE**
+**P5b Overall: MINIMAL SELF-MAINTENANCE LOOP VERIFIED**
 
-Proven:
+Proven (now facts, not hypotheses):
 1. Core identity can be protected (0% drift under attack)
 2. Anomalies can be detected (recall ≥80%)
 3. Adaptive layer can be repaired without core write
 4. Post-repair continuity maintained (core-as-gate verification)
 
-**Current State:** P5b implementation complete. Ready for extension (4-class coverage) or P6 (long-horizon robustness).
+**Next Phase Ready:** P6 entry gate defined (`P6_ENTRY_GATE.md`)
+- 4-gate checklist before 72h run
+- All gates must pass: P5b repro, 1h smoke, stops coded, logging wired
 
 ---
 
@@ -85,13 +87,19 @@ Proven:
 │                    SUPERBRAIN RESEARCH STACK                     │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  LAYER 3: DESIGN        ✅ P5b Self-Maintenance Design          │
-│  (Next Stage)              Complete, implementable               │
-│                            Uses SEP v1.0 metrics               │
+│  NEXT PHASE             📝 P6 Long-Horizon Robustness           │
+│  (P6 Entry Ready)          Design + Plan + Gate complete        │
+│                            Entry: 4-gate checklist              │
+│                            Question: Does the loop last?        │
+│                                                                  │
+│  LAYER 3: IMPLEMENTATION ✅ P5b Self-Maintenance COMPLETE       │
+│  (Verified)                Week 1: Core protection (0% drift)   │
+│                            Week 2: Anomaly loop (recall ≥0.8)   │
+│                            Status: MINIMAL LOOP VERIFIED        │
 │                                                                  │
 │  LAYER 2: PROTOCOL      ✅ SEP v1.0 Evaluation Framework        │
 │  (Assessment)              Unified metrics and thresholds        │
-│                            Prevents definition drift           │
+│                            Core/Adaptive boundary method        │
 │                                                                  │
 │  LAYER 1: EXECUTION     ✅ P1–P5a Complete                      │
 │  (Demonstration)           Minimal persistent self-improving    │
@@ -201,29 +209,40 @@ P5b design: self-maintenance architecture (ready for implementation)
 
 ## Conclusion
 
-> **"超脑组已经完成了一个完整阶段：从最小持续主体闭环，到统一评估协议，再到自维护探针设计，链条是闭合的。"**
+> **"超脑组已经完成了一个完整阶段：从最小持续主体闭环，到统一评估协议，再到自维护闭环验证，链条是闭合的。P6长期鲁棒性入口已就绪。"**
 >
-> *"The Superbrain research line has completed a full phase: from minimal persistent self-improving loop, to unified evaluation protocol, to self-maintenance probe design. The chain is closed."*
+> *"The Superbrain research line has completed a full phase: from minimal persistent self-improving loop, to unified evaluation protocol, to verified self-maintenance loop. The chain is closed. P6 long-horizon robustness entry is ready."*
 
 ### Current Status
 
 - ✅ **Minimal persistent self-improving loop:** Established and verified (P1-P5a)
 - ✅ **Unified evaluation protocol:** Established (SEP v1.0)
-- ✅ **Self-maintenance probe:** Designed and ready (P5b design)
-- 🔄 **P5b implementation:** Optional future entry point when prioritized
+- ✅ **Self-maintenance loop:** Implemented and verified (P5b Week 1 & 2)
+  - Core protection: 0% drift, 100% block rate
+  - Anomaly handling: recall ≥0.8, no core write
+  - Continuity verification: core-as-gate logic validated
+- 📝 **P6 Long-Horizon Robustness:** Design complete, entry gate defined, ready for implementation
 
-### Next Steps (Optional)
+### Next Steps
 
-**When resources and priorities align:**
+**Option A: Enter P6 (Recommended)**
+1. Pass 4-gate entry checklist (`P6_ENTRY_GATE.md`)
+2. Execute 24h smoke test (Stage 1)
+3. Execute 72h primary run (Stage 2)
+4. Validate 5 P6 criteria
 
-1. **Implement P5b** using archived design and SEP v1.0 metrics
-2. **Validate** anomaly detection, core protection, adaptive repair
-3. **Assess** using protocol-defined thresholds
+**Option B: Extend P5b**
+- Add 2 more anomaly types (interrupt_overload, state_corruption)
+- Implement adaptive policy selection
+- Increase coverage, not new capability
 
-**Or:** Archive current state and pursue other research priorities. The Superbrain phase is complete.
+**Option C: Archive and Pivot**
+- Current phase is complete and documented
+- No urgent gaps requiring immediate attention
+- Safe to pause for priority re-evaluation
 
 ---
 
-*Last Updated: 2026-03-11*  
-*Status: ✅ PHASE COMPLETE — Execution, Protocol, and Design Layers Archived*  
-*Next Entry Point: P5b Implementation (optional, when prioritized)*
+*Last Updated: 2026-03-08*  
+*Status: ✅ PHASE COMPLETE — P1-P5b Verified, P6 Ready*  
+*Next Entry Point: P6 Implementation (when prioritized)*
