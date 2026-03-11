@@ -1,0 +1,42 @@
+# Phase 2 Smoke Test - Parallel Execution
+# 4 environments × 3 seeds each
+
+.PHONY: all smoke clean results
+
+BINS = phase2/hub_failure phase2/regime_shift phase2/resource_competition phase2/multigame_cycle
+
+all: smoke results
+
+# Build all binaries
+build:
+	cargo build --release --bin phase2/hub_failure --no-default-features
+	cargo build --release --bin phase2/regime_shift --no-default-features
+	cargo build --release --bin phase2/resource_competition --no-default-features
+	cargo build --release --bin phase2/multigame_cycle --no-default-features
+
+# Run smoke tests in parallel
+smoke: build
+	@echo "Running Phase 2 Smoke Tests (parallel)..."
+	@./run_phase2_parallel.sh
+
+# Sequential fallback
+smoke-seq:
+	@echo "Running Phase 2 Smoke Tests (sequential)..."
+	cargo run --release --bin phase2/hub_failure --no-default-features
+	cargo run --release --bin phase2/regime_shift --no-default-features
+	cargo run --release --bin phase2/resource_competition --no-default-features
+	cargo run --release --bin phase2/multigame_cycle --no-default-features
+
+# Aggregate results
+results:
+	@echo ""
+	@echo "========================================"
+	@echo "Phase 2 Smoke Test - Aggregate Results"
+	@echo "========================================"
+	@cat /tmp/phase2_*.csv 2>/dev/null | head -20 || echo "No results yet"
+	@echo ""
+	@echo "Overall Pass: Check individual results above"
+
+clean:
+	rm -f /tmp/phase2_*.csv
+	cargo clean
