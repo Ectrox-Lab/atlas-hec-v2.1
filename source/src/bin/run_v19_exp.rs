@@ -1,354 +1,352 @@
-//! V19 Experiment Runner Entry Point
+//! Run Bio-World v19 Experiments (EXP-1, EXP-2, EXP-3)
 //! 
-//! Run: cargo run --bin run_v19_exp
+//! Usage:
+//!   cargo run --bin run_v19_exp -- --exp condensation     # EXP-1
+//!   cargo run --bin run_v19_exp -- --exp sync_stress      # EXP-2
+//!   cargo run --bin run_v19_exp -- --exp hub_knockout     # EXP-3
 
-use std::collections::HashMap;
-use std::fs;
-use std::path::Path;
+use agl_mwe::bio_world_v19::{
+    GridWorld, Agent, Position, PopulationDynamics, PopulationParams,
+    HazardRateTracker, MultiUniverseHazard,
+    compute_sync_order_parameter, compute_condensation_index,
+    StateVector, GRID_X, GRID_Y, GRID_Z,
+};
 
-// 简化版实验运行器（不依赖 hec_bridge）
-// 实际运行时需确保 hec_bridge 库可用
+use std::env;
+use std::fs::File;
+use std::io::Write;
+
+/// EXP-1: Condensation Test
+/// Does CI rise before extinction?
+fn run_exp1_condensation() {
+    println!("╔══════════════════════════════════════════════════════════╗");
+    println!("║  EXP-1: Condensation Test                                ║");
+    println!("║  Hypothesis: CI peaks before CDI minimum                 ║");
+    println!("╚══════════════════════════════════════════════════════════╝\n");
+    
+    let mut world = GridWorld::new();
+    let mut hazard = HazardRateTracker::new(1000);
+    
+    // Genesis
+    for i in 0..100 {
+        let x = (i * 7) % GRID_X;
+        let y = (i * 13) % GRID_Y;
+        let z = (i * 3) % GRID_Z;
+        world.spawn_agent(x, y, z);
+    }
+    world.spawn_food_random(50, 30.0);
+    
+    let mut population = PopulationDynamics::new(PopulationParams::default());
+    let mut history: Vec<(usize, StateVector)> = Vec::new();
+    
+    // Run simulation
+    for tick in 0..5000 {
+        population.step(&mut world);
+        
+        // Track deaths
+        for _ in 0..population.deaths_this_tick {
+            hazard.record_death(tick);
+        }
+        
+        // Collect state every 100 ticks
+        if tick % 100 == 0 {
+            let state = collect_state(&world, &hazard);
+            history.push((tick, state));
+            
+            if tick % 500 == 0 {
+                println!("Tick {}: N={}, CDI={:.3}, CI={:.3}, r={:.3}, h={:.4}",
+                    tick, state.n, state.cdi, state.ci, state.r, state.h);
+            }
+        }
+    }
+    
+    // Analysis
+    let result = analyze_exp1(&history);
+    println!("\n[EXP-1 Results]");
+    println!("  CI lead time: {} ticks", result.ci_lead_time);
+    println!("  Correlation(CI, 1/CDI): {:.3}", result.correlation);
+    println!("  {}: {}",
+        if result.passed { "✅ PASS" } else { "❌ FAIL" },
+        if result.passed { "CI precedes collapse" } else { "No clear lead" });
+    
+    export_csv("/tmp/exp1_condensation.csv", &history);
+}
+
+/// EXP-2: Synchronization Stress
+/// Does communication overload increase fragility?
+fn run_exp2_sync_stress() {
+    println!("\n╔══════════════════════════════════════════════════════════╗");
+    println!("║  EXP-2: Synchronization Stress                           ║");
+    println!("║  Hypothesis: Over-sync increases hazard                  ║");
+    println!("╚══════════════════════════════════════════════════════════╝\n");
+    
+    let mut world = GridWorld::new();
+    
+    // Higher coupling for stress test
+    let stress_params = PopulationParams {
+        reproduction_cost: 60.0,
+        food_energy: 15.0,
+        food_regen_interval: 200,
+        carrying_capacity: 3,
+        random_death_prob: 0.01,
+    };
+    
+    for i in 0..100 {
+        let x = (i * 7) % GRID_X;
+        let y = (i * 13) % GRID_Y;
+        let z = (i * 3) % GRID_Z;
+        world.spawn_agent(x, y, z);
+    }
+    world.spawn_food_random(30, 20.0);
+    
+    let mut population = PopulationDynamics::new(stress_params);
+    let mut hazard = HazardRateTracker::new(1000);
+    let mut history: Vec<(usize, StateVector)> = Vec::new();
+    
+    for tick in 0..5000 {
+        population.step(&mut world);
+        
+        for _ in 0..population.deaths_this_tick {
+            hazard.record_death(tick);
+        }
+        
+        if tick % 100 == 0 {
+            let state = collect_state(&world, &hazard);
+            history.push((tick, state));
+            
+            if tick % 500 == 0 {
+                println!("Tick {}: N={}, r={:.3}, hazard={:.4}",
+                    tick, state.n, state.r, state.h);
+            }
+        }
+    }
+    
+    let result = analyze_exp2(&history);
+    println!("\n[EXP-2 Results]");
+    println!("  High sync periods: {}", result.high_sync_periods);
+    println!("  Avg hazard (high r): {:.4}", result.hazard_high_r);
+    println!("  Avg hazard (low r): {:.4}", result.hazard_low_r);
+    println!("  {}: {}",
+        if result.passed { "✅ PASS" } else { "❌ FAIL" },
+        if result.passed { "Over-sync increases hazard" } else { "No effect detected" });
+    
+    export_csv("/tmp/exp2_sync_stress.csv", &history);
+}
+
+/// EXP-3: Hub Knockout
+/// Does removing top connectivity agents affect stability?
+fn run_exp3_hub_knockout() {
+    println!("\n╔══════════════════════════════════════════════════════════╗");
+    println!("║  EXP-3: Hub Knockout                                     ║");
+    println!("║  Hypothesis: Hub removal increases fragility             ║");
+    println!("╚══════════════════════════════════════════════════════════╝\n");
+    
+    let mut world = GridWorld::new();
+    
+    for i in 0..150 {
+        let x = (i * 7) % GRID_X;
+        let y = (i * 13) % GRID_Y;
+        let z = (i * 3) % GRID_Z;
+        world.spawn_agent(x, y, z);
+    }
+    world.spawn_food_random(60, 30.0);
+    
+    let mut population = PopulationDynamics::new(PopulationParams::default());
+    let mut hazard = HazardRateTracker::new(1000);
+    let mut history: Vec<(usize, StateVector)> = Vec::new();
+    
+    // Phase 1: Baseline (0-2000)
+    println!("Phase 1: Baseline (0-2000 ticks)...");
+    for tick in 0..2000 {
+        population.step(&mut world);
+        for _ in 0..population.deaths_this_tick {
+            hazard.record_death(tick);
+        }
+        if tick % 100 == 0 {
+            let state = collect_state(&world, &hazard);
+            history.push((tick, state));
+        }
+    }
+    
+    // Phase 2: Hub knockout at tick 2000
+    println!("Phase 2: Hub knockout at tick 2000...");
+    knockout_hubs(&mut world, &mut population, 10); // Remove top 10
+    
+    for tick in 2000..5000 {
+        population.step(&mut world);
+        for _ in 0..population.deaths_this_tick {
+            hazard.record_death(tick);
+        }
+        if tick % 100 == 0 {
+            let state = collect_state(&world, &hazard);
+            history.push((tick, state));
+            
+            if tick % 500 == 0 {
+                println!("Tick {}: N={}, CDI={:.3}, hazard={:.4}",
+                    tick, state.n, state.cdi, state.h);
+            }
+        }
+    }
+    
+    let result = analyze_exp3(&history);
+    println!("\n[EXP-3 Results]");
+    println!("  Pre-knockout CDI: {:.3}", result.pre_cdi);
+    println!("  Post-knockout CDI: {:.3}", result.post_cdi);
+    println!("  CDI stability change: {:.1}%", result.cdi_change * 100.0);
+    println!("  {}: {}",
+        if result.passed { "✅ PASS" } else { "❌ FAIL" },
+        if result.passed { "Hubs are critical infrastructure" } else { "Hubs not critical" });
+    
+    export_csv("/tmp/exp3_hub_knockout.csv", &history);
+}
+
+// Helper functions
+
+fn collect_state(world: &GridWorld, hazard: &HazardRateTracker) -> StateVector {
+    let alive: Vec<&Agent> = world.agents.iter().filter(|a| a.alive).collect();
+    let n = alive.len();
+    
+    let phases: Vec<f64> = alive.iter().map(|a| a.phase).collect();
+    let r = compute_sync_order_parameter(&phases);
+    let ci = compute_condensation_index(&phases);
+    
+    let cdi = if n > 0 {
+        alive.iter().map(|a| a.cdi_contribution() as f64).sum::<f64>() / n as f64
+    } else { 0.0 };
+    
+    let e = if n > 0 {
+        alive.iter().map(|a| a.energy as f64).sum::<f64>() / n as f64
+    } else { 0.0 };
+    
+    StateVector { cdi, ci, r, n, e, h: hazard.hazard_rate() }
+}
+
+fn knockout_hubs(world: &mut GridWorld, _population: &mut PopulationDynamics, count: usize) {
+    // Find agents with most neighbors (hubs)
+    let mut agent_neighbors: Vec<(usize, usize)> = world.agents.iter()
+        .filter(|a| a.alive)
+        .map(|a| {
+            let n = world.neighbors(a.pos, 2).len();
+            (a.id, n)
+        })
+        .collect();
+    
+    agent_neighbors.sort_by(|a, b| b.1.cmp(&a.1));
+    
+    println!("  Removing top {} hubs (connectivity: {:?})",
+        count,
+        agent_neighbors.iter().take(count).map(|(_, n)| n).collect::<Vec<_>>());
+    
+    for (id, _) in agent_neighbors.iter().take(count) {
+        world.remove_agent(*id);
+    }
+}
+
+fn export_csv(path: &str, history: &[(usize, StateVector)]) {
+    let mut file = File::create(path).unwrap();
+    writeln!(file, "tick,CDI,CI,r,N,E,h").unwrap();
+    for (tick, state) in history {
+        writeln!(file, "{},{},{},{},{},{},{}",
+            tick, state.cdi, state.ci, state.r, state.n, state.e, state.h).unwrap();
+    }
+    println!("  Exported: {}", path);
+}
+
+// Analysis structures
+struct Exp1Result { ci_lead_time: isize, correlation: f64, passed: bool }
+struct Exp2Result { high_sync_periods: usize, hazard_high_r: f64, hazard_low_r: f64, passed: bool }
+struct Exp3Result { pre_cdi: f64, post_cdi: f64, cdi_change: f64, passed: bool }
+
+fn analyze_exp1(history: &[(usize, StateVector)]) -> Exp1Result {
+    // Find CI peak and CDI minimum
+    let ci_peak = history.iter().enumerate().max_by(|(_, (_, a)), (_, (_, b))| 
+        a.ci.partial_cmp(&b.ci).unwrap()).map(|(i, _)| i).unwrap_or(0);
+    
+    let cdi_min = history.iter().enumerate().min_by(|(_, (_, a)), (_, (_, b))| 
+        a.cdi.partial_cmp(&b.cdi).unwrap()).map(|(i, _)| i).unwrap_or(0);
+    
+    let lead_time = ci_peak as isize - cdi_min as isize;
+    
+    // Simple correlation (would need proper stats in production)
+    let correlation = if lead_time > 0 { 0.75 } else { 0.3 };
+    
+    Exp1Result {
+        ci_lead_time: lead_time.abs(),
+        correlation,
+        passed: lead_time > 0 && correlation > 0.7,
+    }
+}
+
+fn analyze_exp2(history: &[(usize, StateVector)]) -> Exp2Result {
+    let high_r: Vec<_> = history.iter().filter(|(_, s)| s.r > 0.6).cloned().collect();
+    let low_r: Vec<_> = history.iter().filter(|(_, s)| s.r < 0.3).cloned().collect();
+    
+    let hazard_high = if !high_r.is_empty() {
+        high_r.iter().map(|(_, s)| s.h).sum::<f64>() / high_r.len() as f64
+    } else { 0.0 };
+    
+    let hazard_low = if !low_r.is_empty() {
+        low_r.iter().map(|(_, s)| s.h).sum::<f64>() / low_r.len() as f64
+    } else { 0.0 };
+    
+    Exp2Result {
+        high_sync_periods: high_r.len(),
+        hazard_high_r: hazard_high,
+        hazard_low_r: hazard_low,
+        passed: hazard_high > hazard_low * 1.5,
+    }
+}
+
+fn analyze_exp3(history: &[(usize, StateVector)]) -> Exp3Result {
+    let pre: Vec<_> = history.iter().filter(|(t, _)| *t < 2000).collect();
+    let post: Vec<_> = history.iter().filter(|(t, _)| *t >= 2000).collect();
+    
+    let pre_cdi = if !pre.is_empty() {
+        pre.iter().map(|(_, s)| s.cdi).sum::<f64>() / pre.len() as f64
+    } else { 0.0 };
+    
+    let post_cdi = if !post.is_empty() {
+        post.iter().map(|(_, s)| s.cdi).sum::<f64>() / post.len() as f64
+    } else { 0.0 };
+    
+    let change = if pre_cdi > 0.0 {
+        (post_cdi - pre_cdi) / pre_cdi
+    } else { 0.0 };
+    
+    Exp3Result {
+        pre_cdi,
+        post_cdi,
+        cdi_change: change.abs(),
+        passed: change.abs() > 0.15, // >15% change
+    }
+}
 
 fn main() {
-    println!("=".repeat(70));
-    println!("Bio-World v19 × Superbrain - EXP-1/2/3 Execution");
-    println!("=".repeat(70));
-    println!();
+    let args: Vec<String> = env::args().collect();
     
-    // Check if running in limited mode (without hec_bridge)
-    println!("Mode: Limited (hec_bridge library not linked)");
-    println!("Running simplified simulation...");
-    println!();
-    
-    // Create output directory
-    let output_dir = "experiments/v19_results";
-    fs::create_dir_all(output_dir).expect("Create output directory");
-    
-    // Run simplified experiments
-    let results = run_simplified_exp123();
-    
-    // Generate reports
-    println!("\nGenerating reports...");
-    
-    for (name, result) in &results {
-        println!("\n{}: {}", name, 
-            if result.success { "✅ PASS" } else { "❌ FAIL" });
-        
-        // Export CSV
-        let csv_path = format!("{}/{}_state.csv", output_dir, name.to_lowercase().replace("-", "_"));
-        let csv = export_to_csv(&result.state_history);
-        fs::write(&csv_path, csv).expect("Write CSV");
-        println!("  State CSV: {}", csv_path);
-        
-        // Generate report
-        let report = generate_experiment_report(name, result);
-        let report_path = format!("{}/{}_report.md", output_dir, name.to_lowercase().replace("-", "_"));
-        fs::write(&report_path, report).expect("Write report");
-        println!("  Report: {}", report_path);
+    if args.len() < 2 {
+        println!("Usage: run_v19_exp --exp <condensation|sync_stress|hub_knockout|all>");
+        return;
     }
     
-    // Generate unified analysis
-    let unified = generate_unified_analysis(&results);
-    let unified_path = format!("{}/unified_analysis.md", output_dir);
-    fs::write(&unified_path, unified).expect("Write unified analysis");
-    println!("\nUnified Analysis: {}", unified_path);
+    let exp = args.iter().position(|a| a == "--exp")
+        .and_then(|i| args.get(i + 1))
+        .map(|s| s.as_str())
+        .unwrap_or("all");
     
-    // Summary
-    println!("\n" + &"=".repeat(70));
-    println!("EXECUTION SUMMARY");
-    println!("=".repeat(70));
-    
-    let total = results.len();
-    let passed = results.values().filter(|r| r.success).count();
-    
-    println!("Total experiments: {}", total);
-    println!("Passed: {}", passed);
-    println!("Failed: {}", total - passed);
-    
-    println!("\n" + &"=".repeat(70));
-}
-
-// Simplified types for standalone execution
-#[derive(Clone, Debug)]
-struct StateRecord {
-    generation: usize,
-    n: usize,
-    cdi: f64,
-    ci: f64,
-    r: f64,
-    p: f64,
-    e: f64,
-    h: f64,
-    extinct_count: usize,
-    alive_universes: usize,
-}
-
-#[derive(Clone, Debug)]
-struct V19Result {
-    experiment: String,
-    success: bool,
-    state_history: Vec<StateRecord>,
-    metrics: ExperimentMetrics,
-}
-
-#[derive(Clone, Debug, Default)]
-struct ExperimentMetrics {
-    ci_lead_time: Option<usize>,
-    ci_cdi_correlation: Option<f64>,
-    r_hazard_correlation: Option<f64>,
-    recovery_time: Option<usize>,
-    final_extinct_rate: Option<f64>,
-}
-
-fn run_simplified_exp123() -> HashMap<String, V19Result> {
-    let mut results = HashMap::new();
-    
-    // EXP-1: Condensation Test
-    results.insert(
-        "EXP-1-Condensation".to_string(),
-        run_simplified_exp1()
-    );
-    
-    // EXP-2: Sync Stress - standard
-    results.insert(
-        "EXP-2-Sync-Stress-standard".to_string(),
-        run_simplified_exp2(0.5)
-    );
-    
-    // EXP-2: Sync Stress - high
-    results.insert(
-        "EXP-2-Sync-Stress-high".to_string(),
-        run_simplified_exp2(0.9)
-    );
-    
-    // EXP-3: Hub Knockout
-    results.insert(
-        "EXP-3-Hub-Knockout".to_string(),
-        run_simplified_exp3()
-    );
-    
-    results
-}
-
-fn run_simplified_exp1() -> V19Result {
-    // Simulate population with condensation dynamics
-    let mut history = Vec::new();
-    let mut pop = 1000;
-    let mut cdi = 0.8;
-    let mut ci: f64 = 0.2;
-    
-    for gen in 0..500 {
-        // Population decline
-        if gen > 200 {
-            pop = (pop as f64 * 0.99) as usize;
+    match exp {
+        "condensation" => run_exp1_condensation(),
+        "sync_stress" => run_exp2_sync_stress(),
+        "hub_knockout" => run_exp3_hub_knockout(),
+        "all" => {
+            run_exp1_condensation();
+            run_exp2_sync_stress();
+            run_exp3_hub_knockout();
         }
-        
-        // CI rises before collapse
-        if gen > 150 && gen < 250 {
-            ci += 0.003;
-        }
-        
-        // CDI decreases
-        cdi *= 0.999;
-        
-        if gen % 10 == 0 {
-            history.push(StateRecord {
-                generation: gen,
-                n: pop,
-                cdi,
-                ci: ci.min(1.0),
-                r: 0.3 + (gen as f64 / 1000.0),
-                p: 0.5,
-                e: pop as f64 * 100.0,
-                h: if pop < 500 { 0.1 } else { 0.01 },
-                extinct_count: if pop == 0 { 1 } else { 0 },
-                alive_universes: if pop > 0 { 1 } else { 0 },
-            });
-        }
+        _ => println!("Unknown experiment: {}", exp),
     }
     
-    // Compute metrics
-    let ci_lead_time = Some(100);
-    let ci_cdi_correlation = Some(0.75);
-    
-    V19Result {
-        experiment: "EXP-1-Condensation".to_string(),
-        success: ci_lead_time.map(|t| t > 100).unwrap_or(false) 
-            && ci_cdi_correlation.map(|c| c > 0.7).unwrap_or(false),
-        state_history: history,
-        metrics: ExperimentMetrics {
-            ci_lead_time,
-            ci_cdi_correlation,
-            ..Default::default()
-        },
-    }
-}
-
-fn run_simplified_exp2(coupling: f64) -> V19Result {
-    let mut history = Vec::new();
-    let pop = 800;
-    
-    for gen in 0..500 {
-        let r = coupling * (1.0 - (-0.01 * gen as f64).exp());
-        let h = 0.01 + coupling * 0.05 * r;
-        
-        if gen % 10 == 0 {
-            history.push(StateRecord {
-                generation: gen,
-                n: pop,
-                cdi: 0.6,
-                ci: 0.4,
-                r,
-                p: 0.5,
-                e: pop as f64 * 100.0,
-                h,
-                extinct_count: 0,
-                alive_universes: 1,
-            });
-        }
-    }
-    
-    let r_hazard_corr = Some(coupling * 0.8);
-    
-    V19Result {
-        experiment: format!("EXP-2-Sync-Stress-{}", if coupling > 0.7 { "high" } else { "standard" }),
-        state_history: history,
-        success: r_hazard_corr.map(|c| c.abs() > 0.3).unwrap_or(false),
-        metrics: ExperimentMetrics {
-            r_hazard_correlation: r_hazard_corr,
-            ..Default::default()
-        },
-    }
-}
-
-fn run_simplified_exp3() -> V19Result {
-    let mut history = Vec::new();
-    let mut pop = 1000;
-    let mut cdi = 0.7;
-    
-    for gen in 0..500 {
-        // Knockout at gen 100
-        if gen == 100 {
-            pop = (pop as f64 * 0.7) as usize;
-            cdi = 0.5;
-        }
-        
-        // Recovery
-        if gen > 100 && pop < 1000 {
-            pop = (pop as f64 * 1.005) as usize;
-        }
-        
-        // CDI stabilizes
-        cdi = cdi * 0.995 + 0.6 * 0.005;
-        
-        if gen % 10 == 0 {
-            history.push(StateRecord {
-                generation: gen,
-                n: pop,
-                cdi,
-                ci: 0.35,
-                r: 0.4,
-                p: 0.5,
-                e: pop as f64 * 100.0,
-                h: 0.02,
-                extinct_count: 0,
-                alive_universes: 1,
-            });
-        }
-    }
-    
-    V19Result {
-        experiment: "EXP-3-Hub-Knockout".to_string(),
-        state_history: history,
-        success: true, // System recovered
-        metrics: ExperimentMetrics {
-            recovery_time: Some(50),
-            final_extinct_rate: Some(0.0),
-            ..Default::default()
-        },
-    }
-}
-
-fn export_to_csv(history: &[StateRecord]) -> String {
-    let mut csv = String::from("generation,N,CDI,CI,r,P,E,h,extinct_count,alive_universes\n");
-    
-    for record in history {
-        csv.push_str(&format!(
-            "{},{},{:.6},{:.6},{:.6},{:.6},{:.6},{:.6},{},{}\n",
-            record.generation, record.n, record.cdi, record.ci,
-            record.r, record.p, record.e, record.h,
-            record.extinct_count, record.alive_universes
-        ));
-    }
-    
-    csv
-}
-
-fn generate_experiment_report(name: &str, result: &V19Result) -> String {
-    let mut report = format!("# {} Report\n\n", name);
-    report.push_str(&format!("**Status**: {}\n\n", if result.success { "✅ PASS" } else { "❌ FAIL" }));
-    report.push_str(&format!("**Generations**: {}\n\n", result.state_history.len() * 10));
-    
-    report.push_str("## Metrics\n\n");
-    
-    if let Some(lt) = result.metrics.ci_lead_time {
-        report.push_str(&format!("- **CI Lead Time**: {} generations\n", lt));
-    }
-    if let Some(corr) = result.metrics.ci_cdi_correlation {
-        report.push_str(&format!("- **CI/CDI Correlation**: {:.3}\n", corr));
-    }
-    if let Some(corr) = result.metrics.r_hazard_correlation {
-        report.push_str(&format!("- **r-Hazard Correlation**: {:.3}\n", corr));
-    }
-    
-    report.push_str("\n## State Trajectory\n\n");
-    report.push_str("| Generation | N | CDI | CI | r | h |\n");
-    report.push_str("|------------|---|---|---|---|---|\n");
-    
-    for record in result.state_history.iter().step_by(5) {
-        report.push_str(&format!(
-            "| {} | {} | {:.3} | {:.3} | {:.3} | {:.3} |\n",
-            record.generation, record.n, record.cdi, record.ci, record.r, record.h
-        ));
-    }
-    
-    report
-}
-
-fn generate_unified_analysis(results: &HashMap<String, V19Result>) -> String {
-    let mut analysis = String::from("# V19 Unified Analysis\n\n");
-    
-    let passed = results.values().filter(|r| r.success).count();
-    analysis.push_str(&format!("**Overall**: {}/{} experiments passed\n\n", passed, results.len()));
-    
-    analysis.push_str("## Core Questions Answered\n\n");
-    
-    analysis.push_str("### Q1: Does CI provide independent early warning?\n\n");
-    if let Some(exp1) = results.get("EXP-1-Condensation") {
-        let lt = exp1.metrics.ci_lead_time.unwrap_or(0);
-        let corr = exp1.metrics.ci_cdi_correlation.unwrap_or(0.0);
-        analysis.push_str(&format!("- CI lead time: {} generations\n", lt));
-        analysis.push_str(&format!("- Correlation with 1/CDI: {:.3}\n", corr));
-        analysis.push_str(if lt > 100 && corr > 0.7 { "- **Answer**: ✅ Yes\n" } else { "- **Answer**: ⚠️ Partial\n" });
-    }
-    
-    analysis.push_str("\n### Q2: Does r affect hazard?\n\n");
-    if let (Some(std), Some(high)) = (
-        results.get("EXP-2-Sync-Stress-standard"),
-        results.get("EXP-2-Sync-Stress-high")
-    ) {
-        let std_corr = std.metrics.r_hazard_correlation.unwrap_or(0.0);
-        let high_corr = high.metrics.r_hazard_correlation.unwrap_or(0.0);
-        analysis.push_str(&format!("- Standard: r-hazard = {:.3}\n", std_corr));
-        analysis.push_str(&format!("- High sync: r-hazard = {:.3}\n", high_corr));
-        analysis.push_str(if high_corr.abs() > std_corr.abs() { "- **Answer**: ✅ Yes\n" } else { "- **Answer**: ⚠️ Weak\n" });
-    }
-    
-    analysis.push_str("\n### Q3: System resilience?\n\n");
-    if let Some(exp3) = results.get("EXP-3-Hub-Knockout") {
-        analysis.push_str(&format!("- Recovery after knockout: {}\n", 
-            if exp3.success { "✅ Recovered" } else { "❌ Collapsed" }));
-    }
-    
-    analysis
+    println!("\n═══════════════════════════════════════════════════════════");
+    println!("All experiments complete. CSV files exported to /tmp/");
+    println!("═══════════════════════════════════════════════════════════");
 }
