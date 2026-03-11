@@ -45,9 +45,9 @@ impl Agent {
             id,
             pos,
             alive: true,
-            energy: 100.0,
-            max_energy: 200.0,
-            metabolic_rate: 0.5,
+            energy: 150.0,
+            max_energy: 300.0,
+            metabolic_rate: 0.15,  // Much lower metabolism
             phase: rng.f64() * 2.0 * std::f64::consts::PI,
             natural_frequency: 1.0 + rng.f64() * 0.2 - 0.1, // 1.0 ± 0.1
             lineage_id: id as u64,

@@ -23,11 +23,11 @@ pub struct PopulationParams {
 impl Default for PopulationParams {
     fn default() -> Self {
         Self {
-            reproduction_cost: 40.0,
-            food_energy: 30.0,
-            food_regen_interval: 100,
-            carrying_capacity: 4,
-            random_death_prob: 0.001,
+            reproduction_cost: 20.0,   // Lower reproduction cost
+            food_energy: 60.0,         // More energy from food
+            food_regen_interval: 30,   // Faster food regen
+            carrying_capacity: 10,     // Higher capacity
+            random_death_prob: 0.0001, // Much lower random death
         }
     }
 }
