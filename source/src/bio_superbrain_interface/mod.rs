@@ -17,7 +17,7 @@ pub mod experiment_runner;
 pub use cell_adapter::{CellAdapter, PriorInCell, LocalSignal};
 pub use lineage_adapter::{LineageAdapter, IdentityInheritance};
 pub use strategy_bridge::{StrategyBridge, BioDecisionContext};
-pub use experiment_runner::{ExperimentAtoE, RunConfig};
+pub use experiment_runner::{ExperimentAtoE, RunConfig, run_matrix, ExperimentResult};
 
 /// Integration version
 pub const VERSION: &str = "v0.1.0";
