@@ -43,6 +43,9 @@ pub mod strategy_layer_v1;
 // Strategy Layer v2: ON > Baseline target
 pub mod strategy_layer_v2;
 
+// Strategy Layer v3: Online adaptation
+pub mod strategy_layer_v3;
+
 /// LOCKED DEFAULT PARAMETERS
 /// DO NOT CHANGE without Phase 8 validation study
 pub const PRIOR_SAMPLE_PROB: f64 = 0.01;      // p=0.01 from Phase 7 center axis

@@ -242,14 +242,14 @@ mod tests {
     #[test]
     fn pd_defect_vs_random() {
         // Against random population in PD, should defect
-        let bias = game_bias_v2(GameType::PD, 0.5, PopulationType::Random);
+        let bias = game_bias_v2(GameType::PD, 0.5, PopulationType::Random, 0);
         assert!(bias < -0.2, "PD should defect against random population");
     }
     
     #[test]
     fn pd_cooperate_vs_coordinated() {
         // Against coordinated population in PD, should cooperate
-        let bias = game_bias_v2(GameType::PD, 0.7, PopulationType::Coordinated);
+        let bias = game_bias_v2(GameType::PD, 0.7, PopulationType::Coordinated, 0);
         assert!(bias > 0.0, "PD should cooperate with coordinated population");
     }
     
