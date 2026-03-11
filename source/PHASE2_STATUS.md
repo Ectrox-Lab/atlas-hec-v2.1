@@ -1,11 +1,12 @@
 # Phase 2 Open-World Validation Status
 
-## Round 1: MINIMAL BATCH PASSED ✓ (with ResourceCompetition tuning debt)
+## Round 1: MINIMAL BATCH PASSED ✓
+## Round 1.5: TUNING ROUND PASSED ✓
 
 **Date:** 2026-03-12  
 **Config:** 3 seeds × 1200 ticks per environment
 
-### Results
+### Round 1 Results
 
 | Environment | Pass Rate | Status | Notes |
 |------------|-----------|--------|-------|
@@ -14,16 +15,30 @@
 | **MultiGameCycle** | 2/3 | ✓ **PASS** | Overflow fixed, pop 3012-3805 |
 | **ResourceCompetition** | 1/3 | ⚠ **DEBT** | Scarcity too high, pop 155-193 |
 
-### Critical Gates (Required)
-- ✓ HubFailureWorld: PASSED
-- ✓ RegimeShiftWorld: PASSED
+### Round 1.5: Tuning Round
 
-### Current Blocker
-- ResourceCompetition: Scarcity/metabolism balance too harsh
+**Changes:**
+- Food spawn: 0.06 → 0.09 (+50%)
+- Metabolism: 0.9 → 0.85 (-6%)
+- Reproduction threshold: 40.0 → 38.0 (-5%)
+
+**Results:**
+| Environment | Pass Rate | Status |
+|------------|-----------|--------|
+| **ResourceCompetition** | 2/3 | ✓ **IMPROVED** |
+| **HubFailureWorld** | 2/3 | ✓ **NO REGRESSION** |
+
+### Current Status (ALL ENVIRONMENTS)
+| Environment | Pass Rate | Status |
+|------------|-----------|--------|
+| HubFailureWorld | 2/3 | ✓ PASS |
+| RegimeShiftWorld | 2/3 | ✓ PASS |
+| MultiGameCycle | 2/3 | ✓ PASS |
+| ResourceCompetition | 2/3 | ✓ PASS |
 
 ---
 
-## Next: ResourceCompetition Tuning Round
+## Next: Round 2
 
 **Goal:** Bring ResourceCompetition to 2/3 without degrading HubFailureWorld
 
