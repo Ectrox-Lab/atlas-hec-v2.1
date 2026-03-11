@@ -94,13 +94,9 @@ pub fn game_bias_v2(game: GameType, coherence: f32, pop: PopulationType, agent_i
                     -0.30  // Strong defection
                 }
                 PopulationType::Coordinated => {
-                    // v2.10 PD: Maximize cooperation for mutual CC
-                    // Target: ON > Baseline (248 gap to close)
-                    if coherence > 0.50 {
-                        0.40  // Maximum cooperation
-                    } else {
-                        0.25  // Strong cooperation
-                    }
+                    // v2.11 PD: Always high cooperation
+                    // Remove threshold to maximize CC time
+                    0.42  // Maximum sustained cooperation
                 }
                 PopulationType::Mixed => {
                     // Mixed population: balanced approach
@@ -176,8 +172,8 @@ pub fn coop_probability_v2(
     let (bootstrap_rounds, bootstrap_coop, transition_rounds) = match policy.game {
         // Chicken: Shorter bootstrap, lower cooperation to avoid crash buildup
         GameType::Chicken => (100, 0.60, 200),
-        // PD: Longer bootstrap for stronger coordination
-        GameType::PD => (250, 0.80, 350),
+        // PD: Extended bootstrap for mutual CC establishment
+        GameType::PD => (400, 0.85, 250),
         // Stag: Standard
         _ => (200, 0.75, 300),
     };
