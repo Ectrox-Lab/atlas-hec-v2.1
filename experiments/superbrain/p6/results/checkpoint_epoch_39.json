@@ -1,0 +1,14 @@
+{
+  "epoch": 39,
+  "state": "RUNNING",
+  "latest_metrics": {
+    "epoch": 39,
+    "timestamp": 1773222545.4530654,
+    "core_hash": "ba2a2176919aed68",
+    "core_drift": false,
+    "detector_recall": 1.0,
+    "capability_diversity": 0.701903074963299,
+    "maintenance_overhead": 0.04183104104804562,
+    "repair_success_rate": 1.0
+  }
+}
