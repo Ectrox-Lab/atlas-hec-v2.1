@@ -18,12 +18,12 @@ use std::io::Write;
 
 const N_SEEDS: usize = 5;
 
-// Medium pressure - allows survival but tests long-term adaptation
-const INITIAL_FOOD: usize = 80;
-const FOOD_REGEN: usize = 12;
-const METABOLISM: f32 = 1.2;
-const REPRO_COST: f32 = 30.0;
-const REGEN_INTERVAL: usize = 100;
+// PERMISSIVE pressure with frequent shifts for adaptation testing
+const INITIAL_FOOD: usize = 120;
+const FOOD_REGEN: usize = 20;
+const METABOLISM: f32 = 0.9;
+const REPRO_COST: f32 = 22.0;
+const REGEN_INTERVAL: usize = 80;
 
 #[derive(Clone, Copy, Debug)]
 pub enum Condition { Full, NoLineage, NoArchive, P_0_00, P_0_01, P_0_10 }
@@ -222,8 +222,8 @@ fn run_simulation(condition: Condition, max_ticks: usize, seed: u64) -> (Vec<Enh
     let mut hazard = HazardRateTracker::new(5000);
     let mut history = Vec::new();
     
-    // Track for adaptation latency
-    let shifts = vec![3000, 8000, 15000, 25000, 38000];
+    // Frequent shifts to test adaptation (every 2000 ticks)
+    let shifts: Vec<usize> = (2000..max_ticks).step_by(2000).collect();
     let mut last_shift_pop = 100usize;
     let mut recovering_from: Option<usize> = None;
     let mut recovery_start_pop = 0usize;
@@ -288,16 +288,17 @@ fn run_simulation(condition: Condition, max_ticks: usize, seed: u64) -> (Vec<Enh
         let alive: Vec<&Agent> = world.agents.iter().filter(|a| a.alive).collect();
         let n = alive.len();
         
-        // Calculate adaptation latency
+        // Calculate adaptation latency (if recovering)
         let (adaptation_latency, recovery_slope) = if let Some(shift_tick) = recovering_from {
-            if n > recovery_start_pop * 12 / 10 { // Recovered to 120%
-                let latency = tick - shift_tick;
-                memory.tracker.recovery_times.push(latency);
+            let elapsed = tick - shift_tick;
+            // Recovery: back to 90% of pre-shift population
+            if n > last_shift_pop * 9 / 10 {
+                memory.tracker.recovery_times.push(elapsed);
                 recovering_from = None;
-                let slope = (n as f64 - recovery_start_pop as f64) / (latency as f64 / 100.0);
-                (latency as f64, slope)
+                let slope = (n as f64 - recovery_start_pop as f64) / (elapsed as f64 / 100.0).max(1.0);
+                (elapsed as f64, slope)
             } else {
-                ((tick - shift_tick) as f64, 0.0)
+                (elapsed as f64, 0.0)
             }
         } else {
             (0.0, 0.0)
