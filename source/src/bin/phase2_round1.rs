@@ -191,15 +191,17 @@ impl OpenWorldSimulator {
                 let my_coop = self.agents[i].strategy_bias > 0.0;
                 let their_coop = self.agents[j].strategy_bias > 0.0;
                 
-                // Payoff based on game phase
+                // Payoff based on game phase (reduced to prevent overflow)
                 let payoff = match (my_coop, their_coop) {
-                    (true, true) => 3.0,
+                    (true, true) => 2.0,
                     (true, false) => 0.0,
-                    (false, true) => 5.0,
-                    (false, false) => 1.0,
+                    (false, true) => 3.0,
+                    (false, false) => 0.5,
                 };
                 
                 self.agents[i].energy += payoff;
+                // Game cost
+                self.agents[i].energy -= 0.5;
                 
                 // Update L1 memory
                 self.agents[i].memory_l1.push(payoff);
