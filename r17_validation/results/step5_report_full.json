@@ -1,0 +1,773 @@
+{
+  "config": {
+    "total_samples": 50,
+    "thresholds": {
+      "deliberation": 70,
+      "review": 80
+    },
+    "targets": {
+      "overall_fb_max": 0.15,
+      "live_auto_fb_max": 0.2,
+      "alignment_min": 0.75
+    },
+    "redlines": {
+      "alignment_min": 0.75,
+      "live_manual_fb_max": 0.25,
+      "overall_fb_max": 0.18
+    }
+  },
+  "summary": {
+    "total_samples": 50,
+    "overall_fb": 0.22,
+    "live_auto_fb": 0.24,
+    "live_manual_fb": 0.13333333333333333,
+    "alignment": 0.78,
+    "targets_met": {
+      "overall_fb": false,
+      "live_auto_fb": false,
+      "alignment": true
+    },
+    "redlines_triggered": [
+      "overall_fb_exceeded (0.220 > 0.18)"
+    ],
+    "should_rollback": true
+  },
+  "bucket_stats": {
+    "live_manual": {
+      "count": 15,
+      "fb_rate": 0.13333333333333333,
+      "alignment": 0.8666666666666667,
+      "avg_deliberation_score": 68.30538098428974
+    },
+    "replay_real": {
+      "count": 10,
+      "fb_rate": 0.3,
+      "alignment": 0.7,
+      "avg_deliberation_score": 80.28020816267112
+    },
+    "live_auto": {
+      "count": 25,
+      "fb_rate": 0.24,
+      "alignment": 0.76,
+      "avg_deliberation_score": 72.62492090280467
+    }
+  },
+  "checkpoints": [
+    {
+      "checkpoint_sample": 10,
+      "timestamp": "2026-03-12T02:12:43.688995",
+      "overall_fb": 0.3,
+      "live_auto_fb": 0.42857142857142855,
+      "live_manual_fb": 0.0,
+      "alignment": 0.7,
+      "redlines_triggered": [
+        "alignment_below_threshold (0.700 < 0.75)",
+        "overall_fb_exceeded (0.300 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 2,
+          "fb_rate": 0.0,
+          "alignment": 1.0,
+          "avg_deliberation_score": 56.10989305120553
+        },
+        "replay_real": {
+          "count": 1,
+          "fb_rate": 0.0,
+          "alignment": 1.0,
+          "avg_deliberation_score": 95.71475655232778
+        },
+        "live_auto": {
+          "count": 7,
+          "fb_rate": 0.42857142857142855,
+          "alignment": 0.5714285714285714,
+          "avg_deliberation_score": 73.29278533081747
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 20,
+      "timestamp": "2026-03-12T02:12:43.689075",
+      "overall_fb": 0.3,
+      "live_auto_fb": 0.2727272727272727,
+      "live_manual_fb": 0.16666666666666666,
+      "alignment": 0.7,
+      "redlines_triggered": [
+        "alignment_below_threshold (0.700 < 0.75)",
+        "overall_fb_exceeded (0.300 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 6,
+          "fb_rate": 0.16666666666666666,
+          "alignment": 0.8333333333333334,
+          "avg_deliberation_score": 65.55195050188759
+        },
+        "replay_real": {
+          "count": 3,
+          "fb_rate": 0.6666666666666666,
+          "alignment": 0.3333333333333333,
+          "avg_deliberation_score": 83.81285300047294
+        },
+        "live_auto": {
+          "count": 11,
+          "fb_rate": 0.2727272727272727,
+          "alignment": 0.7272727272727273,
+          "avg_deliberation_score": 74.33689841175124
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 30,
+      "timestamp": "2026-03-12T02:12:43.689128",
+      "overall_fb": 0.3,
+      "live_auto_fb": 0.3333333333333333,
+      "live_manual_fb": 0.125,
+      "alignment": 0.7,
+      "redlines_triggered": [
+        "alignment_below_threshold (0.700 < 0.75)",
+        "overall_fb_exceeded (0.300 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 8,
+          "fb_rate": 0.125,
+          "alignment": 0.875,
+          "avg_deliberation_score": 65.2955508490931
+        },
+        "replay_real": {
+          "count": 4,
+          "fb_rate": 0.5,
+          "alignment": 0.5,
+          "avg_deliberation_score": 84.89115149257438
+        },
+        "live_auto": {
+          "count": 18,
+          "fb_rate": 0.3333333333333333,
+          "alignment": 0.6666666666666666,
+          "avg_deliberation_score": 72.47449083128804
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 40,
+      "timestamp": "2026-03-12T02:12:43.689204",
+      "overall_fb": 0.25,
+      "live_auto_fb": 0.2608695652173913,
+      "live_manual_fb": 0.16666666666666666,
+      "alignment": 0.75,
+      "redlines_triggered": [
+        "overall_fb_exceeded (0.250 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 12,
+          "fb_rate": 0.16666666666666666,
+          "alignment": 0.8333333333333334,
+          "avg_deliberation_score": 66.6943534982379
+        },
+        "replay_real": {
+          "count": 5,
+          "fb_rate": 0.4,
+          "alignment": 0.6,
+          "avg_deliberation_score": 80.6355808778331
+        },
+        "live_auto": {
+          "count": 23,
+          "fb_rate": 0.2608695652173913,
+          "alignment": 0.7391304347826086,
+          "avg_deliberation_score": 72.73046330849549
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 50,
+      "timestamp": "2026-03-12T02:12:43.689264",
+      "overall_fb": 0.22,
+      "live_auto_fb": 0.24,
+      "live_manual_fb": 0.13333333333333333,
+      "alignment": 0.78,
+      "redlines_triggered": [
+        "overall_fb_exceeded (0.220 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 15,
+          "fb_rate": 0.13333333333333333,
+          "alignment": 0.8666666666666667,
+          "avg_deliberation_score": 68.30538098428974
+        },
+        "replay_real": {
+          "count": 10,
+          "fb_rate": 0.3,
+          "alignment": 0.7,
+          "avg_deliberation_score": 80.28020816267112
+        },
+        "live_auto": {
+          "count": 25,
+          "fb_rate": 0.24,
+          "alignment": 0.76,
+          "avg_deliberation_score": 72.62492090280467
+        }
+      }
+    }
+  ],
+  "completed_at": "2026-03-12T02:12:43.690126",
+  "results": [
+    {
+      "sample_id": "S5-001",
+      "bucket": "live_manual",
+      "predicted_action": "escalate",
+      "deliberation_score": 45.96264694681441,
+      "review_score": 44.02219430647276,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 170.3139378855565
+    },
+    {
+      "sample_id": "S5-002",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 81.9015440112958,
+      "review_score": 85.60483212970179,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 65.80057734911938
+    },
+    {
+      "sample_id": "S5-003",
+      "bucket": "live_auto",
+      "predicted_action": "escalate",
+      "deliberation_score": 89.29327936562456,
+      "review_score": 84.37991667935167,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 186.65608364929875
+    },
+    {
+      "sample_id": "S5-004",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 68.97858638771311,
+      "review_score": 66.26298384354318,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 159.7372863883682
+    },
+    {
+      "sample_id": "S5-005",
+      "bucket": "replay_real",
+      "predicted_action": "reject",
+      "deliberation_score": 95.71475655232778,
+      "review_score": 90.84779875781493,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 199.6214816904278
+    },
+    {
+      "sample_id": "S5-006",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 75.19010801100902,
+      "review_score": 74.48410788534318,
+      "is_correct": false,
+      "false_positive": false,
+      "false_negative": true,
+      "processing_time_ms": 92.21297570291554
+    },
+    {
+      "sample_id": "S5-007",
+      "bucket": "live_manual",
+      "predicted_action": "request_changes",
+      "deliberation_score": 66.25713915559665,
+      "review_score": 70.63406532515626,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 154.31886039882914
+    },
+    {
+      "sample_id": "S5-008",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 50.7032808623853,
+      "review_score": 46.55958590735868,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 161.9606568648776
+    },
+    {
+      "sample_id": "S5-009",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 61.914308159101545,
+      "review_score": 65.92577532992257,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 136.79972523615092
+    },
+    {
+      "sample_id": "S5-010",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 85.06839051859303,
+      "review_score": 81.82958640886959,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 85.66749332721142
+    },
+    {
+      "sample_id": "S5-011",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 62.434285700970996,
+      "review_score": 66.98417246071547,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 136.93339299454368
+    },
+    {
+      "sample_id": "S5-012",
+      "bucket": "live_manual",
+      "predicted_action": "reject",
+      "deliberation_score": 63.040968439335714,
+      "review_score": 67.77949681287068,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 121.82458167402532
+    },
+    {
+      "sample_id": "S5-013",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 72.46700345649911,
+      "review_score": 75.31855552256486,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 54.9847290452469
+    },
+    {
+      "sample_id": "S5-014",
+      "bucket": "replay_real",
+      "predicted_action": "approve",
+      "deliberation_score": 73.42806252729349,
+      "review_score": 73.8577991492119,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 130.24505561350702
+    },
+    {
+      "sample_id": "S5-015",
+      "bucket": "live_manual",
+      "predicted_action": "approve",
+      "deliberation_score": 55.179437599791385,
+      "review_score": 55.29630440154202,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 88.28167998349164
+    },
+    {
+      "sample_id": "S5-016",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 85.54839148824567,
+      "review_score": 86.10902323378237,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 59.19664010258005
+    },
+    {
+      "sample_id": "S5-017",
+      "bucket": "live_manual",
+      "predicted_action": "escalate",
+      "deliberation_score": 69.31267508739552,
+      "review_score": 72.32575943053926,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 83.94573927520396
+    },
+    {
+      "sample_id": "S5-018",
+      "bucket": "live_manual",
+      "predicted_action": "request_changes",
+      "deliberation_score": 93.55883578239181,
+      "review_score": 93.7032783868305,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 171.9350709736718
+    },
+    {
+      "sample_id": "S5-019",
+      "bucket": "replay_real",
+      "predicted_action": "approve",
+      "deliberation_score": 82.29573992179752,
+      "review_score": 77.8354101277267,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 130.24401415174827
+    },
+    {
+      "sample_id": "S5-020",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 84.20670456782544,
+      "review_score": 82.08987122334513,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 196.24529019643592
+    },
+    {
+      "sample_id": "S5-021",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 72.64185932471175,
+      "review_score": 68.72057516156849,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 125.3867178660271
+    },
+    {
+      "sample_id": "S5-022",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 46.26287402834615,
+      "review_score": 47.05296352635998,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 178.82001826142147
+    },
+    {
+      "sample_id": "S5-023",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 77.05088261284484,
+      "review_score": 72.26815495441903,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 90.3796718584151
+    },
+    {
+      "sample_id": "S5-024",
+      "bucket": "replay_real",
+      "predicted_action": "approve",
+      "deliberation_score": 88.12604696887874,
+      "review_score": 83.96237871353613,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 57.28585477862596
+    },
+    {
+      "sample_id": "S5-025",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 66.22523269279418,
+      "review_score": 62.657827802754326,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 179.7917870325778
+    },
+    {
+      "sample_id": "S5-026",
+      "bucket": "live_manual",
+      "predicted_action": "reject",
+      "deliberation_score": 70.46483366700402,
+      "review_score": 74.14525656588557,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 194.36168522120465
+    },
+    {
+      "sample_id": "S5-027",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 53.52597217027902,
+      "review_score": 54.52631507282131,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 151.37248464312506
+    },
+    {
+      "sample_id": "S5-028",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 86.30887609564077,
+      "review_score": 88.59114279278464,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 179.18921813578666
+    },
+    {
+      "sample_id": "S5-029",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 84.81925550930472,
+      "review_score": 89.42875587206251,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 196.23051156241047
+    },
+    {
+      "sample_id": "S5-030",
+      "bucket": "live_manual",
+      "predicted_action": "approve",
+      "deliberation_score": 58.587870114415225,
+      "review_score": 54.50423437383978,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 152.64655398313943
+    },
+    {
+      "sample_id": "S5-031",
+      "bucket": "live_auto",
+      "predicted_action": "approve",
+      "deliberation_score": 73.37647799610797,
+      "review_score": 76.89191746982307,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 110.45705242744924
+    },
+    {
+      "sample_id": "S5-032",
+      "bucket": "live_manual",
+      "predicted_action": "escalate",
+      "deliberation_score": 66.39434568989472,
+      "review_score": 66.45730870602937,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 93.31806411942601
+    },
+    {
+      "sample_id": "S5-033",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 85.4570040282863,
+      "review_score": 82.29771714346309,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 98.56747415139422
+    },
+    {
+      "sample_id": "S5-034",
+      "bucket": "live_manual",
+      "predicted_action": "reject",
+      "deliberation_score": 69.18700558311589,
+      "review_score": 73.78984858679024,
+      "is_correct": false,
+      "false_positive": false,
+      "false_negative": true,
+      "processing_time_ms": 130.69456173391518
+    },
+    {
+      "sample_id": "S5-035",
+      "bucket": "live_manual",
+      "predicted_action": "approve",
+      "deliberation_score": 89.7917580310636,
+      "review_score": 87.2476978926733,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 68.90649156628561
+    },
+    {
+      "sample_id": "S5-036",
+      "bucket": "live_manual",
+      "predicted_action": "reject",
+      "deliberation_score": 52.59472588203559,
+      "review_score": 57.58893379858259,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 93.8468175828146
+    },
+    {
+      "sample_id": "S5-037",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 63.79147853543409,
+      "review_score": 62.70272603103131,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 179.85760607776385
+    },
+    {
+      "sample_id": "S5-038",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 76.59479388592419,
+      "review_score": 78.25545925807282,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 108.71150024596886
+    },
+    {
+      "sample_id": "S5-039",
+      "bucket": "replay_real",
+      "predicted_action": "reject",
+      "deliberation_score": 63.613298418868,
+      "review_score": 66.42493425542452,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 67.55603699630461
+    },
+    {
+      "sample_id": "S5-040",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 69.04006668645913,
+      "review_score": 68.82906282417757,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 179.93235441247347
+    },
+    {
+      "sample_id": "S5-041",
+      "bucket": "live_manual",
+      "predicted_action": "approve",
+      "deliberation_score": 82.43766462894644,
+      "review_score": 87.26543987237707,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 112.06097952931378
+    },
+    {
+      "sample_id": "S5-042",
+      "bucket": "replay_real",
+      "predicted_action": "escalate",
+      "deliberation_score": 89.07170378814261,
+      "review_score": 85.59272764546297,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 63.431099526695746
+    },
+    {
+      "sample_id": "S5-043",
+      "bucket": "live_auto",
+      "predicted_action": "request_changes",
+      "deliberation_score": 72.84583701529091,
+      "review_score": 72.19521850134522,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 62.217113074772726
+    },
+    {
+      "sample_id": "S5-044",
+      "bucket": "replay_real",
+      "predicted_action": "approve",
+      "deliberation_score": 66.25394146280087,
+      "review_score": 70.36169757790083,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 76.64465047057698
+    },
+    {
+      "sample_id": "S5-045",
+      "bucket": "replay_real",
+      "predicted_action": "approve",
+      "deliberation_score": 93.37264074288967,
+      "review_score": 95.40238390802911,
+      "is_correct": false,
+      "false_positive": true,
+      "false_negative": false,
+      "processing_time_ms": 148.88912118373372
+    },
+    {
+      "sample_id": "S5-046",
+      "bucket": "replay_real",
+      "predicted_action": "reject",
+      "deliberation_score": 76.28856722508839,
+      "review_score": 79.05808459356919,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 109.6437080937672
+    },
+    {
+      "sample_id": "S5-047",
+      "bucket": "live_auto",
+      "predicted_action": "reject",
+      "deliberation_score": 69.97652945942951,
+      "review_score": 71.12479187419589,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 199.97284444489804
+    },
+    {
+      "sample_id": "S5-048",
+      "bucket": "replay_real",
+      "predicted_action": "reject",
+      "deliberation_score": 74.6373240186241,
+      "review_score": 73.80292489457763,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 76.20708612557883
+    },
+    {
+      "sample_id": "S5-049",
+      "bucket": "live_manual",
+      "predicted_action": "request_changes",
+      "deliberation_score": 79.04510633399457,
+      "review_score": 83.543390175491,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 133.54996587376039
+    },
+    {
+      "sample_id": "S5-050",
+      "bucket": "live_manual",
+      "predicted_action": "reject",
+      "deliberation_score": 62.765701822550405,
+      "review_score": 60.623856845396226,
+      "is_correct": true,
+      "false_positive": false,
+      "false_negative": false,
+      "processing_time_ms": 116.51265846349966
+    }
+  ]
+}

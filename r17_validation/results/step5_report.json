@@ -1,0 +1,221 @@
+{
+  "config": {
+    "total_samples": 50,
+    "thresholds": {
+      "deliberation": 70,
+      "review": 80
+    },
+    "targets": {
+      "overall_fb_max": 0.15,
+      "live_auto_fb_max": 0.2,
+      "alignment_min": 0.75
+    },
+    "redlines": {
+      "alignment_min": 0.75,
+      "live_manual_fb_max": 0.25,
+      "overall_fb_max": 0.18
+    }
+  },
+  "summary": {
+    "total_samples": 50,
+    "overall_fb": 0.22,
+    "live_auto_fb": 0.24,
+    "live_manual_fb": 0.13333333333333333,
+    "alignment": 0.78,
+    "targets_met": {
+      "overall_fb": false,
+      "live_auto_fb": false,
+      "alignment": true
+    },
+    "redlines_triggered": [
+      "overall_fb_exceeded (0.220 > 0.18)"
+    ],
+    "should_rollback": true
+  },
+  "bucket_stats": {
+    "live_manual": {
+      "count": 15,
+      "fb_rate": 0.13333333333333333,
+      "alignment": 0.8666666666666667,
+      "avg_deliberation_score": 68.30538098428974
+    },
+    "replay_real": {
+      "count": 10,
+      "fb_rate": 0.3,
+      "alignment": 0.7,
+      "avg_deliberation_score": 80.28020816267112
+    },
+    "live_auto": {
+      "count": 25,
+      "fb_rate": 0.24,
+      "alignment": 0.76,
+      "avg_deliberation_score": 72.62492090280467
+    }
+  },
+  "checkpoints": [
+    {
+      "checkpoint_sample": 10,
+      "timestamp": "2026-03-12T02:12:43.688995",
+      "overall_fb": 0.3,
+      "live_auto_fb": 0.42857142857142855,
+      "live_manual_fb": 0.0,
+      "alignment": 0.7,
+      "redlines_triggered": [
+        "alignment_below_threshold (0.700 < 0.75)",
+        "overall_fb_exceeded (0.300 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 2,
+          "fb_rate": 0.0,
+          "alignment": 1.0,
+          "avg_deliberation_score": 56.10989305120553
+        },
+        "replay_real": {
+          "count": 1,
+          "fb_rate": 0.0,
+          "alignment": 1.0,
+          "avg_deliberation_score": 95.71475655232778
+        },
+        "live_auto": {
+          "count": 7,
+          "fb_rate": 0.42857142857142855,
+          "alignment": 0.5714285714285714,
+          "avg_deliberation_score": 73.29278533081747
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 20,
+      "timestamp": "2026-03-12T02:12:43.689075",
+      "overall_fb": 0.3,
+      "live_auto_fb": 0.2727272727272727,
+      "live_manual_fb": 0.16666666666666666,
+      "alignment": 0.7,
+      "redlines_triggered": [
+        "alignment_below_threshold (0.700 < 0.75)",
+        "overall_fb_exceeded (0.300 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 6,
+          "fb_rate": 0.16666666666666666,
+          "alignment": 0.8333333333333334,
+          "avg_deliberation_score": 65.55195050188759
+        },
+        "replay_real": {
+          "count": 3,
+          "fb_rate": 0.6666666666666666,
+          "alignment": 0.3333333333333333,
+          "avg_deliberation_score": 83.81285300047294
+        },
+        "live_auto": {
+          "count": 11,
+          "fb_rate": 0.2727272727272727,
+          "alignment": 0.7272727272727273,
+          "avg_deliberation_score": 74.33689841175124
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 30,
+      "timestamp": "2026-03-12T02:12:43.689128",
+      "overall_fb": 0.3,
+      "live_auto_fb": 0.3333333333333333,
+      "live_manual_fb": 0.125,
+      "alignment": 0.7,
+      "redlines_triggered": [
+        "alignment_below_threshold (0.700 < 0.75)",
+        "overall_fb_exceeded (0.300 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 8,
+          "fb_rate": 0.125,
+          "alignment": 0.875,
+          "avg_deliberation_score": 65.2955508490931
+        },
+        "replay_real": {
+          "count": 4,
+          "fb_rate": 0.5,
+          "alignment": 0.5,
+          "avg_deliberation_score": 84.89115149257438
+        },
+        "live_auto": {
+          "count": 18,
+          "fb_rate": 0.3333333333333333,
+          "alignment": 0.6666666666666666,
+          "avg_deliberation_score": 72.47449083128804
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 40,
+      "timestamp": "2026-03-12T02:12:43.689204",
+      "overall_fb": 0.25,
+      "live_auto_fb": 0.2608695652173913,
+      "live_manual_fb": 0.16666666666666666,
+      "alignment": 0.75,
+      "redlines_triggered": [
+        "overall_fb_exceeded (0.250 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 12,
+          "fb_rate": 0.16666666666666666,
+          "alignment": 0.8333333333333334,
+          "avg_deliberation_score": 66.6943534982379
+        },
+        "replay_real": {
+          "count": 5,
+          "fb_rate": 0.4,
+          "alignment": 0.6,
+          "avg_deliberation_score": 80.6355808778331
+        },
+        "live_auto": {
+          "count": 23,
+          "fb_rate": 0.2608695652173913,
+          "alignment": 0.7391304347826086,
+          "avg_deliberation_score": 72.73046330849549
+        }
+      }
+    },
+    {
+      "checkpoint_sample": 50,
+      "timestamp": "2026-03-12T02:12:43.689264",
+      "overall_fb": 0.22,
+      "live_auto_fb": 0.24,
+      "live_manual_fb": 0.13333333333333333,
+      "alignment": 0.78,
+      "redlines_triggered": [
+        "overall_fb_exceeded (0.220 > 0.18)"
+      ],
+      "should_rollback": true,
+      "bucket_stats": {
+        "live_manual": {
+          "count": 15,
+          "fb_rate": 0.13333333333333333,
+          "alignment": 0.8666666666666667,
+          "avg_deliberation_score": 68.30538098428974
+        },
+        "replay_real": {
+          "count": 10,
+          "fb_rate": 0.3,
+          "alignment": 0.7,
+          "avg_deliberation_score": 80.28020816267112
+        },
+        "live_auto": {
+          "count": 25,
+          "fb_rate": 0.24,
+          "alignment": 0.76,
+          "avg_deliberation_score": 72.62492090280467
+        }
+      }
+    }
+  ],
+  "completed_at": "2026-03-12T02:12:43.690126"
+}
