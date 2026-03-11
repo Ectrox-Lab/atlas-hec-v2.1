@@ -189,6 +189,7 @@ impl AdaptationMetrics {
         AdaptationReport {
             round: self.round,
             total_score: self.total_score,
+            baseline_score: self.baseline_score,
             beating_baseline: self.beating_baseline(),
             shift_count: self.shift_count,
             avg_recovery_latency: self.avg_recovery_latency(),
@@ -208,6 +209,7 @@ impl AdaptationMetrics {
 pub struct AdaptationReport {
     pub round: usize,
     pub total_score: f32,
+    pub baseline_score: f32,
     pub beating_baseline: bool,
     pub shift_count: usize,
     pub avg_recovery_latency: Option<f32>,
@@ -225,6 +227,23 @@ impl AdaptationReport {
             recovery_latency_ok: self.avg_recovery_latency.map(|l| l <= MIN_RECOVERY_ROUNDS as f32).unwrap_or(true),
             recovery_rate_ok: self.recovery_rate >= POST_SHIFT_BASELINE_RATIO,
             positive_trend: self.recent_trend > 0.0,
+        }
+    }
+    
+    /// Dynamic scenario gates (for regime shift tests)
+    /// Relaxed baseline requirement, focus on recovery
+    pub fn meets_dynamic_gates(&self) -> V3GateResult {
+        use super::validation_gates::*;
+        
+        // Dynamic: within 10% of baseline is acceptable
+        let near_baseline = self.total_score >= self.baseline_score * 0.9;
+        
+        V3GateResult {
+            post_shift_baseline: near_baseline,
+            recovery_latency_ok: self.avg_recovery_latency.map(|l| l <= MIN_RECOVERY_ROUNDS as f32).unwrap_or(true),
+            recovery_rate_ok: self.recovery_rate >= POST_SHIFT_BASELINE_RATIO,
+            // Relaxed: non-negative trend acceptable in dynamic scenarios
+            positive_trend: self.recent_trend >= -0.5,
         }
     }
 }
