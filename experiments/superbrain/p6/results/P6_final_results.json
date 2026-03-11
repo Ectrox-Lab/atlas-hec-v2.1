@@ -1,0 +1,250 @@
+{
+  "state": "COMPLETE",
+  "duration_hours": 24,
+  "total_epochs": 24,
+  "baseline_hash": "ba2a2176919aed68",
+  "verdict": "PASS",
+  "stop_reason": null,
+  "epochs": [
+    {
+      "epoch": 0,
+      "timestamp": 1773205119.1199992,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8626738490774126,
+      "maintenance_overhead": 0.03181659046866327,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 1,
+      "timestamp": 1773205119.1206715,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7546174230768723,
+      "maintenance_overhead": 0.05503657415599909,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 2,
+      "timestamp": 1773205119.1208174,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.9053417394714972,
+      "maintenance_overhead": 0.07067505288471823,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 3,
+      "timestamp": 1773205119.1209528,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8060150509730926,
+      "maintenance_overhead": 0.04708795041633665,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 4,
+      "timestamp": 1773205119.1210945,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.6842730855797623,
+      "maintenance_overhead": 0.04846281000301779,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 5,
+      "timestamp": 1773205119.121223,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8250891053024239,
+      "maintenance_overhead": 0.051504479147159374,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 6,
+      "timestamp": 1773205119.1213515,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8522222605842027,
+      "maintenance_overhead": 0.0629347135244777,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 7,
+      "timestamp": 1773205119.1214788,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8369608252239555,
+      "maintenance_overhead": 0.07021194571775015,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 8,
+      "timestamp": 1773205119.1216106,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7507414079081355,
+      "maintenance_overhead": 0.05788305478548605,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 9,
+      "timestamp": 1773205119.1217406,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7903384705802107,
+      "maintenance_overhead": 0.03755256523574073,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 10,
+      "timestamp": 1773205119.121864,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7343967812764871,
+      "maintenance_overhead": 0.04320898577830049,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 11,
+      "timestamp": 1773205119.1220396,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8649604961176987,
+      "maintenance_overhead": 0.06440689814900206,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 12,
+      "timestamp": 1773205119.122164,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.749586077378667,
+      "maintenance_overhead": 0.03493292851480582,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 13,
+      "timestamp": 1773205119.1222754,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7335870786771851,
+      "maintenance_overhead": 0.04136747690424107,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 14,
+      "timestamp": 1773205119.1223638,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7759847762085649,
+      "maintenance_overhead": 0.04260676548724957,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 15,
+      "timestamp": 1773205119.1224473,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7673458108052994,
+      "maintenance_overhead": 0.05014547536373333,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 16,
+      "timestamp": 1773205119.1225305,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.6627828011904449,
+      "maintenance_overhead": 0.04808335716202463,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 17,
+      "timestamp": 1773205119.1226158,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7764069263587315,
+      "maintenance_overhead": 0.06340719053393054,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 18,
+      "timestamp": 1773205119.1227,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7939560639812997,
+      "maintenance_overhead": 0.045460627506139856,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 19,
+      "timestamp": 1773205119.1227942,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7658909327314464,
+      "maintenance_overhead": 0.051133538817308,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 20,
+      "timestamp": 1773205119.1228793,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7380637152291468,
+      "maintenance_overhead": 0.04447299766583065,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 21,
+      "timestamp": 1773205119.122964,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.6759777564915319,
+      "maintenance_overhead": 0.038686608882186745,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 22,
+      "timestamp": 1773205119.1230476,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.7840186289857574,
+      "maintenance_overhead": 0.05894796131274815,
+      "repair_success_rate": 1.0
+    },
+    {
+      "epoch": 23,
+      "timestamp": 1773205119.1231318,
+      "core_hash": "ba2a2176919aed68",
+      "core_drift": false,
+      "detector_recall": 1.0,
+      "capability_diversity": 0.8061969629581318,
+      "maintenance_overhead": 0.04931688462935435,
+      "repair_success_rate": 1.0
+    }
+  ]
+}
