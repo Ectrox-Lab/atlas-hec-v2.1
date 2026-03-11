@@ -51,3 +51,12 @@ pub use p3_runtime_integration::{
     P3RuntimeIntegration, RuntimeParameters, P3Config,
     ParameterMappingConfig
 };
+
+// Bio-World × Superbrain Integration v0
+// Open-world multi-agent adaptive intelligence
+pub mod bio_superbrain_interface;
+pub use bio_superbrain_interface::{
+    CellAdapter, LineageAdapter, StrategyBridge,
+    ExperimentAtoE, RunConfig,
+    integration_health, HealthStatus,
+};
