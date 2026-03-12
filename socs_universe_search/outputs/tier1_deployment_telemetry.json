@@ -1,0 +1,4518 @@
+{
+  "deployment": {
+    "name": "octopuslike-tier1-production",
+    "timestamp": "2026-03-12T14:14:45.133826",
+    "config": {
+      "name": "octopuslike-tier1-production",
+      "tier": 1,
+      "scale": "4x",
+      "n_units": 4096,
+      "cwci_target": 0.655,
+      "risk_level": "MINIMAL",
+      "replication_factor": 3
+    },
+    "status": "deployed"
+  },
+  "ticks": [
+    {
+      "tick": 100,
+      "cwci": 0.6355,
+      "alert": false
+    },
+    {
+      "tick": 101,
+      "cwci": 0.6638,
+      "alert": false
+    },
+    {
+      "tick": 102,
+      "cwci": 0.6623,
+      "alert": false
+    },
+    {
+      "tick": 103,
+      "cwci": 0.6565,
+      "alert": false
+    },
+    {
+      "tick": 104,
+      "cwci": 0.6457,
+      "alert": false
+    },
+    {
+      "tick": 105,
+      "cwci": 0.6606,
+      "alert": false
+    },
+    {
+      "tick": 106,
+      "cwci": 0.6395,
+      "alert": false
+    },
+    {
+      "tick": 107,
+      "cwci": 0.6524,
+      "alert": false
+    },
+    {
+      "tick": 108,
+      "cwci": 0.6531,
+      "alert": false
+    },
+    {
+      "tick": 109,
+      "cwci": 0.6732,
+      "alert": false
+    },
+    {
+      "tick": 110,
+      "cwci": 0.67,
+      "alert": false
+    },
+    {
+      "tick": 111,
+      "cwci": 0.6455,
+      "alert": false
+    },
+    {
+      "tick": 112,
+      "cwci": 0.655,
+      "alert": false
+    },
+    {
+      "tick": 113,
+      "cwci": 0.6421,
+      "alert": false
+    },
+    {
+      "tick": 114,
+      "cwci": 0.6715,
+      "alert": false
+    },
+    {
+      "tick": 115,
+      "cwci": 0.6698,
+      "alert": false
+    },
+    {
+      "tick": 116,
+      "cwci": 0.6469,
+      "alert": false
+    },
+    {
+      "tick": 117,
+      "cwci": 0.6606,
+      "alert": false
+    },
+    {
+      "tick": 118,
+      "cwci": 0.6594,
+      "alert": false
+    },
+    {
+      "tick": 119,
+      "cwci": 0.6411,
+      "alert": false
+    },
+    {
+      "tick": 120,
+      "cwci": 0.6655,
+      "alert": false
+    },
+    {
+      "tick": 121,
+      "cwci": 0.6566,
+      "alert": false
+    },
+    {
+      "tick": 122,
+      "cwci": 0.6661,
+      "alert": false
+    },
+    {
+      "tick": 123,
+      "cwci": 0.6562,
+      "alert": false
+    },
+    {
+      "tick": 124,
+      "cwci": 0.635,
+      "alert": false
+    },
+    {
+      "tick": 125,
+      "cwci": 0.648,
+      "alert": false
+    },
+    {
+      "tick": 126,
+      "cwci": 0.6358,
+      "alert": false
+    },
+    {
+      "tick": 127,
+      "cwci": 0.6722,
+      "alert": false
+    },
+    {
+      "tick": 128,
+      "cwci": 0.6701,
+      "alert": false
+    },
+    {
+      "tick": 129,
+      "cwci": 0.6683,
+      "alert": false
+    },
+    {
+      "tick": 130,
+      "cwci": 0.6473,
+      "alert": false
+    },
+    {
+      "tick": 131,
+      "cwci": 0.6373,
+      "alert": false
+    },
+    {
+      "tick": 132,
+      "cwci": 0.6701,
+      "alert": false
+    },
+    {
+      "tick": 133,
+      "cwci": 0.6729,
+      "alert": false
+    },
+    {
+      "tick": 134,
+      "cwci": 0.6384,
+      "alert": false
+    },
+    {
+      "tick": 135,
+      "cwci": 0.6544,
+      "alert": false
+    },
+    {
+      "tick": 136,
+      "cwci": 0.6378,
+      "alert": false
+    },
+    {
+      "tick": 137,
+      "cwci": 0.6654,
+      "alert": false
+    },
+    {
+      "tick": 138,
+      "cwci": 0.6656,
+      "alert": false
+    },
+    {
+      "tick": 139,
+      "cwci": 0.6401,
+      "alert": false
+    },
+    {
+      "tick": 140,
+      "cwci": 0.654,
+      "alert": false
+    },
+    {
+      "tick": 141,
+      "cwci": 0.657,
+      "alert": false
+    },
+    {
+      "tick": 142,
+      "cwci": 0.6456,
+      "alert": false
+    },
+    {
+      "tick": 143,
+      "cwci": 0.6699,
+      "alert": false
+    },
+    {
+      "tick": 144,
+      "cwci": 0.6519,
+      "alert": false
+    },
+    {
+      "tick": 145,
+      "cwci": 0.6435,
+      "alert": false
+    },
+    {
+      "tick": 146,
+      "cwci": 0.6566,
+      "alert": false
+    },
+    {
+      "tick": 147,
+      "cwci": 0.6642,
+      "alert": false
+    },
+    {
+      "tick": 148,
+      "cwci": 0.643,
+      "alert": false
+    },
+    {
+      "tick": 149,
+      "cwci": 0.6475,
+      "alert": false
+    },
+    {
+      "tick": 150,
+      "cwci": 0.6748,
+      "alert": false
+    },
+    {
+      "tick": 151,
+      "cwci": 0.661,
+      "alert": false
+    },
+    {
+      "tick": 152,
+      "cwci": 0.6525,
+      "alert": false
+    },
+    {
+      "tick": 153,
+      "cwci": 0.6557,
+      "alert": false
+    },
+    {
+      "tick": 154,
+      "cwci": 0.6398,
+      "alert": false
+    },
+    {
+      "tick": 155,
+      "cwci": 0.644,
+      "alert": false
+    },
+    {
+      "tick": 156,
+      "cwci": 0.6485,
+      "alert": false
+    },
+    {
+      "tick": 157,
+      "cwci": 0.6585,
+      "alert": false
+    },
+    {
+      "tick": 158,
+      "cwci": 0.6442,
+      "alert": false
+    },
+    {
+      "tick": 159,
+      "cwci": 0.6438,
+      "alert": false
+    },
+    {
+      "tick": 160,
+      "cwci": 0.6378,
+      "alert": false
+    },
+    {
+      "tick": 161,
+      "cwci": 0.6602,
+      "alert": false
+    },
+    {
+      "tick": 162,
+      "cwci": 0.6442,
+      "alert": false
+    },
+    {
+      "tick": 163,
+      "cwci": 0.6712,
+      "alert": false
+    },
+    {
+      "tick": 164,
+      "cwci": 0.6694,
+      "alert": false
+    },
+    {
+      "tick": 165,
+      "cwci": 0.6378,
+      "alert": false
+    },
+    {
+      "tick": 166,
+      "cwci": 0.6445,
+      "alert": false
+    },
+    {
+      "tick": 167,
+      "cwci": 0.6618,
+      "alert": false
+    },
+    {
+      "tick": 168,
+      "cwci": 0.6436,
+      "alert": false
+    },
+    {
+      "tick": 169,
+      "cwci": 0.6403,
+      "alert": false
+    },
+    {
+      "tick": 170,
+      "cwci": 0.6724,
+      "alert": false
+    },
+    {
+      "tick": 171,
+      "cwci": 0.6578,
+      "alert": false
+    },
+    {
+      "tick": 172,
+      "cwci": 0.6539,
+      "alert": false
+    },
+    {
+      "tick": 173,
+      "cwci": 0.6664,
+      "alert": false
+    },
+    {
+      "tick": 174,
+      "cwci": 0.6673,
+      "alert": false
+    },
+    {
+      "tick": 175,
+      "cwci": 0.6426,
+      "alert": false
+    },
+    {
+      "tick": 176,
+      "cwci": 0.6389,
+      "alert": false
+    },
+    {
+      "tick": 177,
+      "cwci": 0.6522,
+      "alert": false
+    },
+    {
+      "tick": 178,
+      "cwci": 0.6519,
+      "alert": false
+    },
+    {
+      "tick": 179,
+      "cwci": 0.6537,
+      "alert": false
+    },
+    {
+      "tick": 180,
+      "cwci": 0.6642,
+      "alert": false
+    },
+    {
+      "tick": 181,
+      "cwci": 0.6619,
+      "alert": false
+    },
+    {
+      "tick": 182,
+      "cwci": 0.6744,
+      "alert": false
+    },
+    {
+      "tick": 183,
+      "cwci": 0.6389,
+      "alert": false
+    },
+    {
+      "tick": 184,
+      "cwci": 0.6511,
+      "alert": false
+    },
+    {
+      "tick": 185,
+      "cwci": 0.6486,
+      "alert": false
+    },
+    {
+      "tick": 186,
+      "cwci": 0.6695,
+      "alert": false
+    },
+    {
+      "tick": 187,
+      "cwci": 0.6449,
+      "alert": false
+    },
+    {
+      "tick": 188,
+      "cwci": 0.6426,
+      "alert": false
+    },
+    {
+      "tick": 189,
+      "cwci": 0.6529,
+      "alert": false
+    },
+    {
+      "tick": 190,
+      "cwci": 0.6519,
+      "alert": false
+    },
+    {
+      "tick": 191,
+      "cwci": 0.6461,
+      "alert": false
+    },
+    {
+      "tick": 192,
+      "cwci": 0.645,
+      "alert": false
+    },
+    {
+      "tick": 193,
+      "cwci": 0.6719,
+      "alert": false
+    },
+    {
+      "tick": 194,
+      "cwci": 0.6527,
+      "alert": false
+    },
+    {
+      "tick": 195,
+      "cwci": 0.6695,
+      "alert": false
+    },
+    {
+      "tick": 196,
+      "cwci": 0.657,
+      "alert": false
+    },
+    {
+      "tick": 197,
+      "cwci": 0.637,
+      "alert": false
+    },
+    {
+      "tick": 198,
+      "cwci": 0.675,
+      "alert": false
+    },
+    {
+      "tick": 199,
+      "cwci": 0.6684,
+      "alert": false
+    },
+    {
+      "tick": 200,
+      "cwci": 0.6738,
+      "alert": false
+    },
+    {
+      "tick": 201,
+      "cwci": 0.6721,
+      "alert": false
+    },
+    {
+      "tick": 202,
+      "cwci": 0.6689,
+      "alert": false
+    },
+    {
+      "tick": 203,
+      "cwci": 0.6417,
+      "alert": false
+    },
+    {
+      "tick": 204,
+      "cwci": 0.6544,
+      "alert": false
+    },
+    {
+      "tick": 205,
+      "cwci": 0.6435,
+      "alert": false
+    },
+    {
+      "tick": 206,
+      "cwci": 0.651,
+      "alert": false
+    },
+    {
+      "tick": 207,
+      "cwci": 0.6373,
+      "alert": false
+    },
+    {
+      "tick": 208,
+      "cwci": 0.6502,
+      "alert": false
+    },
+    {
+      "tick": 209,
+      "cwci": 0.6744,
+      "alert": false
+    },
+    {
+      "tick": 210,
+      "cwci": 0.6456,
+      "alert": false
+    },
+    {
+      "tick": 211,
+      "cwci": 0.6664,
+      "alert": false
+    },
+    {
+      "tick": 212,
+      "cwci": 0.6532,
+      "alert": false
+    },
+    {
+      "tick": 213,
+      "cwci": 0.6519,
+      "alert": false
+    },
+    {
+      "tick": 214,
+      "cwci": 0.6733,
+      "alert": false
+    },
+    {
+      "tick": 215,
+      "cwci": 0.6748,
+      "alert": false
+    },
+    {
+      "tick": 216,
+      "cwci": 0.6572,
+      "alert": false
+    },
+    {
+      "tick": 217,
+      "cwci": 0.6637,
+      "alert": false
+    },
+    {
+      "tick": 218,
+      "cwci": 0.6412,
+      "alert": false
+    },
+    {
+      "tick": 219,
+      "cwci": 0.6469,
+      "alert": false
+    },
+    {
+      "tick": 220,
+      "cwci": 0.6737,
+      "alert": false
+    },
+    {
+      "tick": 221,
+      "cwci": 0.6582,
+      "alert": false
+    },
+    {
+      "tick": 222,
+      "cwci": 0.6567,
+      "alert": false
+    },
+    {
+      "tick": 223,
+      "cwci": 0.6649,
+      "alert": false
+    },
+    {
+      "tick": 224,
+      "cwci": 0.6373,
+      "alert": false
+    },
+    {
+      "tick": 225,
+      "cwci": 0.6584,
+      "alert": false
+    },
+    {
+      "tick": 226,
+      "cwci": 0.6551,
+      "alert": false
+    },
+    {
+      "tick": 227,
+      "cwci": 0.6691,
+      "alert": false
+    },
+    {
+      "tick": 228,
+      "cwci": 0.6413,
+      "alert": false
+    },
+    {
+      "tick": 229,
+      "cwci": 0.6734,
+      "alert": false
+    },
+    {
+      "tick": 230,
+      "cwci": 0.6382,
+      "alert": false
+    },
+    {
+      "tick": 231,
+      "cwci": 0.6424,
+      "alert": false
+    },
+    {
+      "tick": 232,
+      "cwci": 0.6588,
+      "alert": false
+    },
+    {
+      "tick": 233,
+      "cwci": 0.662,
+      "alert": false
+    },
+    {
+      "tick": 234,
+      "cwci": 0.6444,
+      "alert": false
+    },
+    {
+      "tick": 235,
+      "cwci": 0.6398,
+      "alert": false
+    },
+    {
+      "tick": 236,
+      "cwci": 0.6706,
+      "alert": false
+    },
+    {
+      "tick": 237,
+      "cwci": 0.6448,
+      "alert": false
+    },
+    {
+      "tick": 238,
+      "cwci": 0.6588,
+      "alert": false
+    },
+    {
+      "tick": 239,
+      "cwci": 0.6598,
+      "alert": false
+    },
+    {
+      "tick": 240,
+      "cwci": 0.6518,
+      "alert": false
+    },
+    {
+      "tick": 241,
+      "cwci": 0.6583,
+      "alert": false
+    },
+    {
+      "tick": 242,
+      "cwci": 0.6559,
+      "alert": false
+    },
+    {
+      "tick": 243,
+      "cwci": 0.6724,
+      "alert": false
+    },
+    {
+      "tick": 244,
+      "cwci": 0.6432,
+      "alert": false
+    },
+    {
+      "tick": 245,
+      "cwci": 0.6636,
+      "alert": false
+    },
+    {
+      "tick": 246,
+      "cwci": 0.6445,
+      "alert": false
+    },
+    {
+      "tick": 247,
+      "cwci": 0.6508,
+      "alert": false
+    },
+    {
+      "tick": 248,
+      "cwci": 0.6619,
+      "alert": false
+    },
+    {
+      "tick": 249,
+      "cwci": 0.647,
+      "alert": false
+    },
+    {
+      "tick": 250,
+      "cwci": 0.6476,
+      "alert": false
+    },
+    {
+      "tick": 251,
+      "cwci": 0.6651,
+      "alert": false
+    },
+    {
+      "tick": 252,
+      "cwci": 0.6379,
+      "alert": false
+    },
+    {
+      "tick": 253,
+      "cwci": 0.6533,
+      "alert": false
+    },
+    {
+      "tick": 254,
+      "cwci": 0.6749,
+      "alert": false
+    },
+    {
+      "tick": 255,
+      "cwci": 0.6748,
+      "alert": false
+    },
+    {
+      "tick": 256,
+      "cwci": 0.6379,
+      "alert": false
+    },
+    {
+      "tick": 257,
+      "cwci": 0.6435,
+      "alert": false
+    },
+    {
+      "tick": 258,
+      "cwci": 0.6456,
+      "alert": false
+    },
+    {
+      "tick": 259,
+      "cwci": 0.6723,
+      "alert": false
+    },
+    {
+      "tick": 260,
+      "cwci": 0.6702,
+      "alert": false
+    },
+    {
+      "tick": 261,
+      "cwci": 0.6702,
+      "alert": false
+    },
+    {
+      "tick": 262,
+      "cwci": 0.6498,
+      "alert": false
+    },
+    {
+      "tick": 263,
+      "cwci": 0.6413,
+      "alert": false
+    },
+    {
+      "tick": 264,
+      "cwci": 0.6683,
+      "alert": false
+    },
+    {
+      "tick": 265,
+      "cwci": 0.6631,
+      "alert": false
+    },
+    {
+      "tick": 266,
+      "cwci": 0.6595,
+      "alert": false
+    },
+    {
+      "tick": 267,
+      "cwci": 0.6745,
+      "alert": false
+    },
+    {
+      "tick": 268,
+      "cwci": 0.6612,
+      "alert": false
+    },
+    {
+      "tick": 269,
+      "cwci": 0.6353,
+      "alert": false
+    },
+    {
+      "tick": 270,
+      "cwci": 0.6677,
+      "alert": false
+    },
+    {
+      "tick": 271,
+      "cwci": 0.647,
+      "alert": false
+    },
+    {
+      "tick": 272,
+      "cwci": 0.6615,
+      "alert": false
+    },
+    {
+      "tick": 273,
+      "cwci": 0.6726,
+      "alert": false
+    },
+    {
+      "tick": 274,
+      "cwci": 0.6404,
+      "alert": false
+    },
+    {
+      "tick": 275,
+      "cwci": 0.6396,
+      "alert": false
+    },
+    {
+      "tick": 276,
+      "cwci": 0.6393,
+      "alert": false
+    },
+    {
+      "tick": 277,
+      "cwci": 0.6571,
+      "alert": false
+    },
+    {
+      "tick": 278,
+      "cwci": 0.6459,
+      "alert": false
+    },
+    {
+      "tick": 279,
+      "cwci": 0.6592,
+      "alert": false
+    },
+    {
+      "tick": 280,
+      "cwci": 0.6637,
+      "alert": false
+    },
+    {
+      "tick": 281,
+      "cwci": 0.6431,
+      "alert": false
+    },
+    {
+      "tick": 282,
+      "cwci": 0.6604,
+      "alert": false
+    },
+    {
+      "tick": 283,
+      "cwci": 0.6456,
+      "alert": false
+    },
+    {
+      "tick": 284,
+      "cwci": 0.6545,
+      "alert": false
+    },
+    {
+      "tick": 285,
+      "cwci": 0.6712,
+      "alert": false
+    },
+    {
+      "tick": 286,
+      "cwci": 0.6688,
+      "alert": false
+    },
+    {
+      "tick": 287,
+      "cwci": 0.6387,
+      "alert": false
+    },
+    {
+      "tick": 288,
+      "cwci": 0.6519,
+      "alert": false
+    },
+    {
+      "tick": 289,
+      "cwci": 0.6461,
+      "alert": false
+    },
+    {
+      "tick": 290,
+      "cwci": 0.6351,
+      "alert": false
+    },
+    {
+      "tick": 291,
+      "cwci": 0.6658,
+      "alert": false
+    },
+    {
+      "tick": 292,
+      "cwci": 0.6605,
+      "alert": false
+    },
+    {
+      "tick": 293,
+      "cwci": 0.6455,
+      "alert": false
+    },
+    {
+      "tick": 294,
+      "cwci": 0.6646,
+      "alert": false
+    },
+    {
+      "tick": 295,
+      "cwci": 0.6571,
+      "alert": false
+    },
+    {
+      "tick": 296,
+      "cwci": 0.6521,
+      "alert": false
+    },
+    {
+      "tick": 297,
+      "cwci": 0.6354,
+      "alert": false
+    },
+    {
+      "tick": 298,
+      "cwci": 0.638,
+      "alert": false
+    },
+    {
+      "tick": 299,
+      "cwci": 0.6703,
+      "alert": false
+    },
+    {
+      "tick": 300,
+      "cwci": 0.6712,
+      "alert": false
+    },
+    {
+      "tick": 301,
+      "cwci": 0.6568,
+      "alert": false
+    },
+    {
+      "tick": 302,
+      "cwci": 0.6684,
+      "alert": false
+    },
+    {
+      "tick": 303,
+      "cwci": 0.6583,
+      "alert": false
+    },
+    {
+      "tick": 304,
+      "cwci": 0.6409,
+      "alert": false
+    },
+    {
+      "tick": 305,
+      "cwci": 0.6401,
+      "alert": false
+    },
+    {
+      "tick": 306,
+      "cwci": 0.6473,
+      "alert": false
+    },
+    {
+      "tick": 307,
+      "cwci": 0.671,
+      "alert": false
+    },
+    {
+      "tick": 308,
+      "cwci": 0.6668,
+      "alert": false
+    },
+    {
+      "tick": 309,
+      "cwci": 0.6694,
+      "alert": false
+    },
+    {
+      "tick": 310,
+      "cwci": 0.671,
+      "alert": false
+    },
+    {
+      "tick": 311,
+      "cwci": 0.6434,
+      "alert": false
+    },
+    {
+      "tick": 312,
+      "cwci": 0.645,
+      "alert": false
+    },
+    {
+      "tick": 313,
+      "cwci": 0.6391,
+      "alert": false
+    },
+    {
+      "tick": 314,
+      "cwci": 0.6662,
+      "alert": false
+    },
+    {
+      "tick": 315,
+      "cwci": 0.6704,
+      "alert": false
+    },
+    {
+      "tick": 316,
+      "cwci": 0.6513,
+      "alert": false
+    },
+    {
+      "tick": 317,
+      "cwci": 0.6598,
+      "alert": false
+    },
+    {
+      "tick": 318,
+      "cwci": 0.6412,
+      "alert": false
+    },
+    {
+      "tick": 319,
+      "cwci": 0.6722,
+      "alert": false
+    },
+    {
+      "tick": 320,
+      "cwci": 0.6696,
+      "alert": false
+    },
+    {
+      "tick": 321,
+      "cwci": 0.674,
+      "alert": false
+    },
+    {
+      "tick": 322,
+      "cwci": 0.6674,
+      "alert": false
+    },
+    {
+      "tick": 323,
+      "cwci": 0.6703,
+      "alert": false
+    },
+    {
+      "tick": 324,
+      "cwci": 0.636,
+      "alert": false
+    },
+    {
+      "tick": 325,
+      "cwci": 0.6645,
+      "alert": false
+    },
+    {
+      "tick": 326,
+      "cwci": 0.6483,
+      "alert": false
+    },
+    {
+      "tick": 327,
+      "cwci": 0.6722,
+      "alert": false
+    },
+    {
+      "tick": 328,
+      "cwci": 0.6671,
+      "alert": false
+    },
+    {
+      "tick": 329,
+      "cwci": 0.6696,
+      "alert": false
+    },
+    {
+      "tick": 330,
+      "cwci": 0.6674,
+      "alert": false
+    },
+    {
+      "tick": 331,
+      "cwci": 0.6457,
+      "alert": false
+    },
+    {
+      "tick": 332,
+      "cwci": 0.6665,
+      "alert": false
+    },
+    {
+      "tick": 333,
+      "cwci": 0.6393,
+      "alert": false
+    },
+    {
+      "tick": 334,
+      "cwci": 0.6699,
+      "alert": false
+    },
+    {
+      "tick": 335,
+      "cwci": 0.6693,
+      "alert": false
+    },
+    {
+      "tick": 336,
+      "cwci": 0.6439,
+      "alert": false
+    },
+    {
+      "tick": 337,
+      "cwci": 0.6677,
+      "alert": false
+    },
+    {
+      "tick": 338,
+      "cwci": 0.6534,
+      "alert": false
+    },
+    {
+      "tick": 339,
+      "cwci": 0.6472,
+      "alert": false
+    },
+    {
+      "tick": 340,
+      "cwci": 0.6668,
+      "alert": false
+    },
+    {
+      "tick": 341,
+      "cwci": 0.6441,
+      "alert": false
+    },
+    {
+      "tick": 342,
+      "cwci": 0.6359,
+      "alert": false
+    },
+    {
+      "tick": 343,
+      "cwci": 0.6427,
+      "alert": false
+    },
+    {
+      "tick": 344,
+      "cwci": 0.6481,
+      "alert": false
+    },
+    {
+      "tick": 345,
+      "cwci": 0.6696,
+      "alert": false
+    },
+    {
+      "tick": 346,
+      "cwci": 0.6737,
+      "alert": false
+    },
+    {
+      "tick": 347,
+      "cwci": 0.6462,
+      "alert": false
+    },
+    {
+      "tick": 348,
+      "cwci": 0.6607,
+      "alert": false
+    },
+    {
+      "tick": 349,
+      "cwci": 0.651,
+      "alert": false
+    },
+    {
+      "tick": 350,
+      "cwci": 0.6742,
+      "alert": false
+    },
+    {
+      "tick": 351,
+      "cwci": 0.6564,
+      "alert": false
+    },
+    {
+      "tick": 352,
+      "cwci": 0.6726,
+      "alert": false
+    },
+    {
+      "tick": 353,
+      "cwci": 0.6396,
+      "alert": false
+    },
+    {
+      "tick": 354,
+      "cwci": 0.6738,
+      "alert": false
+    },
+    {
+      "tick": 355,
+      "cwci": 0.6421,
+      "alert": false
+    },
+    {
+      "tick": 356,
+      "cwci": 0.6735,
+      "alert": false
+    },
+    {
+      "tick": 357,
+      "cwci": 0.6456,
+      "alert": false
+    },
+    {
+      "tick": 358,
+      "cwci": 0.6393,
+      "alert": false
+    },
+    {
+      "tick": 359,
+      "cwci": 0.6524,
+      "alert": false
+    },
+    {
+      "tick": 360,
+      "cwci": 0.6641,
+      "alert": false
+    },
+    {
+      "tick": 361,
+      "cwci": 0.6475,
+      "alert": false
+    },
+    {
+      "tick": 362,
+      "cwci": 0.6592,
+      "alert": false
+    },
+    {
+      "tick": 363,
+      "cwci": 0.6555,
+      "alert": false
+    },
+    {
+      "tick": 364,
+      "cwci": 0.6504,
+      "alert": false
+    },
+    {
+      "tick": 365,
+      "cwci": 0.6581,
+      "alert": false
+    },
+    {
+      "tick": 366,
+      "cwci": 0.6452,
+      "alert": false
+    },
+    {
+      "tick": 367,
+      "cwci": 0.6634,
+      "alert": false
+    },
+    {
+      "tick": 368,
+      "cwci": 0.6351,
+      "alert": false
+    },
+    {
+      "tick": 369,
+      "cwci": 0.672,
+      "alert": false
+    },
+    {
+      "tick": 370,
+      "cwci": 0.6565,
+      "alert": false
+    },
+    {
+      "tick": 371,
+      "cwci": 0.6638,
+      "alert": false
+    },
+    {
+      "tick": 372,
+      "cwci": 0.6647,
+      "alert": false
+    },
+    {
+      "tick": 373,
+      "cwci": 0.6618,
+      "alert": false
+    },
+    {
+      "tick": 374,
+      "cwci": 0.6496,
+      "alert": false
+    },
+    {
+      "tick": 375,
+      "cwci": 0.6378,
+      "alert": false
+    },
+    {
+      "tick": 376,
+      "cwci": 0.6616,
+      "alert": false
+    },
+    {
+      "tick": 377,
+      "cwci": 0.6482,
+      "alert": false
+    },
+    {
+      "tick": 378,
+      "cwci": 0.6476,
+      "alert": false
+    },
+    {
+      "tick": 379,
+      "cwci": 0.6689,
+      "alert": false
+    },
+    {
+      "tick": 380,
+      "cwci": 0.6638,
+      "alert": false
+    },
+    {
+      "tick": 381,
+      "cwci": 0.647,
+      "alert": false
+    },
+    {
+      "tick": 382,
+      "cwci": 0.6474,
+      "alert": false
+    },
+    {
+      "tick": 383,
+      "cwci": 0.6513,
+      "alert": false
+    },
+    {
+      "tick": 384,
+      "cwci": 0.6511,
+      "alert": false
+    },
+    {
+      "tick": 385,
+      "cwci": 0.6468,
+      "alert": false
+    },
+    {
+      "tick": 386,
+      "cwci": 0.6401,
+      "alert": false
+    },
+    {
+      "tick": 387,
+      "cwci": 0.6518,
+      "alert": false
+    },
+    {
+      "tick": 388,
+      "cwci": 0.6726,
+      "alert": false
+    },
+    {
+      "tick": 389,
+      "cwci": 0.6621,
+      "alert": false
+    },
+    {
+      "tick": 390,
+      "cwci": 0.6711,
+      "alert": false
+    },
+    {
+      "tick": 391,
+      "cwci": 0.6596,
+      "alert": false
+    },
+    {
+      "tick": 392,
+      "cwci": 0.647,
+      "alert": false
+    },
+    {
+      "tick": 393,
+      "cwci": 0.6569,
+      "alert": false
+    },
+    {
+      "tick": 394,
+      "cwci": 0.635,
+      "alert": false
+    },
+    {
+      "tick": 395,
+      "cwci": 0.6465,
+      "alert": false
+    },
+    {
+      "tick": 396,
+      "cwci": 0.6522,
+      "alert": false
+    },
+    {
+      "tick": 397,
+      "cwci": 0.6582,
+      "alert": false
+    },
+    {
+      "tick": 398,
+      "cwci": 0.6612,
+      "alert": false
+    },
+    {
+      "tick": 399,
+      "cwci": 0.6536,
+      "alert": false
+    },
+    {
+      "tick": 400,
+      "cwci": 0.6527,
+      "alert": false
+    },
+    {
+      "tick": 401,
+      "cwci": 0.6435,
+      "alert": false
+    },
+    {
+      "tick": 402,
+      "cwci": 0.6539,
+      "alert": false
+    },
+    {
+      "tick": 403,
+      "cwci": 0.671,
+      "alert": false
+    },
+    {
+      "tick": 404,
+      "cwci": 0.6668,
+      "alert": false
+    },
+    {
+      "tick": 405,
+      "cwci": 0.6418,
+      "alert": false
+    },
+    {
+      "tick": 406,
+      "cwci": 0.6384,
+      "alert": false
+    },
+    {
+      "tick": 407,
+      "cwci": 0.6556,
+      "alert": false
+    },
+    {
+      "tick": 408,
+      "cwci": 0.6603,
+      "alert": false
+    },
+    {
+      "tick": 409,
+      "cwci": 0.6484,
+      "alert": false
+    },
+    {
+      "tick": 410,
+      "cwci": 0.6677,
+      "alert": false
+    },
+    {
+      "tick": 411,
+      "cwci": 0.665,
+      "alert": false
+    },
+    {
+      "tick": 412,
+      "cwci": 0.6619,
+      "alert": false
+    },
+    {
+      "tick": 413,
+      "cwci": 0.644,
+      "alert": false
+    },
+    {
+      "tick": 414,
+      "cwci": 0.643,
+      "alert": false
+    },
+    {
+      "tick": 415,
+      "cwci": 0.636,
+      "alert": false
+    },
+    {
+      "tick": 416,
+      "cwci": 0.6448,
+      "alert": false
+    },
+    {
+      "tick": 417,
+      "cwci": 0.654,
+      "alert": false
+    },
+    {
+      "tick": 418,
+      "cwci": 0.669,
+      "alert": false
+    },
+    {
+      "tick": 419,
+      "cwci": 0.6379,
+      "alert": false
+    },
+    {
+      "tick": 420,
+      "cwci": 0.6516,
+      "alert": false
+    },
+    {
+      "tick": 421,
+      "cwci": 0.6602,
+      "alert": false
+    },
+    {
+      "tick": 422,
+      "cwci": 0.6428,
+      "alert": false
+    },
+    {
+      "tick": 423,
+      "cwci": 0.6629,
+      "alert": false
+    },
+    {
+      "tick": 424,
+      "cwci": 0.6548,
+      "alert": false
+    },
+    {
+      "tick": 425,
+      "cwci": 0.6448,
+      "alert": false
+    },
+    {
+      "tick": 426,
+      "cwci": 0.6612,
+      "alert": false
+    },
+    {
+      "tick": 427,
+      "cwci": 0.6352,
+      "alert": false
+    },
+    {
+      "tick": 428,
+      "cwci": 0.665,
+      "alert": false
+    },
+    {
+      "tick": 429,
+      "cwci": 0.6658,
+      "alert": false
+    },
+    {
+      "tick": 430,
+      "cwci": 0.6393,
+      "alert": false
+    },
+    {
+      "tick": 431,
+      "cwci": 0.652,
+      "alert": false
+    },
+    {
+      "tick": 432,
+      "cwci": 0.642,
+      "alert": false
+    },
+    {
+      "tick": 433,
+      "cwci": 0.6733,
+      "alert": false
+    },
+    {
+      "tick": 434,
+      "cwci": 0.6557,
+      "alert": false
+    },
+    {
+      "tick": 435,
+      "cwci": 0.637,
+      "alert": false
+    },
+    {
+      "tick": 436,
+      "cwci": 0.645,
+      "alert": false
+    },
+    {
+      "tick": 437,
+      "cwci": 0.6689,
+      "alert": false
+    },
+    {
+      "tick": 438,
+      "cwci": 0.6533,
+      "alert": false
+    },
+    {
+      "tick": 439,
+      "cwci": 0.6671,
+      "alert": false
+    },
+    {
+      "tick": 440,
+      "cwci": 0.6617,
+      "alert": false
+    },
+    {
+      "tick": 441,
+      "cwci": 0.6745,
+      "alert": false
+    },
+    {
+      "tick": 442,
+      "cwci": 0.6588,
+      "alert": false
+    },
+    {
+      "tick": 443,
+      "cwci": 0.673,
+      "alert": false
+    },
+    {
+      "tick": 444,
+      "cwci": 0.6707,
+      "alert": false
+    },
+    {
+      "tick": 445,
+      "cwci": 0.6595,
+      "alert": false
+    },
+    {
+      "tick": 446,
+      "cwci": 0.6638,
+      "alert": false
+    },
+    {
+      "tick": 447,
+      "cwci": 0.6552,
+      "alert": false
+    },
+    {
+      "tick": 448,
+      "cwci": 0.6682,
+      "alert": false
+    },
+    {
+      "tick": 449,
+      "cwci": 0.6569,
+      "alert": false
+    },
+    {
+      "tick": 450,
+      "cwci": 0.6709,
+      "alert": false
+    },
+    {
+      "tick": 451,
+      "cwci": 0.6647,
+      "alert": false
+    },
+    {
+      "tick": 452,
+      "cwci": 0.654,
+      "alert": false
+    },
+    {
+      "tick": 453,
+      "cwci": 0.6454,
+      "alert": false
+    },
+    {
+      "tick": 454,
+      "cwci": 0.6449,
+      "alert": false
+    },
+    {
+      "tick": 455,
+      "cwci": 0.6605,
+      "alert": false
+    },
+    {
+      "tick": 456,
+      "cwci": 0.6656,
+      "alert": false
+    },
+    {
+      "tick": 457,
+      "cwci": 0.6559,
+      "alert": false
+    },
+    {
+      "tick": 458,
+      "cwci": 0.6601,
+      "alert": false
+    },
+    {
+      "tick": 459,
+      "cwci": 0.646,
+      "alert": false
+    },
+    {
+      "tick": 460,
+      "cwci": 0.6381,
+      "alert": false
+    },
+    {
+      "tick": 461,
+      "cwci": 0.6464,
+      "alert": false
+    },
+    {
+      "tick": 462,
+      "cwci": 0.6459,
+      "alert": false
+    },
+    {
+      "tick": 463,
+      "cwci": 0.6478,
+      "alert": false
+    },
+    {
+      "tick": 464,
+      "cwci": 0.6566,
+      "alert": false
+    },
+    {
+      "tick": 465,
+      "cwci": 0.6405,
+      "alert": false
+    },
+    {
+      "tick": 466,
+      "cwci": 0.6443,
+      "alert": false
+    },
+    {
+      "tick": 467,
+      "cwci": 0.6628,
+      "alert": false
+    },
+    {
+      "tick": 468,
+      "cwci": 0.6633,
+      "alert": false
+    },
+    {
+      "tick": 469,
+      "cwci": 0.6376,
+      "alert": false
+    },
+    {
+      "tick": 470,
+      "cwci": 0.6513,
+      "alert": false
+    },
+    {
+      "tick": 471,
+      "cwci": 0.6567,
+      "alert": false
+    },
+    {
+      "tick": 472,
+      "cwci": 0.6516,
+      "alert": false
+    },
+    {
+      "tick": 473,
+      "cwci": 0.6433,
+      "alert": false
+    },
+    {
+      "tick": 474,
+      "cwci": 0.6518,
+      "alert": false
+    },
+    {
+      "tick": 475,
+      "cwci": 0.6712,
+      "alert": false
+    },
+    {
+      "tick": 476,
+      "cwci": 0.6584,
+      "alert": false
+    },
+    {
+      "tick": 477,
+      "cwci": 0.6628,
+      "alert": false
+    },
+    {
+      "tick": 478,
+      "cwci": 0.6693,
+      "alert": false
+    },
+    {
+      "tick": 479,
+      "cwci": 0.6656,
+      "alert": false
+    },
+    {
+      "tick": 480,
+      "cwci": 0.6502,
+      "alert": false
+    },
+    {
+      "tick": 481,
+      "cwci": 0.6352,
+      "alert": false
+    },
+    {
+      "tick": 482,
+      "cwci": 0.6491,
+      "alert": false
+    },
+    {
+      "tick": 483,
+      "cwci": 0.6651,
+      "alert": false
+    },
+    {
+      "tick": 484,
+      "cwci": 0.6691,
+      "alert": false
+    },
+    {
+      "tick": 485,
+      "cwci": 0.6731,
+      "alert": false
+    },
+    {
+      "tick": 486,
+      "cwci": 0.6518,
+      "alert": false
+    },
+    {
+      "tick": 487,
+      "cwci": 0.6649,
+      "alert": false
+    },
+    {
+      "tick": 488,
+      "cwci": 0.6568,
+      "alert": false
+    },
+    {
+      "tick": 489,
+      "cwci": 0.6591,
+      "alert": false
+    },
+    {
+      "tick": 490,
+      "cwci": 0.6438,
+      "alert": false
+    },
+    {
+      "tick": 491,
+      "cwci": 0.6438,
+      "alert": false
+    },
+    {
+      "tick": 492,
+      "cwci": 0.6524,
+      "alert": false
+    },
+    {
+      "tick": 493,
+      "cwci": 0.6362,
+      "alert": false
+    },
+    {
+      "tick": 494,
+      "cwci": 0.6484,
+      "alert": false
+    },
+    {
+      "tick": 495,
+      "cwci": 0.6622,
+      "alert": false
+    },
+    {
+      "tick": 496,
+      "cwci": 0.6512,
+      "alert": false
+    },
+    {
+      "tick": 497,
+      "cwci": 0.6416,
+      "alert": false
+    },
+    {
+      "tick": 498,
+      "cwci": 0.6537,
+      "alert": false
+    },
+    {
+      "tick": 499,
+      "cwci": 0.6401,
+      "alert": false
+    },
+    {
+      "tick": 500,
+      "cwci": 0.6599,
+      "alert": false
+    },
+    {
+      "tick": 501,
+      "cwci": 0.6361,
+      "alert": false
+    },
+    {
+      "tick": 502,
+      "cwci": 0.6508,
+      "alert": false
+    },
+    {
+      "tick": 503,
+      "cwci": 0.6576,
+      "alert": false
+    },
+    {
+      "tick": 504,
+      "cwci": 0.6361,
+      "alert": false
+    },
+    {
+      "tick": 505,
+      "cwci": 0.6607,
+      "alert": false
+    },
+    {
+      "tick": 506,
+      "cwci": 0.6404,
+      "alert": false
+    },
+    {
+      "tick": 507,
+      "cwci": 0.6535,
+      "alert": false
+    },
+    {
+      "tick": 508,
+      "cwci": 0.637,
+      "alert": false
+    },
+    {
+      "tick": 509,
+      "cwci": 0.6502,
+      "alert": false
+    },
+    {
+      "tick": 510,
+      "cwci": 0.6435,
+      "alert": false
+    },
+    {
+      "tick": 511,
+      "cwci": 0.6481,
+      "alert": false
+    },
+    {
+      "tick": 512,
+      "cwci": 0.6654,
+      "alert": false
+    },
+    {
+      "tick": 513,
+      "cwci": 0.6502,
+      "alert": false
+    },
+    {
+      "tick": 514,
+      "cwci": 0.6651,
+      "alert": false
+    },
+    {
+      "tick": 515,
+      "cwci": 0.6683,
+      "alert": false
+    },
+    {
+      "tick": 516,
+      "cwci": 0.6451,
+      "alert": false
+    },
+    {
+      "tick": 517,
+      "cwci": 0.6383,
+      "alert": false
+    },
+    {
+      "tick": 518,
+      "cwci": 0.6358,
+      "alert": false
+    },
+    {
+      "tick": 519,
+      "cwci": 0.6566,
+      "alert": false
+    },
+    {
+      "tick": 520,
+      "cwci": 0.675,
+      "alert": false
+    },
+    {
+      "tick": 521,
+      "cwci": 0.649,
+      "alert": false
+    },
+    {
+      "tick": 522,
+      "cwci": 0.661,
+      "alert": false
+    },
+    {
+      "tick": 523,
+      "cwci": 0.6662,
+      "alert": false
+    },
+    {
+      "tick": 524,
+      "cwci": 0.6611,
+      "alert": false
+    },
+    {
+      "tick": 525,
+      "cwci": 0.6652,
+      "alert": false
+    },
+    {
+      "tick": 526,
+      "cwci": 0.673,
+      "alert": false
+    },
+    {
+      "tick": 527,
+      "cwci": 0.643,
+      "alert": false
+    },
+    {
+      "tick": 528,
+      "cwci": 0.6358,
+      "alert": false
+    },
+    {
+      "tick": 529,
+      "cwci": 0.6411,
+      "alert": false
+    },
+    {
+      "tick": 530,
+      "cwci": 0.64,
+      "alert": false
+    },
+    {
+      "tick": 531,
+      "cwci": 0.6618,
+      "alert": false
+    },
+    {
+      "tick": 532,
+      "cwci": 0.6576,
+      "alert": false
+    },
+    {
+      "tick": 533,
+      "cwci": 0.6437,
+      "alert": false
+    },
+    {
+      "tick": 534,
+      "cwci": 0.663,
+      "alert": false
+    },
+    {
+      "tick": 535,
+      "cwci": 0.6657,
+      "alert": false
+    },
+    {
+      "tick": 536,
+      "cwci": 0.6417,
+      "alert": false
+    },
+    {
+      "tick": 537,
+      "cwci": 0.6593,
+      "alert": false
+    },
+    {
+      "tick": 538,
+      "cwci": 0.6649,
+      "alert": false
+    },
+    {
+      "tick": 539,
+      "cwci": 0.6396,
+      "alert": false
+    },
+    {
+      "tick": 540,
+      "cwci": 0.6678,
+      "alert": false
+    },
+    {
+      "tick": 541,
+      "cwci": 0.6736,
+      "alert": false
+    },
+    {
+      "tick": 542,
+      "cwci": 0.6393,
+      "alert": false
+    },
+    {
+      "tick": 543,
+      "cwci": 0.636,
+      "alert": false
+    },
+    {
+      "tick": 544,
+      "cwci": 0.6475,
+      "alert": false
+    },
+    {
+      "tick": 545,
+      "cwci": 0.6621,
+      "alert": false
+    },
+    {
+      "tick": 546,
+      "cwci": 0.6733,
+      "alert": false
+    },
+    {
+      "tick": 547,
+      "cwci": 0.6509,
+      "alert": false
+    },
+    {
+      "tick": 548,
+      "cwci": 0.6636,
+      "alert": false
+    },
+    {
+      "tick": 549,
+      "cwci": 0.638,
+      "alert": false
+    },
+    {
+      "tick": 550,
+      "cwci": 0.6626,
+      "alert": false
+    },
+    {
+      "tick": 551,
+      "cwci": 0.6601,
+      "alert": false
+    },
+    {
+      "tick": 552,
+      "cwci": 0.6391,
+      "alert": false
+    },
+    {
+      "tick": 553,
+      "cwci": 0.6659,
+      "alert": false
+    },
+    {
+      "tick": 554,
+      "cwci": 0.669,
+      "alert": false
+    },
+    {
+      "tick": 555,
+      "cwci": 0.659,
+      "alert": false
+    },
+    {
+      "tick": 556,
+      "cwci": 0.6398,
+      "alert": false
+    },
+    {
+      "tick": 557,
+      "cwci": 0.6744,
+      "alert": false
+    },
+    {
+      "tick": 558,
+      "cwci": 0.6663,
+      "alert": false
+    },
+    {
+      "tick": 559,
+      "cwci": 0.6489,
+      "alert": false
+    },
+    {
+      "tick": 560,
+      "cwci": 0.6521,
+      "alert": false
+    },
+    {
+      "tick": 561,
+      "cwci": 0.6498,
+      "alert": false
+    },
+    {
+      "tick": 562,
+      "cwci": 0.6552,
+      "alert": false
+    },
+    {
+      "tick": 563,
+      "cwci": 0.6486,
+      "alert": false
+    },
+    {
+      "tick": 564,
+      "cwci": 0.669,
+      "alert": false
+    },
+    {
+      "tick": 565,
+      "cwci": 0.6679,
+      "alert": false
+    },
+    {
+      "tick": 566,
+      "cwci": 0.6392,
+      "alert": false
+    },
+    {
+      "tick": 567,
+      "cwci": 0.6734,
+      "alert": false
+    },
+    {
+      "tick": 568,
+      "cwci": 0.6604,
+      "alert": false
+    },
+    {
+      "tick": 569,
+      "cwci": 0.6681,
+      "alert": false
+    },
+    {
+      "tick": 570,
+      "cwci": 0.6633,
+      "alert": false
+    },
+    {
+      "tick": 571,
+      "cwci": 0.6524,
+      "alert": false
+    },
+    {
+      "tick": 572,
+      "cwci": 0.6644,
+      "alert": false
+    },
+    {
+      "tick": 573,
+      "cwci": 0.6736,
+      "alert": false
+    },
+    {
+      "tick": 574,
+      "cwci": 0.6458,
+      "alert": false
+    },
+    {
+      "tick": 575,
+      "cwci": 0.6673,
+      "alert": false
+    },
+    {
+      "tick": 576,
+      "cwci": 0.6565,
+      "alert": false
+    },
+    {
+      "tick": 577,
+      "cwci": 0.6543,
+      "alert": false
+    },
+    {
+      "tick": 578,
+      "cwci": 0.6524,
+      "alert": false
+    },
+    {
+      "tick": 579,
+      "cwci": 0.6642,
+      "alert": false
+    },
+    {
+      "tick": 580,
+      "cwci": 0.6457,
+      "alert": false
+    },
+    {
+      "tick": 581,
+      "cwci": 0.6691,
+      "alert": false
+    },
+    {
+      "tick": 582,
+      "cwci": 0.6682,
+      "alert": false
+    },
+    {
+      "tick": 583,
+      "cwci": 0.6385,
+      "alert": false
+    },
+    {
+      "tick": 584,
+      "cwci": 0.6703,
+      "alert": false
+    },
+    {
+      "tick": 585,
+      "cwci": 0.6448,
+      "alert": false
+    },
+    {
+      "tick": 586,
+      "cwci": 0.6536,
+      "alert": false
+    },
+    {
+      "tick": 587,
+      "cwci": 0.6594,
+      "alert": false
+    },
+    {
+      "tick": 588,
+      "cwci": 0.6502,
+      "alert": false
+    },
+    {
+      "tick": 589,
+      "cwci": 0.6361,
+      "alert": false
+    },
+    {
+      "tick": 590,
+      "cwci": 0.669,
+      "alert": false
+    },
+    {
+      "tick": 591,
+      "cwci": 0.6423,
+      "alert": false
+    },
+    {
+      "tick": 592,
+      "cwci": 0.6435,
+      "alert": false
+    },
+    {
+      "tick": 593,
+      "cwci": 0.6669,
+      "alert": false
+    },
+    {
+      "tick": 594,
+      "cwci": 0.6486,
+      "alert": false
+    },
+    {
+      "tick": 595,
+      "cwci": 0.6702,
+      "alert": false
+    },
+    {
+      "tick": 596,
+      "cwci": 0.663,
+      "alert": false
+    },
+    {
+      "tick": 597,
+      "cwci": 0.6461,
+      "alert": false
+    },
+    {
+      "tick": 598,
+      "cwci": 0.6354,
+      "alert": false
+    },
+    {
+      "tick": 599,
+      "cwci": 0.6729,
+      "alert": false
+    },
+    {
+      "tick": 600,
+      "cwci": 0.6384,
+      "alert": false
+    },
+    {
+      "tick": 601,
+      "cwci": 0.6638,
+      "alert": false
+    },
+    {
+      "tick": 602,
+      "cwci": 0.6545,
+      "alert": false
+    },
+    {
+      "tick": 603,
+      "cwci": 0.6653,
+      "alert": false
+    },
+    {
+      "tick": 604,
+      "cwci": 0.6626,
+      "alert": false
+    },
+    {
+      "tick": 605,
+      "cwci": 0.6608,
+      "alert": false
+    },
+    {
+      "tick": 606,
+      "cwci": 0.6546,
+      "alert": false
+    },
+    {
+      "tick": 607,
+      "cwci": 0.6667,
+      "alert": false
+    },
+    {
+      "tick": 608,
+      "cwci": 0.6387,
+      "alert": false
+    },
+    {
+      "tick": 609,
+      "cwci": 0.6439,
+      "alert": false
+    },
+    {
+      "tick": 610,
+      "cwci": 0.6627,
+      "alert": false
+    },
+    {
+      "tick": 611,
+      "cwci": 0.6472,
+      "alert": false
+    },
+    {
+      "tick": 612,
+      "cwci": 0.6583,
+      "alert": false
+    },
+    {
+      "tick": 613,
+      "cwci": 0.6539,
+      "alert": false
+    },
+    {
+      "tick": 614,
+      "cwci": 0.6562,
+      "alert": false
+    },
+    {
+      "tick": 615,
+      "cwci": 0.652,
+      "alert": false
+    },
+    {
+      "tick": 616,
+      "cwci": 0.6648,
+      "alert": false
+    },
+    {
+      "tick": 617,
+      "cwci": 0.6482,
+      "alert": false
+    },
+    {
+      "tick": 618,
+      "cwci": 0.6631,
+      "alert": false
+    },
+    {
+      "tick": 619,
+      "cwci": 0.6458,
+      "alert": false
+    },
+    {
+      "tick": 620,
+      "cwci": 0.6451,
+      "alert": false
+    },
+    {
+      "tick": 621,
+      "cwci": 0.6398,
+      "alert": false
+    },
+    {
+      "tick": 622,
+      "cwci": 0.6427,
+      "alert": false
+    },
+    {
+      "tick": 623,
+      "cwci": 0.6398,
+      "alert": false
+    },
+    {
+      "tick": 624,
+      "cwci": 0.6564,
+      "alert": false
+    },
+    {
+      "tick": 625,
+      "cwci": 0.6655,
+      "alert": false
+    },
+    {
+      "tick": 626,
+      "cwci": 0.6424,
+      "alert": false
+    },
+    {
+      "tick": 627,
+      "cwci": 0.6437,
+      "alert": false
+    },
+    {
+      "tick": 628,
+      "cwci": 0.6544,
+      "alert": false
+    },
+    {
+      "tick": 629,
+      "cwci": 0.664,
+      "alert": false
+    },
+    {
+      "tick": 630,
+      "cwci": 0.6741,
+      "alert": false
+    },
+    {
+      "tick": 631,
+      "cwci": 0.656,
+      "alert": false
+    },
+    {
+      "tick": 632,
+      "cwci": 0.6463,
+      "alert": false
+    },
+    {
+      "tick": 633,
+      "cwci": 0.639,
+      "alert": false
+    },
+    {
+      "tick": 634,
+      "cwci": 0.6428,
+      "alert": false
+    },
+    {
+      "tick": 635,
+      "cwci": 0.6441,
+      "alert": false
+    },
+    {
+      "tick": 636,
+      "cwci": 0.6422,
+      "alert": false
+    },
+    {
+      "tick": 637,
+      "cwci": 0.6356,
+      "alert": false
+    },
+    {
+      "tick": 638,
+      "cwci": 0.6564,
+      "alert": false
+    },
+    {
+      "tick": 639,
+      "cwci": 0.646,
+      "alert": false
+    },
+    {
+      "tick": 640,
+      "cwci": 0.674,
+      "alert": false
+    },
+    {
+      "tick": 641,
+      "cwci": 0.6571,
+      "alert": false
+    },
+    {
+      "tick": 642,
+      "cwci": 0.6629,
+      "alert": false
+    },
+    {
+      "tick": 643,
+      "cwci": 0.6401,
+      "alert": false
+    },
+    {
+      "tick": 644,
+      "cwci": 0.6697,
+      "alert": false
+    },
+    {
+      "tick": 645,
+      "cwci": 0.6546,
+      "alert": false
+    },
+    {
+      "tick": 646,
+      "cwci": 0.6699,
+      "alert": false
+    },
+    {
+      "tick": 647,
+      "cwci": 0.658,
+      "alert": false
+    },
+    {
+      "tick": 648,
+      "cwci": 0.6538,
+      "alert": false
+    },
+    {
+      "tick": 649,
+      "cwci": 0.6526,
+      "alert": false
+    },
+    {
+      "tick": 650,
+      "cwci": 0.6424,
+      "alert": false
+    },
+    {
+      "tick": 651,
+      "cwci": 0.6371,
+      "alert": false
+    },
+    {
+      "tick": 652,
+      "cwci": 0.6726,
+      "alert": false
+    },
+    {
+      "tick": 653,
+      "cwci": 0.6541,
+      "alert": false
+    },
+    {
+      "tick": 654,
+      "cwci": 0.6679,
+      "alert": false
+    },
+    {
+      "tick": 655,
+      "cwci": 0.651,
+      "alert": false
+    },
+    {
+      "tick": 656,
+      "cwci": 0.638,
+      "alert": false
+    },
+    {
+      "tick": 657,
+      "cwci": 0.6602,
+      "alert": false
+    },
+    {
+      "tick": 658,
+      "cwci": 0.6371,
+      "alert": false
+    },
+    {
+      "tick": 659,
+      "cwci": 0.641,
+      "alert": false
+    },
+    {
+      "tick": 660,
+      "cwci": 0.6575,
+      "alert": false
+    },
+    {
+      "tick": 661,
+      "cwci": 0.6472,
+      "alert": false
+    },
+    {
+      "tick": 662,
+      "cwci": 0.6748,
+      "alert": false
+    },
+    {
+      "tick": 663,
+      "cwci": 0.6397,
+      "alert": false
+    },
+    {
+      "tick": 664,
+      "cwci": 0.6656,
+      "alert": false
+    },
+    {
+      "tick": 665,
+      "cwci": 0.6593,
+      "alert": false
+    },
+    {
+      "tick": 666,
+      "cwci": 0.6666,
+      "alert": false
+    },
+    {
+      "tick": 667,
+      "cwci": 0.644,
+      "alert": false
+    },
+    {
+      "tick": 668,
+      "cwci": 0.6559,
+      "alert": false
+    },
+    {
+      "tick": 669,
+      "cwci": 0.653,
+      "alert": false
+    },
+    {
+      "tick": 670,
+      "cwci": 0.6527,
+      "alert": false
+    },
+    {
+      "tick": 671,
+      "cwci": 0.6694,
+      "alert": false
+    },
+    {
+      "tick": 672,
+      "cwci": 0.6746,
+      "alert": false
+    },
+    {
+      "tick": 673,
+      "cwci": 0.6472,
+      "alert": false
+    },
+    {
+      "tick": 674,
+      "cwci": 0.6598,
+      "alert": false
+    },
+    {
+      "tick": 675,
+      "cwci": 0.6594,
+      "alert": false
+    },
+    {
+      "tick": 676,
+      "cwci": 0.6646,
+      "alert": false
+    },
+    {
+      "tick": 677,
+      "cwci": 0.6729,
+      "alert": false
+    },
+    {
+      "tick": 678,
+      "cwci": 0.6433,
+      "alert": false
+    },
+    {
+      "tick": 679,
+      "cwci": 0.6434,
+      "alert": false
+    },
+    {
+      "tick": 680,
+      "cwci": 0.6614,
+      "alert": false
+    },
+    {
+      "tick": 681,
+      "cwci": 0.6413,
+      "alert": false
+    },
+    {
+      "tick": 682,
+      "cwci": 0.642,
+      "alert": false
+    },
+    {
+      "tick": 683,
+      "cwci": 0.638,
+      "alert": false
+    },
+    {
+      "tick": 684,
+      "cwci": 0.6351,
+      "alert": false
+    },
+    {
+      "tick": 685,
+      "cwci": 0.653,
+      "alert": false
+    },
+    {
+      "tick": 686,
+      "cwci": 0.6588,
+      "alert": false
+    },
+    {
+      "tick": 687,
+      "cwci": 0.6467,
+      "alert": false
+    },
+    {
+      "tick": 688,
+      "cwci": 0.6443,
+      "alert": false
+    },
+    {
+      "tick": 689,
+      "cwci": 0.6633,
+      "alert": false
+    },
+    {
+      "tick": 690,
+      "cwci": 0.6631,
+      "alert": false
+    },
+    {
+      "tick": 691,
+      "cwci": 0.6532,
+      "alert": false
+    },
+    {
+      "tick": 692,
+      "cwci": 0.6625,
+      "alert": false
+    },
+    {
+      "tick": 693,
+      "cwci": 0.672,
+      "alert": false
+    },
+    {
+      "tick": 694,
+      "cwci": 0.6665,
+      "alert": false
+    },
+    {
+      "tick": 695,
+      "cwci": 0.66,
+      "alert": false
+    },
+    {
+      "tick": 696,
+      "cwci": 0.6614,
+      "alert": false
+    },
+    {
+      "tick": 697,
+      "cwci": 0.6723,
+      "alert": false
+    },
+    {
+      "tick": 698,
+      "cwci": 0.652,
+      "alert": false
+    },
+    {
+      "tick": 699,
+      "cwci": 0.6568,
+      "alert": false
+    },
+    {
+      "tick": 700,
+      "cwci": 0.6609,
+      "alert": false
+    },
+    {
+      "tick": 701,
+      "cwci": 0.6713,
+      "alert": false
+    },
+    {
+      "tick": 702,
+      "cwci": 0.6681,
+      "alert": false
+    },
+    {
+      "tick": 703,
+      "cwci": 0.6379,
+      "alert": false
+    },
+    {
+      "tick": 704,
+      "cwci": 0.6416,
+      "alert": false
+    },
+    {
+      "tick": 705,
+      "cwci": 0.6473,
+      "alert": false
+    },
+    {
+      "tick": 706,
+      "cwci": 0.665,
+      "alert": false
+    },
+    {
+      "tick": 707,
+      "cwci": 0.6578,
+      "alert": false
+    },
+    {
+      "tick": 708,
+      "cwci": 0.6465,
+      "alert": false
+    },
+    {
+      "tick": 709,
+      "cwci": 0.64,
+      "alert": false
+    },
+    {
+      "tick": 710,
+      "cwci": 0.6625,
+      "alert": false
+    },
+    {
+      "tick": 711,
+      "cwci": 0.663,
+      "alert": false
+    },
+    {
+      "tick": 712,
+      "cwci": 0.6727,
+      "alert": false
+    },
+    {
+      "tick": 713,
+      "cwci": 0.655,
+      "alert": false
+    },
+    {
+      "tick": 714,
+      "cwci": 0.6548,
+      "alert": false
+    },
+    {
+      "tick": 715,
+      "cwci": 0.6382,
+      "alert": false
+    },
+    {
+      "tick": 716,
+      "cwci": 0.6366,
+      "alert": false
+    },
+    {
+      "tick": 717,
+      "cwci": 0.6523,
+      "alert": false
+    },
+    {
+      "tick": 718,
+      "cwci": 0.6479,
+      "alert": false
+    },
+    {
+      "tick": 719,
+      "cwci": 0.645,
+      "alert": false
+    },
+    {
+      "tick": 720,
+      "cwci": 0.6387,
+      "alert": false
+    },
+    {
+      "tick": 721,
+      "cwci": 0.6735,
+      "alert": false
+    },
+    {
+      "tick": 722,
+      "cwci": 0.6684,
+      "alert": false
+    },
+    {
+      "tick": 723,
+      "cwci": 0.658,
+      "alert": false
+    },
+    {
+      "tick": 724,
+      "cwci": 0.673,
+      "alert": false
+    },
+    {
+      "tick": 725,
+      "cwci": 0.675,
+      "alert": false
+    },
+    {
+      "tick": 726,
+      "cwci": 0.6619,
+      "alert": false
+    },
+    {
+      "tick": 727,
+      "cwci": 0.6458,
+      "alert": false
+    },
+    {
+      "tick": 728,
+      "cwci": 0.6366,
+      "alert": false
+    },
+    {
+      "tick": 729,
+      "cwci": 0.6653,
+      "alert": false
+    },
+    {
+      "tick": 730,
+      "cwci": 0.6538,
+      "alert": false
+    },
+    {
+      "tick": 731,
+      "cwci": 0.6611,
+      "alert": false
+    },
+    {
+      "tick": 732,
+      "cwci": 0.6716,
+      "alert": false
+    },
+    {
+      "tick": 733,
+      "cwci": 0.6423,
+      "alert": false
+    },
+    {
+      "tick": 734,
+      "cwci": 0.6584,
+      "alert": false
+    },
+    {
+      "tick": 735,
+      "cwci": 0.6604,
+      "alert": false
+    },
+    {
+      "tick": 736,
+      "cwci": 0.6547,
+      "alert": false
+    },
+    {
+      "tick": 737,
+      "cwci": 0.6386,
+      "alert": false
+    },
+    {
+      "tick": 738,
+      "cwci": 0.6489,
+      "alert": false
+    },
+    {
+      "tick": 739,
+      "cwci": 0.6483,
+      "alert": false
+    },
+    {
+      "tick": 740,
+      "cwci": 0.6618,
+      "alert": false
+    },
+    {
+      "tick": 741,
+      "cwci": 0.6693,
+      "alert": false
+    },
+    {
+      "tick": 742,
+      "cwci": 0.6482,
+      "alert": false
+    },
+    {
+      "tick": 743,
+      "cwci": 0.6627,
+      "alert": false
+    },
+    {
+      "tick": 744,
+      "cwci": 0.6465,
+      "alert": false
+    },
+    {
+      "tick": 745,
+      "cwci": 0.6728,
+      "alert": false
+    },
+    {
+      "tick": 746,
+      "cwci": 0.6675,
+      "alert": false
+    },
+    {
+      "tick": 747,
+      "cwci": 0.657,
+      "alert": false
+    },
+    {
+      "tick": 748,
+      "cwci": 0.6532,
+      "alert": false
+    },
+    {
+      "tick": 749,
+      "cwci": 0.6476,
+      "alert": false
+    },
+    {
+      "tick": 750,
+      "cwci": 0.6479,
+      "alert": false
+    },
+    {
+      "tick": 751,
+      "cwci": 0.6738,
+      "alert": false
+    },
+    {
+      "tick": 752,
+      "cwci": 0.6512,
+      "alert": false
+    },
+    {
+      "tick": 753,
+      "cwci": 0.6556,
+      "alert": false
+    },
+    {
+      "tick": 754,
+      "cwci": 0.6745,
+      "alert": false
+    },
+    {
+      "tick": 755,
+      "cwci": 0.6613,
+      "alert": false
+    },
+    {
+      "tick": 756,
+      "cwci": 0.6567,
+      "alert": false
+    },
+    {
+      "tick": 757,
+      "cwci": 0.6515,
+      "alert": false
+    },
+    {
+      "tick": 758,
+      "cwci": 0.6425,
+      "alert": false
+    },
+    {
+      "tick": 759,
+      "cwci": 0.6495,
+      "alert": false
+    },
+    {
+      "tick": 760,
+      "cwci": 0.6653,
+      "alert": false
+    },
+    {
+      "tick": 761,
+      "cwci": 0.66,
+      "alert": false
+    },
+    {
+      "tick": 762,
+      "cwci": 0.6654,
+      "alert": false
+    },
+    {
+      "tick": 763,
+      "cwci": 0.6431,
+      "alert": false
+    },
+    {
+      "tick": 764,
+      "cwci": 0.657,
+      "alert": false
+    },
+    {
+      "tick": 765,
+      "cwci": 0.6721,
+      "alert": false
+    },
+    {
+      "tick": 766,
+      "cwci": 0.6525,
+      "alert": false
+    },
+    {
+      "tick": 767,
+      "cwci": 0.6629,
+      "alert": false
+    },
+    {
+      "tick": 768,
+      "cwci": 0.6399,
+      "alert": false
+    },
+    {
+      "tick": 769,
+      "cwci": 0.6739,
+      "alert": false
+    },
+    {
+      "tick": 770,
+      "cwci": 0.6594,
+      "alert": false
+    },
+    {
+      "tick": 771,
+      "cwci": 0.6446,
+      "alert": false
+    },
+    {
+      "tick": 772,
+      "cwci": 0.6413,
+      "alert": false
+    },
+    {
+      "tick": 773,
+      "cwci": 0.657,
+      "alert": false
+    },
+    {
+      "tick": 774,
+      "cwci": 0.6571,
+      "alert": false
+    },
+    {
+      "tick": 775,
+      "cwci": 0.6387,
+      "alert": false
+    },
+    {
+      "tick": 776,
+      "cwci": 0.6747,
+      "alert": false
+    },
+    {
+      "tick": 777,
+      "cwci": 0.6715,
+      "alert": false
+    },
+    {
+      "tick": 778,
+      "cwci": 0.6535,
+      "alert": false
+    },
+    {
+      "tick": 779,
+      "cwci": 0.6397,
+      "alert": false
+    },
+    {
+      "tick": 780,
+      "cwci": 0.6683,
+      "alert": false
+    },
+    {
+      "tick": 781,
+      "cwci": 0.6549,
+      "alert": false
+    },
+    {
+      "tick": 782,
+      "cwci": 0.6637,
+      "alert": false
+    },
+    {
+      "tick": 783,
+      "cwci": 0.6554,
+      "alert": false
+    },
+    {
+      "tick": 784,
+      "cwci": 0.6459,
+      "alert": false
+    },
+    {
+      "tick": 785,
+      "cwci": 0.6684,
+      "alert": false
+    },
+    {
+      "tick": 786,
+      "cwci": 0.6742,
+      "alert": false
+    },
+    {
+      "tick": 787,
+      "cwci": 0.6447,
+      "alert": false
+    },
+    {
+      "tick": 788,
+      "cwci": 0.6571,
+      "alert": false
+    },
+    {
+      "tick": 789,
+      "cwci": 0.6503,
+      "alert": false
+    },
+    {
+      "tick": 790,
+      "cwci": 0.6719,
+      "alert": false
+    },
+    {
+      "tick": 791,
+      "cwci": 0.6553,
+      "alert": false
+    },
+    {
+      "tick": 792,
+      "cwci": 0.6702,
+      "alert": false
+    },
+    {
+      "tick": 793,
+      "cwci": 0.6696,
+      "alert": false
+    },
+    {
+      "tick": 794,
+      "cwci": 0.646,
+      "alert": false
+    },
+    {
+      "tick": 795,
+      "cwci": 0.6666,
+      "alert": false
+    },
+    {
+      "tick": 796,
+      "cwci": 0.6516,
+      "alert": false
+    },
+    {
+      "tick": 797,
+      "cwci": 0.6724,
+      "alert": false
+    },
+    {
+      "tick": 798,
+      "cwci": 0.6553,
+      "alert": false
+    },
+    {
+      "tick": 799,
+      "cwci": 0.6678,
+      "alert": false
+    },
+    {
+      "tick": 800,
+      "cwci": 0.6463,
+      "alert": false
+    },
+    {
+      "tick": 801,
+      "cwci": 0.6469,
+      "alert": false
+    },
+    {
+      "tick": 802,
+      "cwci": 0.6585,
+      "alert": false
+    },
+    {
+      "tick": 803,
+      "cwci": 0.675,
+      "alert": false
+    },
+    {
+      "tick": 804,
+      "cwci": 0.6546,
+      "alert": false
+    },
+    {
+      "tick": 805,
+      "cwci": 0.6409,
+      "alert": false
+    },
+    {
+      "tick": 806,
+      "cwci": 0.6565,
+      "alert": false
+    },
+    {
+      "tick": 807,
+      "cwci": 0.6488,
+      "alert": false
+    },
+    {
+      "tick": 808,
+      "cwci": 0.6571,
+      "alert": false
+    },
+    {
+      "tick": 809,
+      "cwci": 0.6567,
+      "alert": false
+    },
+    {
+      "tick": 810,
+      "cwci": 0.6532,
+      "alert": false
+    },
+    {
+      "tick": 811,
+      "cwci": 0.6479,
+      "alert": false
+    },
+    {
+      "tick": 812,
+      "cwci": 0.6425,
+      "alert": false
+    },
+    {
+      "tick": 813,
+      "cwci": 0.6629,
+      "alert": false
+    },
+    {
+      "tick": 814,
+      "cwci": 0.6579,
+      "alert": false
+    },
+    {
+      "tick": 815,
+      "cwci": 0.6443,
+      "alert": false
+    },
+    {
+      "tick": 816,
+      "cwci": 0.666,
+      "alert": false
+    },
+    {
+      "tick": 817,
+      "cwci": 0.6367,
+      "alert": false
+    },
+    {
+      "tick": 818,
+      "cwci": 0.6648,
+      "alert": false
+    },
+    {
+      "tick": 819,
+      "cwci": 0.6632,
+      "alert": false
+    },
+    {
+      "tick": 820,
+      "cwci": 0.6675,
+      "alert": false
+    },
+    {
+      "tick": 821,
+      "cwci": 0.6504,
+      "alert": false
+    },
+    {
+      "tick": 822,
+      "cwci": 0.6615,
+      "alert": false
+    },
+    {
+      "tick": 823,
+      "cwci": 0.6678,
+      "alert": false
+    },
+    {
+      "tick": 824,
+      "cwci": 0.6742,
+      "alert": false
+    },
+    {
+      "tick": 825,
+      "cwci": 0.6548,
+      "alert": false
+    },
+    {
+      "tick": 826,
+      "cwci": 0.6365,
+      "alert": false
+    },
+    {
+      "tick": 827,
+      "cwci": 0.6551,
+      "alert": false
+    },
+    {
+      "tick": 828,
+      "cwci": 0.6586,
+      "alert": false
+    },
+    {
+      "tick": 829,
+      "cwci": 0.6698,
+      "alert": false
+    },
+    {
+      "tick": 830,
+      "cwci": 0.67,
+      "alert": false
+    },
+    {
+      "tick": 831,
+      "cwci": 0.6526,
+      "alert": false
+    },
+    {
+      "tick": 832,
+      "cwci": 0.656,
+      "alert": false
+    },
+    {
+      "tick": 833,
+      "cwci": 0.6533,
+      "alert": false
+    },
+    {
+      "tick": 834,
+      "cwci": 0.6639,
+      "alert": false
+    },
+    {
+      "tick": 835,
+      "cwci": 0.6514,
+      "alert": false
+    },
+    {
+      "tick": 836,
+      "cwci": 0.6612,
+      "alert": false
+    },
+    {
+      "tick": 837,
+      "cwci": 0.6412,
+      "alert": false
+    },
+    {
+      "tick": 838,
+      "cwci": 0.6538,
+      "alert": false
+    },
+    {
+      "tick": 839,
+      "cwci": 0.6738,
+      "alert": false
+    },
+    {
+      "tick": 840,
+      "cwci": 0.6485,
+      "alert": false
+    },
+    {
+      "tick": 841,
+      "cwci": 0.6627,
+      "alert": false
+    },
+    {
+      "tick": 842,
+      "cwci": 0.661,
+      "alert": false
+    },
+    {
+      "tick": 843,
+      "cwci": 0.6691,
+      "alert": false
+    },
+    {
+      "tick": 844,
+      "cwci": 0.6691,
+      "alert": false
+    },
+    {
+      "tick": 845,
+      "cwci": 0.6694,
+      "alert": false
+    },
+    {
+      "tick": 846,
+      "cwci": 0.6502,
+      "alert": false
+    },
+    {
+      "tick": 847,
+      "cwci": 0.6477,
+      "alert": false
+    },
+    {
+      "tick": 848,
+      "cwci": 0.6637,
+      "alert": false
+    },
+    {
+      "tick": 849,
+      "cwci": 0.6654,
+      "alert": false
+    },
+    {
+      "tick": 850,
+      "cwci": 0.6699,
+      "alert": false
+    },
+    {
+      "tick": 851,
+      "cwci": 0.6364,
+      "alert": false
+    },
+    {
+      "tick": 852,
+      "cwci": 0.6377,
+      "alert": false
+    },
+    {
+      "tick": 853,
+      "cwci": 0.6602,
+      "alert": false
+    },
+    {
+      "tick": 854,
+      "cwci": 0.6718,
+      "alert": false
+    },
+    {
+      "tick": 855,
+      "cwci": 0.6749,
+      "alert": false
+    },
+    {
+      "tick": 856,
+      "cwci": 0.6649,
+      "alert": false
+    },
+    {
+      "tick": 857,
+      "cwci": 0.6524,
+      "alert": false
+    },
+    {
+      "tick": 858,
+      "cwci": 0.6389,
+      "alert": false
+    },
+    {
+      "tick": 859,
+      "cwci": 0.6603,
+      "alert": false
+    },
+    {
+      "tick": 860,
+      "cwci": 0.6699,
+      "alert": false
+    },
+    {
+      "tick": 861,
+      "cwci": 0.6527,
+      "alert": false
+    },
+    {
+      "tick": 862,
+      "cwci": 0.6628,
+      "alert": false
+    },
+    {
+      "tick": 863,
+      "cwci": 0.6711,
+      "alert": false
+    },
+    {
+      "tick": 864,
+      "cwci": 0.6368,
+      "alert": false
+    },
+    {
+      "tick": 865,
+      "cwci": 0.6668,
+      "alert": false
+    },
+    {
+      "tick": 866,
+      "cwci": 0.6467,
+      "alert": false
+    },
+    {
+      "tick": 867,
+      "cwci": 0.65,
+      "alert": false
+    },
+    {
+      "tick": 868,
+      "cwci": 0.6408,
+      "alert": false
+    },
+    {
+      "tick": 869,
+      "cwci": 0.6562,
+      "alert": false
+    },
+    {
+      "tick": 870,
+      "cwci": 0.6576,
+      "alert": false
+    },
+    {
+      "tick": 871,
+      "cwci": 0.6667,
+      "alert": false
+    },
+    {
+      "tick": 872,
+      "cwci": 0.6418,
+      "alert": false
+    },
+    {
+      "tick": 873,
+      "cwci": 0.6382,
+      "alert": false
+    },
+    {
+      "tick": 874,
+      "cwci": 0.6698,
+      "alert": false
+    },
+    {
+      "tick": 875,
+      "cwci": 0.6598,
+      "alert": false
+    },
+    {
+      "tick": 876,
+      "cwci": 0.6446,
+      "alert": false
+    },
+    {
+      "tick": 877,
+      "cwci": 0.6715,
+      "alert": false
+    },
+    {
+      "tick": 878,
+      "cwci": 0.6407,
+      "alert": false
+    },
+    {
+      "tick": 879,
+      "cwci": 0.6534,
+      "alert": false
+    },
+    {
+      "tick": 880,
+      "cwci": 0.6452,
+      "alert": false
+    },
+    {
+      "tick": 881,
+      "cwci": 0.6452,
+      "alert": false
+    },
+    {
+      "tick": 882,
+      "cwci": 0.6354,
+      "alert": false
+    },
+    {
+      "tick": 883,
+      "cwci": 0.6672,
+      "alert": false
+    },
+    {
+      "tick": 884,
+      "cwci": 0.671,
+      "alert": false
+    },
+    {
+      "tick": 885,
+      "cwci": 0.6621,
+      "alert": false
+    },
+    {
+      "tick": 886,
+      "cwci": 0.6413,
+      "alert": false
+    },
+    {
+      "tick": 887,
+      "cwci": 0.6527,
+      "alert": false
+    },
+    {
+      "tick": 888,
+      "cwci": 0.6488,
+      "alert": false
+    },
+    {
+      "tick": 889,
+      "cwci": 0.6585,
+      "alert": false
+    },
+    {
+      "tick": 890,
+      "cwci": 0.6606,
+      "alert": false
+    },
+    {
+      "tick": 891,
+      "cwci": 0.652,
+      "alert": false
+    },
+    {
+      "tick": 892,
+      "cwci": 0.645,
+      "alert": false
+    },
+    {
+      "tick": 893,
+      "cwci": 0.6688,
+      "alert": false
+    },
+    {
+      "tick": 894,
+      "cwci": 0.643,
+      "alert": false
+    },
+    {
+      "tick": 895,
+      "cwci": 0.6504,
+      "alert": false
+    },
+    {
+      "tick": 896,
+      "cwci": 0.6543,
+      "alert": false
+    },
+    {
+      "tick": 897,
+      "cwci": 0.6445,
+      "alert": false
+    },
+    {
+      "tick": 898,
+      "cwci": 0.6579,
+      "alert": false
+    },
+    {
+      "tick": 899,
+      "cwci": 0.658,
+      "alert": false
+    },
+    {
+      "tick": 900,
+      "cwci": 0.6747,
+      "alert": false
+    },
+    {
+      "tick": 901,
+      "cwci": 0.6468,
+      "alert": false
+    },
+    {
+      "tick": 902,
+      "cwci": 0.6741,
+      "alert": false
+    },
+    {
+      "tick": 903,
+      "cwci": 0.6613,
+      "alert": false
+    },
+    {
+      "tick": 904,
+      "cwci": 0.646,
+      "alert": false
+    },
+    {
+      "tick": 905,
+      "cwci": 0.6576,
+      "alert": false
+    },
+    {
+      "tick": 906,
+      "cwci": 0.6624,
+      "alert": false
+    },
+    {
+      "tick": 907,
+      "cwci": 0.6648,
+      "alert": false
+    },
+    {
+      "tick": 908,
+      "cwci": 0.637,
+      "alert": false
+    },
+    {
+      "tick": 909,
+      "cwci": 0.6593,
+      "alert": false
+    },
+    {
+      "tick": 910,
+      "cwci": 0.6549,
+      "alert": false
+    },
+    {
+      "tick": 911,
+      "cwci": 0.6712,
+      "alert": false
+    },
+    {
+      "tick": 912,
+      "cwci": 0.6464,
+      "alert": false
+    },
+    {
+      "tick": 913,
+      "cwci": 0.667,
+      "alert": false
+    },
+    {
+      "tick": 914,
+      "cwci": 0.6593,
+      "alert": false
+    },
+    {
+      "tick": 915,
+      "cwci": 0.6491,
+      "alert": false
+    },
+    {
+      "tick": 916,
+      "cwci": 0.6605,
+      "alert": false
+    },
+    {
+      "tick": 917,
+      "cwci": 0.6598,
+      "alert": false
+    },
+    {
+      "tick": 918,
+      "cwci": 0.6621,
+      "alert": false
+    },
+    {
+      "tick": 919,
+      "cwci": 0.6638,
+      "alert": false
+    },
+    {
+      "tick": 920,
+      "cwci": 0.6614,
+      "alert": false
+    },
+    {
+      "tick": 921,
+      "cwci": 0.6685,
+      "alert": false
+    },
+    {
+      "tick": 922,
+      "cwci": 0.6601,
+      "alert": false
+    },
+    {
+      "tick": 923,
+      "cwci": 0.6711,
+      "alert": false
+    },
+    {
+      "tick": 924,
+      "cwci": 0.6609,
+      "alert": false
+    },
+    {
+      "tick": 925,
+      "cwci": 0.6474,
+      "alert": false
+    },
+    {
+      "tick": 926,
+      "cwci": 0.6526,
+      "alert": false
+    },
+    {
+      "tick": 927,
+      "cwci": 0.6582,
+      "alert": false
+    },
+    {
+      "tick": 928,
+      "cwci": 0.6643,
+      "alert": false
+    },
+    {
+      "tick": 929,
+      "cwci": 0.6386,
+      "alert": false
+    },
+    {
+      "tick": 930,
+      "cwci": 0.6468,
+      "alert": false
+    },
+    {
+      "tick": 931,
+      "cwci": 0.6649,
+      "alert": false
+    },
+    {
+      "tick": 932,
+      "cwci": 0.642,
+      "alert": false
+    },
+    {
+      "tick": 933,
+      "cwci": 0.6403,
+      "alert": false
+    },
+    {
+      "tick": 934,
+      "cwci": 0.6566,
+      "alert": false
+    },
+    {
+      "tick": 935,
+      "cwci": 0.6739,
+      "alert": false
+    },
+    {
+      "tick": 936,
+      "cwci": 0.6562,
+      "alert": false
+    },
+    {
+      "tick": 937,
+      "cwci": 0.6715,
+      "alert": false
+    },
+    {
+      "tick": 938,
+      "cwci": 0.6682,
+      "alert": false
+    },
+    {
+      "tick": 939,
+      "cwci": 0.6453,
+      "alert": false
+    },
+    {
+      "tick": 940,
+      "cwci": 0.668,
+      "alert": false
+    },
+    {
+      "tick": 941,
+      "cwci": 0.6543,
+      "alert": false
+    },
+    {
+      "tick": 942,
+      "cwci": 0.6673,
+      "alert": false
+    },
+    {
+      "tick": 943,
+      "cwci": 0.6649,
+      "alert": false
+    },
+    {
+      "tick": 944,
+      "cwci": 0.6485,
+      "alert": false
+    },
+    {
+      "tick": 945,
+      "cwci": 0.6396,
+      "alert": false
+    },
+    {
+      "tick": 946,
+      "cwci": 0.6735,
+      "alert": false
+    },
+    {
+      "tick": 947,
+      "cwci": 0.6406,
+      "alert": false
+    },
+    {
+      "tick": 948,
+      "cwci": 0.6737,
+      "alert": false
+    },
+    {
+      "tick": 949,
+      "cwci": 0.6694,
+      "alert": false
+    },
+    {
+      "tick": 950,
+      "cwci": 0.664,
+      "alert": false
+    },
+    {
+      "tick": 951,
+      "cwci": 0.6742,
+      "alert": false
+    },
+    {
+      "tick": 952,
+      "cwci": 0.6737,
+      "alert": false
+    },
+    {
+      "tick": 953,
+      "cwci": 0.6672,
+      "alert": false
+    },
+    {
+      "tick": 954,
+      "cwci": 0.6496,
+      "alert": false
+    },
+    {
+      "tick": 955,
+      "cwci": 0.6666,
+      "alert": false
+    },
+    {
+      "tick": 956,
+      "cwci": 0.6356,
+      "alert": false
+    },
+    {
+      "tick": 957,
+      "cwci": 0.6565,
+      "alert": false
+    },
+    {
+      "tick": 958,
+      "cwci": 0.6532,
+      "alert": false
+    },
+    {
+      "tick": 959,
+      "cwci": 0.6619,
+      "alert": false
+    },
+    {
+      "tick": 960,
+      "cwci": 0.6619,
+      "alert": false
+    },
+    {
+      "tick": 961,
+      "cwci": 0.6584,
+      "alert": false
+    },
+    {
+      "tick": 962,
+      "cwci": 0.6679,
+      "alert": false
+    },
+    {
+      "tick": 963,
+      "cwci": 0.6726,
+      "alert": false
+    },
+    {
+      "tick": 964,
+      "cwci": 0.6393,
+      "alert": false
+    },
+    {
+      "tick": 965,
+      "cwci": 0.6444,
+      "alert": false
+    },
+    {
+      "tick": 966,
+      "cwci": 0.636,
+      "alert": false
+    },
+    {
+      "tick": 967,
+      "cwci": 0.6704,
+      "alert": false
+    },
+    {
+      "tick": 968,
+      "cwci": 0.6575,
+      "alert": false
+    },
+    {
+      "tick": 969,
+      "cwci": 0.6716,
+      "alert": false
+    },
+    {
+      "tick": 970,
+      "cwci": 0.6439,
+      "alert": false
+    },
+    {
+      "tick": 971,
+      "cwci": 0.6375,
+      "alert": false
+    },
+    {
+      "tick": 972,
+      "cwci": 0.668,
+      "alert": false
+    },
+    {
+      "tick": 973,
+      "cwci": 0.6714,
+      "alert": false
+    },
+    {
+      "tick": 974,
+      "cwci": 0.6471,
+      "alert": false
+    },
+    {
+      "tick": 975,
+      "cwci": 0.6513,
+      "alert": false
+    },
+    {
+      "tick": 976,
+      "cwci": 0.6406,
+      "alert": false
+    },
+    {
+      "tick": 977,
+      "cwci": 0.6729,
+      "alert": false
+    },
+    {
+      "tick": 978,
+      "cwci": 0.6472,
+      "alert": false
+    },
+    {
+      "tick": 979,
+      "cwci": 0.6547,
+      "alert": false
+    },
+    {
+      "tick": 980,
+      "cwci": 0.6389,
+      "alert": false
+    },
+    {
+      "tick": 981,
+      "cwci": 0.6705,
+      "alert": false
+    },
+    {
+      "tick": 982,
+      "cwci": 0.6404,
+      "alert": false
+    },
+    {
+      "tick": 983,
+      "cwci": 0.6531,
+      "alert": false
+    },
+    {
+      "tick": 984,
+      "cwci": 0.6618,
+      "alert": false
+    },
+    {
+      "tick": 985,
+      "cwci": 0.6647,
+      "alert": false
+    },
+    {
+      "tick": 986,
+      "cwci": 0.6728,
+      "alert": false
+    },
+    {
+      "tick": 987,
+      "cwci": 0.6518,
+      "alert": false
+    },
+    {
+      "tick": 988,
+      "cwci": 0.6647,
+      "alert": false
+    },
+    {
+      "tick": 989,
+      "cwci": 0.6412,
+      "alert": false
+    },
+    {
+      "tick": 990,
+      "cwci": 0.6516,
+      "alert": false
+    },
+    {
+      "tick": 991,
+      "cwci": 0.639,
+      "alert": false
+    },
+    {
+      "tick": 992,
+      "cwci": 0.6546,
+      "alert": false
+    },
+    {
+      "tick": 993,
+      "cwci": 0.6513,
+      "alert": false
+    },
+    {
+      "tick": 994,
+      "cwci": 0.6731,
+      "alert": false
+    },
+    {
+      "tick": 995,
+      "cwci": 0.6363,
+      "alert": false
+    },
+    {
+      "tick": 996,
+      "cwci": 0.6498,
+      "alert": false
+    },
+    {
+      "tick": 997,
+      "cwci": 0.6527,
+      "alert": false
+    },
+    {
+      "tick": 998,
+      "cwci": 0.673,
+      "alert": false
+    },
+    {
+      "tick": 999,
+      "cwci": 0.6692,
+      "alert": false
+    }
+  ]
+}
