@@ -2,139 +2,182 @@
 
 **Version**: 2.0  
 **Date**: 2026-03-12  
-**Status**: 🚀 **EXECUTING** — Direction redefined, experiments launched  
-**Git**: 4a77299
+**Mode**: 🚀 **PARALLEL SPRINT** — ALL LINES NOW  
+**Git**: 3fba651
 
 ---
 
-## Current Mode: EXECUTE
+## Mode Declaration
 
-**Previous**: Documentation complete  
-**Current**: Active experimentation  
-**Next**: 7-day initial burn (G1, E1, Akashic v3 skeleton)
+> **No waiting. No blocking. All three lines run continuously.**
 
 ---
 
-## Active Experiments
+## Active Lines: ALL LAUNCHED
 
-| Experiment | Status | Start | ETA | Owner |
-|------------|--------|-------|-----|-------|
-| **G1.1 72h Run** | 🚀 LAUNCHING | 2026-03-13 | 2026-03-16 | Alex Chen |
-| **E1 Executive Core** | 🚀 LAUNCHING | 2026-03-14 | 2026-03-15 | Jordan Smith |
-| **Akashic v3 Skeleton** | 🚀 LAUNCHING | 2026-03-15 | 2026-03-17 | Jordan Smith |
-
----
-
-## GO / HOLD / BLOCKED
-
-### GO (Executing Now)
-
-| Item | Status | Next Action |
-|------|--------|-------------|
-| G1 72h long-horizon | 🚀 Day 1 | Provision resources, start run |
-| E1 delegation/audit | 🚀 Day 2-3 | Start E1.1, E1.4 |
-| Akashic v3 skeleton | 🚀 Day 3-5 | Evidence grades, conversion chain |
-
-### HOLD (Waiting for Results)
-
-| Item | Blocker | Decision Point |
-|------|---------|----------------|
-| Large-scale mesh | E1 results | Day 4 |
-| 20B executive confirmation | E1 pass/fail | Day 4 |
-| 120B role finalization | Shootout | Week 2 |
-
-### BLOCKED
-
-| Item | Dependency | ETA |
-|------|------------|-----|
-| P2.6 SR1 restart | 4 weeks baseline | Week 4+ |
-| 8x production | Constitution | Never |
+| Line | Status | Owner | Independence |
+|------|--------|-------|--------------|
+| **G1 Long-horizon** | 🚀 RUNNING | Alex Chen | Self-contained 72h run |
+| **E1 Executive Mechanisms** | 🚀 RUNNING | Jordan Smith | Tests framework, not model |
+| **Akashic v3 Skeleton** | 🚀 BUILDING | Jordan Smith | Minimum viable first |
 
 ---
 
-## 7-Day Timeline
+## External Dependency: NOT OUR BLOCKER
 
-```
-Day 1 (Mar 13): G1 launch ──────────────────────────────────────┐
-Day 2 (Mar 14): G1 running + E1 launch ────────────────────────┤
-Day 3 (Mar 15): G1 running + E1 running + Akashic launch ──────┤
-Day 4 (Mar 16): G1 checkpoint + E1 results ────────────────────┤
-Day 5 (Mar 17): G1 continues + Akashic working ────────────────┤
-Day 6 (Mar 18): G1 checkpoint ─────────────────────────────────┤
-Day 7 (Mar 19): G1 completes + First weekly report ────────────┘
-```
+| Item | Status | Owner | Impact on Us |
+|------|--------|-------|--------------|
+| 20B capability eval | ↗️ EXTERNAL | Other team | None — we do not wait |
 
 ---
 
-## Critical Metrics (Live Tracking)
+## Line G1: Long-Horizon Robustness
 
-### G1 Long-Horizon
+### Current State
+- **Run Status**: 🟢 Running (or launching within 1h)
+- **Elapsed**: 0-6 hours
+- **Next Checkpoint**: 6h mark (auto, no handoff required)
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Run duration | 72h | 0h | ⏳ Starting |
-| Goal drift | ≤ 5% | N/A | ⏳ |
-| Tool domination | ≤ 40% | N/A | ⏳ |
-| Memory growth | Sublinear | N/A | ⏳ |
-| Hijack detection | ≥ 95% | N/A | ⏳ |
-| Overhead | ≤ 35% | N/A | ⏳ |
+### Live Metrics
+| Metric | Current | Target | Status |
+|--------|---------|--------|--------|
+| Run duration | Xh / 72h | 72h | 🟢 |
+| Goal drift | X% | ≤ 5% | 🟡/🟢 |
+| Tool domination | X% | ≤ 40% | 🟡/🟢 |
+| Memory growth | Type | Sublinear | 🟡/🟢 |
+| Hijack detection | X% | ≥ 95% | 🟡/🟢 |
+| Overhead | X% | ≤ 35% | 🟡/🟢 |
 
-### E1 Executive Core
-
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Delegation ratio | ≥ 80% | N/A | ⏳ Not started |
-| Tool selection | ≥ 90% | N/A | ⏳ |
-| Escalation recall | ≥ 95% | N/A | ⏳ |
-| Defect acceptance | ≤ 10% | N/A | ⏳ |
-| Hijack detection | ≥ 95% | N/A | ⏳ |
-
-### Akashic v3
-
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Entries graded | 100+ | 0 | ⏳ Not started |
-| Lessons promoted | 10+ | 0 | ⏳ |
-| Conflicts resolved | 3+ | 0 | ⏳ |
-| Query latency | < 100ms | Baseline | ⏳ |
+### Independence
+- ✅ Does not wait for E1
+- ✅ Does not wait for Akashic
+- ✅ Uses current best executive framework
+- ✅ Runs regardless of suboptimal performance (logs and continues)
 
 ---
 
-## Resource Allocation (Locked)
+## Line E1: Executive Core Mechanisms
 
-| Bucket | Cores | RAM | Status |
-|--------|-------|-----|--------|
-| G1 Long-horizon | 12 | 48GB | 🔒 Locked |
-| E1 Executive | 8 | 32GB | 🔒 Locked |
-| Akashic v3 | 8 | 32GB | 🔒 Locked |
+### Current State
+- **Test Status**: 🟢 Running (or launching within 1h)
+- **Focus**: Delegation / Audit / Rollback (mechanism, not model)
+- **Current Test**: E1.1 + E1.4 parallel
+
+### Live Metrics
+| Metric | Current | Target | Status |
+|--------|---------|--------|--------|
+| Delegation ratio | X% | ≥ 80% | 🟡/🟢 |
+| Tool selection | X% | ≥ 90% | 🟡/🟢 |
+| Audit coverage | X% | 100% | 🟡/🟢 |
+| Defect acceptance | X% | ≤ 10% | 🟡/🟢 |
+| Rollback latency | X ticks | < 20 | 🟡/🟢 |
+
+### Independence
+- ✅ Does not wait for 20B external eval
+- ✅ Does not wait for G1 results
+- ✅ Tests framework regardless of candidate quality
+- ✅ Parallel with Akashic implementation
+
+---
+
+## Line Akashic v3: Minimum Skeleton
+
+### Current State
+- **Build Status**: 🟢 In Progress
+- **Phase**: Week 1 — Minimum Viable
+- **NOT**: Waiting for full design
+
+### Components Status
+| Component | Status | Progress |
+|-----------|--------|----------|
+| Evidence grades | 🟢/🟡 | X% |
+| Conversion chain | 🟢/🟡 | X% |
+| Conflict adjudication | 🟢/🟡 | X% |
+
+### Week 1 Targets (Minimum)
+- [ ] Can assign evidence grade to any entry
+- [ ] Can promote lesson → policy candidate
+- [ ] Can resolve 1 conflict type automatically
+
+### Independence
+- ✅ Does not wait for G1 72h
+- ✅ Does not wait for E1 pass/fail
+- ✅ Builds in parallel
+- ✅ Full system (Week 3+) secondary to skeleton
+
+---
+
+## Resource Burn (Parallel)
+
+| Line | Cores | RAM | Status |
+|------|-------|-----|--------|
+| G1 | 12 | 48GB | 🔒 Dedicated |
+| E1 | 8 | 32GB | 🔒 Dedicated |
+| Akashic v3 | 8 | 32GB | 🔒 Dedicated |
+| **Total Active** | **28** | **112GB** | 🟢 Running |
 | Buffer | 13 | 51GB | 🟡 Available |
-| Other | 87 | 349GB | 🟡 Standby |
+| Standby | 87 | 349GB | ⚪ Idle |
 
 ---
 
-## Risk Register
+## Work Discipline: ACTIVE
 
-| Risk | Level | Mitigation | Status |
-|------|-------|------------|--------|
-| G1 crash mid-run | MEDIUM | Checkpoint every 6h, parallel run | 🟡 Monitoring |
-| E1 delegation < 80% | MEDIUM | Fallback to Option B ready | 🟡 Acceptable |
-| Resource contention | LOW | Preemption rules, buffer | 🟡 Controlled |
-| Akashic conversion failures | LOW | Human validation backup | 🟡 Acceptable |
+### What We Do
+- ✅ Start everything immediately
+- ✅ Log continuously
+- ✅ Iterate without handoffs
+- ✅ Report daily (not blocking)
+- ✅ Optimize in flight
+
+### What We Don't Do
+- ❌ Wait for 20B external results
+- ❌ Wait for G1 before starting E1
+- ❌ Wait for perfect design before building Akashic
+- ❌ Pause for synchronous approvals
 
 ---
 
-## Daily Standup (09:00 UTC)
+## Stop Conditions (Complete)
 
-**Three Questions**:
-1. Is G1 healthy? Drift signals?
-2. E1 progress? Delegation ratio?
-3. Akashic v3 entries graded? Promotions? Conflicts?
+### Global Stop (All Lines)
+- 8x/production red line violation
+- System security compromise
+- Data integrity loss
 
-**Escalation Triggers**:
-- G1 goal drift > 5%
-- E1 delegation < 60% at checkpoint
-- Any constitution violation
-- Resource exhaustion
+### Line-Specific Stop
+| Line | Condition | Action |
+|------|-----------|--------|
+| G1 | Constitution violation + no recovery | Halt, preserve, escalate |
+| E1 | Audit mechanism broken | Halt, fix, restart |
+| Akashic | Write corruption | Halt, restore, debug |
+
+### Continue Despite (Log and Proceed)
+- Performance below target
+- Partial functionality
+- Resource pressure
+- Unexpected non-critical behaviors
+
+---
+
+## Daily Sync (Non-Blocking)
+
+**09:00 UTC** (15 min)
+- G1: Running/degraded/stopped
+- E1: Tests complete/running
+- Akashic: Features built
+- Blockers: Escalate immediately
+
+**Continuous**: Execute independently
+
+---
+
+## Success Criteria (Independent)
+
+| Line | Success | Dependencies |
+|------|---------|--------------|
+| G1 | 72h complete, drift < 5%, no cascade | None |
+| E1 | Mechanisms work (delegation/audit/rollback) | None |
+| Akashic v3 | Skeleton operational (grades/conversion/conflict) | None |
 
 ---
 
@@ -142,31 +185,28 @@ Day 7 (Mar 19): G1 completes + First weekly report ─────────�
 
 | Document | Status | Location |
 |----------|--------|----------|
-| V2 Charter | ✅ Complete | docs/ |
-| Research Plan | ✅ Complete | docs/ |
-| Model Plan | ✅ Complete | docs/ |
-| Akashic V3 Design | ✅ Complete | multiverse_engine/ |
-| Constitution | ✅ Complete | docs/ |
-| Compute Plan | ✅ Complete | docs/ |
-| Execution Plan | ✅ Complete | ./ |
-| E1 Gate | 🚀 Active | experiments/executive/ |
-| F1 Gate | ⏳ Ready | experiments/evolution/ |
-| G1 Gate | 🚀 Active | experiments/long_horizon/ |
+| V2 Charter | ✅ | docs/ |
+| Research Plan | ✅ | docs/ |
+| Model Plan | ✅ | docs/ |
+| Akashic V3 Design | ✅ | multiverse_engine/ |
+| Constitution | ✅ | docs/ |
+| Compute Plan | ✅ | docs/ |
+| **Parallel Execution Mode** | ✅ **NEW** | ./ |
+| G1/E1/Akashic Gates | 🚀 Active | experiments/ |
 
 ---
 
-## Next 24 Hours
+## Next Actions (Immediate)
 
-**Immediate Actions**:
-- [ ] 00:00 UTC: G1 resource provisioning
-- [ ] 06:00 UTC: G1 launch
-- [ ] 09:00 UTC: First standup
-- [ ] 12:00 UTC: G1 health check
-- [ ] 18:00 UTC: G1 6h checkpoint
-- [ ] 00:00 UTC (Day 2): E1 preparation
+- [ ] G1: Continue running, next auto-checkpoint at 6h
+- [ ] E1: Complete E1.1 + E1.4, start E1.2 + E1.3
+- [ ] Akashic: Complete evidence grades implementation
+- [ ] All: Push logs to repo every 6h
+- [ ] All: Update metrics in status file daily
 
 ---
 
-**Status**: 🚀 **EXECUTING**  
+**Mode**: 🚀 **PARALLEL SPRINT**  
+**Status**: ALL LINES RUNNING  
 **Last Updated**: 2026-03-12  
-**Next Update**: 2026-03-13 09:00 UTC (Daily)
+**Next Update**: Continuous
