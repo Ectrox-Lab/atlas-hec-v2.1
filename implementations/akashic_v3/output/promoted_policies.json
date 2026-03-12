@@ -1,0 +1,30 @@
+[
+  {
+    "id": "policy_5685fd8b",
+    "rule": "IF cwci_measured AND degradation_observed AND failover_triggered AND recovery_observed THEN apply",
+    "source_lesson": "From p0_active_trigger: Failover mechanism validated",
+    "confidence": 1.0,
+    "created_at": "2026-03-13T01:43:24.170202"
+  },
+  {
+    "id": "policy_48b44b11",
+    "rule": "IF cwci_measured AND degradation_observed AND failover_triggered AND recovery_observed THEN apply",
+    "source_lesson": "From p0_active_trigger: Failover mechanism validated",
+    "confidence": 1.0,
+    "created_at": "2026-03-13T01:43:24.170232"
+  },
+  {
+    "id": "policy_545aeb1c",
+    "rule": "IF cwci_measured AND degradation_observed AND failover_triggered AND recovery_observed AND seed_spike_detected THEN apply",
+    "source_lesson": "From p2_6_restart: Failover mechanism validated",
+    "confidence": 0.925,
+    "created_at": "2026-03-13T01:43:24.170246"
+  },
+  {
+    "id": "policy_7d34f056",
+    "rule": "IF cwci_measured AND degradation_observed AND recovery_observed THEN apply",
+    "source_lesson": "From p2_6_restart: Scale boundary at 6x identified",
+    "confidence": 0.9750000000000001,
+    "created_at": "2026-03-13T01:43:24.170262"
+  }
+]
