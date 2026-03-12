@@ -206,17 +206,28 @@ class StructureIndexBuilder:
             try:
                 import hdbscan
                 hdb_config = cluster_config.get("hdbscan", {})
+                # Adjust min_cluster_size for small datasets
+                min_cluster_size = min(hdb_config.get("min_cluster_size", 5), len(X) // 2)
+                min_samples = min(hdb_config.get("min_samples", 3), min_cluster_size - 1)
                 clusterer = hdbscan.HDBSCAN(
-                    min_cluster_size=hdb_config.get("min_cluster_size", 5),
-                    min_samples=hdb_config.get("min_samples", 3),
+                    min_cluster_size=max(min_cluster_size, 3),
+                    min_samples=max(min_samples, 2),
                     metric=hdb_config.get("metric", "euclidean"),
                     cluster_selection_method=hdb_config.get("cluster_selection_method", "eom")
                 )
                 labels = clusterer.fit_predict(X)
-                logger.info(f"HDBSCAN found {len(set(labels)) - (1 if -1 in labels else 0)} clusters")
-                return labels
+                n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+                logger.info(f"HDBSCAN found {n_clusters} clusters")
+                if n_clusters < 2:
+                    logger.warning("HDBSCAN found too few clusters, using KMeans")
+                    algorithm = "kmeans"
+                else:
+                    return labels
             except ImportError:
                 logger.warning("HDBSCAN not available, using KMeans fallback")
+                algorithm = "kmeans"
+            except Exception as e:
+                logger.warning(f"HDBSCAN failed: {e}, using KMeans")
                 algorithm = "kmeans"
         
         if algorithm == "kmeans":
@@ -340,6 +351,20 @@ class StructureIndexBuilder:
     def save_results(self, results: Dict, output_dir: Path) -> None:
         """Save clustering results"""
         output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Convert numpy types to Python types for JSON serialization
+        def convert_keys(obj):
+            if isinstance(obj, dict):
+                return {str(k): convert_keys(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_keys(i) for i in obj]
+            elif isinstance(obj, (np.integer, np.floating)):
+                return float(obj) if isinstance(obj, np.floating) else int(obj)
+            elif isinstance(obj, np.ndarray):
+                return obj.tolist()
+            return obj
+        
+        results = convert_keys(results)
         
         # Save main results
         with open(output_dir / "regions_v1.json", 'w') as f:

@@ -1,0 +1,30 @@
+{
+  "candidate_id": "stable_03",
+  "candidate_name": "StableVariant-C",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "stable_variant",
+  "cwci": {
+    "total": 0.8,
+    "specialization": 0.865,
+    "integration": 0.814,
+    "broadcast": 0.717,
+    "min": 0.68,
+    "max": 0.84
+  },
+  "hierarchy_depth": 5,
+  "autonomy_strength": 0.869,
+  "memory_style": "hybrid",
+  "scale_retention": 0.814,
+  "seed_variance": 0.174,
+  "stress_coverage": 0.645,
+  "pass_rate": 0.904,
+  "recovery_time": 59.9,
+  "energy_stability": 0.641,
+  "coordination_score": 0.773,
+  "hazard_resistance": 0.789,
+  "communication_cost": 0.458,
+  "first_failure_mode": "energy",
+  "seed_spike_risk": 0.212,
+  "collapse_signature": "sig_stable_03",
+  "bottleneck_type": "cascading"
+}

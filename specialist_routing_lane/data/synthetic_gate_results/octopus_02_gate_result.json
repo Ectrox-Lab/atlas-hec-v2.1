@@ -1,0 +1,30 @@
+{
+  "candidate_id": "octopus_02",
+  "candidate_name": "OctopusLike-R4",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "octopus_mainline",
+  "cwci": {
+    "total": 0.82,
+    "specialization": 0.85,
+    "integration": 0.8,
+    "broadcast": 0.78,
+    "min": 0.697,
+    "max": 0.861
+  },
+  "hierarchy_depth": 2,
+  "autonomy_strength": 0.666,
+  "memory_style": "federated",
+  "scale_retention": 0.88,
+  "seed_variance": 0.12,
+  "stress_coverage": 0.741,
+  "pass_rate": 0.92,
+  "recovery_time": 38.1,
+  "energy_stability": 0.815,
+  "coordination_score": 0.825,
+  "hazard_resistance": 0.705,
+  "communication_cost": 0.335,
+  "first_failure_mode": "memory",
+  "seed_spike_risk": 0.15,
+  "collapse_signature": "sig_octopus_02",
+  "bottleneck_type": "single_point"
+}

@@ -1,0 +1,30 @@
+{
+  "candidate_id": "octopus_01",
+  "candidate_name": "OctopusLike-Mainline",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "octopus_mainline",
+  "cwci": {
+    "total": 0.82,
+    "specialization": 0.85,
+    "integration": 0.8,
+    "broadcast": 0.78,
+    "min": 0.697,
+    "max": 0.861
+  },
+  "hierarchy_depth": 2,
+  "autonomy_strength": 0.608,
+  "memory_style": "hybrid",
+  "scale_retention": 0.88,
+  "seed_variance": 0.12,
+  "stress_coverage": 0.598,
+  "pass_rate": 0.92,
+  "recovery_time": 17.0,
+  "energy_stability": 0.631,
+  "coordination_score": 0.835,
+  "hazard_resistance": 0.736,
+  "communication_cost": 0.377,
+  "first_failure_mode": "coordination",
+  "seed_spike_risk": 0.15,
+  "collapse_signature": "sig_octopus_01",
+  "bottleneck_type": "single_point"
+}

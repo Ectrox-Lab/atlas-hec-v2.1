@@ -1,0 +1,30 @@
+{
+  "candidate_id": "oqs_01",
+  "candidate_name": "OQS-Challenger",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "oqs_challenger",
+  "cwci": {
+    "total": 0.78,
+    "specialization": 0.75,
+    "integration": 0.82,
+    "broadcast": 0.7,
+    "min": 0.663,
+    "max": 0.819
+  },
+  "hierarchy_depth": 3,
+  "autonomy_strength": 0.809,
+  "memory_style": "hybrid",
+  "scale_retention": 0.72,
+  "seed_variance": 0.28,
+  "stress_coverage": 0.611,
+  "pass_rate": 0.78,
+  "recovery_time": 20.8,
+  "energy_stability": 0.829,
+  "coordination_score": 0.676,
+  "hazard_resistance": 0.695,
+  "communication_cost": 0.308,
+  "first_failure_mode": "memory",
+  "seed_spike_risk": 0.35,
+  "collapse_signature": "sig_oqs_01",
+  "bottleneck_type": "cascading"
+}

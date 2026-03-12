@@ -1,0 +1,37 @@
+[
+  {
+    "candidate_id": "octopus_02",
+    "candidate_name": "OctopusLike-R4",
+    "region": "stable_region",
+    "risk_score": 0.1317,
+    "recommendation": "promote_to_challenger"
+  },
+  {
+    "candidate_id": "stable_02",
+    "candidate_name": "StableVariant-B",
+    "region": "stable_region",
+    "risk_score": 0.12360000000000002,
+    "recommendation": "promote_to_challenger"
+  },
+  {
+    "candidate_id": "stable_01",
+    "candidate_name": "StableVariant-A",
+    "region": "stable_region",
+    "risk_score": 0.2142,
+    "recommendation": "promote_to_challenger"
+  },
+  {
+    "candidate_id": "octopus_01",
+    "candidate_name": "OctopusLike-Mainline",
+    "region": "stable_region",
+    "risk_score": 0.1746,
+    "recommendation": "promote_to_challenger"
+  },
+  {
+    "candidate_id": "stable_03",
+    "candidate_name": "StableVariant-C",
+    "region": "stable_region",
+    "risk_score": 0.1848,
+    "recommendation": "promote_to_challenger"
+  }
+]
