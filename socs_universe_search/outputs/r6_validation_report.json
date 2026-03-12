@@ -1,0 +1,21 @@
+{
+  "r6_validation": {
+    "scale": "6x",
+    "degraded_seeds": 1,
+    "degraded_seed_list": [
+      55
+    ],
+    "degradation_rate": 0.125,
+    "mean_cwci": 0.641,
+    "min_cwci": 0.581,
+    "retention": 0.979,
+    "cv": 0.036,
+    "zone_classification": "BORDERLINE",
+    "final_recommendation": "6x WITH MONITORING",
+    "operational_envelope": {
+      "4x": "guaranteed_safe",
+      "6x": "6x_with_monitoring",
+      "8x": "experimental_only"
+    }
+  }
+}

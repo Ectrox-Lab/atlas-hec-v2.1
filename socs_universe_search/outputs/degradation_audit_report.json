@@ -1,0 +1,25 @@
+{
+  "degradation_audit": {
+    "scale": "8x",
+    "degraded_seeds": [
+      37,
+      42
+    ],
+    "stable_seeds": [
+      23,
+      101
+    ],
+    "degradation_type": "stochastic",
+    "first_degradation_mode": "CWCI",
+    "onset_ticks": {
+      "seed_37": 2200,
+      "seed_42": 1500
+    },
+    "degradation_pattern": "heterogeneous",
+    "affected_rate": "25% (2/8 seeds)",
+    "recommended_envelope": "4x MAXIMUM",
+    "six_x_necessity": "RECOMMENDED",
+    "status": "UNDER_OBSERVATION",
+    "primary_status": "MAINTAINED_WITH_LIMITS"
+  }
+}
