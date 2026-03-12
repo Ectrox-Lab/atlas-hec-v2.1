@@ -1,0 +1,87 @@
+# Tier 2 Monitoring Config - OctopusLike
+# Scale: 6x (Production with Monitoring)
+# Status: APPROVED - With monitoring infrastructure
+
+apiVersion: socs.octopuslike/v1
+kind: MonitoringConfig
+metadata:
+  name: octopuslike-tier2-production
+  tier: "2"
+  risk_level: "LOW"
+  
+spec:
+  architecture:
+    family: OctopusLike
+    version: "R6-validated"
+    
+  scale:
+    level: "6x"
+    n_units: 6144  # 6x baseline
+    validation: "R6-passed"
+    degradation_rate: "12.5% (1/8 seeds)"
+    
+  performance_expectations:
+    cwci_target: 0.641
+    retention: "97.9%"
+    worst_case_cwci: 0.581
+    
+  monitoring:
+    required: true
+    granularity: "per-seed"
+    metrics:
+      - name: cwci_live
+        collection_interval_ticks: 100
+        alert_threshold: 0.58
+        
+      - name: specialization_ratio
+        collection_interval_ticks: 500
+        alert_threshold: 0.60
+        
+      - name: integration_stability
+        collection_interval_ticks: 500
+        alert_threshold: 0.70
+        
+      - name: broadcast_efficiency
+        collection_interval_ticks: 500
+        alert_threshold: 0.65
+        
+      - name: communication_cost
+        collection_interval_ticks: 100
+        alert_threshold: 0.35
+        direction: "above"
+        
+  alerting:
+    severity_levels:
+      - level: "warning"
+        condition: "cwci < 0.60"
+        action: "log_and_notify"
+        
+      - level: "critical"
+        condition: "cwci < 0.58"
+        action: "trigger_failover"
+        auto_escalate: true
+        
+      - level: "emergency"
+        condition: "cwci < 0.55"
+        action: "immediate_rollback"
+        
+  seed_management:
+    initial_pool_size: 8
+    degraded_seed_handling: "quarantine_and_replace"
+    healthy_seed_minimum: 6
+    
+  failover:
+    enabled: true
+    strategy: "seed_level"
+    failover_time_target: "< 5 ticks"
+    backup_seeds: 2
+    
+  deployment_constraints:
+    max_concurrent_universes: 5
+    seed_selection: "validated_pool_only"
+    requires_monitoring_stack: true
+    
+status:
+  phase: "Ready with monitoring"
+  approved: true
+  deployment_window: "with infrastructure"

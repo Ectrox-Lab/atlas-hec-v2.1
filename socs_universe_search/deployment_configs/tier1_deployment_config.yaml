@@ -1,0 +1,56 @@
+# Tier 1 Deployment Config - OctopusLike
+# Scale: 4x (Mission-Critical)
+# Status: APPROVED - Immediate deployment
+
+apiVersion: socs.octopuslike/v1
+kind: Deployment
+metadata:
+  name: octopuslike-tier1-mission-critical
+  tier: "1"
+  risk_level: "MINIMAL"
+  
+spec:
+  architecture:
+    family: OctopusLike
+    version: "R4-validated"
+    
+  scale:
+    level: "4x"
+    n_units: 4096  # 4x baseline (1024)
+    validation: "R4-passed"
+    
+  performance_expectations:
+    cwci_target: 0.655
+    retention: "95.2%"
+    degradation_risk: "0%"
+    
+  resilience:
+    replication_factor: 3
+    auto_failover: false  # Not required at 4x (guaranteed safe)
+    backup_interval_ticks: 1000
+    
+  resources:
+    compute: "standard"
+    memory: "4GB per universe"
+    storage: "persistent"
+    
+  monitoring:
+    required: false  # 4x is guaranteed safe
+    optional_metrics:
+      - cwci_live
+      - cluster_health
+      
+  deployment_constraints:
+    max_concurrent_universes: 10
+    seed_selection: "any"  # No restrictions at 4x
+    rollback_policy: "none required"
+    
+  use_cases:
+    - mission_critical_production
+    - financial_transactions
+    - safety_critical_systems
+    
+status:
+  phase: "Ready for deployment"
+  approved: true
+  deployment_window: "immediate"
