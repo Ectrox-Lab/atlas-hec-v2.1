@@ -1,0 +1,45 @@
+{
+  "r5_validation": {
+    "scale_factor": 8.0,
+    "mean_cwci": 0.576,
+    "min_cwci": 0.517,
+    "cv_cwci": 0.058,
+    "retention_cwci": 0.879,
+    "comm_increase": 0.483,
+    "forced_metrics": {
+      "cwci_retention": 0.879,
+      "specialization_retention": 0.885,
+      "integration_retention": 0.9,
+      "broadcast_retention": 0.888,
+      "communication_cost_increase": 0.483,
+      "first_degradation_mode": "CWCI_DEGRADATION_seed37"
+    },
+    "audit_metrics": {
+      "seeds_tested": 8,
+      "seed_dispersion_cv": 0.058,
+      "worst_seed_cwci": 0.517,
+      "degradation_events": 2,
+      "degradation_details": [
+        {
+          "seed": 37,
+          "metric": "CWCI",
+          "value": 0.517
+        },
+        {
+          "seed": 42,
+          "metric": "CWCI",
+          "value": 0.537
+        }
+      ]
+    },
+    "hard_halt": false,
+    "halt_reasons": [],
+    "soft_audit": true,
+    "soft_audit_reasons": [
+      "Worst seed CWCI 0.517 < 0.55 (mean 0.576)",
+      "2/8 seeds show degradation"
+    ],
+    "status": "AUDIT",
+    "primary_status": "UNDER OBSERVATION"
+  }
+}

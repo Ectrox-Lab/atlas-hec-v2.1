@@ -1,0 +1,51 @@
+{
+  "universe_id": 14,
+  "family": "pulse_central",
+  "stress": "sync_risk_high",
+  "seed": 37,
+  "config_hash": "3bd21868bce47adb",
+  "evaluation": {
+    "scores": {
+      "attractor_dwell_score": 0.448,
+      "persistence_score": 0.7847893,
+      "reorganization_score": 0.6,
+      "specialization_score": 0.33378795,
+      "broadcast_score": 0.65,
+      "recovery_score": 0.6
+    },
+    "phenomena": {
+      "stable_attractors": false,
+      "memory_persistence": true,
+      "regime_reorganization": true,
+      "cluster_specialization": false,
+      "global_broadcast_emergence": true,
+      "failure_recovery": true
+    },
+    "notes": [
+      "Persistent memory (score=0.78)",
+      "Resilient recovery (score=0.60)"
+    ]
+  },
+  "collapse_signature": null,
+  "passed_gates": 4,
+  "meets_minimum": true,
+  "cwci": {
+    "capabilities": {
+      "persistent_selfhood": 0.62831575,
+      "global_integration": 0.48748386,
+      "reflexive_self_model": 0.57224643,
+      "plastic_adaptive_learning": 0.66,
+      "value_goal_persistence": 0.65879875,
+      "self_optimization_capacity": 0.574775
+    },
+    "level": "C3Reflexive",
+    "cwei_score": 0.59693664,
+    "passed_capabilities": 3,
+    "meets_threshold": false,
+    "open_world_survived": true,
+    "multi_universe_tested": false,
+    "notes": []
+  },
+  "consciousness_level": "C3-Reflexive",
+  "cwei_score": 0.59693664
+}

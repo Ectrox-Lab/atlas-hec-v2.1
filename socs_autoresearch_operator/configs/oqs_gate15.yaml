@@ -1,0 +1,79 @@
+# OQS Gate 1.5 Configuration
+# Track B: 只验证最小修正是否有效
+
+experiment: oqs_gate15
+description: "验证 OQS 3项最小修正的有效性"
+
+family:
+  name: OctoQueenSwarm
+  id: 5
+
+baseline: oqs_gate1  # 对比基准
+
+fixes_applied:
+  - id: fix_001
+    name: dynamic_budget
+    description: "基于hazard和success rate动态调整预算"
+    implementation: |
+      resource_budget = base_budget * (1 + success_rate - hazard_level)
+  
+  - id: fix_002
+    name: periodic_experience_return
+    description: "每100tick主动回流summary，降低回流阈值"
+    implementation: |
+      if tick % 100 == 0 or not w.alive:
+          experience_returns.append(summary)
+  
+  - id: fix_003
+    name: gentler_culling
+    description: "温和culling + 恢复机制"
+    implementation: |
+      if utility < 0.2:
+          if random() < 0.5:
+              cull()
+          utility += 0.15  # 恢复缓冲
+
+scenarios:
+  HighCoordinationDemand:
+    stress_factor: 0.75
+    description: "验证原有优势是否保持"
+    baseline_cwci: 0.815
+    regression_tolerance: 0.05  # 允许5%下降
+  
+  ResourceScarcity:
+    stress_factor: 0.65
+    description: "验证失败场景是否改善"
+    baseline_cwci: 0.036
+    improvement_required: true
+  
+  FailureBurst:
+    stress_factor: 0.6
+    description: "验证失败场景是否改善"
+    baseline_cwci: 0.015
+    improvement_required: true
+
+seeds: [11, 23, 37]
+ticks_per_run: 3000
+
+metrics:
+  - cwci
+  - division_of_labour_score
+  - role_stability
+  - worker_utilization
+  - queen_overload_rate
+  - experience_return_quality
+  - lineage_improvement
+  - recovery_time
+
+pass_rules:
+  high_coordination_not_worse_than_gate1: true
+  resource_scarcity_improves: true
+  failure_burst_improves: true
+  queen_overload_must_remain_zero: true
+  experience_return_quality_must_be_positive: true
+  lineage_improvement_must_be_positive: true
+
+output:
+  raw_dir: "results/raw/oqs_gate15/"
+  aggregated_file: "results/aggregated/oqs_gate15_latest.json"
+  report_file: "reports/oqs_gate15_report.md"

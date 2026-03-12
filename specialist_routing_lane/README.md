@@ -88,6 +88,14 @@ specialist_routing_lane/
 
 ## 4. Gates
 
+| Gate | Status | Precondition |
+|------|--------|--------------|
+| **SR1** | 🟡 ACTIVE | - |
+| **SR2** | ⏸️ PENDING | Gate SR1 PASS |
+| **SR3** | ⏸️ PENDING | Gate SR2 PASS |
+
+---
+
 ### Gate SR1: Structure Fingerprint Validity 🟡 ACTIVE
 
 **目标**: 验证结构指纹能否有效区分不同架构家族
@@ -99,27 +107,23 @@ specialist_routing_lane/
 
 **交付物**: `outputs/gate_sr1_validation_report.md`
 
+**当前**: 脚本已就绪，等待输入数据执行
+
 ---
 
 ### Gate SR2: Routing Usefulness ⏸️ PENDING
 
-**目标**: 验证路由层能给主线提供有效建议
+> ⚠️ **占位符状态**：详见 `HYPOTHESIS_SR2.md`
 
-**通过标准**:
-- 能根据 stress 给出结构推荐
-- 推荐结果与真实验证一致
-- 能拦截假阳性候选
+**启动条件**: Gate SR1 明确 PASS
 
 ---
 
 ### Gate SR3: Akashic Upgrade ⏸️ PENDING
 
-**目标**: 验证阿卡西区域映射提升惊喜发现质量
+> ⚠️ **占位符状态**：详见 `HYPOTHESIS_SR3.md`
 
-**通过标准**:
-- 新候选假阳性率下降
-- 结构区域稳定
-- 某些区域稳定产出强候选
+**启动条件**: Gate SR2 明确 PASS
 
 ---
 

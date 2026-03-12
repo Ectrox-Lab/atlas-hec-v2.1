@@ -1,0 +1,98 @@
+{
+  "project": "SOCS Architecture Search",
+  "last_updated": "2026-03-12T11:05:00Z",
+  "mainline_candidate": "OctopusLike",
+  "validation_phase": "R2_READY",
+  
+  "candidates": {
+    "OctopusLike": {
+      "status": "PRIMARY_CANDIDATE",
+      "confidence": "REAL_RUNTIME_VALIDATED",
+      "evidence": {
+        "Gate_1": "PASSED (CWCI 0.727)",
+        "Gate_2": "PASSED (retention 94.3%, simulation-limited)",
+        "Smoke_Test": "PASSED (3/3 scenes leading, simulation)",
+        "Real_Runtime": "VALIDATED (CWCI 0.688, top rank, 24 universes)"
+      },
+      "next_phase": "R2_SCALE_VALIDATION",
+      "target_scale": "10x",
+      "blockers": []
+    },
+    
+    "OQS_OctoQueenSwarm": {
+      "status": "SECONDARY_CANDIDATE",
+      "confidence": "PRINCIPLE_VALIDATED_NOT_SUPERIOR",
+      "evidence": {
+        "Gate_1": "PARTIAL",
+        "HighCoordinationDemand": "0.815 (strong, confirmed)",
+        "ResourceScarcity": "0.036 (weak, needs fix)",
+        "FailureBurst": "0.015 (weak, needs fix)",
+        "Queen_overload": "0.000 (good)"
+      },
+      "principle_validated": [
+        "Queen-Worker architecture viable",
+        "Division-of-labour has value",
+        "No central bottleneck in current scale"
+      ],
+      "not_yet_proven": [
+        "Overall superiority vs pure OctopusLike",
+        "Robustness across all scenarios",
+        "Scale extension feasibility"
+      ],
+      "next_phase": "GATE_1_5_MINIMAL_FIXES",
+      "fixes_required": [
+        "dynamic_budget_allocation",
+        "periodic_experience_return",
+        "gentler_culling_mechanism"
+      ],
+      "target": "Move from 'locally strong' to 'globally stable'",
+      "blockers": ["Requires 3 minimal corrections before claiming superiority"]
+    },
+    
+    "BeeHiveLike": {
+      "status": "DEFINED_NOT_STARTED",
+      "confidence": "PENDING_MAINLINE_CONVERGENCE",
+      "trigger": "After OctopusLike R2 or OQS Gate 1.5 PASSED"
+    },
+    
+    "AntColonyLike": {
+      "status": "BASELINE_DEFINED",
+      "confidence": "PENDING_RESOURCE_AVAILABILITY",
+      "priority": "LOWER_THAN_OQS",
+      "rationale": "OQS already covers colony-level organization with added Queen-core benefits"
+    }
+  },
+  
+  "phase_definitions": {
+    "R1": {
+      "name": "Real Runtime Validation",
+      "status": "COMPLETED",
+      "winner": "OctopusLike"
+    },
+    "R2": {
+      "name": "Scale Extension Validation",
+      "status": "READY_TO_START",
+      "target": "10x scale (1000 units)",
+      "primary_candidate": "OctopusLike"
+    }
+  },
+  
+  "resource_allocation": {
+    "OctopusLike_R2": "70%",
+    "OQS_Gate_1_5": "25%",
+    "Exploration_new_families": "5% (frozen until R2 complete)"
+  },
+  
+  "decision_gates": {
+    "OQS_can_challenge_mainline": {
+      "condition": "Gate 1.5 PASSED + Overall stability proven",
+      "current": false,
+      "next_review": "After Gate 1.5 results"
+    },
+    "Composite_architecture_merge": {
+      "condition": "Both OctopusLike R2 PASSED + OQS Gate 1.5 PASSED",
+      "potential": "Octopus-core + OQS-swarm-layer hybrid",
+      "current": "SPECULATIVE_NOT_PLANNED"
+    }
+  }
+}
