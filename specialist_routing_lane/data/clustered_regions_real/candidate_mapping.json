@@ -1,0 +1,244 @@
+{
+  "octopus_like_seed23": {
+    "candidate_id": "octopus_like_seed23",
+    "candidate_name": "Octopus Like (seed 23)",
+    "cluster_id": 0,
+    "region_label": "region_0",
+    "embedding": [
+      4.726990699768066,
+      4.2341437339782715
+    ],
+    "risk_score": 0.1674
+  },
+  "octopus_like_seed37_exp11": {
+    "candidate_id": "octopus_like_seed37_exp11",
+    "candidate_name": "Octopus Like (seed 37) (experimental 11)",
+    "cluster_id": 0,
+    "region_label": "region_0",
+    "embedding": [
+      5.161044597625732,
+      4.5475311279296875
+    ],
+    "risk_score": 0.1806
+  },
+  "octopus_mainline_r5": {
+    "candidate_id": "octopus_mainline_r5",
+    "candidate_name": "OctopusLike R5 (scale=8.0x)",
+    "cluster_id": 1,
+    "region_label": "stable_region",
+    "embedding": [
+      5.769411087036133,
+      5.702388286590576
+    ],
+    "risk_score": 0.1311
+  },
+  "octopus_mainline_r4_spike6": {
+    "candidate_id": "octopus_mainline_r4_spike6",
+    "candidate_name": "OctopusLike R4 (scale=4.0x) (spike variant 6)",
+    "cluster_id": 3,
+    "region_label": "high_variance_region",
+    "embedding": [
+      3.826698064804077,
+      5.868247032165527
+    ],
+    "risk_score": 0.26415
+  },
+  "pulse_central_seed11_stable4": {
+    "candidate_id": "pulse_central_seed11_stable4",
+    "candidate_name": "Pulse Central (seed 11) (stable variant 4)",
+    "cluster_id": 2,
+    "region_label": "region_2",
+    "embedding": [
+      6.316288948059082,
+      5.0218377113342285
+    ],
+    "risk_score": 0.1485
+  },
+  "pulse_central_seed23": {
+    "candidate_id": "pulse_central_seed23",
+    "candidate_name": "Pulse Central (seed 23)",
+    "cluster_id": 2,
+    "region_label": "region_2",
+    "embedding": [
+      6.053466320037842,
+      4.407979965209961
+    ],
+    "risk_score": 0.1674
+  },
+  "octopus_like_seed23_spike12": {
+    "candidate_id": "octopus_like_seed23_spike12",
+    "candidate_name": "Octopus Like (seed 23) (spike variant 12)",
+    "cluster_id": 3,
+    "region_label": "high_variance_region",
+    "embedding": [
+      3.192082405090332,
+      5.028181552886963
+    ],
+    "risk_score": 0.48345
+  },
+  "pulse_central_seed37": {
+    "candidate_id": "pulse_central_seed37",
+    "candidate_name": "Pulse Central (seed 37)",
+    "cluster_id": 2,
+    "region_label": "region_2",
+    "embedding": [
+      6.536278247833252,
+      4.439303398132324
+    ],
+    "risk_score": 0.1674
+  },
+  "octopus_mainline_r5_spike0": {
+    "candidate_id": "octopus_mainline_r5_spike0",
+    "candidate_name": "OctopusLike R5 (scale=8.0x) (spike variant 0)",
+    "cluster_id": 3,
+    "region_label": "high_variance_region",
+    "embedding": [
+      2.862624168395996,
+      5.472509384155273
+    ],
+    "risk_score": 0.4611
+  },
+  "octopus_mainline_r4_exp2": {
+    "candidate_id": "octopus_mainline_r4_exp2",
+    "candidate_name": "OctopusLike R4 (scale=4.0x) (experimental 2)",
+    "cluster_id": 1,
+    "region_label": "stable_region",
+    "embedding": [
+      4.586881160736084,
+      6.12840461730957
+    ],
+    "risk_score": 0.198
+  },
+  "pulse_central_seed11_spike9": {
+    "candidate_id": "pulse_central_seed11_spike9",
+    "candidate_name": "Pulse Central (seed 11) (spike variant 9)",
+    "cluster_id": 3,
+    "region_label": "high_variance_region",
+    "embedding": [
+      2.6768012046813965,
+      4.891997814178467
+    ],
+    "risk_score": 0.47445
+  },
+  "octopus_like_seed37_exp5": {
+    "candidate_id": "octopus_like_seed37_exp5",
+    "candidate_name": "Octopus Like (seed 37) (experimental 5)",
+    "cluster_id": 0,
+    "region_label": "region_0",
+    "embedding": [
+      4.509808540344238,
+      4.804156303405762
+    ],
+    "risk_score": 0.16935
+  },
+  "octopus_mainline_r6_spike3": {
+    "candidate_id": "octopus_mainline_r6_spike3",
+    "candidate_name": "OctopusLike R6 (scale=6.0x) (spike variant 3)",
+    "cluster_id": 3,
+    "region_label": "high_variance_region",
+    "embedding": [
+      3.275081157684326,
+      5.683460712432861
+    ],
+    "risk_score": 0.38715
+  },
+  "octopus_mainline_r5_stable10": {
+    "candidate_id": "octopus_mainline_r5_stable10",
+    "candidate_name": "OctopusLike R5 (scale=8.0x) (stable variant 10)",
+    "cluster_id": 1,
+    "region_label": "stable_region",
+    "embedding": [
+      5.98673152923584,
+      6.249730587005615
+    ],
+    "risk_score": 0.16845
+  },
+  "octopus_like_seed11": {
+    "candidate_id": "octopus_like_seed11",
+    "candidate_name": "Octopus Like (seed 11)",
+    "cluster_id": 0,
+    "region_label": "region_0",
+    "embedding": [
+      5.108138561248779,
+      4.972293853759766
+    ],
+    "risk_score": 0.1674
+  },
+  "octopus_like_seed11_exp8": {
+    "candidate_id": "octopus_like_seed11_exp8",
+    "candidate_name": "Octopus Like (seed 11) (experimental 8)",
+    "cluster_id": 0,
+    "region_label": "region_0",
+    "embedding": [
+      4.0507378578186035,
+      4.3813958168029785
+    ],
+    "risk_score": 0.279
+  },
+  "octopus_mainline_r4_stable1": {
+    "candidate_id": "octopus_mainline_r4_stable1",
+    "candidate_name": "OctopusLike R4 (scale=4.0x) (stable variant 1)",
+    "cluster_id": 1,
+    "region_label": "stable_region",
+    "embedding": [
+      5.16084098815918,
+      5.720179080963135
+    ],
+    "risk_score": 0.08505
+  },
+  "pulse_central_seed11": {
+    "candidate_id": "pulse_central_seed11",
+    "candidate_name": "Pulse Central (seed 11)",
+    "cluster_id": 2,
+    "region_label": "region_2",
+    "embedding": [
+      6.105708599090576,
+      3.981494188308716
+    ],
+    "risk_score": 0.1674
+  },
+  "pulse_central_seed11_stable7": {
+    "candidate_id": "pulse_central_seed11_stable7",
+    "candidate_name": "Pulse Central (seed 11) (stable variant 7)",
+    "cluster_id": 2,
+    "region_label": "region_2",
+    "embedding": [
+      6.795984268188477,
+      5.043807506561279
+    ],
+    "risk_score": 0.162
+  },
+  "octopus_like_seed37": {
+    "candidate_id": "octopus_like_seed37",
+    "candidate_name": "Octopus Like (seed 37)",
+    "cluster_id": 0,
+    "region_label": "region_0",
+    "embedding": [
+      4.919068336486816,
+      3.7225191593170166
+    ],
+    "risk_score": 0.11760000000000001
+  },
+  "octopus_mainline_r6": {
+    "candidate_id": "octopus_mainline_r6",
+    "candidate_name": "OctopusLike R6 (scale=6.0x)",
+    "cluster_id": 1,
+    "region_label": "stable_region",
+    "embedding": [
+      4.385130882263184,
+      5.553184986114502
+    ],
+    "risk_score": 0.2625
+  },
+  "octopus_mainline_r4": {
+    "candidate_id": "octopus_mainline_r4",
+    "candidate_name": "OctopusLike R4 (scale=4.0x)",
+    "cluster_id": 1,
+    "region_label": "stable_region",
+    "embedding": [
+      5.322061061859131,
+      6.1982951164245605
+    ],
+    "risk_score": 0.099
+  }
+}

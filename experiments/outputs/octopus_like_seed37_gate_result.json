@@ -1,0 +1,30 @@
+{
+  "candidate_id": "octopus_like_seed37",
+  "candidate_name": "Octopus Like (seed 37)",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "octopus_like",
+  "cwci": {
+    "total": 0.695,
+    "specialization": 0.874,
+    "integration": 0.751,
+    "broadcast": 0.65,
+    "min": 0.626,
+    "max": 0.73
+  },
+  "hierarchy_depth": 3,
+  "autonomy_strength": 0.7,
+  "memory_style": "distributed",
+  "scale_retention": 0.55,
+  "seed_variance": 0.15,
+  "stress_coverage": 0.833,
+  "pass_rate": 0.5,
+  "recovery_time": 46.0,
+  "energy_stability": 0.6,
+  "coordination_score": 0.874,
+  "hazard_resistance": 0.6,
+  "communication_cost": 0.3,
+  "first_failure_mode": "coordination",
+  "seed_spike_risk": 0.7,
+  "collapse_signature": "sig_octopus_like_seed37",
+  "bottleneck_type": "cascading"
+}

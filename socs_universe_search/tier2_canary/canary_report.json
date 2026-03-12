@@ -1,0 +1,50 @@
+{
+  "canary_deployment": {
+    "name": "octopuslike-tier2-canary-001",
+    "timestamp": "2026-03-12T19:06:56.543208",
+    "tier": 2,
+    "scale": "6x",
+    "on_call": "Alex Chen",
+    "status": "SUCCESS",
+    "result": "OPERATIONAL"
+  },
+  "metrics": {
+    "ticks_observed": 1000,
+    "mean_cwci": 0.638,
+    "target_cwci": 0.641,
+    "degraded_seeds": 1,
+    "degradation_rate": 0.125
+  },
+  "monitoring_validation": {
+    "alerts_triggered": 2,
+    "alert_details": [
+      {
+        "tick": 650,
+        "seed": "seed_44",
+        "level": "WARNING",
+        "cwci": 0.571,
+        "message": "CWCI below 0.60"
+      },
+      {
+        "tick": 680,
+        "seed": "seed_44",
+        "level": "CRITICAL",
+        "cwci": 0.572,
+        "message": "CWCI below 0.58 - failover triggered"
+      }
+    ],
+    "failover_executed": true,
+    "failover_latency": 3,
+    "failover_details": [
+      {
+        "tick": 680,
+        "from_seed": "seed_44",
+        "to_seed": "backup_seed_01",
+        "latency_ticks": 3,
+        "new_cwci": 0.645
+      }
+    ],
+    "telemetry_complete": true
+  },
+  "tier2_status": "OPERATIONAL"
+}
