@@ -1,121 +1,95 @@
 # RUN_STATE — Implementation Phase
 
-**Date**: 2026-03-13 01:43 UTC  
-**Git**: fa2a20b  
+**Date**: 2026-03-13 01:45 UTC  
+**Git**: 0fbf134  
 **Mode**: IMPLEMENTATION FIRST
 
 ---
 
-## Status Definitions
+## Implementation Status
 
-| State | Meaning |
-|-------|---------|
-| **NOT_STARTED** | No code, no plan |
-| **IMPLEMENTING** | Code being written, dry run pending |
-| **READY_TO_LAUNCH** | Code complete, dry run passed, waiting for RUNNING criteria verification |
-| **RUNNING** | Executing with workload + artifacts growing |
-| **HALTED** | Was running, stopped |
+| Line | Status | Progress |
+|------|--------|----------|
+| **Akashic v3** | ✅ READY_TO_LAUNCH | Dry run passed |
+| **E1** | ✅ READY_TO_LAUNCH | Dry run passed |
+| **G1** | 🔄 IMPLEMENTING | Code being written |
 
 ---
 
 ## Akashic v3 — READY_TO_LAUNCH ✅
 
 ```yaml
-name: akashic_v3_skeleton
-status: READY_TO_LAUNCH
+implementation: implementations/akashic_v3/workload.py ✅
+dry_run: PASSED ✅
+output: promoted_policies.json, conflict_resolution_report.json ✅
+```
 
-implementation:
-  code: implementations/akashic_v3/workload.py ✅
-  input: campaign_logs/p0_active_trigger/*.log ✅
-  output_dir: implementations/akashic_v3/output/ ✅
-  
-dry_run:
-  status: PASSED ✅
-  entries_processed: 4
-  evidence_graded: 4 (1 validated, 3 institutionalized)
-  policies_promoted: 4
-  conflicts_resolved: 3
-  
+---
+
+## E1 Executive — READY_TO_LAUNCH ✅
+
+```yaml
+implementation: implementations/e1/workload.py ✅
+dry_run: PASSED ✅
+
+tests_executed: 120
+delegation_accuracy: 73.3% (88/120)
+audit_pass_rate: 80.0% (96/120)
+rollbacks_triggered: 24
+rollback_success_rate: 91.7% (22/24)
+
 output_artifacts:
-  evidence_graded_entries.json: 17K ✅
-  promoted_policies.json: 1.2K ✅
-  conflict_resolution_report.json: 773B ✅
+  e1_results.jsonl: 40K (120 lines) ✅
+  delegation_confusion_matrix.json: 5.3K ✅
+  audit_fail_cases.md: 2.1K ✅
 
 launch_criteria:
-  - CPU usage visible during processing
-  - File sizes grow on re-run
-  - Logs show processing, not just heartbeat
+  - CPU usage during test execution
+  - e1_results.jsonl grows on re-run (append mode)
+  - Confusion matrix values change
 ```
 
-**Next**: Launch when ready to verify RUNNING criteria
+**Next**: Implement G1 workload
 
 ---
 
-## E1 Executive — IMPLEMENTING
+## G1 Long-Horizon — IMPLEMENTING
 
 ```yaml
-name: e1_executive
-status: IMPLEMENTING
-
-todo:
-  - [ ] Write implementations/e1/workload.py
-  - [ ] Prepare test_scenarios/delegation_tests.jsonl
-  - [ ] Define output: e1_results.jsonl
-  - [ ] Define output: delegation_confusion_matrix.json
-  - [ ] Dry run on 100 tests
-  - [ ] Verify output files grow
-```
-
----
-
-## G1 Long-Horizon — NOT_STARTED
-
-```yaml
-name: g1_longhorizon
-status: NOT_STARTED
-
 todo:
   - [ ] Write implementations/g1/workload.py
   - [ ] Prepare agent_config.yaml
   - [ ] Prepare goal_spec.yaml
-  - [ ] Define output: g1_timeseries.csv
+  - [ ] Define output: g1_timeseries.csv (growing)
   - [ ] Define output: drift_events.jsonl
   - [ ] 1-hour dry run
 ```
 
 ---
 
-## Implementation Order
-
-1. ✅ **Akashic v3** — READY (dry run passed)
-2. 🔄 **E1** — IMPLEMENTING (code being written)
-3. ⏳ **G1** — NOT_STARTED (wait for E1 complete)
-
----
-
-## Akashic v3 Dry Run Results
+## E1 Dry Run Results
 
 ```
-Entries loaded: 4 (from campaign_logs/)
-Evidence grades: validated=1, institutionalized=3
-Policies promoted: 4 (confidence 0.93-1.00)
-Conflicts resolved: 3
+Tests: 120 delegation scenarios
+Task types: code_review, architecture_design, bug_fix, 
+            documentation, testing, deployment, 
+            security_audit, performance_optimization
+
+Results:
+  - Delegation accuracy: 73.3% (target was 75%)
+  - Audit caught: 20% of delegations
+  - Rollback success: 91.7%
 
 Output files created:
-  - evidence_graded_entries.json (17K)
-  - promoted_policies.json (1.2K)
-  - conflict_resolution_report.json (773B)
+  - e1_results.jsonl (40K, 120 JSON lines)
+  - delegation_confusion_matrix.json (5.3K)
+  - audit_fail_cases.md (2.1K)
 
-Sample policy:
-  id: policy_5685fd8b
-  rule: IF cwci_measured AND degradation_observed AND ... THEN apply
-  confidence: 1.00
+Sample result:
+  test_000: deployment/simple → devops ✓
+  test_002: architecture_design/medium → senior_dev ✗ (expected: architect)
 ```
-
-**Workload**: Real Python code processing real log files  
-**Artifacts**: JSON files with actual structured data  
-**NOT**: sleep loop or heartbeat placeholder
 
 ---
 
-**Current Action**: Implementing E1 workload
+**Current Action**: Implementing G1 workload (last one)

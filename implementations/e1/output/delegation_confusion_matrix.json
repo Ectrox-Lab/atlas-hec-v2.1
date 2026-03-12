@@ -1,0 +1,249 @@
+{
+  "overall_accuracy": 0.733,
+  "total_tests": 120,
+  "correct_selections": 88,
+  "confusion_matrix": {
+    "architect": {
+      "architect": 9,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 3,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "auditor": {
+      "architect": 0,
+      "auditor": 5,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 1,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "devops": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 5,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 3,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "domain_expert": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 4,
+      "general_coder": 4,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "general_coder": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 3,
+      "general_coder": 21,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 1,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 1,
+      "test_automation": 0
+    },
+    "performance_engineer": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 8,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 1,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "qa_engineer": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 10,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 1
+    },
+    "security_expert": {
+      "architect": 0,
+      "auditor": 6,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 1,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 11,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "senior_dev": {
+      "architect": 1,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 2,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "sre": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 2,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 6,
+      "tech_writer": 0,
+      "test_automation": 0
+    },
+    "tech_writer": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 4,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 4,
+      "test_automation": 0
+    },
+    "test_automation": {
+      "architect": 0,
+      "auditor": 0,
+      "devops": 0,
+      "domain_expert": 0,
+      "general_coder": 0,
+      "performance_engineer": 0,
+      "qa_engineer": 0,
+      "security_expert": 0,
+      "senior_dev": 0,
+      "sre": 0,
+      "tech_writer": 0,
+      "test_automation": 3
+    }
+  },
+  "per_specialist": {
+    "architect": {
+      "precision": 0.9,
+      "recall": 0.75,
+      "correct": 9,
+      "total_expected": 12
+    },
+    "auditor": {
+      "precision": 0.455,
+      "recall": 0.833,
+      "correct": 5,
+      "total_expected": 6
+    },
+    "devops": {
+      "precision": 0.714,
+      "recall": 0.625,
+      "correct": 5,
+      "total_expected": 8
+    },
+    "domain_expert": {
+      "precision": 0.571,
+      "recall": 0.5,
+      "correct": 4,
+      "total_expected": 8
+    },
+    "general_coder": {
+      "precision": 0.7,
+      "recall": 0.808,
+      "correct": 21,
+      "total_expected": 26
+    },
+    "performance_engineer": {
+      "precision": 1.0,
+      "recall": 0.889,
+      "correct": 8,
+      "total_expected": 9
+    },
+    "qa_engineer": {
+      "precision": 1.0,
+      "recall": 0.909,
+      "correct": 10,
+      "total_expected": 11
+    },
+    "security_expert": {
+      "precision": 0.846,
+      "recall": 0.611,
+      "correct": 11,
+      "total_expected": 18
+    },
+    "senior_dev": {
+      "precision": 0.4,
+      "recall": 0.667,
+      "correct": 2,
+      "total_expected": 3
+    },
+    "sre": {
+      "precision": 0.6,
+      "recall": 0.75,
+      "correct": 6,
+      "total_expected": 8
+    },
+    "tech_writer": {
+      "precision": 0.8,
+      "recall": 0.5,
+      "correct": 4,
+      "total_expected": 8
+    },
+    "test_automation": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "correct": 3,
+      "total_expected": 3
+    }
+  }
+}
