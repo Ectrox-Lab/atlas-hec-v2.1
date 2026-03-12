@@ -1,74 +1,80 @@
-# SOCS Universe Search v2.1 - P0 Final Status (Repo-Synced)
+# SOCS Universe Search v2.1 - Global State
 
 **Date:** 2026-03-12  
-**Status:** ✅ **REPO-SYNCED - READY FOR TIERED DEPLOYMENT**  
-**Git Commit:** `c7e5c69` (P0 operational envelope and deployment policy)
+**Status:** P0 COMPLETE - FOCUS SHIFT TO EXECUTION & P2.6 SR1
 
 ---
 
-## P0 Final State (Repository-Verified)
+## Global Lane Status
 
-| Attribute | Value | Evidence |
-|-----------|-------|----------|
-| **Architecture** | OctopusLike | P0_OPERATIONAL_ENVELOPE.md |
-| **Role** | **PRIMARY** | This document |
-| **Status** | ✅ **MAINTAINED WITH DEFINED LIMITS** | R4-R6 validation reports |
-| **Envelope** | 4x safe / 6x monitored / 8x experimental | DEPLOYMENT_POLICY.md |
-
----
-
-## Repository Evidence
-
-### Core Documents (Git-Tracked)
-- ✅ `P0_OPERATIONAL_ENVELOPE.md` - Full envelope definition
-- ✅ `DEPLOYMENT_POLICY.md` - Deployment approval matrix
-- ✅ `STATUS.md` - This status file
-
-### Validation Reports (JSON)
-- ✅ `outputs/r4_validation_report.json` - 4x scale (95.2% retention)
-- ✅ `outputs/r5_validation_report.json` - 8x boundary (25% degradation)
-- ✅ `outputs/r6_validation_report.json` - 6x envelope (97.9% retention)
-- ✅ `outputs/degradation_audit_report.json` - Paired-seed analysis
-
-### Audit Framework
-- ✅ `candidate_intake/intake_pipeline.py` - 4-step validation
-- ✅ `multiverse_engine/akashic_memory_v2.py` - Negative knowledge
-- ✅ `multiverse_lanes/P2_5_surprise_search_v2.md` - Background scanning
+| Lane | Stage | Status | Next Action |
+|------|-------|--------|-------------|
+| **P0 OctopusLike** | **Complete / Authorized** | ✅ | **Execution** - Tier 1 & 2 deployment |
+| P2.6 Specialist Routing | SR1 Validation | 🟡 | Continue SR1 experiments |
+| P2.6 SR2/SR3 | Placeholders | ⏸️ | Not started |
+| P1 OQS | Maintenance | ⚪ | Specialized use only |
+| P2.5 Surprise | Background | ⚪ | Continuous scanning |
+| P3 Wave | Staged | ⏸️ | Future evaluation |
 
 ---
 
-## Deployment Readiness
+## P0: Complete / Authorized ✅
 
-### Tier 1: Mission-Critical (4x) - ✅ APPROVED
-- **Evidence:** R4 validation, 0% degradation
-- **Requirements:** None
-- **Action:** Immediate deployment
+**Conclusion:** P0 已结束争论阶段，进入执行阶段。
 
-### Tier 2: Production (6x) - ✅ APPROVED WITH MONITORING
-- **Evidence:** R6 validation, 12.5% degradation (catchable)
-- **Requirements:** Seed-level CWCI monitoring
-- **Action:** Deploy with monitoring infrastructure
+### Final State
+- **PRIMARY:** OctopusLike maintained
+- **Operational Envelope:** Defined
+  - 4x: Safe, immediate deployment
+  - 6x: With monitoring, production viable
+  - 8x: Experimental only
+- **Evidence Chain:** Experiment → Audit → R6 Correction → Policy → Repo-sync
+- **Consistency:** Fixed via 0e39a77
 
-### Tier 3: Experimental (8x) - ❌ NOT APPROVED FOR PRODUCTION
-- **Evidence:** R5 validation, 25% degradation
-- **Restriction:** Research use only
+### Authorized Deployment Tiers
+| Tier | Scale | Status | Use Case |
+|------|-------|--------|----------|
+| Tier 1 | 4x | ✅ **APPROVED** | Mission-critical, immediate |
+| Tier 2 | 6x | ✅ **APPROVED** | Production with monitoring |
+| Tier 3 | 8x | ❌ **RESEARCH ONLY** | Experimental, non-production |
 
----
+### Next: Execution Layer
+- [ ] Tier 1 deployment implementation
+- [ ] Tier 2 monitoring infrastructure
+- [ ] Failover / alert / runbook development
 
-## One-Line Status (Repo-Synced)
-
-> **OctopusLike PRIMARY maintained; operational envelope defined (4x safe/6x monitored/8x experimental); validation artifacts repo-synced; ready for tiered deployment.**
-
----
-
-## Sign-off
-
-- **Validation:** R1-R6 complete (all commits: 856dd80, c7e5c69)
-- **Envelope:** Defined and documented
-- **Policy:** Deployment approval matrix established
-- **Artifacts:** All JSON reports git-tracked
-- **Status:** ✅ Ready for deployment
+**P0 no longer subject to SR1 back-pressure.**
 
 ---
 
-*P0 Complete. All evidence repo-synced. Deployment authorized.*
+## P2.6: Specialist Routing Lane 🟡
+
+**Current:** SR1 Validation In Progress
+
+### SR1 Status
+- Objective: Validate specialist routing effectiveness
+- P0 outcome: Fixed, not to be rewritten by SR1
+- 8x boundary: Remains research zone, no production authorization
+
+### Next Actions
+- Continue SR1 experiments
+- Evaluate against P0-fixed baseline
+- SR2/SR3: Remain placeholders
+
+---
+
+## One-Line Global State
+
+> **P0 Complete / Authorized; OctopusLike envelope defined (4x/6x/8x tiered); focus shifted to execution (Tier 1 & 2 deployment) and P2.6 SR1 validation.**
+
+---
+
+## Immediate Priorities
+
+1. **Execution:** Deploy Tier 1 (4x) mission-critical workloads
+2. **Infrastructure:** Build Tier 2 (6x) monitoring stack
+3. **Research:** Continue P2.6 SR1 without P0 rewrite
+
+---
+
+*P0争论结束。执行开始。*
