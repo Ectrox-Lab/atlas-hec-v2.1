@@ -1,0 +1,101 @@
+# Alert Pipeline Configuration
+# Tier 2 (6x) Monitoring Component
+
+apiVersion: alerting.socs/v1
+kind: AlertPipeline
+metadata:
+  name: tier2-alert-pipeline
+  tier: 2
+  
+spec:
+  evaluation_interval: 10 ticks
+  
+  alert_rules:
+    - name: CWCI_WARNING
+      severity: warning
+      condition: "cwci < 0.60"
+      for: 50 ticks
+      labels:
+        tier: "2"
+        component: "cwci"
+      annotations:
+        summary: "Seed {{ $labels.seed_id }} CWCI below 0.60"
+        description: "Current CWCI: {{ $value }}. Monitor closely."
+      route_to:
+        - slack: "#socs-alerts-tier2"
+        - log: true
+        
+    - name: CWCI_CRITICAL
+      severity: critical
+      condition: "cwci < 0.58"
+      for: 20 ticks
+      labels:
+        tier: "2"
+        component: "cwci"
+      annotations:
+        summary: "Seed {{ $labels.seed_id }} CWCI critical"
+        description: "Current CWCI: {{ $value }}. Preparing failover."
+      route_to:
+        - slack: "#socs-critical-tier2"
+        - pagerduty: "low"
+        - auto_action: "prepare_failover"
+        
+    - name: CWCI_EMERGENCY
+      severity: emergency
+      condition: "cwci < 0.55"
+      for: 5 ticks
+      labels:
+        tier: "2"
+        component: "cwci"
+      annotations:
+        summary: "Seed {{ $labels.seed_id }} CWCI emergency"
+        description: "Current CWCI: {{ $value }}. Immediate action required."
+      route_to:
+        - slack: "#socs-emergency"
+        - pagerduty: "high"
+        - phone: "oncall"
+        - auto_action: "immediate_failover"
+        
+    - name: MULTI_SEED_DEGRADE
+      severity: emergency
+      condition: "count(cwci < 0.58) >= 2"
+      for: 10 ticks
+      labels:
+        tier: "2"
+        component: "multi_seed"
+      annotations:
+        summary: "Multiple seeds degrading"
+        description: "{{ $value }} seeds below 0.58. Consider scale-down."
+      route_to:
+        - slack: "#socs-emergency"
+        - pagerduty: "critical"
+        - auto_action: "alert_for_scale_down"
+        
+  notification_channels:
+    slack:
+      webhook_url: "${SLACK_WEBHOOK_TIER2}"
+      mention_on_critical: true
+      
+    pagerduty:
+      service_key: "${PAGERDUTY_SOS_KEY}"
+      escalation_policy: "tier2_oncall"
+      
+    phone:
+      provider: "twilio"
+      numbers: "${ONCALL_PHONE_NUMBERS}"
+      
+  suppression:
+    maintenance_windows:
+      enabled: true
+      suppress_warnings: true
+      allow_critical: true
+      
+    startup_grace_period:
+      duration: 200 ticks
+      suppress: [warning]
+      
+  alert_manager:
+    grouping_by: [seed_id, severity]
+    throttle_duplicates: 50 ticks
+    auto_resolve: true
+    resolve_after: 100 ticks_above_threshold
