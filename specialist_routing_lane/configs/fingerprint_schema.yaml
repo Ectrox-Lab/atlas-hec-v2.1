@@ -1,0 +1,207 @@
+# Structure Fingerprint Schema v1.0
+# P2.6 Specialist Routing Lane
+
+schema_version: "1.0"
+description: "Multi-dimensional structure fingerprint for architecture classification"
+
+# =============================================================================
+# A. ORGANIZATIONAL FINGERPRINT
+# =============================================================================
+organizational:
+  description: "Structural organization characteristics"
+  dimensions:
+    cwci_total:
+      type: float
+      range: [0.0, 1.0]
+      description: "CWCI overall score"
+      weight: 1.0
+      
+    specialization:
+      type: float
+      range: [0.0, 1.0]
+      description: "Degree of functional specialization"
+      weight: 0.8
+      
+    integration:
+      type: float
+      range: [0.0, 1.0]
+      description: "Information integration capability"
+      weight: 0.8
+      
+    broadcast:
+      type: float
+      range: [0.0, 1.0]
+      description: "Global broadcast efficiency"
+      weight: 0.8
+      
+    hierarchy_depth:
+      type: integer
+      range: [1, 10]
+      description: "Number of hierarchical levels"
+      weight: 0.6
+      
+    autonomy_strength:
+      type: float
+      range: [0.0, 1.0]
+      description: "Component autonomy level"
+      weight: 0.7
+      
+    memory_partition_style:
+      type: enum
+      values: [distributed, centralized, hybrid, federated]
+      description: "Memory organization pattern"
+      weight: 0.5
+      encoding: onehot
+
+# =============================================================================
+# B. ROBUSTNESS FINGERPRINT
+# =============================================================================
+robustness:
+  description: "Stability and scalability characteristics"
+  dimensions:
+    scale_retention:
+      type: float
+      range: [0.0, 1.0]
+      description: "Performance retention when scaling"
+      weight: 1.0
+      
+    seed_variance:
+      type: float
+      range: [0.0, 1.0]
+      description: "Variance across different seeds (lower is better)"
+      weight: 0.9
+      transform: inverse  # Lower variance = higher stability
+      
+    cwci_min:
+      type: float
+      range: [0.0, 1.0]
+      description: "Worst-case CWCI score"
+      weight: 0.8
+      
+    cwci_max:
+      type: float
+      range: [0.0, 1.0]
+      description: "Best-case CWCI score"
+      weight: 0.6
+      
+    stress_coverage:
+      type: float
+      range: [0.0, 1.0]
+      description: "Fraction of stress scenarios survived"
+      weight: 0.8
+      
+    pass_rate:
+      type: float
+      range: [0.0, 1.0]
+      description: "Overall pass rate across evaluations"
+      weight: 0.9
+
+# =============================================================================
+# C. BEHAVIORAL FINGERPRINT
+# =============================================================================
+behavioral:
+  description: "Runtime behavioral characteristics"
+  dimensions:
+    recovery_time:
+      type: float
+      range: [0.0, 100.0]
+      description: "Time to recover from failure (ticks)"
+      weight: 0.7
+      transform: inverse
+      
+    energy_stability:
+      type: float
+      range: [0.0, 1.0]
+      description: "Energy consumption stability"
+      weight: 0.8
+      
+    coordination_score:
+      type: float
+      range: [0.0, 1.0]
+      description: "Inter-component coordination effectiveness"
+      weight: 0.9
+      
+    hazard_resistance:
+      type: float
+      range: [0.0, 1.0]
+      description: "Resistance to hazard conditions"
+      weight: 0.8
+      
+    communication_cost:
+      type: float
+      range: [0.0, 1.0]
+      description: "Normalized communication overhead"
+      weight: 0.6
+      transform: inverse
+
+# =============================================================================
+# D. FAILURE FINGERPRINT
+# =============================================================================
+failure:
+  description: "Failure mode characteristics"
+  dimensions:
+    first_failure_mode:
+      type: enum
+      values: [coordination, energy, memory, broadcast, integration, unknown]
+      description: "Primary failure mode observed"
+      weight: 0.8
+      encoding: onehot
+      
+    seed_spike_risk:
+      type: float
+      range: [0.0, 1.0]
+      description: "Probability of being a seed-spike candidate"
+      weight: 1.0
+      
+    collapse_signature:
+      type: string
+      description: "Hash of failure cascade pattern"
+      weight: 0.5
+      
+    bottleneck_type:
+      type: enum
+      values: [single_point, distributed, cascading, temporal, none]
+      description: "Type of performance bottleneck"
+      weight: 0.7
+      encoding: onehot
+
+# =============================================================================
+# DERIVED METRICS
+# =============================================================================
+derived:
+  description: "Computed composite metrics"
+  metrics:
+    stability_index:
+      formula: "(scale_retention * 0.4 + (1 - seed_variance) * 0.3 + pass_rate * 0.3)"
+      description: "Overall stability composite score"
+      
+    consciousness_depth:
+      formula: "(specialization + integration + broadcast) / 3"
+      description: "Average of CWCI sub-dimensions"
+      
+    robustness_score:
+      formula: "(cwci_min + scale_retention) / 2"
+      description: "Worst-case performance indicator"
+      
+    risk_score:
+      formula: "(seed_spike_risk * 0.5 + (1 - stress_coverage) * 0.3 + seed_variance * 0.2)"
+      description: "Composite risk indicator"
+
+# =============================================================================
+# VALIDATION RULES
+# =============================================================================
+validation:
+  required_fields:
+    - organizational.cwci_total
+    - robustness.scale_retention
+    - robustness.seed_variance
+    - failure.seed_spike_risk
+    
+  value_constraints:
+    - "seed_variance < 0.5 -> seed_spike_risk should be low"
+    - "scale_retention > 0.8 -> should be in stable region"
+    - "pass_rate < 0.3 -> likely seed-spike or unstable"
+    
+  outlier_detection:
+    method: "isolation_forest"
+    contamination: 0.1
