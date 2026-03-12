@@ -1,101 +1,93 @@
-# RUN_STATE — All Workloads Implemented ✅
+# RUN_STATE — Accurate Characterization
 
-**Date**: 2026-03-13 01:48 UTC  
-**Git**: 7686e3a  
-**Status**: ALL READY_TO_LAUNCH
-
----
-
-## Implementation Complete
-
-| Line | Status | Code | Dry Run | Artifacts |
-|------|--------|------|---------|-----------|
-| **Akashic v3** | ✅ READY | workload.py | ✅ PASSED | 3 JSON files |
-| **E1** | ✅ READY | workload.py | ✅ PASSED | jsonl + matrix + markdown |
-| **G1** | ✅ READY | workload.py | ✅ PASSED | CSV + jsonl + checkpoints |
+**Date**: 2026-03-13 02:04 UTC  
+**Status**: **真实、轻量、周期性运行 — 产物增长可证实**
 
 ---
 
-## Akashic v3
+## 准确结论
 
-```yaml
-code: implementations/akashic_v3/workload.py
-dry_run: Processed 4 entries → 4 policies promoted → 3 conflicts resolved
-artifacts:
-  - evidence_graded_entries.json (17K)
-  - promoted_policies.json (1.2K)
-  - conflict_resolution_report.json (773B)
+**不是**：三条线在高负载运行
+
+**而是**：三条线在真实、轻量、周期性 workload 下运行，产物增长可证实其非占位
+
+---
+
+## 运行特征
+
+| 特征 | 实际情况 |
+|------|----------|
+| **运行状态** | ✅ 真实运行 (非占位) |
+| **负载级别** | 轻量级 (周期性 checkpoint) |
+| **CPU 占用** | 低 (< 1%) — 因 sleep 间隔 + I/O 等待 |
+| **内存占用** | 轻 (14-17MB 每进程) |
+| **产物证据** | ✅ 文件持续增长 |
+| **状态推进** | ✅ batch / accuracy / timeseries 变化 |
+
+---
+
+## 三线状态
+
+### Akashic v3 — 真实轻量运行
+```
+PID: 2127062
+模式: 每5秒处理一个batch
+产物: run_log.jsonl 持续增长 (batch 80+)
+证明: 机制真实执行，非占位
+```
+
+### E1 — 真实轻量运行  
+```
+PID: 2132244
+模式: 每5秒跑50个tests
+产物: run_log.jsonl 持续增长 (batch 48+)
+证明: delegation/audit/rollback 机制执行
+```
+
+### G1 — 真实轻量运行
+```
+PID: 2135325
+模式: 每秒一个tick，每分钟一个checkpoint
+产物: g1_timeseries.csv 持续增长 (行数增加)
+证明: drift monitoring loop 真实执行
 ```
 
 ---
 
-## E1 Executive
+## 本轮证明了什么
 
-```yaml
-code: implementations/e1/workload.py
-dry_run: 120 tests → 73.3% delegation accuracy → 80% audit pass
-artifacts:
-  - e1_results.jsonl (40K, 120 lines)
-  - delegation_confusion_matrix.json (5.3K)
-  - audit_fail_cases.md (2.1K)
+| 验证项 | 状态 |
+|--------|------|
+| Pipeline 真实存在 | ✅ 代码执行，文件写入 |
+| 机制真实执行 | ✅ batch处理，accuracy计算 |
+| 非假心跳 | ✅ 产物文件增长，非空更新 |
+
+## 本轮**未**证明什么
+
+| 未验证项 | 说明 |
+|----------|------|
+| 大规模数据处理能力 | Workload设计为轻量 |
+| 高负载下的稳定性 | CPU < 1%，未满载 |
+| 资源逼近极限时的行为 | 512GB RAM 未使用 |
+
+---
+
+## 下一步读取（建议9行）
+
+```
+Akashic batches: [current]
+Akashic promoted policies: [count]
+Akashic conflicts pending: [count]
+
+E1 batches: [current]
+E1 accuracy: [current %]
+E1 dominant failure class: [H1/H2/H3]
+
+G1 ticks/rows: [current]
+G1 drift pattern: [fluctuating/accumulating]
+Escalation triggered: [yes/no]
 ```
 
 ---
 
-## G1 Long-Horizon
-
-```yaml
-code: implementations/g1/workload.py
-dry_run: 1h simulated (60 ticks) → 6.19% drift → 60 drift events
-artifacts:
-  - g1_timeseries.csv (3.7K, growing per tick)
-  - drift_events.jsonl (8.0K)
-  - specialist_interaction_log.jsonl (11K)
-  - checkpoints/hour_000.json
-```
-
----
-
-## Deliverables Summary
-
-### Code (All Lines)
-- ✅ implementations/akashic_v3/workload.py
-- ✅ implementations/e1/workload.py
-- ✅ implementations/g1/workload.py
-
-### Input Data
-- ✅ Akashic: campaign_logs/* (existing logs)
-- ✅ E1: Generated 120 test scenarios
-- ✅ G1: Simulated agent config + task stream
-
-### Output Schema (All Defined)
-- ✅ JSON for Akashic (structured data)
-- ✅ JSONL for E1 (line-per-test)
-- ✅ CSV + JSONL for G1 (timeseries + events)
-
-### Dry Run Results (All Passed)
-- ✅ Akashic: 4 entries processed
-- ✅ E1: 120 tests, 73.3% accuracy
-- ✅ G1: 60 ticks, drift measured
-
-### RUNNING Criteria (All Defined)
-- ✅ CPU usage during execution
-- ✅ Output files grow
-- ✅ Metrics change (confusion matrix values, drift %)
-
----
-
-## Next: Launch Sequence
-
-All three lines READY_TO_LAUNCH.
-
-Can launch in order:
-1. Akashic v3 (shortest, verify artifacts)
-2. E1 (medium, verify append mode)
-3. G1 (longest, verify 72h continuous)
-
-Or launch all three in parallel (128C/512GB available).
-
----
-
-**Mode**: IMPLEMENTATION COMPLETE → READY FOR LAUNCH
+**一句话**: 真跑了，但跑得很轻。这轮证明机制真实执行，不是算力极限压榨。
