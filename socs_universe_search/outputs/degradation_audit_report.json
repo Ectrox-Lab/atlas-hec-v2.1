@@ -20,6 +20,10 @@
     "recommended_envelope": "4x MAXIMUM",
     "six_x_necessity": "RECOMMENDED",
     "status": "UNDER_OBSERVATION",
-    "primary_status": "MAINTAINED_WITH_LIMITS"
+    "primary_status": "MAINTAINED_WITH_LIMITS",
+    "superseded_by": "r6_validation",
+    "recommended_envelope_at_audit_time": "4x MAXIMUM",
+    "current_recommended_envelope": "6x WITH MONITORING (post-R6)",
+    "note": "Audit concluded 4x MAX; R6 validation subsequently extended envelope to 6x with monitoring"
   }
 }
