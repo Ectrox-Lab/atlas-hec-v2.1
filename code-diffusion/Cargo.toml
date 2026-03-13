@@ -101,6 +101,10 @@ path = "src/bin/p0_5_mini_validation.rs"
 name = "p0_5_hyperparam_sweep"
 path = "src/bin/p0_5_hyperparam_sweep.rs"
 
+[[bin]]
+name = "p0_5_final_validation"
+path = "src/bin/p0_5_final_validation.rs"
+
 [profile.release]
 opt-level = 3
 lto = true
