@@ -439,12 +439,24 @@ Task-1 Inheritance Effectiveness Run 满足以下**至少 3/5**：
 
 - **级别**: PLANNED
 - **目标**: 验证 Task-1 成功时，系统是在复用旧模块，还是在隐性重造结构
+- **背景**: E-T1-003证明继承能改善性能，E-COMP-002追问：改善来自模块化复用还是隐性重造
 - **验证方法**:
-  - 候选 family 分布分析
-  - 已知 good family (F_P3T4M4) 占比变化
-  - 新模块 vs 复用模块的激活模式
+  - 候选 family 分布分析（Round A vs Round B）
+  - 已知 good family (F_P3T4M4) 占比变化轨迹
+  - 模块激活日志分析（哪些模块被复用、新模块生成率）
+  - 候选基因型相似度分析（Jaccard距离）
+- **通过信号**:
+  - Round B中F_P3T4M4及其变体占比>60%
+  - 新模块生成率<30%，复用率>70%
+  - 相似候选聚集在已知good family周边而非分散探索
+- **失败信号**:
+  - Round B生成大量全新family，与Round A无继承关系
+  - 模块激活模式显示Task-1专用模块被重新创造而非复用
+  - F_P3T4M4占比未显著提升
+- **关键问题**: Superbrain是在"组合"已有能力，还是在"生长"专用结构？
 - **结果目录**: `benchmark_results/task1_compositional_analysis/` (待创建)
 - **依赖**: E-T1-003 完成后启动
+- **与E-T1-003关系**: E-T1-003问"继承是否有效"，E-COMP-002问"有效是否来自模块化复用"
 
 ---
 
