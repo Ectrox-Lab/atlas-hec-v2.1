@@ -93,6 +93,10 @@ path = "src/bin/round21_conditional_pilot.rs"
 name = "round21b_falsification_run"
 path = "src/bin/round21b_falsification_run.rs"
 
+[[bin]]
+name = "p0_5_mini_validation"
+path = "src/bin/p0_5_mini_validation.rs"
+
 [profile.release]
 opt-level = 3
 lto = true

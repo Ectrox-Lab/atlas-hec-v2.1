@@ -8,6 +8,7 @@ use rand::distributions::Distribution;
 use rand::SeedableRng;
 use rand::rngs::StdRng;
 use rand_distr::StandardNormal;
+use std::io::Write;
 
 /// RealUNet with full gradient tracking (all layers trainable)
 pub struct RealUNetFull {
@@ -88,12 +89,22 @@ impl RealUNetFull {
     /// Forward pass for 3D tensor (batch, channel, seq)
     pub fn forward(&mut self, x: &Array3<f64>) -> Array3<f64> {
         let batch_size = x.shape()[0];
+        let channels = x.shape()[1];
+        let seq_len = x.shape()[2];
         let mut output = Array3::zeros((batch_size, 1, self.output_dim));
         
-        // Flatten batch for matrix ops
+        // Flatten batch for matrix ops: (batch, channel, seq) -> (batch, channel*seq)
         let x_flat: Array2<f64> = Array2::from_shape_fn(
             (batch_size, self.input_dim),
-            |(i, j)| x[[i, 0, j]]
+            |(i, j)| {
+                let c = j / seq_len;
+                let s = j % seq_len;
+                if c < channels && s < seq_len {
+                    x[[i, c, s]]
+                } else {
+                    0.0
+                }
+            }
         );
         
         // Layer 1
@@ -215,6 +226,120 @@ impl RealUNetFull {
         self.w1.len() + self.b1.len() +
         self.w2.len() + self.b2.len() +
         self.w3.len() + self.b3.len()
+    }
+    
+    /// Save model to file
+    pub fn save(&self, path: &str) -> Result<(), Box<dyn std::error::Error>> {
+        use std::io::Write;
+        
+        let mut file = std::fs::File::create(path)?;
+        
+        // Write dimensions
+        writeln!(file, "{} {} {}", self.input_dim, self.hidden_dim, self.output_dim)?;
+        
+        // Write weights and biases
+        Self::write_array2(&mut file, &self.w1)?;
+        Self::write_array1(&mut file, &self.b1)?;
+        Self::write_array2(&mut file, &self.w2)?;
+        Self::write_array1(&mut file, &self.b2)?;
+        Self::write_array2(&mut file, &self.w3)?;
+        Self::write_array1(&mut file, &self.b3)?;
+        
+        Ok(())
+    }
+    
+    /// Load model from file
+    pub fn load(path: &str) -> Result<Self, Box<dyn std::error::Error>> {
+        use std::io::BufRead;
+        
+        let file = std::fs::File::open(path)?;
+        let reader = std::io::BufReader::new(file);
+        let mut lines = reader.lines();
+        
+        // Read dimensions
+        let dim_line = lines.next().ok_or("Missing dimension line")??;
+        let dims: Vec<usize> = dim_line.split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect();
+        let (input_dim, hidden_dim, output_dim) = (dims[0], dims[1], dims[2]);
+        
+        // Read weights and biases
+        let w1 = Self::read_array2(&mut lines, hidden_dim, input_dim)?;
+        let b1 = Self::read_array1(&mut lines, hidden_dim)?;
+        let w2 = Self::read_array2(&mut lines, hidden_dim, hidden_dim)?;
+        let b2 = Self::read_array1(&mut lines, hidden_dim)?;
+        let w3 = Self::read_array2(&mut lines, output_dim, hidden_dim)?;
+        let b3 = Self::read_array1(&mut lines, output_dim)?;
+        
+        Ok(Self {
+            w1, b1, w2, b2, w3, b3,
+            input_dim,
+            hidden_dim,
+            output_dim,
+            cache_x: None,
+            cache_z1: None,
+            cache_a1: None,
+            cache_z2: None,
+            cache_a2: None,
+        })
+    }
+    
+    fn write_array1<W: Write>(writer: &mut W, arr: &Array1<f64>) -> Result<(), Box<dyn std::error::Error>> {
+        let shape = arr.shape();
+        writeln!(writer, "{}", shape[0])?;
+        for i in 0..shape[0] {
+            writeln!(writer, "{:.17}", arr[i])?;
+        }
+        Ok(())
+    }
+    
+    fn write_array2<W: Write>(writer: &mut W, arr: &Array2<f64>) -> Result<(), Box<dyn std::error::Error>> {
+        let shape = arr.shape();
+        writeln!(writer, "{} {}", shape[0], shape[1])?;
+        for i in 0..shape[0] {
+            for j in 0..shape[1] {
+                writeln!(writer, "{:.17}", arr[[i, j]])?;
+            }
+        }
+        Ok(())
+    }
+    
+    fn read_array1<I: Iterator<Item = Result<String, std::io::Error>>>(
+        lines: &mut I, 
+        expected_len: usize
+    ) -> Result<Array1<f64>, Box<dyn std::error::Error>> {
+        let len_line = lines.next().ok_or("Missing array length")??;
+        let len: usize = len_line.parse()?;
+        assert_eq!(len, expected_len, "Array length mismatch");
+        
+        let mut data = Vec::with_capacity(len);
+        for _ in 0..len {
+            let line = lines.next().ok_or("Missing array data")??;
+            data.push(line.parse()?);
+        }
+        Ok(Array1::from(data))
+    }
+    
+    fn read_array2<I: Iterator<Item = Result<String, std::io::Error>>>(
+        lines: &mut I, 
+        expected_rows: usize, 
+        expected_cols: usize
+    ) -> Result<Array2<f64>, Box<dyn std::error::Error>> {
+        let dim_line = lines.next().ok_or("Missing array dimensions")??;
+        let dims: Vec<usize> = dim_line.split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect();
+        assert_eq!(dims[0], expected_rows, "Array rows mismatch");
+        assert_eq!(dims[1], expected_cols, "Array cols mismatch");
+        
+        let mut data = Vec::with_capacity(expected_rows * expected_cols);
+        for _ in 0..expected_rows {
+            for _ in 0..expected_cols {
+                let line = lines.next().ok_or("Missing array data")??;
+                data.push(line.parse()?);
+            }
+        }
+        Ok(Array2::from_shape_vec((expected_rows, expected_cols), data)?)
     }
 }
 
