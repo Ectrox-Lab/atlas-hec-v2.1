@@ -1,0 +1,11 @@
+=== E1 Phase A Complete ===
+Total configs: 300
+Total time: 0.5 min
+Avg rate: 10.1 configs/sec
+Output: ../../../results/e1_phase_a/sweep_results.csv
+
+Quick stats:
+- r_final range: [0.001, 1.000]
+- r_final mean: 0.477
+- Configs with r > 0.8: 134
+- Configs with r < 0.2: 148

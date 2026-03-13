@@ -1,0 +1,19 @@
+{
+  "execution": {
+    "epochs_completed": 1001,
+    "max_epochs": 1000,
+    "time_minutes": 0.0041774410000000005
+  },
+  "interpretation": "Unclear - manual review needed",
+  "purpose": "bounded_falsification",
+  "results": {
+    "denoise_proxy_final": -0.327405174933186,
+    "denoise_proxy_gain": 0.07049161820705846,
+    "denoise_proxy_initial": -0.39789679314024445,
+    "noise_loss_final": 1.0182529519547723,
+    "noise_loss_improvement_pct": 13.857297825642107,
+    "noise_loss_initial": 1.182053646162351
+  },
+  "round": "21b",
+  "verdict": "AMBIGUOUS"
+}

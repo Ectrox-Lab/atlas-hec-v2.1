@@ -1,0 +1,62 @@
+{
+  "HighCoordinationDemand": [
+    {
+      "seed": 11,
+      "cwci": 0.652,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    },
+    {
+      "seed": 23,
+      "cwci": 0.68,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    },
+    {
+      "seed": 37,
+      "cwci": 0.666,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    }
+  ],
+  "ResourceScarcity": [
+    {
+      "seed": 11,
+      "cwci": 0.291,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    },
+    {
+      "seed": 23,
+      "cwci": 0.339,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    },
+    {
+      "seed": 37,
+      "cwci": 0.314,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    }
+  ],
+  "FailureBurst": [
+    {
+      "seed": 11,
+      "cwci": 0.315,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    },
+    {
+      "seed": 23,
+      "cwci": 0.353,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    },
+    {
+      "seed": 37,
+      "cwci": 0.334,
+      "scale": "R2(10x)",
+      "status": "PASS"
+    }
+  ]
+}

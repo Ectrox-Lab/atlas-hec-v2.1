@@ -1,0 +1,61 @@
+name: Mainline CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  mainline-gate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+    
+    - name: Build hec_bridge
+      run: |
+        cd source/hetero_bridge
+        make clean && make
+    
+    - name: Set library path
+      run: echo "RUSTFLAGS=-L $PWD/source/hetero_bridge" >> $GITHUB_ENV
+    
+    - name: PriorChannel Lib Tests (MUST PASS)
+      run: |
+        cd source
+        cargo test --lib prior_channel
+      # This gate blocks any PR that breaks PriorChannel
+    
+    - name: Mainline Regression Pack (MUST PASS)
+      run: |
+        cd source  
+        cargo test --test mainline_regression_pack
+      # This gate blocks any PR that breaks FROZEN_STATE_v1 constraints
+    
+    - name: Constraint Verification
+      run: |
+        cd source
+        cargo test --lib prior_channel::mainline -- --nocapture
+    
+    - name: Generate Report
+      run: |
+        echo "## Mainline CI Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ PriorChannel lib tests: PASS" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Mainline regression pack: PASS" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**FROZEN_STATE_v1 constraints enforced:**" >> $GITHUB_STEP_SUMMARY
+        echo "- Bandwidth: 32 bits fixed" >> $GITHUB_STEP_SUMMARY
+        echo "- Timescale: 10x separation" >> $GITHUB_STEP_SUMMARY
+        echo "- Generic-only: No action IDs" >> $GITHUB_STEP_SUMMARY
+        echo "- Parameters: p=0.01, α=0.5 locked" >> $GITHUB_STEP_SUMMARY

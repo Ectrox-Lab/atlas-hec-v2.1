@@ -1,0 +1,54 @@
+# Thresholds for PASS / PARTIAL / FAIL Determination
+
+cwci:
+  meaningful_gap: 0.10  # 10%差异视为有意义
+  strong_gap: 0.20      # 20%差异视为强差异
+
+smoke_test:
+  pass:
+    description: "2/3场景领先且无FAIL"
+    conditions:
+      - top_in_at_least: 2
+      - no_scenario_fail: true
+  
+  partial:
+    description: "1/3场景领先且无FAIL"
+    conditions:
+      - top_in_at_least: 1
+      - no_scenario_fail: true
+  
+  fail:
+    description: "0场景领先或任意场景FAIL"
+    conditions:
+      - top_in_at_least: 0
+      # 或
+      - any_scenario_fail: true
+
+oqs_gate15:
+  pass:
+    description: "2/3场景改善且无新问题"
+    conditions:
+      - improved_in_at_least: 2
+      - no_regression_in_high_coordination: true
+      - queen_overload_remains_zero: true
+  
+  partial:
+    description: "1/3场景改善且无严重退化"
+    conditions:
+      - improved_in_at_least: 1
+      - high_coordination_regression_lt: 0.10
+  
+  fail:
+    description: "0场景改善或严重退化"
+    conditions:
+      - improved_in_at_least: 0
+      # 或
+      - high_coordination_regression_gt: 0.10
+
+# 停机条件
+halt_conditions:
+  consecutive_failures: 2
+  unreviewed_proposals_max: 3
+  contradictory_results: true
+  threshold_alteration_detected: true
+  core_architecture_modified: true

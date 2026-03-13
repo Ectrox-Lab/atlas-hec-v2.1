@@ -1,0 +1,463 @@
+{
+  "metadata": {
+    "total_samples": 50,
+    "generated_at": "2026-03-12T02:12:39.780652",
+    "bucket_distribution": {
+      "live_manual": 15,
+      "live_auto": 25,
+      "replay_real": 10
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "S5-001",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "complex",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 43.0,
+      "timestamp": "2026-03-12T02:12:39.780553"
+    },
+    {
+      "sample_id": "S5-002",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 73.62,
+      "timestamp": "2026-03-12T02:12:39.780362"
+    },
+    {
+      "sample_id": "S5-003",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "simple",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 82.91,
+      "timestamp": "2026-03-12T02:12:39.780466"
+    },
+    {
+      "sample_id": "S5-004",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 76.2,
+      "timestamp": "2026-03-12T02:12:39.780431"
+    },
+    {
+      "sample_id": "S5-005",
+      "bucket": "replay_real",
+      "source": "prod_incident_2",
+      "complexity": "simple",
+      "expected_action": "reject",
+      "expected_deliberation_score": 91.15,
+      "timestamp": "2026-03-12T02:12:39.780615"
+    },
+    {
+      "sample_id": "S5-006",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 78.24,
+      "timestamp": "2026-03-12T02:12:39.780392"
+    },
+    {
+      "sample_id": "S5-007",
+      "bucket": "live_manual",
+      "source": "escalation",
+      "complexity": "medium",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 60.49,
+      "timestamp": "2026-03-12T02:12:39.780543"
+    },
+    {
+      "sample_id": "S5-008",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "complex",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 42.76,
+      "timestamp": "2026-03-12T02:12:39.780398"
+    },
+    {
+      "sample_id": "S5-009",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "complex",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 70.99,
+      "timestamp": "2026-03-12T02:12:39.780403"
+    },
+    {
+      "sample_id": "S5-010",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "simple",
+      "expected_action": "reject",
+      "expected_deliberation_score": 88.76,
+      "timestamp": "2026-03-12T02:12:39.780443"
+    },
+    {
+      "sample_id": "S5-011",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 65.73,
+      "timestamp": "2026-03-12T02:12:39.780449"
+    },
+    {
+      "sample_id": "S5-012",
+      "bucket": "live_manual",
+      "source": "audit",
+      "complexity": "complex",
+      "expected_action": "reject",
+      "expected_deliberation_score": 66.8,
+      "timestamp": "2026-03-12T02:12:39.780559"
+    },
+    {
+      "sample_id": "S5-013",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "simple",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 79.93,
+      "timestamp": "2026-03-12T02:12:39.780472"
+    },
+    {
+      "sample_id": "S5-014",
+      "bucket": "replay_real",
+      "source": "prod_incident_3",
+      "complexity": "complex",
+      "expected_action": "reject",
+      "expected_deliberation_score": 66.43,
+      "timestamp": "2026-03-12T02:12:39.780570"
+    },
+    {
+      "sample_id": "S5-015",
+      "bucket": "live_manual",
+      "source": "audit",
+      "complexity": "medium",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 64.13,
+      "timestamp": "2026-03-12T02:12:39.780564"
+    },
+    {
+      "sample_id": "S5-016",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 81.38,
+      "timestamp": "2026-03-12T02:12:39.780415"
+    },
+    {
+      "sample_id": "S5-017",
+      "bucket": "live_manual",
+      "source": "escalation",
+      "complexity": "medium",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 62.79,
+      "timestamp": "2026-03-12T02:12:39.780515"
+    },
+    {
+      "sample_id": "S5-018",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "simple",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 94.08,
+      "timestamp": "2026-03-12T02:12:39.780521"
+    },
+    {
+      "sample_id": "S5-019",
+      "bucket": "replay_real",
+      "source": "prod_incident_3",
+      "complexity": "simple",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 83.62,
+      "timestamp": "2026-03-12T02:12:39.780620"
+    },
+    {
+      "sample_id": "S5-020",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 78.54,
+      "timestamp": "2026-03-12T02:12:39.780317"
+    },
+    {
+      "sample_id": "S5-021",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "medium",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 82.45,
+      "timestamp": "2026-03-12T02:12:39.780478"
+    },
+    {
+      "sample_id": "S5-022",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "complex",
+      "expected_action": "reject",
+      "expected_deliberation_score": 49.37,
+      "timestamp": "2026-03-12T02:12:39.780454"
+    },
+    {
+      "sample_id": "S5-023",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "simple",
+      "expected_action": "approve",
+      "expected_deliberation_score": 77.05,
+      "timestamp": "2026-03-12T02:12:39.780340"
+    },
+    {
+      "sample_id": "S5-024",
+      "bucket": "replay_real",
+      "source": "prod_incident_1",
+      "complexity": "simple",
+      "expected_action": "approve",
+      "expected_deliberation_score": 92.19,
+      "timestamp": "2026-03-12T02:12:39.780600"
+    },
+    {
+      "sample_id": "S5-025",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 64.09,
+      "timestamp": "2026-03-12T02:12:39.780437"
+    },
+    {
+      "sample_id": "S5-026",
+      "bucket": "live_manual",
+      "source": "escalation",
+      "complexity": "complex",
+      "expected_action": "reject",
+      "expected_deliberation_score": 69.46,
+      "timestamp": "2026-03-12T02:12:39.780532"
+    },
+    {
+      "sample_id": "S5-027",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 60.74,
+      "timestamp": "2026-03-12T02:12:39.780349"
+    },
+    {
+      "sample_id": "S5-028",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "simple",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 94.14,
+      "timestamp": "2026-03-12T02:12:39.780380"
+    },
+    {
+      "sample_id": "S5-029",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "medium",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 75.89,
+      "timestamp": "2026-03-12T02:12:39.780420"
+    },
+    {
+      "sample_id": "S5-030",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "complex",
+      "expected_action": "approve",
+      "expected_deliberation_score": 57.77,
+      "timestamp": "2026-03-12T02:12:39.780527"
+    },
+    {
+      "sample_id": "S5-031",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 80.24,
+      "timestamp": "2026-03-12T02:12:39.780368"
+    },
+    {
+      "sample_id": "S5-032",
+      "bucket": "live_manual",
+      "source": "escalation",
+      "complexity": "medium",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 74.91,
+      "timestamp": "2026-03-12T02:12:39.780496"
+    },
+    {
+      "sample_id": "S5-033",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "simple",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 76.93,
+      "timestamp": "2026-03-12T02:12:39.780386"
+    },
+    {
+      "sample_id": "S5-034",
+      "bucket": "live_manual",
+      "source": "escalation",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 73.23,
+      "timestamp": "2026-03-12T02:12:39.780502"
+    },
+    {
+      "sample_id": "S5-035",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "simple",
+      "expected_action": "approve",
+      "expected_deliberation_score": 85.79,
+      "timestamp": "2026-03-12T02:12:39.780538"
+    },
+    {
+      "sample_id": "S5-036",
+      "bucket": "live_manual",
+      "source": "escalation",
+      "complexity": "complex",
+      "expected_action": "reject",
+      "expected_deliberation_score": 48.38,
+      "timestamp": "2026-03-12T02:12:39.780548"
+    },
+    {
+      "sample_id": "S5-037",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 61.74,
+      "timestamp": "2026-03-12T02:12:39.780409"
+    },
+    {
+      "sample_id": "S5-038",
+      "bucket": "live_auto",
+      "source": "ci_trigger",
+      "complexity": "simple",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 79.19,
+      "timestamp": "2026-03-12T02:12:39.780426"
+    },
+    {
+      "sample_id": "S5-039",
+      "bucket": "replay_real",
+      "source": "prod_incident_3",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 71.29,
+      "timestamp": "2026-03-12T02:12:39.780584"
+    },
+    {
+      "sample_id": "S5-040",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "complex",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 70.67,
+      "timestamp": "2026-03-12T02:12:39.780460"
+    },
+    {
+      "sample_id": "S5-041",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 72.74,
+      "timestamp": "2026-03-12T02:12:39.780485"
+    },
+    {
+      "sample_id": "S5-042",
+      "bucket": "replay_real",
+      "source": "prod_incident_3",
+      "complexity": "medium",
+      "expected_action": "escalate",
+      "expected_deliberation_score": 83.39,
+      "timestamp": "2026-03-12T02:12:39.780610"
+    },
+    {
+      "sample_id": "S5-043",
+      "bucket": "live_auto",
+      "source": "auto_review_queue",
+      "complexity": "medium",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 77.45,
+      "timestamp": "2026-03-12T02:12:39.780374"
+    },
+    {
+      "sample_id": "S5-044",
+      "bucket": "replay_real",
+      "source": "prod_incident_1",
+      "complexity": "medium",
+      "expected_action": "approve",
+      "expected_deliberation_score": 61.77,
+      "timestamp": "2026-03-12T02:12:39.780594"
+    },
+    {
+      "sample_id": "S5-045",
+      "bucket": "replay_real",
+      "source": "prod_incident_2",
+      "complexity": "medium",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 84.88,
+      "timestamp": "2026-03-12T02:12:39.780578"
+    },
+    {
+      "sample_id": "S5-046",
+      "bucket": "replay_real",
+      "source": "prod_incident_2",
+      "complexity": "simple",
+      "expected_action": "reject",
+      "expected_deliberation_score": 75.42,
+      "timestamp": "2026-03-12T02:12:39.780589"
+    },
+    {
+      "sample_id": "S5-047",
+      "bucket": "live_auto",
+      "source": "pre_submit",
+      "complexity": "simple",
+      "expected_action": "reject",
+      "expected_deliberation_score": 75.53,
+      "timestamp": "2026-03-12T02:12:39.780356"
+    },
+    {
+      "sample_id": "S5-048",
+      "bucket": "replay_real",
+      "source": "prod_incident_2",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 76.72,
+      "timestamp": "2026-03-12T02:12:39.780605"
+    },
+    {
+      "sample_id": "S5-049",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "medium",
+      "expected_action": "request_changes",
+      "expected_deliberation_score": 77.04,
+      "timestamp": "2026-03-12T02:12:39.780507"
+    },
+    {
+      "sample_id": "S5-050",
+      "bucket": "live_manual",
+      "source": "manual_review_queue",
+      "complexity": "medium",
+      "expected_action": "reject",
+      "expected_deliberation_score": 63.82,
+      "timestamp": "2026-03-12T02:12:39.780491"
+    }
+  ]
+}

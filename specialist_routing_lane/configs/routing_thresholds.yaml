@@ -1,0 +1,216 @@
+# Routing Thresholds Configuration
+# P2.6 Specialist Routing Lane
+
+config_version: "1.0"
+description: "Thresholds for routing recommendations"
+
+# =============================================================================
+# STRESS SCENARIOS
+# =============================================================================
+stress_scenarios:
+  ResourceScarcity:
+    description: "Limited resources available"
+    priority_metrics:
+      - behavioral.energy_stability
+      - robustness.scale_retention
+      - organizational.autonomy_strength
+    routing_weights:
+      energy_stability: 0.4
+      scale_retention: 0.3
+      autonomy_strength: 0.3
+      
+  FailureBurst:
+    description: "Multiple simultaneous failures"
+    priority_metrics:
+      - behavioral.recovery_time
+      - failure.bottleneck_type
+      - robustness.stress_coverage
+    routing_weights:
+      recovery_time: 0.4
+      stress_coverage: 0.3
+      hazard_resistance: 0.3
+      
+  HighCoordinationDemand:
+    description: "Complex coordination required"
+    priority_metrics:
+      - behavioral.coordination_score
+      - organizational.integration
+      - organizational.broadcast
+    routing_weights:
+      coordination_score: 0.4
+      integration: 0.3
+      broadcast: 0.3
+      
+  MemoryPressure:
+    description: "High memory load"
+    priority_metrics:
+      - organizational.memory_partition_style
+      - behavioral.communication_cost
+      - robustness.scale_retention
+    routing_weights:
+      memory_partition_style: 0.4
+      communication_cost: 0.3
+      scale_retention: 0.3
+      
+  NoiseAndUncertainty:
+    description: "Noisy environment with uncertainty"
+    priority_metrics:
+      - robustness.seed_variance
+      - organizational.specialization
+      - failure.seed_spike_risk
+    routing_weights:
+      seed_variance: 0.4
+      seed_spike_risk: 0.3
+      specialization: 0.3
+
+# =============================================================================
+# ROUTING DECISION THRESHOLDS
+# =============================================================================
+routing:
+  # Minimum score to be considered for recommendation
+  min_eligible_score: 0.3
+  
+  # Confidence levels
+  confidence:
+    high: 0.8
+    medium: 0.5
+    low: 0.3
+    
+  # Top-k recommendations
+  default_top_k: 5
+  max_top_k: 10
+  
+  # Diversity requirement
+  diversity:
+    min_regions: 2  # At least 2 different regions in top-k
+    max_from_same_region: 3
+
+# =============================================================================
+# PROMOTION CANDIDATE CRITERIA
+# =============================================================================
+promotion:
+  # Criteria for promoting a candidate to mainline challenger
+  challenger:
+    min_cwci_total: 0.7
+    min_scale_retention: 0.75
+    max_seed_variance: 0.25
+    min_stress_coverage: 0.6
+    min_pass_rate: 0.6
+    required_metrics:
+      - cwci_total
+      - scale_retention
+      - seed_variance
+      
+  # Criteria for emergency replacement (if mainline degrades)
+  emergency_replacement:
+    max_distance_to_mainline: 0.3  # In embedding space
+    min_relative_performance: 0.9  # Within 10% of mainline
+    stability_requirement: "high"
+    
+  # Auto-reject criteria
+  auto_reject:
+    - condition: "seed_spike_risk > 0.8"
+      reason: "High seed-spike probability"
+      
+    - condition: "seed_variance > 0.6 AND pass_rate < 0.3"
+      reason: "Unstable performance"
+      
+    - condition: "scale_retention < 0.4"
+      reason: "Poor scalability"
+
+# =============================================================================
+# SEED-SPIKE DETECTION
+# =============================================================================
+seed_spike_detection:
+  # High-risk indicators
+  risk_factors:
+    - metric: "seed_variance"
+      threshold: 0.5
+      weight: 0.4
+      
+    - metric: "pass_rate"
+      threshold: 0.3
+      direction: "below"
+      weight: 0.3
+      
+    - metric: "cwci_max - cwci_min"
+      threshold: 0.5
+      weight: 0.3
+      
+  # Composite risk score threshold
+  high_risk_threshold: 0.7
+  medium_risk_threshold: 0.4
+  
+  # Actions
+  actions:
+    high_risk:
+      - "flag_for_review"
+      - "require_additional_seeds"
+      - "block_auto_promotion"
+      
+    medium_risk:
+      - "flag_for_review"
+      - "suggest_extended_testing"
+
+# =============================================================================
+# REGION CHARACTERIZATION
+# =============================================================================
+region_characterization:
+  stable_production:
+    description: "Ready for production use"
+    criteria:
+      - "scale_retention > 0.8"
+      - "seed_variance < 0.2"
+      - "pass_rate > 0.8"
+      - "stress_coverage > 0.7"
+      
+  experimental_promising:
+    description: "High potential but needs validation"
+    criteria:
+      - "cwci_total > 0.75"
+      - "scale_retention > 0.6"
+      - "stress_coverage < 0.6"
+      
+  unstable_high_variance:
+    description: "Inconsistent performance"
+    criteria:
+      - "seed_variance > 0.4"
+      - "pass_rate < 0.5"
+      
+  seed_spike_zone:
+    description: "Likely false positives"
+    criteria:
+      - "seed_spike_risk > 0.7"
+      - " OR (seed_variance > 0.5 AND max_performance > 0.8)"
+      
+  niche_specialist:
+    description: "Good for specific scenarios only"
+    criteria:
+      - "stress_coverage < 0.5"
+      - "pass_rate > 0.7"
+      - "specialization > 0.8"
+
+# =============================================================================
+# AKASHIC INTEGRATION
+# =============================================================================
+akashic:
+  # What to record for each candidate
+  record_fields:
+    required:
+      - candidate_id
+      - region_id
+      - fingerprint_vector
+      - stress_performance_map
+      - failure_mode_history
+      
+    optional:
+      - evolution_path
+      - parent_candidates
+      - discovery_timestamp
+      
+  # Update frequency
+  update_on:
+    - "new_candidate_discovered"
+    - "candidate_re_evaluated"
+    - "region_reclustering"
+    - "weekly_summary"

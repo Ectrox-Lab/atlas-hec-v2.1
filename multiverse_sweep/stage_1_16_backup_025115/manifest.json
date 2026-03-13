@@ -1,0 +1,119 @@
+{
+  "stage": 1,
+  "count": 16,
+  "timestamp": "2026-03-13T02:27:21.572367",
+  "universes": [
+    {
+      "id": "1111_1",
+      "g1_pid": 2193577,
+      "e1_pid": 2193578,
+      "dir": "multiverse_sweep/stage_1_16/universe_1111_1",
+      "started": "2026-03-13T02:27:13.558106"
+    },
+    {
+      "id": "1111_2",
+      "g1_pid": 2193769,
+      "e1_pid": 2193770,
+      "dir": "multiverse_sweep/stage_1_16/universe_1111_2",
+      "started": "2026-03-13T02:27:14.058831"
+    },
+    {
+      "id": "1112_1",
+      "g1_pid": 2193773,
+      "e1_pid": 2193774,
+      "dir": "multiverse_sweep/stage_1_16/universe_1112_1",
+      "started": "2026-03-13T02:27:14.559591"
+    },
+    {
+      "id": "1112_2",
+      "g1_pid": 2193785,
+      "e1_pid": 2193786,
+      "dir": "multiverse_sweep/stage_1_16/universe_1112_2",
+      "started": "2026-03-13T02:27:15.060315"
+    },
+    {
+      "id": "1121_1",
+      "g1_pid": 2193795,
+      "e1_pid": 2193796,
+      "dir": "multiverse_sweep/stage_1_16/universe_1121_1",
+      "started": "2026-03-13T02:27:15.561018"
+    },
+    {
+      "id": "1121_2",
+      "g1_pid": 2193805,
+      "e1_pid": 2193806,
+      "dir": "multiverse_sweep/stage_1_16/universe_1121_2",
+      "started": "2026-03-13T02:27:16.062112"
+    },
+    {
+      "id": "1122_1",
+      "g1_pid": 2193812,
+      "e1_pid": 2193813,
+      "dir": "multiverse_sweep/stage_1_16/universe_1122_1",
+      "started": "2026-03-13T02:27:16.563260"
+    },
+    {
+      "id": "1122_2",
+      "g1_pid": 2193826,
+      "e1_pid": 2193827,
+      "dir": "multiverse_sweep/stage_1_16/universe_1122_2",
+      "started": "2026-03-13T02:27:17.064002"
+    },
+    {
+      "id": "1211_1",
+      "g1_pid": 2193833,
+      "e1_pid": 2193834,
+      "dir": "multiverse_sweep/stage_1_16/universe_1211_1",
+      "started": "2026-03-13T02:27:17.565213"
+    },
+    {
+      "id": "1211_2",
+      "g1_pid": 2194102,
+      "e1_pid": 2194103,
+      "dir": "multiverse_sweep/stage_1_16/universe_1211_2",
+      "started": "2026-03-13T02:27:18.066394"
+    },
+    {
+      "id": "1212_1",
+      "g1_pid": 2194112,
+      "e1_pid": 2194113,
+      "dir": "multiverse_sweep/stage_1_16/universe_1212_1",
+      "started": "2026-03-13T02:27:18.567286"
+    },
+    {
+      "id": "1212_2",
+      "g1_pid": 2194148,
+      "e1_pid": 2194149,
+      "dir": "multiverse_sweep/stage_1_16/universe_1212_2",
+      "started": "2026-03-13T02:27:19.068491"
+    },
+    {
+      "id": "1221_1",
+      "g1_pid": 2194152,
+      "e1_pid": 2194153,
+      "dir": "multiverse_sweep/stage_1_16/universe_1221_1",
+      "started": "2026-03-13T02:27:19.569534"
+    },
+    {
+      "id": "1221_2",
+      "g1_pid": 2194172,
+      "e1_pid": 2194173,
+      "dir": "multiverse_sweep/stage_1_16/universe_1221_2",
+      "started": "2026-03-13T02:27:20.070272"
+    },
+    {
+      "id": "1222_1",
+      "g1_pid": 2194213,
+      "e1_pid": 2194214,
+      "dir": "multiverse_sweep/stage_1_16/universe_1222_1",
+      "started": "2026-03-13T02:27:20.571047"
+    },
+    {
+      "id": "1222_2",
+      "g1_pid": 2194228,
+      "e1_pid": 2194229,
+      "dir": "multiverse_sweep/stage_1_16/universe_1222_2",
+      "started": "2026-03-13T02:27:21.072265"
+    }
+  ]
+}

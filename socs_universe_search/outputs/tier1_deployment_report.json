@@ -1,0 +1,24 @@
+{
+  "deployment": {
+    "status": "SUCCESS",
+    "tier": 1,
+    "scale": "4x",
+    "timestamp": "2026-03-12T14:14:45.133826",
+    "telemetry_file": "outputs/tier1_deployment_telemetry.json"
+  },
+  "baseline": {
+    "ticks_observed": 1000,
+    "mean_cwci": 0.656,
+    "min_cwci": 0.635,
+    "max_cwci": 0.675,
+    "std_dev": 0.0112,
+    "target_cwci": 0.655
+  },
+  "alerts": {
+    "count": 0,
+    "list": [],
+    "breaches_emergency": 0,
+    "breaches_critical": 0
+  },
+  "operational_state": "TIER 1 OPERATIONAL: OctopusLike 4x deployed successfully (CWCI 0.656, no alerts, production ready)."
+}

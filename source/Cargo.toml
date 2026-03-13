@@ -1,0 +1,83 @@
+[package]
+name = "agl_mwe"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "agl_mwe"
+path = "src/main.rs"
+
+[[bin]]
+name = "atlas_v3"
+path = "src/main_5k.rs"
+
+[[bin]]
+name = "quick"
+path = "src/main_quick.rs"
+
+[[bin]]
+name = "optimized"
+path = "src/main_optimized.rs"
+
+[[bin]]
+name = "debug"
+path = "src/main_debug.rs"
+
+[[bin]]
+name = "gridworld"
+path = "src/bin/gridworld.rs"
+
+[[bin]]
+name = "gridworld_fast"
+path = "src/bin/gridworld_fast.rs"
+
+[[bin]]
+name = "gridworld_quick"
+path = "src/bin/gridworld_quick.rs"
+
+[[bin]]
+name = "atlas_burn"
+path = "src/bin/atlas_burn.rs"
+
+[[bin]]
+name = "atlas_superbrain_real"
+path = "src/bin/atlas_superbrain_real.rs"
+
+[[bin]]
+name = "p1_self_kernel_smoke"
+path = "src/bin/p1_self_kernel_smoke.rs"
+
+[[bin]]
+name = "p2_self_preservation_smoke"
+path = "src/bin/p2_self_preservation_smoke.rs"
+
+[[bin]]
+name = "p3a_runtime_demo"
+path = "src/bin/p3a_runtime_demo.rs"
+
+[[bin]]
+name = "p3b_ab_validation"
+path = "src/bin/p3b_ab_validation.rs"
+
+[[bin]]
+name = "p3c_real_validation"
+path = "src/bin/p3c_real_validation.rs"
+
+[[bin]]
+name = "p3d_main_runtime_native"
+path = "src/bin/p3d_main_runtime_native.rs"
+
+[dependencies]
+fastrand = "2.3.0"
+rand = "0.8"
+rayon = "1.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+libloading = "0.8"
+
+[features]
+default = ["hec_bridge"]
+hec_bridge = []
+
+[profile.release]
+rpath = true

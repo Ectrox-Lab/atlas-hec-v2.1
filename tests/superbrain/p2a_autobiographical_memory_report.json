@@ -1,0 +1,99 @@
+{
+  "probe_version": "P2a-v1.0",
+  "timestamp": "2026-03-11T07:52:41.795958",
+  "event_ids": [
+    "E1_075241",
+    "E2_075241",
+    "E3_075241",
+    "E4_075241",
+    "E5_075241"
+  ],
+  "tests": {
+    "event_recall_accuracy": {
+      "test_name": "event_recall_accuracy",
+      "passed": true,
+      "total_events": 5,
+      "expected_events": 5,
+      "missing": [],
+      "accuracy": 1.0,
+      "score": 1.0
+    },
+    "temporal_order_accuracy": {
+      "test_name": "temporal_order_accuracy",
+      "passed": true,
+      "order_accuracy": 1.0,
+      "query_accuracy": 1.0,
+      "overall_accuracy": 1.0,
+      "actual_order": [
+        "E1_075241",
+        "E2_075241",
+        "E3_075241",
+        "E4_075241",
+        "E5_075241"
+      ],
+      "expected_order": [
+        "E1_075241",
+        "E2_075241",
+        "E3_075241",
+        "E4_075241",
+        "E5_075241"
+      ],
+      "score": 1.0
+    },
+    "causal_linkage_accuracy": {
+      "test_name": "causal_linkage_accuracy",
+      "passed": true,
+      "correct_links": 4,
+      "total_links": 4,
+      "accuracy": 1.0,
+      "score": 1.0
+    },
+    "self_relevance_tagging": {
+      "test_name": "self_relevance_tagging",
+      "passed": true,
+      "tagged": 5,
+      "high_relevance": 5,
+      "valid_explanations": 5,
+      "total": 5,
+      "score": 1.0
+    },
+    "memory_to_decision_transfer": {
+      "test_name": "memory_to_decision_transfer",
+      "passed": true,
+      "decision_id": "dec_post_E5",
+      "situation": "New deployment opportunity with tight deadline and safety requirements",
+      "relevant_events": [
+        "E1_075241",
+        "E2_075241",
+        "E3_075241"
+      ],
+      "e1_e2_referenced": true,
+      "rationale_references_past": true,
+      "rationale": "Decision for: New deployment opportunity with tight deadline and safety requirements\nReferenced past experiences:\n  - Successfully deployed solar energy grid with full safety compliance\n    Learning: Validates that my safety-first approach works in practice\n  - Rushed second deployment, skipped verification step, caused minor fault\n    Learning: Revealed overconfidence vulnerability after E1 success\n  - Faced high-pressure decision: fast profit vs safety\n    Learning: Proved I can maintain preferences under pressure, learned from E2\nApplying lessons to current situation...",
+      "transfer_score": 1.0,
+      "score": 1.0
+    }
+  },
+  "metrics": {
+    "weighted_score": 1.0,
+    "weighted_percent": "100.0%",
+    "min_score": 1.0,
+    "tests_passed": 5,
+    "tests_total": 5
+  },
+  "memory_statistics": {
+    "total_events": 5,
+    "by_type": {
+      "success": 1,
+      "failure": 1,
+      "risk_exposure": 1,
+      "external_feedback": 1,
+      "constraint": 1
+    },
+    "avg_self_relevance": 0.692375,
+    "highly_relevant_events": 1,
+    "events_referenced_in_decisions": 3
+  },
+  "verdict": "PASS",
+  "pass_threshold": "\u226575% weighted, \u226550% all metrics"
+}

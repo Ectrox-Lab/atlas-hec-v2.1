@@ -1,0 +1,46 @@
+{
+  "model": "Population Dynamics (Layer A) v2",
+  "method": "Difference form (not ODE)",
+  "parameters": {
+    "r0": {
+      "value": 0.0,
+      "description": "\u57fa\u7840\u51fa\u751f\u7387"
+    },
+    "r_D": {
+      "value": 0.0,
+      "description": "DNA\u9002\u5e94\u589e\u76ca\u7cfb\u6570"
+    },
+    "r_A": {
+      "value": 0.0,
+      "description": "\u963f\u5361\u897f\u589e\u76ca\u7cfb\u6570"
+    },
+    "r_C": {
+      "value": 0.0,
+      "description": "\u534f\u4f5c\u589e\u76ca\u7cfb\u6570"
+    },
+    "m0": {
+      "value": 0.01,
+      "description": "\u57fa\u7840\u6b7b\u4ea1\u7387"
+    },
+    "m_B": {
+      "value": 0.1,
+      "description": "Boss\u538b\u529b\u7cfb\u6570"
+    },
+    "m_V": {
+      "value": 0.1,
+      "description": "\u80fd\u91cf\u65b9\u5dee\u60e9\u7f5a\u7cfb\u6570"
+    }
+  },
+  "derived": {
+    "avg_r_eff": 0.0,
+    "avg_m_eff": 0.054158392857142856,
+    "net_growth_rate": -0.054158392857142856
+  },
+  "fit_quality": {
+    "RMSE": 13616.545859462933,
+    "R_squared": -3.916334347185212,
+    "n_points": 70
+  },
+  "success": true,
+  "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+}

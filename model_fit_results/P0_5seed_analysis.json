@@ -1,0 +1,36 @@
+{
+  "protocol": "P0_5Seed_Hazard_Analysis",
+  "timestamp": "2026-03-09T09:19:01.870100",
+  "n_seeds": 1,
+  "seed_results": [
+    {
+      "seed": "evolution",
+      "cdi_peak": {
+        "gen": 1600,
+        "value": 0.6806
+      },
+      "hazard_model": {
+        "h0": 0.0,
+        "alpha": 0.007677815673727028,
+        "I_crit": 0.44991360697177296,
+        "r_squared": 0.8561727519831351
+      },
+      "I_crit": 0.44991360697177296,
+      "first_extinction": {
+        "gen": 6500,
+        "cdi": 0.5385,
+        "universes": 127
+      },
+      "cdi_final": {
+        "gen": 7100,
+        "value": 0.0044
+      }
+    }
+  ],
+  "summary": {
+    "I_crit_mean": 0.44991360697177296,
+    "I_crit_std": 0.0,
+    "I_crit_cv": 0.0,
+    "r2_mean": 0.8561727519831351
+  }
+}

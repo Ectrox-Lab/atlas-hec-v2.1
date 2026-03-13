@@ -1,0 +1,537 @@
+{
+  "stage": 2,
+  "count": 32,
+  "timestamp": "2026-03-13T04:30:50.413651",
+  "universes": [
+    {
+      "id": "1_1",
+      "core_id": 1,
+      "repeat": 1,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438429,
+      "e1_pid": 2438430,
+      "dir": "multiverse_sweep/stage_2_32/universe_1_1",
+      "started": "2026-03-13T04:30:40.778985"
+    },
+    {
+      "id": "1_2",
+      "core_id": 1,
+      "repeat": 2,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438434,
+      "e1_pid": 2438435,
+      "dir": "multiverse_sweep/stage_2_32/universe_1_2",
+      "started": "2026-03-13T04:30:41.080187"
+    },
+    {
+      "id": "1_3",
+      "core_id": 1,
+      "repeat": 3,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438446,
+      "e1_pid": 2438447,
+      "dir": "multiverse_sweep/stage_2_32/universe_1_3",
+      "started": "2026-03-13T04:30:41.381023"
+    },
+    {
+      "id": "1_4",
+      "core_id": 1,
+      "repeat": 4,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438450,
+      "e1_pid": 2438451,
+      "dir": "multiverse_sweep/stage_2_32/universe_1_4",
+      "started": "2026-03-13T04:30:41.682050"
+    },
+    {
+      "id": "2_1",
+      "core_id": 2,
+      "repeat": 1,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438461,
+      "e1_pid": 2438462,
+      "dir": "multiverse_sweep/stage_2_32/universe_2_1",
+      "started": "2026-03-13T04:30:41.982736"
+    },
+    {
+      "id": "2_2",
+      "core_id": 2,
+      "repeat": 2,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438474,
+      "e1_pid": 2438475,
+      "dir": "multiverse_sweep/stage_2_32/universe_2_2",
+      "started": "2026-03-13T04:30:42.283671"
+    },
+    {
+      "id": "2_3",
+      "core_id": 2,
+      "repeat": 3,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438478,
+      "e1_pid": 2438479,
+      "dir": "multiverse_sweep/stage_2_32/universe_2_3",
+      "started": "2026-03-13T04:30:42.584479"
+    },
+    {
+      "id": "2_4",
+      "core_id": 2,
+      "repeat": 4,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438482,
+      "e1_pid": 2438483,
+      "dir": "multiverse_sweep/stage_2_32/universe_2_4",
+      "started": "2026-03-13T04:30:42.885866"
+    },
+    {
+      "id": "3_1",
+      "core_id": 3,
+      "repeat": 1,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438486,
+      "e1_pid": 2438487,
+      "dir": "multiverse_sweep/stage_2_32/universe_3_1",
+      "started": "2026-03-13T04:30:43.186946"
+    },
+    {
+      "id": "3_2",
+      "core_id": 3,
+      "repeat": 2,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438499,
+      "e1_pid": 2438500,
+      "dir": "multiverse_sweep/stage_2_32/universe_3_2",
+      "started": "2026-03-13T04:30:43.487997"
+    },
+    {
+      "id": "3_3",
+      "core_id": 3,
+      "repeat": 3,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438510,
+      "e1_pid": 2438511,
+      "dir": "multiverse_sweep/stage_2_32/universe_3_3",
+      "started": "2026-03-13T04:30:43.789183"
+    },
+    {
+      "id": "3_4",
+      "core_id": 3,
+      "repeat": 4,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438514,
+      "e1_pid": 2438515,
+      "dir": "multiverse_sweep/stage_2_32/universe_3_4",
+      "started": "2026-03-13T04:30:44.090186"
+    },
+    {
+      "id": "4_1",
+      "core_id": 4,
+      "repeat": 1,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438527,
+      "e1_pid": 2438528,
+      "dir": "multiverse_sweep/stage_2_32/universe_4_1",
+      "started": "2026-03-13T04:30:44.391319"
+    },
+    {
+      "id": "4_2",
+      "core_id": 4,
+      "repeat": 2,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438531,
+      "e1_pid": 2438532,
+      "dir": "multiverse_sweep/stage_2_32/universe_4_2",
+      "started": "2026-03-13T04:30:44.692378"
+    },
+    {
+      "id": "4_3",
+      "core_id": 4,
+      "repeat": 3,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438535,
+      "e1_pid": 2438536,
+      "dir": "multiverse_sweep/stage_2_32/universe_4_3",
+      "started": "2026-03-13T04:30:44.993524"
+    },
+    {
+      "id": "4_4",
+      "core_id": 4,
+      "repeat": 4,
+      "config": {
+        "pressure": 2,
+        "perturb": 3,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438546,
+      "e1_pid": 2438547,
+      "dir": "multiverse_sweep/stage_2_32/universe_4_4",
+      "started": "2026-03-13T04:30:45.294519"
+    },
+    {
+      "id": "5_1",
+      "core_id": 5,
+      "repeat": 1,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438553,
+      "e1_pid": 2438554,
+      "dir": "multiverse_sweep/stage_2_32/universe_5_1",
+      "started": "2026-03-13T04:30:45.595650"
+    },
+    {
+      "id": "5_2",
+      "core_id": 5,
+      "repeat": 2,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438557,
+      "e1_pid": 2438558,
+      "dir": "multiverse_sweep/stage_2_32/universe_5_2",
+      "started": "2026-03-13T04:30:45.896714"
+    },
+    {
+      "id": "5_3",
+      "core_id": 5,
+      "repeat": 3,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438561,
+      "e1_pid": 2438562,
+      "dir": "multiverse_sweep/stage_2_32/universe_5_3",
+      "started": "2026-03-13T04:30:46.197879"
+    },
+    {
+      "id": "5_4",
+      "core_id": 5,
+      "repeat": 4,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 1
+      },
+      "g1_pid": 2438575,
+      "e1_pid": 2438576,
+      "dir": "multiverse_sweep/stage_2_32/universe_5_4",
+      "started": "2026-03-13T04:30:46.498956"
+    },
+    {
+      "id": "6_1",
+      "core_id": 6,
+      "repeat": 1,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438580,
+      "e1_pid": 2438581,
+      "dir": "multiverse_sweep/stage_2_32/universe_6_1",
+      "started": "2026-03-13T04:30:46.800199"
+    },
+    {
+      "id": "6_2",
+      "core_id": 6,
+      "repeat": 2,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438584,
+      "e1_pid": 2438585,
+      "dir": "multiverse_sweep/stage_2_32/universe_6_2",
+      "started": "2026-03-13T04:30:47.101366"
+    },
+    {
+      "id": "6_3",
+      "core_id": 6,
+      "repeat": 3,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438594,
+      "e1_pid": 2438595,
+      "dir": "multiverse_sweep/stage_2_32/universe_6_3",
+      "started": "2026-03-13T04:30:47.402128"
+    },
+    {
+      "id": "6_4",
+      "core_id": 6,
+      "repeat": 4,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 1,
+        "delegation": 2
+      },
+      "g1_pid": 2438601,
+      "e1_pid": 2438602,
+      "dir": "multiverse_sweep/stage_2_32/universe_6_4",
+      "started": "2026-03-13T04:30:47.703247"
+    },
+    {
+      "id": "7_1",
+      "core_id": 7,
+      "repeat": 1,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438605,
+      "e1_pid": 2438606,
+      "dir": "multiverse_sweep/stage_2_32/universe_7_1",
+      "started": "2026-03-13T04:30:48.004459"
+    },
+    {
+      "id": "7_2",
+      "core_id": 7,
+      "repeat": 2,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438612,
+      "e1_pid": 2438613,
+      "dir": "multiverse_sweep/stage_2_32/universe_7_2",
+      "started": "2026-03-13T04:30:48.305440"
+    },
+    {
+      "id": "7_3",
+      "core_id": 7,
+      "repeat": 3,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438619,
+      "e1_pid": 2438620,
+      "dir": "multiverse_sweep/stage_2_32/universe_7_3",
+      "started": "2026-03-13T04:30:48.606753"
+    },
+    {
+      "id": "7_4",
+      "core_id": 7,
+      "repeat": 4,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 1
+      },
+      "g1_pid": 2438626,
+      "e1_pid": 2438627,
+      "dir": "multiverse_sweep/stage_2_32/universe_7_4",
+      "started": "2026-03-13T04:30:48.908121"
+    },
+    {
+      "id": "8_1",
+      "core_id": 8,
+      "repeat": 1,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438630,
+      "e1_pid": 2438631,
+      "dir": "multiverse_sweep/stage_2_32/universe_8_1",
+      "started": "2026-03-13T04:30:49.209574"
+    },
+    {
+      "id": "8_2",
+      "core_id": 8,
+      "repeat": 2,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438640,
+      "e1_pid": 2438641,
+      "dir": "multiverse_sweep/stage_2_32/universe_8_2",
+      "started": "2026-03-13T04:30:49.510951"
+    },
+    {
+      "id": "8_3",
+      "core_id": 8,
+      "repeat": 3,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438647,
+      "e1_pid": 2438648,
+      "dir": "multiverse_sweep/stage_2_32/universe_8_3",
+      "started": "2026-03-13T04:30:49.812248"
+    },
+    {
+      "id": "8_4",
+      "core_id": 8,
+      "repeat": 4,
+      "config": {
+        "pressure": 3,
+        "perturb": 4,
+        "memory": 3,
+        "delegation": 2
+      },
+      "g1_pid": 2438651,
+      "e1_pid": 2438652,
+      "dir": "multiverse_sweep/stage_2_32/universe_8_4",
+      "started": "2026-03-13T04:30:50.113565"
+    }
+  ],
+  "matrix": [
+    {
+      "pressure": 2,
+      "perturb": 3,
+      "memory": 1,
+      "delegation": 1
+    },
+    {
+      "pressure": 2,
+      "perturb": 3,
+      "memory": 1,
+      "delegation": 2
+    },
+    {
+      "pressure": 2,
+      "perturb": 3,
+      "memory": 3,
+      "delegation": 1
+    },
+    {
+      "pressure": 2,
+      "perturb": 3,
+      "memory": 3,
+      "delegation": 2
+    },
+    {
+      "pressure": 3,
+      "perturb": 4,
+      "memory": 1,
+      "delegation": 1
+    },
+    {
+      "pressure": 3,
+      "perturb": 4,
+      "memory": 1,
+      "delegation": 2
+    },
+    {
+      "pressure": 3,
+      "perturb": 4,
+      "memory": 3,
+      "delegation": 1
+    },
+    {
+      "pressure": 3,
+      "perturb": 4,
+      "memory": 3,
+      "delegation": 2
+    }
+  ]
+}

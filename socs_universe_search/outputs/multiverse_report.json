@@ -1,0 +1,205 @@
+{
+  "multiverse_summary": {
+    "n_universes": 128,
+    "structures_scanned": 128,
+    "cross_stress_learners": 0,
+    "promising_novelties": 10
+  },
+  "akashic_digest": {
+    "total_structures_scanned": 128,
+    "cross_stress_learners": 0,
+    "promising_novelties": 10,
+    "top_failure_modes": [
+      [
+        "resource_depletion",
+        3
+      ],
+      [
+        "sync_loss",
+        1
+      ]
+    ],
+    "lineage_mutations_recorded": 0
+  },
+  "surprise_candidates": {
+    "novel_structures": [
+      {
+        "signature": "157bb6c53f71",
+        "family": "AutonomousHierarchical_157b",
+        "mean_cwci": 0.918,
+        "dna": {
+          "local_autonomy": 0.8575295370707806,
+          "broadcast_sparsity": 0.06728227808749135,
+          "division_strength": 0.4178510121254809,
+          "lineage_bias": 0.13485298770581422,
+          "culling_style": "soft",
+          "memory_gating": "L2",
+          "hierarchy_depth": 3,
+          "coupling_topology": "small_world"
+        }
+      },
+      {
+        "signature": "41c05b84b6c8",
+        "family": "Autonomous_41c0",
+        "mean_cwci": 0.917,
+        "dna": {
+          "local_autonomy": 0.8466576344400927,
+          "broadcast_sparsity": 0.07146409081594031,
+          "division_strength": 0.44348424381783663,
+          "lineage_bias": 0.4038701804342642,
+          "culling_style": "none",
+          "memory_gating": "L1",
+          "hierarchy_depth": 2,
+          "coupling_topology": "small_world"
+        }
+      },
+      {
+        "signature": "92ec3ced197b",
+        "family": "AutonomousDividedMemorious_92ec",
+        "mean_cwci": 0.906,
+        "dna": {
+          "local_autonomy": 0.8867393285340079,
+          "broadcast_sparsity": 0.06550436320961485,
+          "division_strength": 0.6596525836705402,
+          "lineage_bias": 0.08979961197885677,
+          "culling_style": "soft",
+          "memory_gating": "L3",
+          "hierarchy_depth": 1,
+          "coupling_topology": "small_world"
+        }
+      },
+      {
+        "signature": "cdc669f215ae",
+        "family": "AutonomousHierarchicalFocused_cdc6",
+        "mean_cwci": 0.894,
+        "dna": {
+          "local_autonomy": 0.8613741622613895,
+          "broadcast_sparsity": 0.04320202539896602,
+          "division_strength": 0.31442692120050775,
+          "lineage_bias": 0.1748684325572641,
+          "culling_style": "none",
+          "memory_gating": "L1",
+          "hierarchy_depth": 4,
+          "coupling_topology": "small_world"
+        }
+      },
+      {
+        "signature": "3b0e3e0910f4",
+        "family": "AutonomousHierarchical_3b0e",
+        "mean_cwci": 0.873,
+        "dna": {
+          "local_autonomy": 0.7130628941791117,
+          "broadcast_sparsity": 0.14815150085822185,
+          "division_strength": 0.340223684802772,
+          "lineage_bias": 0.3815992523319417,
+          "culling_style": "soft",
+          "memory_gating": "mixed",
+          "hierarchy_depth": 4,
+          "coupling_topology": "small_world"
+        }
+      },
+      {
+        "signature": "8230f37b459f",
+        "family": "AutonomousDividedHierarchicalMemorious_8230",
+        "mean_cwci": 0.856,
+        "dna": {
+          "local_autonomy": 0.8933369715063558,
+          "broadcast_sparsity": 0.15119958923968263,
+          "division_strength": 0.614928657231808,
+          "lineage_bias": 0.35385342501935846,
+          "culling_style": "none",
+          "memory_gating": "L3",
+          "hierarchy_depth": 3,
+          "coupling_topology": "small_world"
+        }
+      },
+      {
+        "signature": "5ffb7055f97f",
+        "family": "AutonomousDividedHierarchicalMemorious_5ffb",
+        "mean_cwci": 0.844,
+        "dna": {
+          "local_autonomy": 0.7464373803058564,
+          "broadcast_sparsity": 0.06717874227291311,
+          "division_strength": 0.5897442709288239,
+          "lineage_bias": 0.17553423028733428,
+          "culling_style": "none",
+          "memory_gating": "L3",
+          "hierarchy_depth": 4,
+          "coupling_topology": "regular"
+        }
+      },
+      {
+        "signature": "dcb1ad388fbb",
+        "family": "AutonomousDividedHierarchical_dcb1",
+        "mean_cwci": 0.841,
+        "dna": {
+          "local_autonomy": 0.6571778162413014,
+          "broadcast_sparsity": 0.16546961248540368,
+          "division_strength": 0.5512680177571653,
+          "lineage_bias": 0.4561830669743688,
+          "culling_style": "none",
+          "memory_gating": "L1",
+          "hierarchy_depth": 3,
+          "coupling_topology": "random"
+        }
+      },
+      {
+        "signature": "978e1f43a9f2",
+        "family": "DividedHierarchicalPruned_978e",
+        "mean_cwci": 0.833,
+        "dna": {
+          "local_autonomy": 0.38659079176000244,
+          "broadcast_sparsity": 0.11533900153172252,
+          "division_strength": 0.5287327445020228,
+          "lineage_bias": 0.09124212855226349,
+          "culling_style": "hard",
+          "memory_gating": "mixed",
+          "hierarchy_depth": 4,
+          "coupling_topology": "regular"
+        }
+      },
+      {
+        "signature": "80e85b6065ea",
+        "family": "AutonomousDividedMemoriousFocused_80e8",
+        "mean_cwci": 0.831,
+        "dna": {
+          "local_autonomy": 0.8262404417056995,
+          "broadcast_sparsity": 0.04285085747850024,
+          "division_strength": 0.6910986357757682,
+          "lineage_bias": 0.3947991515874169,
+          "culling_style": "soft",
+          "memory_gating": "L3",
+          "hierarchy_depth": 1,
+          "coupling_topology": "random"
+        }
+      }
+    ],
+    "cross_stress_learners": []
+  },
+  "recommendations": [
+    {
+      "type": "SURPRISE_NOMINATION",
+      "family": "AutonomousHierarchical_157b",
+      "signature": "157bb6c53f71",
+      "mean_cwci": 0.918,
+      "action": "Consider for P1 challenger validation",
+      "priority": "HIGH"
+    },
+    {
+      "type": "SURPRISE_NOMINATION",
+      "family": "Autonomous_41c0",
+      "signature": "41c05b84b6c8",
+      "mean_cwci": 0.917,
+      "action": "Consider for P1 challenger validation",
+      "priority": "HIGH"
+    },
+    {
+      "type": "SURPRISE_NOMINATION",
+      "family": "AutonomousDividedMemorious_92ec",
+      "signature": "92ec3ced197b",
+      "mean_cwci": 0.906,
+      "action": "Consider for P1 challenger validation",
+      "priority": "HIGH"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "p0_4_verification": {
+    "timestamp": "2026-03-11T04:55:43.986273944+08:00",
+    "trained_ckpt": "checkpoints/model_epoch5_loss1.128622.pt",
+    "untrained_ckpt": "(fresh init)",
+    "config": {
+      "num_conditions": 4,
+      "num_seeds": 5,
+      "num_samples": 20,
+      "guidance_scale": 2
+    },
+    "results": {
+      "total_comparisons": 20,
+      "avg_js_divergence": 0.008800,
+      "trained_win_rate": 0.0000,
+      "reload_deterministic": true
+    },
+    "pass_criteria": {
+      "diversity_check": false,
+      "win_rate_check": false,
+      "reload_check": true,
+      "overall_pass": false
+    },
+    "sample_details": ["{condition: BugFix, seed: 42, divergence: 0.0101}", "{condition: BugFix, seed: 59, divergence: 0.0093}", "{condition: BugFix, seed: 76, divergence: 0.0105}", "{condition: BugFix, seed: 93, divergence: 0.0073}", "{condition: BugFix, seed: 110, divergence: 0.0068}", "{condition: Performance, seed: 42, divergence: 0.0101}", "{condition: Performance, seed: 59, divergence: 0.0093}", "{condition: Performance, seed: 76, divergence: 0.0105}", "{condition: Performance, seed: 93, divergence: 0.0073}", "{condition: Performance, seed: 110, divergence: 0.0068}", "{condition: Safety, seed: 42, divergence: 0.0101}", "{condition: Safety, seed: 59, divergence: 0.0093}", "{condition: Safety, seed: 76, divergence: 0.0105}", "{condition: Safety, seed: 93, divergence: 0.0073}", "{condition: Safety, seed: 110, divergence: 0.0068}", "{condition: Refactor, seed: 42, divergence: 0.0101}", "{condition: Refactor, seed: 59, divergence: 0.0093}", "{condition: Refactor, seed: 76, divergence: 0.0105}", "{condition: Refactor, seed: 93, divergence: 0.0073}", "{condition: Refactor, seed: 110, divergence: 0.0068}"],
+    "runtime_seconds": 58.35
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "candidate_id": "octopus_like_seed11_exp8",
+  "candidate_name": "Octopus Like (seed 11) (experimental 8)",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "experimental",
+  "cwci": {
+    "total": 0.691,
+    "specialization": 0.818,
+    "integration": 0.752,
+    "broadcast": 0.65,
+    "min": 0.622,
+    "max": 0.726
+  },
+  "hierarchy_depth": 3,
+  "autonomy_strength": 0.7,
+  "memory_style": "distributed",
+  "scale_retention": 0.668,
+  "seed_variance": 0.398,
+  "stress_coverage": 0.667,
+  "pass_rate": 0.721,
+  "recovery_time": 46.0,
+  "energy_stability": 0.6,
+  "coordination_score": 0.873,
+  "hazard_resistance": 0.6,
+  "communication_cost": 0.3,
+  "first_failure_mode": "coordination",
+  "seed_spike_risk": 0.517,
+  "collapse_signature": "sig_octopus_like_seed11",
+  "bottleneck_type": "distributed",
+  "derived": {
+    "stability_index": 0.664,
+    "consciousness_depth": 0.74,
+    "robustness_score": 0.645,
+    "risk_score": 0.438
+  }
+}

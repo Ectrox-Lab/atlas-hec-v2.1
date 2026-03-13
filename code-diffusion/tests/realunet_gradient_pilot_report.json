@@ -1,0 +1,37 @@
+{
+  "config": {
+    "batch_size": 16,
+    "epochs": 50,
+    "frozen_layers": [
+      "hidden_w",
+      "hidden_b",
+      "output_proj",
+      "output_bias"
+    ],
+    "hidden_dim": 128,
+    "input_dim": 64,
+    "learning_rate": 0.01,
+    "trainable_layer": "input_proj"
+  },
+  "hashes": {
+    "final_full": "88b2f1b80bc57d9f",
+    "final_trainable": "f841cb8b9ff59378",
+    "initial_full": "0f886c24f1ec5dad",
+    "initial_trainable": "307727fe115ed9fa"
+  },
+  "results": {
+    "frozen_unchanged": true,
+    "grad_norm_dW": 0.20194384598472898,
+    "grad_norm_db": 0.050544775204846085,
+    "gradient_nonzero": true,
+    "loss_decreasing": false,
+    "loss_final": 0.39683448044045005,
+    "loss_initial": 0.4022891257555584,
+    "loss_reduction_pct": 1.355901754705334,
+    "reload_deterministic": true,
+    "structure_ok": true,
+    "trainable_changed": true
+  },
+  "round": 18,
+  "status": "FAIL"
+}

@@ -180,12 +180,19 @@ class CausalFastForwardScheduler:
                 attempts += 1
                 continue
             
-            # 檢查是否可以從已評估點推斷
+            # 檢查1：鄰居推斷
             inference = self._infer_from_neighbors(config)
             if inference and inference['confidence'] > self.min_confidence_threshold:
-                # 可以推斷，記錄跳過
                 self._record_jump(config, inference, "inference_skip")
                 self.stats["linear_steps_avoided"] += 1
+                attempts += 1
+                continue
+            
+            # 檢查2：梯度跳躍（資源壓力高時）
+            gradient_jump = self._try_gradient_jump(config, resource_pressure)
+            if gradient_jump and gradient_jump['confidence'] > self.min_confidence_threshold:
+                self._record_jump(config, gradient_jump, "gradient_jump")
+                self.stats["linear_steps_avoided"] += 2  # 梯度跳躍節省更多步驟
                 attempts += 1
                 continue
             
@@ -194,11 +201,86 @@ class CausalFastForwardScheduler:
         
         return None
     
-    def _infer_from_neighbors(self, config: ConfigPoint) -> Optional[Dict]:
-        """從鄰居配置推斷當前配置的性能"""
-        neighbors = self._get_neighbor_evaluations(config)
+    def _try_gradient_jump(self, config: ConfigPoint, resource_pressure: float) -> Optional[Dict]:
+        """
+        梯度跳躍：如果沿某方向的配置趨勢明確，跳過中間點
+        """
+        if resource_pressure < 0.3 or len(self.evaluated_configs) < 5:
+            return None
         
-        if len(neighbors) < 2:
+        # 找到最近的已評估點
+        nearest = None
+        min_dist = float('inf')
+        for ev in self.evaluated_configs.values():
+            dist = config.distance_to(ev.config)
+            if dist < min_dist and dist > 0:
+                min_dist = dist
+                nearest = ev
+        
+        if not nearest or min_dist > 2.5:
+            return None
+        
+        # 計算梯度方向
+        direction = config.vector - nearest.config.vector
+        direction_norm = np.linalg.norm(direction)
+        if direction_norm == 0:
+            return None
+        
+        direction = direction / direction_norm
+        
+        # 檢查同方向的點是否有明確趨勢
+        aligned_configs = []
+        for ev in self.evaluated_configs.values():
+            if ev.config.signature == config.signature:
+                continue
+            vec_to_ev = ev.config.vector - nearest.config.vector
+            dist_to_ev = np.linalg.norm(vec_to_ev)
+            if dist_to_ev == 0:
+                continue
+            vec_to_ev = vec_to_ev / dist_to_ev
+            # 檢查是否大致同方向
+            alignment = np.dot(direction, vec_to_ev)
+            if alignment > 0.7:  # 夾角小於45度
+                aligned_configs.append((dist_to_ev, ev))
+        
+        if len(aligned_configs) < 2:
+            return None
+        
+        # 檢查趨勢一致性
+        aligned_configs.sort(key=lambda x: x[0])
+        drifts = [ev.drift_score for _, ev in aligned_configs]
+        
+        # 如果趨勢單調，可以跳躍
+        drift_variance = np.var(drifts)
+        trend_consistency = 1.0 / (1.0 + drift_variance)
+        
+        # 外推預測
+        if len(drifts) >= 2:
+            # 簡單線性外推
+            trend = drifts[-1] - drifts[0]
+            extrapolated = drifts[-1] + trend * (min_dist / aligned_configs[-1][0])
+            inferred_drift = np.clip(extrapolated, 0.0, 1.0)
+        else:
+            inferred_drift = np.mean(drifts)
+        
+        confidence = min(len(aligned_configs) / 3, 1.0) * trend_consistency * 0.8
+        
+        return {
+            "inferred_drift": inferred_drift,
+            "confidence": confidence,
+            "jump_type": "gradient_extrapolation",
+            "aligned_points": len(aligned_configs)
+        }
+    
+    def _infer_from_neighbors(self, config: ConfigPoint) -> Optional[Dict]:
+        """
+        從鄰居配置推斷當前配置的性能
+        使用更激進的推斷策略以啟用更多跳躍
+        """
+        # 擴大搜索半徑以找到更多鄰居
+        neighbors = self._get_neighbor_evaluations(config, radius=3.0)
+        
+        if len(neighbors) < 1:  # 只需要1個鄰居即可推斷
             return None
         
         # 基於距離加權的插值
@@ -209,7 +291,8 @@ class CausalFastForwardScheduler:
             dist = config.distance_to(neighbor.config)
             if dist == 0:
                 continue
-            weight = 1.0 / (dist ** 2)
+            # 使用高斯權重而非倒數平方，對遠處點更友好
+            weight = np.exp(-dist ** 2 / 4.0)
             weights.append(weight)
             drift_scores.append(neighbor.drift_score)
         
@@ -220,14 +303,21 @@ class CausalFastForwardScheduler:
         total_weight = sum(weights)
         inferred_drift = sum(w * d for w, d in zip(weights, drift_scores)) / total_weight
         
-        # 置信度基於鄰居數量和置信度
+        # 計算方差（高方差 = 低置信度）
+        weighted_var = sum(w * (d - inferred_drift) ** 2 for w, d in zip(weights, drift_scores)) / total_weight
+        variance_penalty = 1.0 / (1.0 + weighted_var * 10)
+        
+        # 置信度：基於鄰居數量、鄰居置信度、方差
         avg_neighbor_confidence = np.mean([n.confidence for n in neighbors])
-        confidence = min(len(neighbors) / 4, 1.0) * avg_neighbor_confidence
+        # 只需要2個高置信度鄰居即可達到max confidence
+        neighbor_factor = min(len(neighbors) / 2, 1.0)
+        confidence = neighbor_factor * avg_neighbor_confidence * variance_penalty
         
         return {
             "inferred_drift": inferred_drift,
             "confidence": confidence,
-            "neighbors_used": len(neighbors)
+            "neighbors_used": len(neighbors),
+            "variance": float(weighted_var)
         }
     
     def _get_neighbor_evaluations(self, config: ConfigPoint, radius: float = 2.0) -> List[ConfigEvaluation]:

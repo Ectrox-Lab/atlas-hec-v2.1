@@ -1,0 +1,23 @@
+{
+  "config": {
+    "batch_size": 32,
+    "epochs": 200,
+    "hidden_dim": 32,
+    "input_dim": 16,
+    "learning_rate": 0.05,
+    "output_dim": 8
+  },
+  "results": {
+    "frozen_unchanged": true,
+    "gradient_active": true,
+    "gradient_norm_avg": 0.12935012712521787,
+    "loss_decreasing": true,
+    "loss_final": 0.0633049396358734,
+    "loss_initial": 0.1685600383814916,
+    "loss_reduction_pct": 62.44368461010954,
+    "reload_deterministic": true,
+    "trainable_changed": true
+  },
+  "round": 19,
+  "status": "PASS"
+}

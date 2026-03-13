@@ -1,0 +1,24 @@
+[package]
+name = "self_organizing_substrate"
+version = "0.1.0"
+edition = "2021"
+authors = ["Atlas Team"]
+description = "Self-Organizing Cognitive Substrate - from local rules to emergent cognition"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/atlas-team/socs"
+
+[dependencies]
+# 保持最小依赖，让核心逻辑自包含
+# 如需随机数，可考虑:
+# rand = { version = "0.8", default-features = false }
+
+[dev-dependencies]
+# 测试依赖
+
+[[bin]]
+name = "verify_dynamics"
+path = "src/bin/verify_dynamics.rs"
+
+[lib]
+name = "self_organizing_substrate"
+path = "src/lib.rs"

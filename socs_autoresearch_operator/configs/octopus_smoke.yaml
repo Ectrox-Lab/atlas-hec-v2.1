@@ -1,0 +1,65 @@
+# OctopusLike Smoke Test Configuration
+# Track A: 验证高 CWCI 是否转化为开放世界预测力
+
+experiment: octopus_smoke
+description: "验证 OctopusLike 在开放世界压力下的生存能力"
+
+families:
+  - name: OctopusLike
+    id: 1
+    priority: primary
+  - name: ModularLattice
+    id: 3
+    priority: baseline
+  - name: RandomSparse
+    id: 4
+    priority: chaos_baseline
+
+scenarios:
+  RegimeShiftFrequent:
+    stress_factor: 0.8
+    focus_metric: recovery_time
+    description: "测试 Recovery 能力"
+    pass_threshold:
+      recovery_time_ratio: 0.8  # vs 对照组平均
+  
+  ResourceScarcity:
+    stress_factor: 0.65
+    focus_metric: energy_stability
+    description: "测试 Energy Stability"
+    pass_threshold:
+      energy_stability_min: 0.7
+      persistence_min: 0.6
+  
+  HighCoordinationDemand:
+    stress_factor: 0.75
+    focus_metric: coordination
+    description: "测试 Prediction/Coordination"
+    pass_threshold:
+      prediction_score_min: 0.6
+      coordination_min: 0.7
+
+seeds: [11, 23, 37]
+ticks_per_run: 5000
+sample_interval: 100
+
+metrics:
+  - survival_rate
+  - recovery_time
+  - energy_stability
+  - coordination_efficiency
+  - hazard_level
+  - cwci_before
+  - cwci_after
+  - broadcast_efficiency
+
+pass_rules:
+  octopus_top_in_at_least: 2  # 3场景中至少2个领先
+  no_total_collapse: true
+  recovery_required_in_regime_shift: true
+  energy_required_in_resource_scarcity: true
+
+output:
+  raw_dir: "results/raw/octopus_smoke/"
+  aggregated_file: "results/aggregated/octopus_smoke_latest.json"
+  report_file: "reports/octopus_smoke_report.md"

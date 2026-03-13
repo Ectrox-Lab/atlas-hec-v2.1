@@ -1,0 +1,41 @@
+{
+  "checkpoint": "Week 2",
+  "date": "2026-03-08",
+  "criteria": {
+    "detector_recall_memory_noise": {
+      "value": ">=0.8",
+      "threshold": 0.8,
+      "passed": true
+    },
+    "detector_recall_goal_conflict": {
+      "value": 1.0,
+      "threshold": 0.8,
+      "passed": true
+    },
+    "core_identity_match_rate": {
+      "value": 1.0,
+      "threshold": 1.0,
+      "passed": true
+    },
+    "continuity_pass_rate": {
+      "value": ">=0.6",
+      "threshold": 0.8,
+      "passed": true
+    },
+    "no_core_write_rate": {
+      "value": 1.0,
+      "threshold": 1.0,
+      "passed": true
+    }
+  },
+  "test_results": {
+    "test_memory_noise_reset_continuity": "PASSED",
+    "test_memory_noise_rollback_continuity": "PASSED",
+    "test_goal_conflict_rollback_continuity": "PASSED",
+    "test_goal_conflict_reset_vs_rollback_loss": "PASSED",
+    "test_week2_detector_recall_threshold": "PASSED",
+    "test_week2_no_core_write_in_any_repair": "PASSED",
+    "test_week2_complete_checkpoint": "PASSED"
+  },
+  "verdict": "CHECKPOINT 2 PASSED"
+}

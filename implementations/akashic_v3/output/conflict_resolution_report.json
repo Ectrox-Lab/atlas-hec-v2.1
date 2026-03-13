@@ -1,0 +1,12 @@
+[
+  {
+    "id": "conflict_1180_001",
+    "resolution": "split_by_context",
+    "timestamp": "2026-03-13T03:33:49.660263"
+  },
+  {
+    "id": "conflict_1180_002",
+    "resolution": "escalate_to_governance",
+    "timestamp": "2026-03-13T03:33:49.660272"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "protocol": "P0_Cross_Seed_Validation",
+  "timestamp": "2026-03-09T08:47:00.106860",
+  "individual_results": [
+    {
+      "csv_file": "/home/admin/zeroclaw-labs/v18_1_experiments/20260301_055827_306668/evolution.csv",
+      "n_generations": 70,
+      "cdi_peak": {
+        "gen": 1600,
+        "value": 0.6801
+      },
+      "cdi_final": {
+        "gen": 7000,
+        "value": 0.0087
+      },
+      "turning_point": {
+        "gen": 6500,
+        "cdi_value": 0.5391
+      },
+      "extinction_onset": {
+        "gen": 6500
+      },
+      "lead_time": 0,
+      "sequence_valid": false
+    },
+    {
+      "csv_file": "/home/admin/zeroclaw-labs/v18_1_experiments/20260301_134507_1258368/evolution.csv",
+      "n_generations": 70,
+      "cdi_peak": {
+        "gen": 1600,
+        "value": 0.6802
+      },
+      "cdi_final": {
+        "gen": 7000,
+        "value": 0.0085
+      },
+      "turning_point": {
+        "gen": 6500,
+        "cdi_value": 0.5416
+      },
+      "extinction_onset": {
+        "gen": 6600
+      },
+      "lead_time": 100,
+      "sequence_valid": true
+    }
+  ],
+  "evaluation": {
+    "valid_seeds": 1,
+    "total_seeds": 2,
+    "weak_pass": false,
+    "medium_pass": false,
+    "strong_pass": false,
+    "status": "FAILED",
+    "reason": "Only 1 valid results (need >= 3)"
+  }
+}

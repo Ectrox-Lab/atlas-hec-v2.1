@@ -1,0 +1,23 @@
+[package]
+name = "e1_critical_coupling"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8"
+rand_distr = "0.4"
+rayon = "1.8"
+serde = { version = "1.0", features = ["derive"] }
+csv = "1.3"
+
+[[bin]]
+name = "e1_phase_a"
+path = "src/main.rs"
+
+[[bin]]
+name = "e1_phase_b"
+path = "src/bin/e1_phase_b.rs"
+
+[[bin]]
+name = "e1_overnight"
+path = "src/bin/e1_overnight_batch.rs"

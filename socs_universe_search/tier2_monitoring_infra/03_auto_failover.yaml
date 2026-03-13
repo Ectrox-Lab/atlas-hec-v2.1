@@ -1,0 +1,86 @@
+# Auto Failover Configuration
+# Tier 2 (6x) Monitoring Component
+
+apiVersion: failover.socs/v1
+kind: AutoFailover
+metadata:
+  name: tier2-auto-failover
+  tier: 2
+  
+spec:
+  mode: "automatic_with_manual_override"
+  target_recovery_time: "< 5 ticks"
+  
+  trigger_conditions:
+    - condition: "cwci < 0.58"
+      duration: 20 ticks
+      action: "seed_level_failover"
+      
+    - condition: "cwci < 0.55"
+      duration: 5 ticks
+      action: "immediate_seed_replacement"
+      
+    - condition: "healthy_seed_count < 6"
+      duration: 10 ticks
+      action: "emergency_scale_down_alert"
+      
+  seed_level_failover:
+    procedure:
+      - step: 1
+        action: "mark_seed_degraded"
+        timeout: 1 tick
+        
+      - step: 2
+        action: "isolate_traffic"
+        timeout: 1 tick
+        
+      - step: 3
+        action: "activate_backup_seed"
+        selector: "healthiest_from_pool"
+        timeout: 2 ticks
+        
+      - step: 4
+        action: "verify_new_seed_health"
+        criteria: "cwci > 0.60 for 10 ticks"
+        timeout: 10 ticks
+        
+      - step: 5
+        action: "resume_traffic"
+        timeout: 1 tick
+        
+      - step: 6
+        action: "archive_degraded_seed"
+        timeout: 5 ticks
+        
+    rollback_on_failure: true
+    max_attempts: 3
+    
+  backup_seed_pool:
+    size: 2
+    maintenance_mode: "warm_standby"
+    health_check_interval: 100 ticks
+    min_health_score: 0.60
+    pre_validation_required: true
+    
+  emergency_procedures:
+    manual_override:
+      enabled: true
+      command: "socs-admin manual-failover --seed <id> --reason <text>"
+      requires_approval: false
+      
+    scale_down:
+      trigger: "auto_alert_only"
+      execution: "manual"
+      target: "4x_safe_mode"
+      
+  monitoring:
+    track_failover_latency: true
+    track_success_rate: true
+    alert_on_failover_failure: true
+    post_failover_analysis: mandatory
+    
+  circuit_breaker:
+    enabled: true
+    max_failovers_per_hour: 3
+    cooldown_after_failure: 100 ticks
+    escalate_after: 3 consecutive_failures

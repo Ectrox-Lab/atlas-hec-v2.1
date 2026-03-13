@@ -1,0 +1,36 @@
+{
+  "candidate_id": "octopus_mainline_r5_spike0",
+  "candidate_name": "OctopusLike R5 (scale=8.0x) (spike variant 0)",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "seed_spike",
+  "cwci": {
+    "total": 0.805,
+    "specialization": 0.752,
+    "integration": 0.72,
+    "broadcast": 0.693,
+    "min": 0.517,
+    "max": 0.605
+  },
+  "hierarchy_depth": 3,
+  "autonomy_strength": 0.75,
+  "memory_style": "distributed",
+  "scale_retention": 0.534,
+  "seed_variance": 0.458,
+  "stress_coverage": 0.65,
+  "pass_rate": 0.233,
+  "recovery_time": 35.0,
+  "energy_stability": 0.82,
+  "coordination_score": 0.752,
+  "hazard_resistance": 0.7,
+  "communication_cost": 0.483,
+  "first_failure_mode": "cwci degradation seed37",
+  "seed_spike_risk": 0.756,
+  "collapse_signature": "sig_r5",
+  "bottleneck_type": "single_point",
+  "derived": {
+    "stability_index": 0.446,
+    "consciousness_depth": 0.722,
+    "robustness_score": 0.526,
+    "risk_score": 0.575
+  }
+}

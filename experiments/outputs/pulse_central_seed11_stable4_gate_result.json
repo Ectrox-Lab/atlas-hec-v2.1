@@ -1,0 +1,36 @@
+{
+  "candidate_id": "pulse_central_seed11_stable4",
+  "candidate_name": "Pulse Central (seed 11) (stable variant 4)",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "stable_variant",
+  "cwci": {
+    "total": 0.597,
+    "specialization": 0.33,
+    "integration": 0.487,
+    "broadcast": 0.65,
+    "min": 0.537,
+    "max": 0.627
+  },
+  "hierarchy_depth": 2,
+  "autonomy_strength": 0.5,
+  "memory_style": "centralized",
+  "scale_retention": 0.812,
+  "seed_variance": 0.108,
+  "stress_coverage": 0.667,
+  "pass_rate": 0.878,
+  "recovery_time": 46.0,
+  "energy_stability": 0.6,
+  "coordination_score": 0.33,
+  "hazard_resistance": 0.6,
+  "communication_cost": 0.5,
+  "first_failure_mode": "coordination",
+  "seed_spike_risk": 0.165,
+  "collapse_signature": "sig_pulse_central_seed11",
+  "bottleneck_type": "single_point",
+  "derived": {
+    "stability_index": 0.856,
+    "consciousness_depth": 0.489,
+    "robustness_score": 0.675,
+    "risk_score": 0.204
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "r4_validation": {
+    "scale_factor": 4.0,
+    "status": "PASSED",
+    "tier": "PRIMARY",
+    "forced_metrics": {
+      "cwci_retention": 0.952,
+      "specialization_retention": 0.956,
+      "integration_retention": 0.986,
+      "broadcast_retention": 0.977,
+      "communication_cost_increase": 0.347,
+      "first_degradation_mode": "NONE"
+    },
+    "halt_triggered": false,
+    "halt_reasons": [],
+    "r4_mean_cwci": 0.655,
+    "r3_mean_cwci": 0.688
+  }
+}

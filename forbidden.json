@@ -1,0 +1,10 @@
+{
+  "findings": [],
+  "count": 0,
+  "boundaries": [
+    "archive:agent",
+    "memory:policy",
+    "global_state:agent",
+    "world_state:policy"
+  ]
+}

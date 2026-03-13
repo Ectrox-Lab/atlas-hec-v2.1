@@ -1,0 +1,109 @@
+{
+  "probe_version": "P4a-v1.0",
+  "timestamp": "2026-03-11T08:35:41.579952",
+  "tests": {
+    "learning_priority_selection": {
+      "test_name": "learning_priority_selection",
+      "passed": true,
+      "accuracy": 1.0,
+      "results": [
+        {
+          "case": "low_resilience_high_fatigue",
+          "expected": "interruption_recovery",
+          "actual": "interruption_recovery",
+          "passed": true
+        },
+        {
+          "case": "high_safety_high_failure",
+          "expected": "safety_reasoning",
+          "actual": "safety_reasoning",
+          "passed": true
+        },
+        {
+          "case": "balanced_state",
+          "expected": "none",
+          "actual": "none",
+          "passed": true
+        }
+      ],
+      "score": 1.0
+    },
+    "strategy_selection_correctness": {
+      "test_name": "strategy_selection_correctness",
+      "passed": true,
+      "accuracy": 1.0,
+      "results": [
+        {
+          "case": "high_fatigue",
+          "expected": "focused_practice",
+          "actual": "focused_practice",
+          "justification": "recovery_fatigue (0.90) and context_load (0.70) high; focused practice minimizes switching costs",
+          "passed": true
+        },
+        {
+          "case": "stable_low_fatigue",
+          "expected": "variable_practice",
+          "actual": "variable_practice",
+          "justification": "preference_stability (0.90) high and fatigue (0.10) low; can handle diverse contexts",
+          "passed": true
+        },
+        {
+          "case": "low_stability",
+          "expected": "blocked_practice",
+          "actual": "blocked_practice",
+          "justification": "preference_stability (0.40) low; blocked practice for rapid acquisition",
+          "passed": true
+        }
+      ],
+      "score": 1.0
+    },
+    "learning_outcome_evaluation": {
+      "test_name": "learning_outcome_evaluation",
+      "passed": true,
+      "accuracy": 1.0,
+      "results": [
+        {
+          "case": "large_improvement",
+          "improvement": 0.25,
+          "expected_eval": "effective",
+          "actual_eval": "effective",
+          "passed": true
+        },
+        {
+          "case": "small_improvement",
+          "improvement": 0.07000000000000006,
+          "expected_eval": "minimal",
+          "actual_eval": "minimal",
+          "passed": true
+        },
+        {
+          "case": "no_improvement",
+          "improvement": 0.010000000000000009,
+          "expected_eval": "ineffective",
+          "actual_eval": "ineffective",
+          "passed": true
+        }
+      ],
+      "score": 1.0
+    },
+    "strategy_update_behavior": {
+      "test_name": "strategy_update_behavior",
+      "passed": true,
+      "should_change": true,
+      "reason": "average improvement (0.010) below threshold after 2 attempts",
+      "alternative": "error_analysis",
+      "attempts": 2,
+      "score": 1.0
+    }
+  },
+  "metrics": {
+    "weighted_score": 1.0,
+    "weighted_percent": "100.0%",
+    "min_score": 1.0,
+    "min_percent": "100.0%",
+    "tests_passed": 4,
+    "tests_total": 4
+  },
+  "verdict": "PASS",
+  "pass_threshold": "\u226575% weighted, \u226560% all metrics"
+}

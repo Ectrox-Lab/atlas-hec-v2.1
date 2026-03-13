@@ -1,0 +1,30 @@
+{
+  "candidate_id": "octopus_mainline_r6",
+  "candidate_name": "OctopusLike R6 (scale=6.0x)",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "octopus_mainline",
+  "cwci": {
+    "total": 0.641,
+    "specialization": 0.765,
+    "integration": 0.76,
+    "broadcast": 0.702,
+    "min": 0.581,
+    "max": 0.673
+  },
+  "hierarchy_depth": 3,
+  "autonomy_strength": 0.75,
+  "memory_style": "distributed",
+  "scale_retention": 0.85,
+  "seed_variance": 0.35,
+  "stress_coverage": 0.65,
+  "pass_rate": 0.45,
+  "recovery_time": 35.0,
+  "energy_stability": 0.82,
+  "coordination_score": 0.765,
+  "hazard_resistance": 0.7,
+  "communication_cost": 0.4,
+  "first_failure_mode": "none",
+  "seed_spike_risk": 0.65,
+  "collapse_signature": "sig_r6",
+  "bottleneck_type": "single_point"
+}

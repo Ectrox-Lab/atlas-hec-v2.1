@@ -1,0 +1,81 @@
+{
+  "p0_4_revalidation": {
+    "config": {
+      "guidance_scale": 2.0,
+      "num_conditions": 4,
+      "num_samples": 20,
+      "num_seeds": 3
+    },
+    "overall_pass": false,
+    "post_round": 20,
+    "results": {
+      "avg_js_divergence": 0.003367507037814221,
+      "divergence_pass": false,
+      "reload_deterministic": false,
+      "total_comparisons": 12
+    },
+    "sample_details": [
+      {
+        "condition": "BugFix",
+        "divergence": 0.0019054678920948157,
+        "seed": 42
+      },
+      {
+        "condition": "BugFix",
+        "divergence": 0.0032226386360136436,
+        "seed": 59
+      },
+      {
+        "condition": "BugFix",
+        "divergence": 0.004974414585334203,
+        "seed": 76
+      },
+      {
+        "condition": "Performance",
+        "divergence": 0.0019054678920948152,
+        "seed": 42
+      },
+      {
+        "condition": "Performance",
+        "divergence": 0.0032226386360136436,
+        "seed": 59
+      },
+      {
+        "condition": "Performance",
+        "divergence": 0.004974414585334205,
+        "seed": 76
+      },
+      {
+        "condition": "Safety",
+        "divergence": 0.001905467892094816,
+        "seed": 42
+      },
+      {
+        "condition": "Safety",
+        "divergence": 0.0032226386360136444,
+        "seed": 59
+      },
+      {
+        "condition": "Safety",
+        "divergence": 0.004974414585334204,
+        "seed": 76
+      },
+      {
+        "condition": "Refactor",
+        "divergence": 0.001905467892094816,
+        "seed": 42
+      },
+      {
+        "condition": "Refactor",
+        "divergence": 0.003222638636013644,
+        "seed": 59
+      },
+      {
+        "condition": "Refactor",
+        "divergence": 0.004974414585334203,
+        "seed": 76
+      }
+    ],
+    "timestamp": "2026-03-11"
+  }
+}

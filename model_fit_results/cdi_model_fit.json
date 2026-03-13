@@ -1,0 +1,42 @@
+{
+  "model": "CDI Dynamics (Layer B) v2",
+  "equation": "dI/dt = (\u03b1\u00b7L + \u03b2\u00b7T)(1 - I/K_I) - \u03b3\u00b7\u03c3\u00b2",
+  "parameters": {
+    "alpha": {
+      "value": 0.1,
+      "description": "\u7a81\u89e6\u5b66\u4e60\u7cfb\u6570 (Synaptic learning)"
+    },
+    "beta": {
+      "value": 0.05,
+      "description": "\u8f6c\u5f55\u6fc0\u6d3b\u7cfb\u6570 (Transcriptional)"
+    },
+    "K_I": {
+      "value": 0.8,
+      "description": "CDI\u9971\u548c\u4e0a\u9650 (Innovation capacity)"
+    },
+    "gamma": {
+      "value": 0.02,
+      "description": "\u80fd\u91cf\u65b9\u5dee\u60e9\u7f5a\u7cfb\u6570"
+    }
+  },
+  "K_decomposition": {
+    "K_I_emergent": 0.8,
+    "K_synaptic_hardcoded": 15,
+    "K_population_hardcoded": 500,
+    "K_synaptic_contribution": 0.8,
+    "K_resource_contribution": 19.71170285714286
+  },
+  "fit_quality": {
+    "RMSE": 0.5021610108890802,
+    "R_squared": -14.553392516785847,
+    "n_points": 70
+  },
+  "superlinear_test": {
+    "b": 0.001772719841820439,
+    "a": -0.0011354727649130296,
+    "r_squared": 0.2629446440369665,
+    "p_value": 6.644031118795228e-06,
+    "superlinear_supported": true
+  },
+  "success": true
+}

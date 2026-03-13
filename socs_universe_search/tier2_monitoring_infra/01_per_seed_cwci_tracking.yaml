@@ -1,0 +1,49 @@
+# Per-Seed CWCI Tracking Infrastructure
+# Tier 2 (6x) Monitoring Component
+
+apiVersion: monitoring.socs/v1
+kind: PerSeedTracking
+metadata:
+  name: cwci-seed-tracker
+  tier: 2
+  
+spec:
+  seed_pool_size: 8
+  tracking_granularity: "per_tick"
+  
+  metrics_per_seed:
+    - metric: cwci_live
+      collection_interval: 1 tick
+      storage: real_time + 30_day_history
+      
+    - metric: specialization_ratio
+      collection_interval: 100 ticks
+      derived_from: cluster_analysis
+      
+    - metric: integration_stability
+      collection_interval: 100 ticks
+      derived_from: connectivity_graph
+      
+    - metric: broadcast_efficiency
+      collection_interval: 100 ticks
+      derived_from: message_delivery_stats
+      
+    - metric: communication_cost
+      collection_interval: 10 ticks
+      derived_from: bandwidth_usage
+  
+  storage_backend:
+    type: time_series_db
+    retention_policy: "30 days hot, 1 year cold"
+    query_interface: "prometheus_compatible"
+    
+  visualization:
+    dashboard: "seed_health_overview"
+    refresh_rate: "5 seconds"
+    alerts_integration: true
+    
+  seed_labeling:
+    healthy_threshold: cwci > 0.60
+    warning_threshold: cwci < 0.60
+    critical_threshold: cwci < 0.58
+    emergency_threshold: cwci < 0.55

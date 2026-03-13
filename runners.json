@@ -1,0 +1,851 @@
+{
+  "runners": [
+    {
+      "file": "fit_population_model_v2.py",
+      "flags": []
+    },
+    {
+      "file": "fit_cdi_model.py",
+      "flags": []
+    },
+    {
+      "file": "fit_cdi_model_v2.py",
+      "flags": []
+    },
+    {
+      "file": "fit_cooperation_gate_v2.py",
+      "flags": []
+    },
+    {
+      "file": "fit_population_collapse_model.py",
+      "flags": []
+    },
+    {
+      "file": "fit_population_model.py",
+      "flags": []
+    },
+    {
+      "file": "analyze_5seed_results.py",
+      "flags": [
+        "--output"
+      ]
+    },
+    {
+      "file": "verify_cdi_leading_indicator.py",
+      "flags": [
+        "--output"
+      ]
+    },
+    {
+      "file": "EXP0_CI_probe.py",
+      "flags": [
+        "--output"
+      ]
+    },
+    {
+      "file": "analyze_p1_causal.py",
+      "flags": [
+        "--output"
+      ]
+    },
+    {
+      "file": "P0_cross_seed_protocol.py",
+      "flags": [
+        "--output"
+      ]
+    },
+    {
+      "file": "P0_hazard_rate_protocol.py",
+      "flags": [
+        "--output"
+      ]
+    },
+    {
+      "file": "fit_cooperation_gate.py",
+      "flags": []
+    },
+    {
+      "file": "fit_population_models_comparison.py",
+      "flags": []
+    },
+    {
+      "file": "extinction_precursor_detector.py",
+      "flags": []
+    },
+    {
+      "file": "source/scripts/analyze_p3c.py",
+      "flags": [
+        "--steps"
+      ]
+    },
+    {
+      "file": "source/scripts/verify_p3d_gamma_completion.py",
+      "flags": []
+    },
+    {
+      "file": "source/scripts/analyze_p3b.py",
+      "flags": []
+    },
+    {
+      "file": "source/scripts/analyze_p3d_gamma.py",
+      "flags": []
+    }
+  ],
+  "tests": [
+    {
+      "file": "experiments/burn_test_readme.md",
+      "framework_hint": "generic"
+    },
+    {
+      "file": "source/hetero_bridge/test_v2",
+      "framework_hint": "generic"
+    },
+    {
+      "file": "source/hetero_bridge/test_bridge.cpp",
+      "framework_hint": "generic"
+    },
+    {
+      "file": "source/hetero_bridge/test_bridge",
+      "framework_hint": "generic"
+    },
+    {
+      "file": "source/hetero_bridge/test_v2.cpp",
+      "framework_hint": "generic"
+    },
+    {
+      "file": "source/scripts/burn_test_real.sh",
+      "framework_hint": "generic"
+    },
+    {
+      "file": "source/scripts/stress_test_v2.1.sh",
+      "framework_hint": "generic"
+    }
+  ],
+  "commands": [
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./run_bioworld_v19.sh --config unified_config.yaml"
+    },
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./compute_cdi.py --input evolution.csv --output cdi_series.csv"
+    },
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./compute_ci.py --input network_state.json --output ci_series.csv"
+    },
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./compute_sync.py --input agent_phases.json --output r_series.csv"
+    },
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./detect_percolation.py --input network.json --output percolation_events.csv"
+    },
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./analyze_unified.py \\"
+    },
+    {
+      "file": "BIOWORLD_V19_UNIFIED_FRAMEWORK.md",
+      "command": "./generate_v19_report.py --analysis unified_analysis/ --output report.md"
+    },
+    {
+      "file": "P3D_GAMMA_EXPERIMENT_PLAN.md",
+      "command": "./scripts/p3d_gamma_batch.sh"
+    },
+    {
+      "file": "P3D_GAMMA_EXPERIMENT_PLAN.md",
+      "command": "./target/release/p3d_main_runtime_native --preservation off --seed 42 --episodes 50 --steps 500"
+    },
+    {
+      "file": "P3D_GAMMA_EXPERIMENT_PLAN.md",
+      "command": "./target/release/p3d_main_runtime_native --preservation on --seed 42 --episodes 50 --steps 500"
+    },
+    {
+      "file": "REPRODUCIBLE_EXPERIMENT.md",
+      "command": "./run_full_analysis.sh \\"
+    },
+    {
+      "file": "REPRODUCIBLE_EXPERIMENT.md",
+      "command": "./target/release/atlas-hec-v2.1 \\"
+    },
+    {
+      "file": "REPRODUCIBLE_EXPERIMENT.md",
+      "command": "./run_model_fitting_v2.sh $CSV_PATH"
+    },
+    {
+      "file": "REPRODUCIBLE_EXPERIMENT.md",
+      "command": "./target/release/atlas-hec-v2.1 \\"
+    },
+    {
+      "file": "REPRO_COMMANDS.md",
+      "command": "./scripts/run_hetero_burn.sh"
+    },
+    {
+      "file": "REPRO_COMMANDS.md",
+      "command": "./scripts/archive_result.sh EXP-NAME"
+    },
+    {
+      "file": "RESEARCH_PROGRESS_SUMMARY.md",
+      "command": "./run_p1_experiments.sh 1"
+    },
+    {
+      "file": "V19_INTEGRATION_ROADMAP.md",
+      "command": "./extract_network_snapshots.py \\"
+    },
+    {
+      "file": "V19_INTEGRATION_ROADMAP.md",
+      "command": "./compute_ci_retroactive.py \\"
+    },
+    {
+      "file": "V19_INTEGRATION_ROADMAP.md",
+      "command": "./analyze_cdi_ci_correlation.py \\"
+    },
+    {
+      "file": "STATUS.md",
+      "command": "./scripts/p3d_gamma_batch.sh"
+    },
+    {
+      "file": "STATUS.md",
+      "command": "./scripts/p3d_gamma_quick.sh"
+    },
+    {
+      "file": "README.md",
+      "command": "./target/release/atlas_burn"
+    },
+    {
+      "file": "P1_EXECUTION_READY.md",
+      "command": "./run_p1_experiments.sh 1"
+    },
+    {
+      "file": "PROJECT_LOG.md",
+      "command": "./run_real_burn.sh      # A组 GPU"
+    },
+    {
+      "file": "PROJECT_LOG.md",
+      "command": "./run_control_burn.sh   # B组 CPU单核"
+    },
+    {
+      "file": "PROJECT_LOG.md",
+      "command": "./run_hetero_burn.sh    # C组 异构"
+    },
+    {
+      "file": "P3_RUNTIME_INTEGRATION_COMPLETE.md",
+      "command": "./scripts/p3b_batch_experiment.sh 10 5000"
+    },
+    {
+      "file": "P3D_MAIN_RUNTIME_VALIDATION.md",
+      "command": "./target/debug/p3d_main_runtime_native --preservation off --episodes 20 --steps 200"
+    },
+    {
+      "file": "P3D_MAIN_RUNTIME_VALIDATION.md",
+      "command": "./target/debug/p3d_main_runtime_native --preservation on --episodes 20 --steps 200"
+    },
+    {
+      "file": "P3D_GAMMA_EXPERIMENT_SPEC.md",
+      "command": "./target/release/p3d_main_runtime_native --preservation off --seed 1 --episodes 50 --steps 500"
+    },
+    {
+      "file": "P3D_GAMMA_EXPERIMENT_SPEC.md",
+      "command": "./target/release/p3d_main_runtime_native --preservation on --seed 1 --episodes 50 --steps 500"
+    },
+    {
+      "file": "experiments/burn_test_readme.md",
+      "command": "./run_real_burn.sh"
+    },
+    {
+      "file": "experiments/burn_test_readme.md",
+      "command": "./run_control_burn.sh"
+    },
+    {
+      "file": "experiments/burn_test_readme.md",
+      "command": "./run_hetero_burn.sh"
+    },
+    {
+      "file": "model_fit_results/P0_hazard_rate_visualization.png",
+      "command": "./X$)222M"
+    },
+    {
+      "file": "model_fit_results/P0_hazard_rate_visualization.png",
+      "command": "./X$)222Mڵ-[={*<<*/\\ڶmҥK90\u000f\u001fVٲeu"
+    },
+    {
+      "file": "model_fit_results/lead_lag_analysis_evolution.png",
+      "command": "./\u000f+"
+    },
+    {
+      "file": "source/README_SOURCE.md",
+      "command": "./target/release/atlas_burn"
+    },
+    {
+      "file": "source/hetero_bridge/Makefile",
+      "command": "./test_bridge"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rmeta",
+      "command": "./.\u0000\u0000\u0000.e..\u0000\u0000\u0000...:.^.\u0000\u0000\u0000...\u0000\u0000\u0000...\u0018.=.\u0000\u0000\u0000.r.9.}.."
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rmeta",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-171944fe88334f87.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-171944fe88334f87.rlib",
+      "command": "./bgI2\u0001\u0000\u0001\u0012\u0000\u0014\u0013!\u0001\u0010\u0000\u001f-\u0002\u0000\u0002\u0001\u0000\u0005\u0001\u0000\u0004\u0000\u0000\u0000\u0000ȧ"
+    },
+    {
+      "file": "source/target/release/deps/liblibc-9b51b6dce6b48e76.rmeta",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rlib",
+      "command": "./.\u0000\u0000\u0000.e..\u0000\u0000\u0000...:.^.\u0000\u0000\u0000...\u0000\u0000\u0000...\u0018.=.\u0000\u0000\u0000.r.9.}.."
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rlib",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rlib",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-1d4ab955907c9d22.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-bbac470323cf0e18.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-bbac470323cf0e18.rlib",
+      "command": "./bgI2\u0001\u0000\u0001\u0012\u0000\u0014\u0013!\u0001\u0010\u0000\u001f-\u0002\u0000\u0002\u0001\u0000\u0005\u0001\u0000\u0004\u0000\u0000\u0000\u0000ȧ"
+    },
+    {
+      "file": "source/target/release/deps/liblibc-d0b44ce827641c03.rmeta",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/release/deps/libsyn-b0523f3df63a8747.rlib",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-171944fe88334f87.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-171944fe88334f87.rmeta",
+      "command": "./bgI2\u0001\u0000\u0001\u0012\u0000\u0014\u0013!\u0001\u0010\u0000\u001f-\u0002\u0000\u0002\u0001\u0000\u0005\u0001\u0000\u0004\u0000\u0000\u0000\u0000ȧ"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-bbac470323cf0e18.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/libzerocopy-bbac470323cf0e18.rmeta",
+      "command": "./bgI2\u0001\u0000\u0001\u0012\u0000\u0014\u0013!\u0001\u0010\u0000\u001f-\u0002\u0000\u0002\u0001\u0000\u0005\u0001\u0000\u0004\u0000\u0000\u0000\u0000ȧ"
+    },
+    {
+      "file": "source/target/release/deps/librayon-e27aabb547103c49.rmeta",
+      "command": "./\u0000\u0004\u0003\u0000\u0000\u0001\u0004./\u0000\u0004\u0000\u0002\u0002\u0001\u0000\u0000\u0012\u0000\u0001-~/\u0000\u0000\u0000\u0000\u0004\u0001\u0005\u0000"
+    },
+    {
+      "file": "source/target/release/deps/librayon-e27aabb547103c49.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/liblibc-9b51b6dce6b48e76.rlib",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rmeta",
+      "command": "./.\u0000\u0000\u0000.e..\u0000\u0000\u0000...:.^.\u0000\u0000\u0000...\u0000\u0000\u0000...\u0018.=.\u0000\u0000\u0000.r.9.}.."
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rmeta",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/release/deps/librayon-e27aabb547103c49.rlib",
+      "command": "./\u0000\u0004\u0003\u0000\u0000\u0001\u0004./\u0000\u0004\u0000\u0002\u0002\u0001\u0000\u0000\u0012\u0000\u0001-~/\u0000\u0000\u0000\u0000\u0004\u0001\u0005\u0000"
+    },
+    {
+      "file": "source/target/release/deps/librayon-e27aabb547103c49.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rlib",
+      "command": "./.\u0000\u0000\u0000.e..\u0000\u0000\u0000...:.^.\u0000\u0000\u0000...\u0000\u0000\u0000...\u0018.=.\u0000\u0000\u0000.r.9.}.."
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rlib",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rlib",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/release/deps/libserde_core-44dac279cbd4c4f4.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/release/deps/libsyn-4038c475a8284231.rlib",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/release/deps/librayon-7176c40150978253.rmeta",
+      "command": "./\u0000\u0004\u0003\u0000\u0000\u0001\u0004./\u0000\u0004\u0000\u0002\u0002\u0001\u0000\u0000\u0012\u0000\u0001-~/\u0000\u0000\u0000\u0000\u0004\u0001\u0005\u0000"
+    },
+    {
+      "file": "source/target/release/deps/librayon-7176c40150978253.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/release/deps/libsyn-b0523f3df63a8747.rmeta",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/release/deps/liblibc-d0b44ce827641c03.rlib",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/release/deps/libsyn-4038c475a8284231.rmeta",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/release/deps/librayon-7176c40150978253.rlib",
+      "command": "./\u0000\u0004\u0003\u0000\u0000\u0001\u0004./\u0000\u0004\u0000\u0002\u0002\u0001\u0000\u0000\u0012\u0000\u0001-~/\u0000\u0000\u0000\u0000\u0004\u0001\u0005\u0000"
+    },
+    {
+      "file": "source/target/release/deps/librayon-7176c40150978253.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/incremental/p3b_ab_validation-2bwi1kwayqgry/s-hgh5e6riil-0px02zn-0vamw74z89gyelh0koxpjie51/dep-graph.bin",
+      "command": "./|\u0012`BP)\u0003\u0001\u0018\u0004XX\u001af\u0000\u0000\u0018'=zyh!"
+    },
+    {
+      "file": "source/target/debug/incremental/p3b_ab_validation-2bwi1kwayqgry/s-hgh5e2osws-06xati2-90or4b14dl9lu9d1n4sdaqf3b/dep-graph.bin",
+      "command": "./|\u0012`BP)\u0003\u0001\u0018\u0004W\u001a7f\u0000\u0000\u0018'=zyh!"
+    },
+    {
+      "file": "source/target/debug/incremental/p3b_ab_validation-2bwi1kwayqgry/s-hgh5e2osws-06xati2-90or4b14dl9lu9d1n4sdaqf3b/dep-graph.bin",
+      "command": "./012d\u00124\u0000\u00008\u0000$TbRs(3ʱX,t4\\.!\u00103\u00105\u0000\u00008\u0000$T@N;e<;^7\u0019fD\"\u00106\u0000\u00008\u0000$T@N;e\u000emWt\u0016M\u0002w\u0017\u0011D\u00107\u0000\u00008\u0000$T@N;eۄ\u0015"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-06zq67qhuof1g/s-hgh4q9g8bx-0ei4uz1-working/dep-graph.part.bin",
+      "command": "./01`abcwxyz\u0000\u0001\u0002\u0003\u000f\u0010\u0011\u0012()*+@ABCUVWXfghiuvwx\u0007\b"
+    },
+    {
+      "file": "source/target/debug/incremental/p3c_real_validation-1bui4ct709xti/s-hgh5n71at3-1gicqwl-esmbszq41qgymgntpnd75rs9f/dep-graph.bin",
+      "command": "./0Y\u0001\u00102\u0000\u0000DĐ[do\u0001'Y\u001f\u0015u\u0016P'u|\u00123\u0000\u0000DĐ[do\u0001'Y!"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./\u001ay\u000e\b\u0000\u0000$]~"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./|\u0012`BP)\u0003p\b\u0017\u001a\u0000\u0000{ VK\u00197L"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./|\u0012`BP)\u0003p\b\u0017"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./\u0001\u0000$]~"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./\u0000j\u0000\u0007\u000088\u0001\u0000Њ\u0000\u0011\u0000\u0012\u0000\u0010\u0000\u0000\u0000,\u0000(\u0000\u0014:8\u0001\u00008\u0000$TD\u001aX!"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh5vxuksb-0lb84x5-28l24xg3ug8xi78quigg6nui8/dep-graph.bin",
+      "command": "./b G\\Yjj\u0001?"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh644bm4u-0cbkw27-1967fdpg1fsegnj30afde1e2e/dep-graph.bin",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh644bm4u-0cbkw27-1967fdpg1fsegnj30afde1e2e/dep-graph.bin",
+      "command": "./[\\\u0003\u0000)#\bb\u0018\u0001\u0001\u0000\u000f\u0019_>Hěɛ֛MTY]aesx`ҚW"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh644bm4u-0cbkw27-1967fdpg1fsegnj30afde1e2e/dep-graph.bin",
+      "command": "./s\u0012\u0000\u0000$]~"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh644bm4u-0cbkw27-1967fdpg1fsegnj30afde1e2e/dep-graph.bin",
+      "command": "./|\u0012`BP)\u0003\bb\u0018\u001aM\u0000\u0000{ VK\u00197L"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh644bm4u-0cbkw27-1967fdpg1fsegnj30afde1e2e/dep-graph.bin",
+      "command": "./|\u0012`BP)\u0003\bb\u0018"
+    },
+    {
+      "file": "source/target/debug/incremental/agl_mwe-006ufrnax4lyc/s-hgh644bm4u-0cbkw27-1967fdpg1fsegnj30afde1e2e/dep-graph.bin",
+      "command": "./b G\\Yp\u0001?"
+    },
+    {
+      "file": "source/target/debug/incremental/p3d_main_runtime_native-2jv549br3kxwj/s-hgh5vxyq8l-1vmw6nk-7hvkr24ajqmhm7e9dhj577j30/dep-graph.bin",
+      "command": "./\u001f;002H"
+    },
+    {
+      "file": "source/target/debug/incremental/p3d_main_runtime_native-2jv549br3kxwj/s-hgh5vxyq8l-1vmw6nk-7hvkr24ajqmhm7e9dhj577j30/dep-graph.bin",
+      "command": "./\u0002\b\u0000\u0000M"
+    },
+    {
+      "file": "source/target/debug/incremental/p3d_main_runtime_native-2jv549br3kxwj/s-hgh5vxyq8l-1vmw6nk-7hvkr24ajqmhm7e9dhj577j30/dep-graph.bin",
+      "command": "./\u0002>㌝\u0000\u0000?J"
+    },
+    {
+      "file": "source/target/debug/incremental/p3d_main_runtime_native-2jv549br3kxwj/s-hgh64pxgtz-072a4sv-7dvztw1imb6amjk8zjq85iop5/dep-graph.bin",
+      "command": "./\u001f;002Hr}ʭ0ϭ˭Эѭ=jҭӭB\u0010խ\u0000\u0000DĐ[dcwt!瀇@v[:FJx\u0019\u0010֭\u0000\u0000DĐ[dcwt!\u0007GW.zu2x\b׭\u0000\u0000\u0013n3r\u0017<"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rmeta",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/debug/deps/libsyn-a12814564c798a79.rmeta",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/debug/deps/libsyn-ce54db3bd716323a.rmeta",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/debug/deps/libserde_json-8d9b8d9a6ab9ec0d.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-fb3e6ff075bc4d4b.rlib",
+      "command": "./\u0000\u0000BR\u0011\\\u0000\u0000\u0000x\u0016\u0000nJà"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-fb3e6ff075bc4d4b.rlib",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/debug/deps/libsyn-a12814564c798a79.rlib",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-fb3e6ff075bc4d4b.rmeta",
+      "command": "./\u0000\u0000BR\u0011\\\u0000\u0000\u0000x\u0016\u0000nJà"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-fb3e6ff075bc4d4b.rmeta",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/debug/deps/libsyn-ce54db3bd716323a.rlib",
+      "command": "./\u0017."
+    },
+    {
+      "file": "source/target/debug/deps/libserde_json-abac10cef07547a8.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./ֿ~'\u0011\u0019B;տ\u0018n\u0013(\u0018Ë`\u001b\u0017AVd\tZg"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./.@.Q.b.s.....Ǝ.K.k...\u0007.\u0014.%.6.G.X.i.z.....Α..e...\u0014.!...?.P.a.r.....ǔ.֔.......\t.\u001a.+.<.M.^.o.....5.T.t..\u0007.\u0018.).:.K.\\.m.~....\u001f...Ϝ...\u0002.\u0013.$.5.F.U.d.֝.Ҟ.ߞ..\u0003.\u0010."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./.@.O.^.p..\u0002.\".\u001a........\u000f. .1.B.S.b.q...\u001f.?._....\u0010.!.2.C.T.e.v.......d\u0000/\u0000/\u0000/*\u0002/7\u0002/D\u0002/U\u0002/f\u0002/w\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./.@.Q.b.s.....<.[.\u0000\u0000\u0000."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./.?.N.\u0000\u0000\u0000\u0000\u0000\u0000.\u0005.&.\u0000\u0000\u0000..ª.Ӫ...\u0006.\u0017.(.9.J.Z.i.\u0000\u0000\u0000\u0000\u0000\u0000.2.R.\u0000\u0000\u0000.\u0000.\u000f. .1.B.S.d.u.....\u0000\u0000\u0000\u0000\u0000\u0000.w..\u0000\u0000\u00008.E.T.e.v.....˱.ܱ...\u0000\u0000\u0000\u0000\u0000\u00003..ܲ.\u0000\u0000\u00005.F.W.h.y.....ʹ.ܴ.\u0000\u0000\u0000\u0000\u0000\u0000\u0014...\u0000\u0000\u0000,.9.H.Y.j.{.....и...\u0000\u0000\u0000\u0000\u0000\u0000'..й.\u0000\u0000\u0000q.~.....ѻ...\u0004.\u0015.%.4.\u0000\u0000\u0000\u0000\u0000\u0000l..\u0015.\u0000\u0000\u0000.þ.Ҿ...\u0005.\u0016.'.8.I"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./.@.Q.b.s.......\u001a\u0000/|\u0000/\u0000/z\u0001/4\u0002/A\u0002/R\u0002/c\u0002/t\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\b\u0003/\u001a\u0003/_\u0003/\u0003/\u0003/\u0004/3\u0005/D\u0005/U\u0005/f\u0005/w\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/>\u0006/\u0006/Y\u0007/n\b/)\t/6\t/G\t/X\t/i\t/z\t/\t/\t/\t/\t/\t/\t/\t/\t/\u0011"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": ".//./@./Q./b./q././././-////B0/1/1/1/1/\u00012/\u00122/#2/42/E2/V2/g2/x2/2/2/2/2/M3/m3/3/\t5/\u00165/'5/85/I5/Z5/k5/|5/5/5/5/5/5/5/5/36/6/6/6/Q8/^8/o8/8/8/8/8/8/8/8/8/\b9/\u00179/'9/99/{9/9/9/\u0019:/h;/y;/;/;/;/;/;/;/;/\u0001</\u0010</"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rmeta",
+      "command": "./.@.Q.b.q..\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0010.!.2.C.R.a.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0001.\u0012.#.4.E.V.e.t.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.\u0002.\u0013.$.5.F.W.h.y.....\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000:.G.X.i.z.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00009.J.[.l.}.......\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000..;.L.].n.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./ֿ~'\u0011\u0019B;տ\u0018n\u0013(\u0018Ë`\u001b\u0017AVd\tZg"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./.@.Q.b.s.....Ǝ.K.k...\u0007.\u0014.%.6.G.X.i.z.....Α..e...\u0014.!...?.P.a.r.....ǔ.֔.......\t.\u001a.+.<.M.^.o.....5.T.t..\u0007.\u0018.).:.K.\\.m.~....\u001f...Ϝ...\u0002.\u0013.$.5.F.U.d.֝.Ҟ.ߞ..\u0003.\u0010."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./.@.O.^.p..\u0002.\".\u001a........\u000f. .1.B.S.b.q...\u001f.?._....\u0010.!.2.C.T.e.v.......d\u0000/\u0000/\u0000/*\u0002/7\u0002/D\u0002/U\u0002/f\u0002/w\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./.@.Q.b.s.....<.[.\u0000\u0000\u0000."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./.?.N.\u0000\u0000\u0000\u0000\u0000\u0000.\u0005.&.\u0000\u0000\u0000..ª.Ӫ...\u0006.\u0017.(.9.J.Z.i.\u0000\u0000\u0000\u0000\u0000\u0000.2.R.\u0000\u0000\u0000.\u0000.\u000f. .1.B.S.d.u.....\u0000\u0000\u0000\u0000\u0000\u0000.w..\u0000\u0000\u00008.E.T.e.v.....˱.ܱ...\u0000\u0000\u0000\u0000\u0000\u00003..ܲ.\u0000\u0000\u00005.F.W.h.y.....ʹ.ܴ.\u0000\u0000\u0000\u0000\u0000\u0000\u0014...\u0000\u0000\u0000,.9.H.Y.j.{.....и...\u0000\u0000\u0000\u0000\u0000\u0000'..й.\u0000\u0000\u0000q.~.....ѻ...\u0004.\u0015.%.4.\u0000\u0000\u0000\u0000\u0000\u0000l..\u0015.\u0000\u0000\u0000.þ.Ҿ...\u0005.\u0016.'.8.I"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./.@.Q.b.s.......\u001a\u0000/|\u0000/\u0000/z\u0001/4\u0002/A\u0002/R\u0002/c\u0002/t\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\b\u0003/\u001a\u0003/_\u0003/\u0003/\u0003/\u0004/3\u0005/D\u0005/U\u0005/f\u0005/w\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/>\u0006/\u0006/Y\u0007/n\b/)\t/6\t/G\t/X\t/i\t/z\t/\t/\t/\t/\t/\t/\t/\t/\t/\u0011"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": ".//./@./Q./b./q././././-////B0/1/1/1/1/\u00012/\u00122/#2/42/E2/V2/g2/x2/2/2/2/2/M3/m3/3/\t5/\u00165/'5/85/I5/Z5/k5/|5/5/5/5/5/5/5/5/36/6/6/6/Q8/^8/o8/8/8/8/8/8/8/8/8/\b9/\u00179/'9/99/{9/9/9/\u0019:/h;/y;/;/;/;/;/;/;/;/\u0001</\u0010</"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rmeta",
+      "command": "./.@.Q.b.q..\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0010.!.2.C.R.a.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0001.\u0012.#.4.E.V.e.t.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.\u0002.\u0013.$.5.F.W.h.y.....\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000:.G.X.i.z.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00009.J.[.l.}.......\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000..;.L.].n.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-892459074bc4a056.rmeta",
+      "command": "./\u0000\u0000BR\u0011\\\u0000\u0000\u0000x\u0016\u0000nJà"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-892459074bc4a056.rmeta",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./ֿ~'\u0011\u0019B;տ\u0018n\u0013(\u0018Ë`\u001b\u0017AVd\tZg"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./.@.Q.b.s.....Ǝ.K.k...\u0007.\u0014.%.6.G.X.i.z.....Α..e...\u0014.!...?.P.a.r.....ǔ.֔.......\t.\u001a.+.<.M.^.o.....5.T.t..\u0007.\u0018.).:.K.\\.m.~....\u001f...Ϝ...\u0002.\u0013.$.5.F.U.d.֝.Ҟ.ߞ..\u0003.\u0010."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./.@.O.^.p..\u0002.\".\u001a........\u000f. .1.B.S.b.q...\u001f.?._....\u0010.!.2.C.T.e.v.......d\u0000/\u0000/\u0000/*\u0002/7\u0002/D\u0002/U\u0002/f\u0002/w\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./.@.Q.b.s.....<.[.\u0000\u0000\u0000."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./.?.N.\u0000\u0000\u0000\u0000\u0000\u0000.\u0005.&.\u0000\u0000\u0000..ª.Ӫ...\u0006.\u0017.(.9.J.Z.i.\u0000\u0000\u0000\u0000\u0000\u0000.2.R.\u0000\u0000\u0000.\u0000.\u000f. .1.B.S.d.u.....\u0000\u0000\u0000\u0000\u0000\u0000.w..\u0000\u0000\u00008.E.T.e.v.....˱.ܱ...\u0000\u0000\u0000\u0000\u0000\u00003..ܲ.\u0000\u0000\u00005.F.W.h.y.....ʹ.ܴ.\u0000\u0000\u0000\u0000\u0000\u0000\u0014...\u0000\u0000\u0000,.9.H.Y.j.{.....и...\u0000\u0000\u0000\u0000\u0000\u0000'..й.\u0000\u0000\u0000q.~.....ѻ...\u0004.\u0015.%.4.\u0000\u0000\u0000\u0000\u0000\u0000l..\u0015.\u0000\u0000\u0000.þ.Ҿ...\u0005.\u0016.'.8.I"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./.@.Q.b.s.......\u001a\u0000/|\u0000/\u0000/z\u0001/4\u0002/A\u0002/R\u0002/c\u0002/t\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\b\u0003/\u001a\u0003/_\u0003/\u0003/\u0003/\u0004/3\u0005/D\u0005/U\u0005/f\u0005/w\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/>\u0006/\u0006/Y\u0007/n\b/)\t/6\t/G\t/X\t/i\t/z\t/\t/\t/\t/\t/\t/\t/\t/\t/\u0011"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": ".//./@./Q./b./q././././-////B0/1/1/1/1/\u00012/\u00122/#2/42/E2/V2/g2/x2/2/2/2/2/M3/m3/3/\t5/\u00165/'5/85/I5/Z5/k5/|5/5/5/5/5/5/5/5/36/6/6/6/Q8/^8/o8/8/8/8/8/8/8/8/8/\b9/\u00179/'9/99/{9/9/9/\u0019:/h;/y;/;/;/;/;/;/;/;/\u0001</\u0010</"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-c5a65cb0791c8597.rlib",
+      "command": "./.@.Q.b.q..\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0010.!.2.C.R.a.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0001.\u0012.#.4.E.V.e.t.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.\u0002.\u0013.$.5.F.W.h.y.....\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000:.G.X.i.z.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00009.J.[.l.}.......\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000..;.L.].n.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rlib",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rlib",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-72bc4cec9f7bed81.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rmeta",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rmeta",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_json-abac10cef07547a8.rmeta",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Q"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rlib",
+      "command": "./\u0012\u0002"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rlib",
+      "command": "./\u0012\u0002\u0014\u0001U"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_core-149bab94afdb1a0f.rlib",
+      "command": "./\u0012\u0002\u0014\u0001Y"
+    },
+    {
+      "file": "source/target/debug/deps/libserde_json-8d9b8d9a6ab9ec0d.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./ֿ~'\u0011\u0019B;տ\u0018n\u0013(\u0018Ë`\u001b\u0017AVd\tZg"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./.@.Q.b.s.....Ǝ.K.k...\u0007.\u0014.%.6.G.X.i.z.....Α..e...\u0014.!...?.P.a.r.....ǔ.֔.......\t.\u001a.+.<.M.^.o.....5.T.t..\u0007.\u0018.).:.K.\\.m.~....\u001f...Ϝ...\u0002.\u0013.$.5.F.U.d.֝.Ҟ.ߞ..\u0003.\u0010."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./.@.O.^.p..\u0002.\".\u001a........\u000f. .1.B.S.b.q...\u001f.?._....\u0010.!.2.C.T.e.v.......d\u0000/\u0000/\u0000/*\u0002/7\u0002/D\u0002/U\u0002/f\u0002/w\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./.@.Q.b.s.....<.[.\u0000\u0000\u0000."
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./.?.N.\u0000\u0000\u0000\u0000\u0000\u0000.\u0005.&.\u0000\u0000\u0000..ª.Ӫ...\u0006.\u0017.(.9.J.Z.i.\u0000\u0000\u0000\u0000\u0000\u0000.2.R.\u0000\u0000\u0000.\u0000.\u000f. .1.B.S.d.u.....\u0000\u0000\u0000\u0000\u0000\u0000.w..\u0000\u0000\u00008.E.T.e.v.....˱.ܱ...\u0000\u0000\u0000\u0000\u0000\u00003..ܲ.\u0000\u0000\u00005.F.W.h.y.....ʹ.ܴ.\u0000\u0000\u0000\u0000\u0000\u0000\u0014...\u0000\u0000\u0000,.9.H.Y.j.{.....и...\u0000\u0000\u0000\u0000\u0000\u0000'..й.\u0000\u0000\u0000q.~.....ѻ...\u0004.\u0015.%.4.\u0000\u0000\u0000\u0000\u0000\u0000l..\u0015.\u0000\u0000\u0000.þ.Ҿ...\u0005.\u0016.'.8.I"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./.@.Q.b.s.......\u001a\u0000/|\u0000/\u0000/z\u0001/4\u0002/A\u0002/R\u0002/c\u0002/t\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\u0002/\b\u0003/\u001a\u0003/_\u0003/\u0003/\u0003/\u0004/3\u0005/D\u0005/U\u0005/f\u0005/w\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/\u0005/>\u0006/\u0006/Y\u0007/n\b/)\t/6\t/G\t/X\t/i\t/z\t/\t/\t/\t/\t/\t/\t/\t/\t/\u0011"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": ".//./@./Q./b./q././././-////B0/1/1/1/1/\u00012/\u00122/#2/42/E2/V2/g2/x2/2/2/2/2/M3/m3/3/\t5/\u00165/'5/85/I5/Z5/k5/|5/5/5/5/5/5/5/5/36/6/6/6/Q8/^8/o8/8/8/8/8/8/8/8/8/\b9/\u00179/'9/99/{9/9/9/\u0019:/h;/y;/;/;/;/;/;/;/;/\u0001</\u0010</"
+    },
+    {
+      "file": "source/target/debug/deps/libzerocopy-17c507efaf2087d1.rlib",
+      "command": "./.@.Q.b.q..\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0010.!.2.C.R.a.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.....\u0001.\u0012.#.4.E.V.e.t.\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.\u0002.\u0013.$.5.F.W.h.y.....\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000:.G.X.i.z.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00009.J.[.l.}.......\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000..;.L.].n.........\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-892459074bc4a056.rlib",
+      "command": "./\u0000\u0000BR\u0011\\\u0000\u0000\u0000x\u0016\u0000nJà"
+    },
+    {
+      "file": "source/target/debug/deps/liblibc-892459074bc4a056.rlib",
+      "command": "./(/---0/00/00//011.0003/"
+    },
+    {
+      "file": "source/scripts/burn_test_real.sh",
+      "command": "./logs/fuse_monitor.sh \"$LOG_DIR\" $$ &"
+    },
+    {
+      "file": "source/scripts/compare_single_vs_multicore.sh",
+      "command": "./run_control_burn_multicore.sh"
+    },
+    {
+      "file": "source/scripts/p3b_batch_experiment.sh",
+      "command": "./target/release/p3b_ab_validation \\"
+    },
+    {
+      "file": "source/scripts/p3b_batch_experiment.sh",
+      "command": "./target/release/p3b_ab_validation \\"
+    },
+    {
+      "file": "source/scripts/run_6hour_hec_burn.sh",
+      "command": "./target/release/atlas_hec_burn_final >> $LOG 2>&1 &"
+    }
+  ],
+  "counts": {
+    "runners": 19,
+    "tests": 7,
+    "commands": 180
+  }
+}

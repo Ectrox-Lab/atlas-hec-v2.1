@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-03-12T10:56:21.358650",
+  "type": "smoke_test",
+  "overall": {
+    "RandomSparse": {
+      "mean_cwci": 0.443,
+      "scenes_tested": 3
+    },
+    "ModularLattice": {
+      "mean_cwci": 0.573,
+      "scenes_tested": 3
+    },
+    "OctopusLike": {
+      "mean_cwci": 0.702,
+      "scenes_tested": 3
+    }
+  },
+  "by_scene": {
+    "RegimeShiftFrequent": {
+      "OctopusLike": {
+        "scene": "RegimeShiftFrequent",
+        "candidate": "OctopusLike",
+        "cwci": 0.636,
+        "focus_metric": 0.576,
+        "seeds": 3
+      },
+      "ModularLattice": {
+        "scene": "RegimeShiftFrequent",
+        "candidate": "ModularLattice",
+        "cwci": 0.563,
+        "focus_metric": 0.541,
+        "seeds": 3
+      },
+      "RandomSparse": {
+        "scene": "RegimeShiftFrequent",
+        "candidate": "RandomSparse",
+        "cwci": 0.425,
+        "focus_metric": 0.409,
+        "seeds": 3
+      }
+    },
+    "ResourceScarcity": {
+      "OctopusLike": {
+        "scene": "ResourceScarcity",
+        "candidate": "OctopusLike",
+        "cwci": 0.621,
+        "focus_metric": 0.52,
+        "seeds": 3
+      },
+      "ModularLattice": {
+        "scene": "ResourceScarcity",
+        "candidate": "ModularLattice",
+        "cwci": 0.567,
+        "focus_metric": 0.503,
+        "seeds": 3
+      },
+      "RandomSparse": {
+        "scene": "ResourceScarcity",
+        "candidate": "RandomSparse",
+        "cwci": 0.415,
+        "focus_metric": 0.37,
+        "seeds": 3
+      }
+    },
+    "HighCoordinationDemand": {
+      "OctopusLike": {
+        "scene": "HighCoordinationDemand",
+        "candidate": "OctopusLike",
+        "cwci": 0.849,
+        "focus_metric": 0.781,
+        "seeds": 3
+      },
+      "ModularLattice": {
+        "scene": "HighCoordinationDemand",
+        "candidate": "ModularLattice",
+        "cwci": 0.588,
+        "focus_metric": 0.571,
+        "seeds": 3
+      },
+      "RandomSparse": {
+        "scene": "HighCoordinationDemand",
+        "candidate": "RandomSparse",
+        "cwci": 0.49,
+        "focus_metric": 0.472,
+        "seeds": 3
+      }
+    }
+  },
+  "winner": "OctopusLike"
+}

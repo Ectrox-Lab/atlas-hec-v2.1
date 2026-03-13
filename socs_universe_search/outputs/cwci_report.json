@@ -1,0 +1,211 @@
+{
+  "total_universes": 24,
+  "consciousness_distribution": {
+    "C4-Learning": 9,
+    "C3-Reflexive": 15
+  },
+  "avg_cwei_score": 0.61825615,
+  "max_cwei_score": 0.69513613,
+  "min_cwei_score": 0.5500818,
+  "consciousness_threshold_met": 9,
+  "avg_capabilities_per_universe": 4.25,
+  "avg_capability_scores": {
+    "persistent_selfhood": 0.62949485,
+    "global_integration": 0.5142912,
+    "reflexive_self_model": 0.6471937,
+    "plastic_adaptive_learning": 0.6497366,
+    "value_goal_persistence": 0.6580835,
+    "self_optimization_capacity": 0.61073714
+  },
+  "family_rankings": [
+    {
+      "family": "octopus_like",
+      "count": 6,
+      "avg_cwei": 0.6879962,
+      "max_level": "C4",
+      "avg_capabilities": 4.1279774
+    },
+    {
+      "family": "modular_lattice",
+      "count": 3,
+      "avg_cwei": 0.6681097,
+      "max_level": "C4",
+      "avg_capabilities": 4.0086584
+    },
+    {
+      "family": "pulse_central",
+      "count": 6,
+      "avg_cwei": 0.5952931,
+      "max_level": "C3-",
+      "avg_capabilities": 3.5717587
+    },
+    {
+      "family": "random_sparse",
+      "count": 3,
+      "avg_cwei": 0.5770427,
+      "max_level": "C3-",
+      "avg_capabilities": 3.4622562
+    },
+    {
+      "family": "worm_like",
+      "count": 6,
+      "avg_cwei": 0.56715894,
+      "max_level": "C3-",
+      "avg_capabilities": 3.4029536
+    }
+  ],
+  "stress_rankings": [
+    {
+      "stress_profile": "high_coordination_demand",
+      "count": 3,
+      "avg_cwei": 0.6914708,
+      "max_level": "C4",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "regime_shift_frequent",
+      "count": 3,
+      "avg_cwei": 0.6845217,
+      "max_level": "C4",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "inheritance_noise_high",
+      "count": 3,
+      "avg_cwei": 0.6681097,
+      "max_level": "C4",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "sync_risk_high",
+      "count": 3,
+      "avg_cwei": 0.5970383,
+      "max_level": "C3-",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "boss_pressure_high",
+      "count": 3,
+      "avg_cwei": 0.593548,
+      "max_level": "C3-",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "resource_scarcity",
+      "count": 3,
+      "avg_cwei": 0.5834405,
+      "max_level": "C3-",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "high_competition",
+      "count": 3,
+      "avg_cwei": 0.5770427,
+      "max_level": "C3-",
+      "survival_rate": 1.0
+    },
+    {
+      "stress_profile": "stable_low_stress",
+      "count": 3,
+      "avg_cwei": 0.5508774,
+      "max_level": "C3-",
+      "survival_rate": 1.0
+    }
+  ],
+  "top_performers": [
+    {
+      "universe_id": 8,
+      "family": "octopus_like",
+      "stress": "high_coordination_demand",
+      "seed": 37,
+      "cwei_score": 0.69513613,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 6,
+      "family": "octopus_like",
+      "stress": "high_coordination_demand",
+      "seed": 11,
+      "cwei_score": 0.6910813,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 11,
+      "family": "octopus_like",
+      "stress": "regime_shift_frequent",
+      "seed": 37,
+      "cwei_score": 0.6892781,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 7,
+      "family": "octopus_like",
+      "stress": "high_coordination_demand",
+      "seed": 23,
+      "cwei_score": 0.688195,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 9,
+      "family": "octopus_like",
+      "stress": "regime_shift_frequent",
+      "seed": 11,
+      "cwei_score": 0.68334943,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 10,
+      "family": "octopus_like",
+      "stress": "regime_shift_frequent",
+      "seed": 23,
+      "cwei_score": 0.68093747,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 18,
+      "family": "modular_lattice",
+      "stress": "inheritance_noise_high",
+      "seed": 11,
+      "cwei_score": 0.67063886,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 19,
+      "family": "modular_lattice",
+      "stress": "inheritance_noise_high",
+      "seed": 23,
+      "cwei_score": 0.6680991,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 20,
+      "family": "modular_lattice",
+      "stress": "inheritance_noise_high",
+      "seed": 37,
+      "cwei_score": 0.66559124,
+      "level": "C4-Learning",
+      "passed_capabilities": 6
+    },
+    {
+      "universe_id": 12,
+      "family": "pulse_central",
+      "stress": "sync_risk_high",
+      "seed": 11,
+      "cwei_score": 0.5971331,
+      "level": "C3-Reflexive",
+      "passed_capabilities": 3
+    }
+  ],
+  "recommendations": [
+    "All systems performing within expected parameters."
+  ],
+  "timestamp": "2026-03-12T11:39:21.381746148+08:00"
+}

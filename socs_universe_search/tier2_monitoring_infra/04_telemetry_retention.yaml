@@ -1,0 +1,92 @@
+# Telemetry Retention Policy
+# Tier 2 (6x) Monitoring Component
+
+apiVersion: storage.socs/v1
+kind: TelemetryRetention
+metadata:
+  name: tier2-telemetry-retention
+  tier: 2
+  
+spec:
+  data_types:
+    - type: per_seed_cwci
+      resolution: 1 tick
+      hot_storage: "7 days"
+      warm_storage: "30 days"
+      cold_storage: "1 year"
+      
+    - type: aggregate_metrics
+      resolution: 100 ticks
+      hot_storage: "30 days"
+      warm_storage: "90 days"
+      cold_storage: "2 years"
+      
+    - type: alert_events
+      resolution: per_event
+      hot_storage: "90 days"
+      warm_storage: "1 year"
+      cold_storage: "5 years"
+      
+    - type: failover_logs
+      resolution: per_event
+      hot_storage: "1 year"
+      warm_storage: "2 years"
+      cold_storage: "indefinite"
+      
+    - type: degradation_incidents
+      resolution: per_incident
+      hot_storage: "indefinite"
+      warm_storage: "indefinite"
+      cold_storage: "indefinite"
+      
+  storage_backends:
+    hot:
+      type: "in_memory_tsdb"
+      retention: "7d"
+      query_latency: "< 10ms"
+      
+    warm:
+      type: "ssd_tsdb"
+      retention: "90d"
+      query_latency: "< 100ms"
+      
+    cold:
+      type: "object_storage"
+      retention: "configurable"
+      query_latency: "< 5s"
+      
+  compression:
+    hot: "none"
+    warm: "snappy"
+    cold: "zstd"
+    
+  aggregation_policies:
+    after_7_days:
+      resolution: "10 ticks -> 100 ticks"
+      keep: [min, max, mean, std]
+      
+    after_30_days:
+      resolution: "100 ticks -> 1000 ticks"
+      keep: [min, max, mean]
+      
+  access_patterns:
+    realtime_dashboards:
+      source: hot
+      max_age: 1 tick
+      
+    daily_reports:
+      source: warm
+      max_age: 1 day
+      
+    monthly_reviews:
+      source: cold
+      max_age: 30 days
+      
+    incident_analysis:
+      source: all
+      priority: high
+      
+  compliance:
+    audit_trail: true
+    data_integrity_checks: daily
+    backup_policy: "daily_snapshots_30_day_retention"

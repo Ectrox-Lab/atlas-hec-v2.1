@@ -1,0 +1,30 @@
+{
+  "candidate_id": "spike_02",
+  "candidate_name": "SpikeCandidate-2",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "seed_spike",
+  "cwci": {
+    "total": 0.934,
+    "specialization": 0.85,
+    "integration": 0.605,
+    "broadcast": 0.675,
+    "min": 0.794,
+    "max": 0.981
+  },
+  "hierarchy_depth": 6,
+  "autonomy_strength": 0.783,
+  "memory_style": "distributed",
+  "scale_retention": 0.445,
+  "seed_variance": 0.724,
+  "stress_coverage": 0.65,
+  "pass_rate": 0.461,
+  "recovery_time": 18.1,
+  "energy_stability": 0.886,
+  "coordination_score": 0.881,
+  "hazard_resistance": 0.83,
+  "communication_cost": 0.38,
+  "first_failure_mode": "broadcast",
+  "seed_spike_risk": 0.775,
+  "collapse_signature": "sig_spike_02",
+  "bottleneck_type": "single_point"
+}

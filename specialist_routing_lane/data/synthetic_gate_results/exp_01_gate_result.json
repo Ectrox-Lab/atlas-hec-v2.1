@@ -1,0 +1,30 @@
+{
+  "candidate_id": "exp_01",
+  "candidate_name": "Experimental-A",
+  "timestamp": "2026-03-12T00:00:00Z",
+  "archetype": "experimental",
+  "cwci": {
+    "total": 0.867,
+    "specialization": 0.891,
+    "integration": 0.703,
+    "broadcast": 0.657,
+    "min": 0.737,
+    "max": 0.911
+  },
+  "hierarchy_depth": 5,
+  "autonomy_strength": 0.636,
+  "memory_style": "distributed",
+  "scale_retention": 0.61,
+  "seed_variance": 0.351,
+  "stress_coverage": 0.526,
+  "pass_rate": 0.625,
+  "recovery_time": 11.1,
+  "energy_stability": 0.766,
+  "coordination_score": 0.797,
+  "hazard_resistance": 0.602,
+  "communication_cost": 0.412,
+  "first_failure_mode": "coordination",
+  "seed_spike_risk": 0.53,
+  "collapse_signature": "sig_exp_01",
+  "bottleneck_type": "single_point"
+}

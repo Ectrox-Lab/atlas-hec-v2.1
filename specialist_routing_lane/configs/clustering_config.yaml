@@ -1,0 +1,190 @@
+# Clustering Configuration for P2.6 Specialist Routing Lane
+# Gate SR1: Structure Fingerprint Validity
+
+config_version: "1.0"
+description: "Configuration for structure fingerprint clustering"
+
+# =============================================================================
+# PREPROCESSING
+# =============================================================================
+preprocessing:
+  # Normalization
+  normalization:
+    method: "robust"  # [standard, minmax, robust, none]
+    robust:
+      quantile_range: [0.05, 0.95]
+  
+  # Dimensionality Reduction
+  dimensionality_reduction:
+    method: "umap"  # [umap, tsne, pca, none]
+    umap:
+      n_neighbors: 15
+      min_dist: 0.1
+      n_components: 2
+      metric: "euclidean"
+      random_state: 42
+    tsne:
+      perplexity: 30
+      learning_rate: 200
+      n_iter: 1000
+      random_state: 42
+    pca:
+      n_components: 0.95  # Keep 95% variance
+
+# =============================================================================
+# CLUSTERING ALGORITHM
+# =============================================================================
+clustering:
+  primary_algorithm: "hdbscan"
+  
+  hdbscan:
+    min_cluster_size: 5
+    min_samples: 3
+    metric: "euclidean"
+    cluster_selection_method: "eom"  # [eom, leaf]
+    cluster_selection_epsilon: 0.0
+    alpha: 1.0
+    approx_min_span_tree: true
+    gen_min_span_tree: false
+    allow_single_cluster: false
+    
+  # Fallback algorithms for comparison
+  fallback:
+    - algorithm: "kmeans"
+      k_range: [3, 10]
+      init: "k-means++"
+      n_init: 10
+      max_iter: 300
+      
+    - algorithm: "gmm"
+      n_components: [3, 10]
+      covariance_type: "full"
+      max_iter: 100
+
+# =============================================================================
+# REGION LABELING
+# =============================================================================
+region_labeling:
+  # How to assign semantic labels to clusters
+  strategy: "centroid_analysis"
+  
+  labels:
+    stable_region:
+      criteria:
+        - "robustness.scale_retention > 0.8"
+        - "robustness.seed_variance < 0.2"
+        - "robustness.pass_rate > 0.7"
+      color: "green"
+      
+    seed_spike_region:
+      criteria:
+        - "failure.seed_spike_risk > 0.7"
+        - "robustness.seed_variance > 0.5"
+        - "robustness.pass_rate < 0.4"
+      color: "red"
+      
+    high_variance_region:
+      criteria:
+        - "robustness.seed_variance > 0.4"
+        - "robustness.scale_retention < 0.6"
+      color: "orange"
+      
+    experimental_region:
+      criteria:
+        - "organizational.cwci_total > 0.8"
+        - "robustness.stress_coverage < 0.5"
+      color: "blue"
+      
+    noise:
+      criteria:
+        - "cluster_id == -1"  # HDBSCAN noise points
+      color: "gray"
+
+# =============================================================================
+# VALIDATION METRICS
+# =============================================================================
+validation:
+  # Internal metrics
+  internal:
+    - metric: "silhouette_score"
+      threshold: 0.5
+      higher_is_better: true
+      
+    - metric: "davies_bouldin_index"
+      threshold: 1.0
+      higher_is_better: false
+      
+    - metric: "calinski_harabasz_index"
+      threshold: 100
+      higher_is_better: true
+      
+    - metric: "dunn_index"
+      threshold: 0.5
+      higher_is_better: true
+  
+  # Stability metrics (across different random seeds)
+  stability:
+    n_runs: 10
+    threshold:
+      ami: 0.7  # Adjusted Mutual Information
+      ari: 0.7  # Adjusted Rand Index
+
+# =============================================================================
+# MAINLINE-SPECIFIC CONFIGURATION
+# =============================================================================
+mainline_protection:
+  # Ensure OctopusLike mainline is properly identified
+  candidates:
+    - name: "OctopusLike"
+      identifiers:
+        - "octopus"
+        - "mainline"
+        - "o1"
+      expected_region: "stable"
+      
+    - name: "OQS"
+      identifiers:
+        - "oqs"
+        - "challenger"
+      expected_region: "experimental"
+  
+  # Alert if mainline falls in unexpected region
+  alerts:
+    - condition: "mainline_in_noise"
+      severity: "critical"
+      message: "Mainline candidate in noise region - possible fingerprint design flaw"
+      
+    - condition: "mainline_near_seed_spike"
+      severity: "warning"
+      message: "Mainline near seed-spike region - verify stability"
+      
+    - condition: "low_inter_family_separation"
+      severity: "warning"
+      threshold: 0.3
+      message: "OctopusLike and OQS overlap exceeds threshold"
+
+# =============================================================================
+# OUTPUT CONFIGURATION
+# =============================================================================
+output:
+  formats:
+    - "json"
+    - "csv"
+    - "png"  # Visualization
+    
+  visualizations:
+    - type: "scatter"
+      dimensions: [0, 1]  # Use first 2 dimensions
+      color_by: "cluster"
+      
+    - type: "heatmap"
+      metric: "correlation"
+      
+    - type: "dendrogram"
+      if_algorithm: "hierarchical"
+      
+  artifacts:
+    save_embeddings: true
+    save_distances: true
+    save_cluster_centers: true
+    save_outlier_scores: true

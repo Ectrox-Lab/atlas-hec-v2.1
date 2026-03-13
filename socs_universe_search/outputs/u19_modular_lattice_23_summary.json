@@ -1,0 +1,55 @@
+{
+  "universe_id": 19,
+  "family": "modular_lattice",
+  "stress": "inheritance_noise_high",
+  "seed": 23,
+  "config_hash": "ddd8b29bf2071fc3",
+  "evaluation": {
+    "scores": {
+      "attractor_dwell_score": 0.43,
+      "persistence_score": 0.78109694,
+      "reorganization_score": 0.4940555,
+      "specialization_score": 0.9162543,
+      "broadcast_score": 0.45700002,
+      "recovery_score": 0.6
+    },
+    "phenomena": {
+      "stable_attractors": false,
+      "memory_persistence": true,
+      "regime_reorganization": false,
+      "cluster_specialization": true,
+      "global_broadcast_emergence": false,
+      "failure_recovery": true
+    },
+    "notes": [
+      "Universe failed minimum threshold: 3/6 dynamic phenomena",
+      "Persistent memory (score=0.78)",
+      "Resilient recovery (score=0.60)"
+    ]
+  },
+  "collapse_signature": null,
+  "passed_gates": 3,
+  "meets_minimum": false,
+  "cwci": {
+    "capabilities": {
+      "persistent_selfhood": 0.6214388,
+      "global_integration": 0.66744816,
+      "reflexive_self_model": 0.715321,
+      "plastic_adaptive_learning": 0.61762226,
+      "value_goal_persistence": 0.65186757,
+      "self_optimization_capacity": 0.73489666
+    },
+    "level": "C4Learning",
+    "cwei_score": 0.6680991,
+    "passed_capabilities": 6,
+    "meets_threshold": true,
+    "open_world_survived": true,
+    "multi_universe_tested": false,
+    "notes": [
+      "Achieved C4-Learning level (CWCI=0.67)",
+      "Strengths: Reflexive Self-Model, Self-Optimization"
+    ]
+  },
+  "consciousness_level": "C4-Learning",
+  "cwei_score": 0.6680991
+}

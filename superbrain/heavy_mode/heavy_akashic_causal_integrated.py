@@ -519,7 +519,7 @@ def create_fast_forward_scheduler(config_ranges=None):
     return ff_module.CausalFastForwardScheduler(
         config_ranges=config_ranges,
         exploration_budget=100,
-        min_confidence_threshold=0.5
+        min_confidence_threshold=0.3  # 降低閾值啟用更多跳躍
     )
 
 

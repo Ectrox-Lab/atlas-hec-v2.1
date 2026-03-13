@@ -1,0 +1,140 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-03-12T14:13:18.963533",
+  "candidate_regions": {
+    "octopus_02": {
+      "cluster_id": 1,
+      "region_label": "stable_region",
+      "risk_score": 0.1317,
+      "embedding": [
+        13.945355415344238,
+        19.987192153930664
+      ]
+    },
+    "spike_01": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.4836,
+      "embedding": [
+        13.968546867370605,
+        21.93039321899414
+      ]
+    },
+    "exp_02": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.20115,
+      "embedding": [
+        14.65611457824707,
+        21.45374298095703
+      ]
+    },
+    "stable_02": {
+      "cluster_id": 1,
+      "region_label": "stable_region",
+      "risk_score": 0.12360000000000002,
+      "embedding": [
+        14.441280364990234,
+        20.554615020751953
+      ]
+    },
+    "oqs_02": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.2208,
+      "embedding": [
+        15.310029983520508,
+        21.85978126525879
+      ]
+    },
+    "exp_01": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.30015,
+      "embedding": [
+        14.867258071899414,
+        22.508316040039062
+      ]
+    },
+    "stable_01": {
+      "cluster_id": 1,
+      "region_label": "stable_region",
+      "risk_score": 0.2142,
+      "embedding": [
+        15.121267318725586,
+        20.464309692382812
+      ]
+    },
+    "spike_03": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.29309999999999997,
+      "embedding": [
+        13.3120756149292,
+        21.791515350341797
+      ]
+    },
+    "spike_02": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.43079999999999996,
+      "embedding": [
+        14.261104583740234,
+        22.798845291137695
+      ]
+    },
+    "octopus_01": {
+      "cluster_id": 1,
+      "region_label": "stable_region",
+      "risk_score": 0.1746,
+      "embedding": [
+        13.746062278747559,
+        20.70316505432129
+      ]
+    },
+    "oqs_01": {
+      "cluster_id": 0,
+      "region_label": "high_variance_region",
+      "risk_score": 0.24270000000000003,
+      "embedding": [
+        15.558272361755371,
+        21.30014991760254
+      ]
+    },
+    "stable_03": {
+      "cluster_id": 1,
+      "region_label": "stable_region",
+      "risk_score": 0.1848,
+      "embedding": [
+        14.531124114990234,
+        19.805055618286133
+      ]
+    }
+  },
+  "region_definitions": {
+    "0": {
+      "size": 7,
+      "label": "high_variance_region",
+      "members": [
+        "spike_01",
+        "exp_02",
+        "oqs_02",
+        "exp_01",
+        "spike_03",
+        "spike_02",
+        "oqs_01"
+      ]
+    },
+    "1": {
+      "size": 5,
+      "label": "stable_region",
+      "members": [
+        "octopus_02",
+        "stable_02",
+        "stable_01",
+        "octopus_01",
+        "stable_03"
+      ]
+    }
+  }
+}

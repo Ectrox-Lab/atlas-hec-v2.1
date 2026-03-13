@@ -1,0 +1,197 @@
+{
+  "version": "2.0",
+  "timestamp": "2026-03-12T13:01:22.658672",
+  "structures": {
+    "157b": {
+      "signature": "157b",
+      "family": "AutonomousHierarchical",
+      "dna": {
+        "local_autonomy": 0.75,
+        "broadcast_sparsity": 0.08,
+        "hierarchy_depth": 3,
+        "division_strength": 0.45,
+        "lineage_bias": 0.25,
+        "culling_style": "soft",
+        "memory_gating": "L3",
+        "coupling_topology": "small_world"
+      },
+      "validation_status": {
+        "replication": "failed",
+        "intake": "rejected",
+        "seed_spike_detected": true,
+        "seed_spike_severity": "critical"
+      },
+      "performance_summary": {
+        "original_cwci": 0.918,
+        "replication_cwci_min": 0.749,
+        "drop": 0.169
+      },
+      "negative_knowledge": {
+        "failure_modes": [
+          "seed_spike",
+          "high_variance"
+        ],
+        "fragility_indicators": [
+          "autonomy_hierarchy_imbalance"
+        ],
+        "rejection_reason": "Failed Step 1: Reproduction (min CWCI < 0.75)"
+      },
+      "lessons": {
+        "robustness": "low",
+        "seed_spike_risk": "critical",
+        "avoid_combinations": []
+      }
+    },
+    "41c0": {
+      "signature": "41c0",
+      "family": "Autonomous",
+      "dna": {
+        "local_autonomy": 0.82,
+        "broadcast_sparsity": 0.05,
+        "hierarchy_depth": 1,
+        "division_strength": 0.2,
+        "lineage_bias": 0.15,
+        "culling_style": "none",
+        "memory_gating": "L2",
+        "coupling_topology": "random"
+      },
+      "validation_status": {
+        "replication": "failed",
+        "intake": "rejected",
+        "seed_spike_detected": true,
+        "seed_spike_severity": "critical"
+      },
+      "performance_summary": {
+        "original_cwci": 0.917,
+        "replication_cwci_min": 0.703,
+        "drop": 0.214
+      },
+      "negative_knowledge": {
+        "failure_modes": [
+          "seed_spike",
+          "high_variance"
+        ],
+        "fragility_indicators": [
+          "autonomy_hierarchy_imbalance"
+        ],
+        "rejection_reason": "Failed Step 1: Reproduction (min CWCI < 0.75)"
+      },
+      "lessons": {
+        "robustness": "low",
+        "seed_spike_risk": "critical",
+        "avoid_combinations": [
+          "high_autonomy_low_hierarchy",
+          "ultra_sparse_broadcast"
+        ]
+      }
+    },
+    "92ec": {
+      "signature": "92ec",
+      "family": "AutonomousDividedMemorious",
+      "dna": {
+        "local_autonomy": 0.68,
+        "broadcast_sparsity": 0.06,
+        "hierarchy_depth": 2,
+        "division_strength": 0.55,
+        "lineage_bias": 0.35,
+        "culling_style": "hard",
+        "memory_gating": "L3",
+        "coupling_topology": "small_world"
+      },
+      "validation_status": {
+        "replication": "failed",
+        "intake": "rejected",
+        "seed_spike_detected": true,
+        "seed_spike_severity": "critical"
+      },
+      "performance_summary": {
+        "original_cwci": 0.906,
+        "replication_cwci_min": 0.736,
+        "drop": 0.17
+      },
+      "negative_knowledge": {
+        "failure_modes": [
+          "seed_spike",
+          "high_variance"
+        ],
+        "fragility_indicators": [
+          "autonomy_hierarchy_imbalance"
+        ],
+        "rejection_reason": "Failed Step 1: Reproduction (min CWCI < 0.75)"
+      },
+      "lessons": {
+        "robustness": "low",
+        "seed_spike_risk": "critical",
+        "avoid_combinations": []
+      }
+    }
+  },
+  "seed_spike_registry": [
+    {
+      "signature": "157b",
+      "family": "AutonomousHierarchical",
+      "original_cwci": 0.918,
+      "replication_min": 0.749,
+      "drop": 0.169,
+      "severity": "critical",
+      "dna_features": {
+        "autonomy": 0.75,
+        "hierarchy": 3,
+        "broadcast": 0.08
+      }
+    },
+    {
+      "signature": "41c0",
+      "family": "Autonomous",
+      "original_cwci": 0.917,
+      "replication_min": 0.703,
+      "drop": 0.214,
+      "severity": "critical",
+      "dna_features": {
+        "autonomy": 0.82,
+        "hierarchy": 1,
+        "broadcast": 0.05
+      }
+    },
+    {
+      "signature": "92ec",
+      "family": "AutonomousDividedMemorious",
+      "original_cwci": 0.906,
+      "replication_min": 0.736,
+      "drop": 0.17,
+      "severity": "critical",
+      "dna_features": {
+        "autonomy": 0.68,
+        "hierarchy": 2,
+        "broadcast": 0.06
+      }
+    }
+  ],
+  "negative_knowledge_digest": {
+    "total_structures_scanned": 3,
+    "seed_spikes_detected": 3,
+    "rejected_by_intake": 3,
+    "seed_spike_rate": "100%",
+    "common_failure_patterns": [
+      {
+        "type": "seed_spike",
+        "count": 3,
+        "description": "High CWCI in original scan, failed replication"
+      },
+      {
+        "type": "high_variance",
+        "count": 3,
+        "description": "CWCI variance > 10% across seeds"
+      }
+    ],
+    "fragile_combinations": [
+      "high_autonomy_low_hierarchy",
+      "ultra_sparse_broadcast"
+    ],
+    "lessons_learned": [
+      "High autonomy (>0.8) without sufficient hierarchy (<2) leads to instability",
+      "Ultra-sparse broadcast (<0.06) creates sensitivity to seed",
+      "CWCI 0.90+ in single scan is not predictive of robustness"
+    ]
+  }
+}
