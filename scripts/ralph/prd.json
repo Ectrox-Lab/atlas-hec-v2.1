@@ -1,0 +1,151 @@
+{
+  "title": "Task-1 Inheritance Effectiveness Validation",
+  "description": "Verify that Akashic Task-1 inheritance package measurably improves next-round candidate quality through controlled A/B comparison",
+  "version": "1.0.0",
+  "branchName": "task1-inheritance-effectiveness",
+  "targetMetrics": {
+    "bridgePassRateImprovement": "+10 percentage points",
+    "mainlineApproveRateImprovement": "+10 percentage points",
+    "meanThroughputDeltaShift": "from ~0% to >+0.5%",
+    "failureArchetypeReduction": "-10 percentage points"
+  },
+  "userStories": [
+    {
+      "id": "T1-001",
+      "title": "Ensure Akashic has sufficient Task-1 data",
+      "priority": 1,
+      "description": "Verify Akashic has ingested at least 5-10 Task-1 Bridge results to generate meaningful inheritance package",
+      "acceptanceCriteria": [
+        "Check if akashic_memory_v2.py has Task-1 data",
+        "If insufficient, run 5 quick Task-1 evaluations",
+        "Save results to akashic"
+      ],
+      "verificationCommand": "python -c \"import sys; sys.path.insert(0, 'socs_universe_search/multiverse_engine'); from akashic_memory_v2 import AkashicMemoryV2; a = AkashicMemoryV2(); print(f'Structures: {len(a.structures)}, Task1 patterns: {len(a.task1_knowledge.stable_delegation_patterns)})\"",
+      "passes": false
+    },
+    {
+      "id": "T1-002",
+      "title": "Generate Task-1 inheritance package",
+      "priority": 2,
+      "description": "Have Akashic write Task-1 inheritance package to disk for Fast Genesis consumption",
+      "acceptanceCriteria": [
+        "Call akashic.generate_task1_inheritance_package()",
+        "Save to benchmark_results/task1_inheritance/task1_inheritance_package.json",
+        "Verify file contains: stable_delegation_patterns, trust_update_priors, generator_priors"
+      ],
+      "verificationCommand": "cat benchmark_results/task1_inheritance/task1_inheritance_package.json | jq '.package_type, .stable_delegation_patterns | length'",
+      "passes": false
+    },
+    {
+      "id": "T1-003",
+      "title": "Generate Round A candidates (control, no inheritance)",
+      "priority": 3,
+      "description": "Generate 50 candidates using default priors (no inheritance influence)",
+      "acceptanceCriteria": [
+        "Run Fast Genesis with: --count 50 --no-inheritance",
+        "trust_decay range: 0.0-0.2 (uniform random)",
+        "trust_recovery range: 0.0-0.1 (uniform random)",
+        "Save to benchmark_results/task1_inheritance/round_a/candidates.json"
+      ],
+      "verificationCommand": "python -c \"import json; c=json.load(open('benchmark_results/task1_inheritance/round_a/candidates.json')); print(f'Count: {len(c)}, Sample trust_decay: {c[0][\"trust_decay\"]}')\"",
+      "passes": false
+    },
+    {
+      "id": "T1-004",
+      "title": "Run Round A through Bridge",
+      "priority": 4,
+      "description": "Evaluate all Round A candidates through Bridge Shadow and Dry-Run stages",
+      "acceptanceCriteria": [
+        "Process all 50 candidates through bridge_scheduler.py",
+        "Record: admission, shadow_pass, dry_run_pass, tier assignment",
+        "Save detailed results to round_a/bridge_results/"
+      ],
+      "verificationCommand": "ls benchmark_results/task1_inheritance/round_a/bridge_results/ | wc -l",
+      "passes": false
+    },
+    {
+      "id": "T1-005",
+      "title": "Run Round A Bridge-passed through Mainline",
+      "priority": 5,
+      "description": "Evaluate Bridge-passed candidates through strict Mainline validation",
+      "acceptanceCriteria": [
+        "Run task1_mainline_validator.py on Bridge Tier B candidates",
+        "Use: 1000 tasks, 3 seeds per candidate (faster mode)",
+        "Record: APPROVE/HOLD/REJECT, all metrics",
+        "Save to round_a/mainline_results/"
+      ],
+      "verificationCommand": "python -c \"import json; r=json.load(open('benchmark_results/task1_inheritance/round_a/mainline_results.json')); print(f'Tested: {r[\"summary\"][\"total_evaluated\"]}, Approved: {r[\"summary\"][\"approved\"]}')\"",
+      "passes": false
+    },
+    {
+      "id": "T1-006",
+      "title": "Generate Round B candidates (treatment, with inheritance)",
+      "priority": 6,
+      "description": "Generate 50 candidates using Task-1 inheritance package to bias generation",
+      "acceptanceCriteria": [
+        "Load task1_inheritance_package.json",
+        "trust_decay range: [0.05, 0.15] (from successful priors)",
+        "trust_recovery range: [0.03, 0.08] (from successful priors)",
+        "Avoid known failure patterns",
+        "Save to round_b/candidates.json"
+      ],
+      "verificationCommand": "python -c \"import json; c=json.load(open('benchmark_results/task1_inheritance/round_b/candidates.json')); td=[x[\"trust_decay\"] for x in c]; print(f'Count: {len(c)}, Mean trust_decay: {sum(td)/len(td):.3f}')\"",
+      "passes": false
+    },
+    {
+      "id": "T1-007",
+      "title": "Run Round B through Bridge",
+      "priority": 7,
+      "description": "Evaluate all Round B candidates through Bridge (same thresholds as Round A)",
+      "acceptanceCriteria": [
+        "Process all 50 candidates through bridge_scheduler.py",
+        "Use identical criteria as Round A",
+        "Save to round_b/bridge_results/"
+      ],
+      "verificationCommand": "ls benchmark_results/task1_inheritance/round_b/bridge_results/ | wc -l",
+      "passes": false
+    },
+    {
+      "id": "T1-008",
+      "title": "Run Round B Bridge-passed through Mainline",
+      "priority": 8,
+      "description": "Evaluate Round B Bridge-passed candidates through Mainline",
+      "acceptanceCriteria": [
+        "Run task1_mainline_validator.py on Bridge Tier B candidates",
+        "Same parameters as Round A (1000 tasks, 3 seeds)",
+        "Save to round_b/mainline_results/"
+      ],
+      "verificationCommand": "python -c \"import json; r=json.load(open('benchmark_results/task1_inheritance/round_b/mainline_results.json')); print(f'Tested: {r[\"summary\"][\"total_evaluated\"]}, Approved: {r[\"summary\"][\"approved\"]}')\"",
+      "passes": false
+    },
+    {
+      "id": "T1-009",
+      "title": "Statistical comparison of Round A vs Round B",
+      "priority": 9,
+      "description": "Compare metrics between control and treatment to measure inheritance effectiveness",
+      "acceptanceCriteria": [
+        "Calculate: Bridge pass rate (A vs B)",
+        "Calculate: Mainline approve rate (A vs B)",
+        "Calculate: Mean throughput delta (A vs B)",
+        "Calculate: Candidate variance (CV comparison)",
+        "Test for statistical significance"
+      ],
+      "verificationCommand": "python scripts/ralph/compare_rounds.py --round-a round_a --round-b round_b --output comparison_report.json",
+      "passes": false
+    },
+    {
+      "id": "T1-010",
+      "title": "Generate inheritance effectiveness report",
+      "priority": 10,
+      "description": "Write comprehensive report documenting whether inheritance improved search quality",
+      "acceptanceCriteria": [
+        "Read comparison_report.json",
+        "Generate markdown report with tables and charts",
+        "Include verdict: EFFECTIVE / INEFFECTIVE / INCONCLUSIVE",
+        "Save to benchmark_results/task1_inheritance/INHERITANCE_EFFECTIVENESS_VERDICT.md"
+      ],
+      "verificationCommand": "cat benchmark_results/task1_inheritance/INHERITANCE_EFFECTIVENESS_VERDICT.md | head -20",
+      "passes": false
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Task-1 Inheritance Effectiveness Run - Progress Log
+# Append-only. Ralph reads this for context between iterations.
+
+[2026-03-14T00:00:00Z] Ralph initialized for Task-1 inheritance effectiveness validation
+[2026-03-14T00:00:00Z] Target: Prove Akashic Task-1 package improves next-round search quality
+[2026-03-14T00:00:00Z] Method: Round A (control, n=50) vs Round B (inheritance, n=50)
+
+# To be filled by Ralph during execution:
+# [TIMESTAMP] Story T1-XXX: [outcome]
+# [TIMESTAMP] Story T1-XXX: ERROR - [error description]
