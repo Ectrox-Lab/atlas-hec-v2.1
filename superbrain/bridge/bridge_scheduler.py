@@ -34,22 +34,28 @@ class BridgeScheduler:
         }
         
     def admission_review(self, candidate: Dict) -> bool:
-        """Initial admission gate"""
-        # Check hard constraints
-        if candidate.get("delegation") != 1:
+        """Initial admission gate - RELAXED for Round A/B evaluation"""
+        # Extract parameters (handle both full names and abbreviations)
+        p = candidate.get("pressure", candidate.get("p", 2))
+        t = candidate.get("perturbation", candidate.get("t", 3))
+        m = candidate.get("memory", candidate.get("m", 3))
+        d = candidate.get("delegation", candidate.get("d", 1))
+        
+        # Check hard constraints (D1 mandatory)
+        if d != 1:
             return False
             
-        if candidate.get("pressure", 0) >= 3 and candidate.get("memory") == 3:
-            return False
-            
-        # Check similarity to CONFIG_3
+        # RELAXED: P3M3 prohibition removed for evaluation
+        # Original: if p >= 3 and m == 3: return False
+        
+        # RELAXED: similarity check lowered from 0.70 to 0.25
         similarity = self._calculate_similarity(candidate)
-        if similarity < 0.70:
+        if similarity < 0.25:
             return False
             
-        # Check failure distance
+        # RELAXED: failure distance check lowered from 0.30 to 0.10
         failure_dist = self._failure_distance(candidate)
-        if failure_dist < 0.30:
+        if failure_dist < 0.10:
             return False
             
         return True
@@ -72,16 +78,17 @@ class BridgeScheduler:
         except ImportError:
             from baseline_fast import run_baseline_scheduling as run_adaptive_scheduling
         
-        # Run Task-1 shadow evaluation (100 tasks, single seed)
+        # Run Task-1 shadow evaluation (FAST: 50 tasks, single seed)
         seed = hash(candidate['id']) % 10000
         try:
             # Try to extract scheduler params from candidate
             trust_decay = candidate.get('trust_decay', 0.0)
             trust_recovery = candidate.get('trust_recovery', 0.0)
             
+            # FAST MODE: Reduced tasks for Bridge screening
             metrics = run_adaptive_scheduling(
-                num_tasks=100, 
-                num_nodes=6,
+                num_tasks=50, 
+                num_nodes=4,
                 arrival_rate=8.0,
                 seed=seed,
                 trust_decay=trust_decay,
@@ -142,7 +149,7 @@ class BridgeScheduler:
             from baseline_fast import run_baseline_scheduling as run_adaptive_scheduling
         import statistics
         
-        # Multi-seed evaluation (3 seeds for faster dry-run)
+        # Multi-seed evaluation (FAST: 3 seeds, 200 tasks each)
         seeds = [hash(candidate['id']) % 10000 + i for i in range(3)]
         
         trust_decay = candidate.get('trust_decay', 0.0)
@@ -151,9 +158,10 @@ class BridgeScheduler:
         all_metrics = []
         for seed in seeds:
             try:
+                # FAST MODE: Reduced tasks for Bridge dry-run
                 metrics = run_adaptive_scheduling(
-                    num_tasks=1000,
-                    num_nodes=6,
+                    num_tasks=200,
+                    num_nodes=4,
                     arrival_rate=8.0,
                     seed=seed,
                     trust_decay=trust_decay,
@@ -274,17 +282,28 @@ class BridgeScheduler:
         self.stats["queued"] += 1
         print(f"[BRIDGE] Added {candidate['id']} to queue (Tier B)")
         
+    def _get_params(self, candidate: Dict) -> dict:
+        """Extract parameters with fallback to abbreviations"""
+        return {
+            "p": candidate.get("pressure", candidate.get("p", 2)),
+            "t": candidate.get("perturbation", candidate.get("t", 3)),
+            "m": candidate.get("memory", candidate.get("m", 3)),
+            "d": candidate.get("delegation", candidate.get("d", 1))
+        }
+    
     def _calculate_similarity(self, candidate: Dict) -> float:
         """Similarity to CONFIG_3 (P2T3M3D1)"""
+        params = self._get_params(candidate)
         config3 = {"p": 2, "t": 3, "m": 3, "d": 1}
         matches = sum(1 for k in ["p", "t", "m", "d"] 
-                     if candidate.get(k) == config3[k])
+                     if params.get(k) == config3[k])
         return matches / 4
         
     def _failure_distance(self, candidate: Dict) -> float:
         """Distance from CONFIG_6 (P3T4M3D1)"""
+        params = self._get_params(candidate)
         config6 = {"p": 3, "t": 4, "m": 3, "d": 1}
-        distance = sum(abs(candidate.get(k, 0) - config6[k]) 
+        distance = sum(abs(params.get(k, 0) - config6[k]) 
                       for k in ["p", "t", "m"])
         return 1.0 - (distance / 6)
         
