@@ -269,3 +269,222 @@ Task-1 Inheritance Effectiveness Run 满足以下**至少 3/5**：
 **批准**: Atlas-HEC Research Committee  
 **生效**: 2026-03-14  
 **版本**: v1.0
+
+---
+
+## 9. 实验登记总表（长期维护）
+
+下面只登记"重要实验 / 重要阶段变化"。每条至少保留：
+
+- 实验名称
+- 结论级别
+- 关键结果
+- 结果目录
+- 关键文件
+
+---
+
+### 9.1 已归档参考线
+
+**E-REF-001 AtlasChen Superbrain 归档线**
+
+- **级别**: Archived Reference
+- **结论**: 最小持续自我改进闭环、自维护、24h 稳定性已验证
+- **结果目录**:
+  - `experiments/superbrain/p5b/`
+  - `experiments/superbrain/p6/`
+- **关键文件**:
+  - `SUPERBRAIN_FINAL_REPORT.md`
+  - `SUPERBRAIN_STATUS.md`
+  - `P6_24H_STATUS.md`
+
+---
+
+### 9.2 进化搜索线
+
+**E-EVO-001 Step 1 Smoke Test**
+
+- **级别**: PASS
+- **结论**: 6→128 协议与跨轮编排可运行
+- **结果目录**: `benchmark_results/step1_smoke/`
+- **关键文件**:
+  - `superbrain/evolution/round_controller.py`
+  - `superbrain/evolution/lineage_tracker.py`
+  - `superbrain/evolution/family_registry.py`
+
+**E-EVO-002 Step 2 Family Emergence**
+
+- **级别**: COMPLETE
+- **结论**: Family emergence confirmed (Round 1-4)
+- **结果目录**: `benchmark_results/step2_validation/`
+- **关键文件**:
+  - `STEP2_REPORT.md`
+  - `round_1_summary.json` - `round_5_summary.json`
+  - `round_1_families.json` - `round_5_families.json`
+  - `round_1_elites.json` - `round_5_elites.json`
+
+**E-EVO-003 Step 3 Convergence**
+
+- **级别**: CONVERGING ACHIEVED
+- **结论**: F_P3T4M4 dominant family emerged at Round 10
+- **结果目录**: `benchmark_results/step3_round6_10/`
+- **关键文件**:
+  - `STEP3_REPORT.md`
+  - `EVOLUTION_SEARCH_CONVERGENCE_REPORT.md`
+  - `round_10_summary.json`
+  - `round_10_families.json`
+  - `round_10_elites.json`
+
+---
+
+### 9.3 P0 学习线
+
+**E-P0-001 P0-4 Real Gradient Unblocked**
+
+- **级别**: PASS
+- **结论**: 真实梯度训练链打通，old `apply_noise()` 主路径被替换
+- **关键结果**: RealUNetFull + backward() + update() 验证通过
+- **结果目录**: `code-diffusion/benchmark_results/`
+- **关键文件**:
+  - `code-diffusion/src/training/mod.rs` (refactored)
+  - `code-diffusion/src/models/realunet_full.rs`
+  - `code-diffusion/tests/test_single_step_update.rs`
+  - `code-diffusion/tests/test_loss_trend.rs`
+
+**E-P0-002 P0-5 Mini Validation**
+
+- **级别**: PASS
+- **结论**: Mean improvement 5.17% > 5% threshold, 3/3 seeds positive
+- **关键结果**: LR=0.01, 7500 steps, dim=512
+- **结果目录**:
+  - `benchmark_results/p0_5_mini_validation/`
+  - `benchmark_results/p0_5_hyperparam_sweep/`
+  - `benchmark_results/p0_5_final_validation/`
+- **关键文件**:
+  - `code-diffusion/src/bin/p0_5_mini_validation.rs`
+  - `code-diffusion/src/bin/p0_5_hyperparam_sweep.rs`
+  - `code-diffusion/src/bin/p0_5_final_validation.rs`
+  - `summary.json`, `report.md`
+
+---
+
+### 9.4 Task-1 现实闭环线
+
+**E-T1-001 Task-1 Simulator + Baseline**
+
+- **级别**: PASS
+- **结论**: Baseline 与 adaptive 可区分，improvement 可测
+- **关键结果**: Baseline 18.67%, Adaptive 19.67%, +5.4%
+- **结果目录**: `benchmark_results/task1_baseline/`
+- **关键文件**:
+  - `superbrain/task1_simulator/environment.py`
+  - `superbrain/task1_simulator/schedulers.py`
+  - `superbrain/task1_simulator/baseline_fast.py`
+  - `superbrain/task1_simulator/adaptive_fast.py`
+  - `baseline_v2.json`
+
+**E-T1-002 Task-1 Bridge + Mainline Integration**
+
+- **级别**: COMPLETE
+- **结论**: Bridge 相对阈值、Mainline validator、Akashic Task-1 包已接入
+- **结果目录**: `benchmark_results/task1_mainline/`
+- **关键文件**:
+  - `superbrain/bridge/bridge_scheduler.py` (Task-1 thresholds)
+  - `superbrain/mainline/task1_mainline_validator.py`
+  - `socs_universe_search/multiverse_engine/akashic_memory_v2.py` (Task1KnowledgeArchive)
+  - `TASK1_REALITY_LOOP_STATUS.md`
+
+**E-T1-003 Task-1 Inheritance Effectiveness Run**
+
+- **级别**: PLANNED (当前唯一关键验证门)
+- **目标**: 证明 Round B (with inheritance) > Round A (without)
+- **方法**: 50 candidates × 2 rounds × A/B comparison
+- **成功标准**:
+  1. Bridge pass rate +5pp
+  2. Mainline approve rate +5pp
+  3. Mean throughput delta > +0.3%
+  4. Cross-seed repeatable
+  5. Failure archetype recurrence ↓
+- **执行计划**: `scripts/ralph/prd.json` (S1-S7)
+- **结果目录**: `benchmark_results/task1_inheritance_ab/` (待创建)
+
+---
+
+### 9.5 Heavy Mode / Phase C
+
+**E-HM-001 Phase C 集成验证**
+
+- **级别**: PLANNED
+- **结论**: Fast-Forward scheduler 已实现，待验证真实加速效果
+- **目标**: Fast-Forward acceleration ≥ 2×, False skip rate < 10%
+- **关键文件**:
+  - `superbrain/heavy_mode/causal_fast_forward.py`
+  - `PHASE_C_VALIDATION_PLAN.md`
+
+---
+
+### 9.6 组合性与模块重用线
+
+**E-COMP-001 组合性主线假设纳入**
+
+- **级别**: ACTIVE HYPOTHESIS
+- **结论**: 主线新增"有限核心能力 + 模块重用/路由/组合"假设
+- **核心内容**:
+  - 核心能力集合应尽量小而强
+  - Task-specific skill 视为可被调用和组合的模块资产
+  - 真正关键的是高效激活、抑制、路由与重组
+- **结果目录**: `PROJECT.md` (本文档)
+
+**E-COMP-002 Task-1 Compositional Reuse Validation**
+
+- **级别**: PLANNED
+- **目标**: 验证 Task-1 成功时，系统是在复用旧模块，还是在隐性重造结构
+- **验证方法**:
+  - 候选 family 分布分析
+  - 已知 good family (F_P3T4M4) 占比变化
+  - 新模块 vs 复用模块的激活模式
+- **结果目录**: `benchmark_results/task1_compositional_analysis/` (待创建)
+- **依赖**: E-T1-003 完成后启动
+
+---
+
+## 10. 当前系统状态总览
+
+| 层级 | 状态 | 关键证据 |
+|------|------|----------|
+| **L1 Continuity** | 🟡 READY | Continuity Probe v1 待启动 |
+| **L2 Memory** | 🔴 BLOCKED | L1 完成后启动 |
+| **L3 Self-model** | 🔴 BLOCKED | L2 完成后启动 |
+| **L4 Self-improvement** | 🟡 IN PROGRESS | **E-T1-003 是当前唯一关键验证** |
+
+### 已成立
+
+- ✅ 进化搜索引擎可运行并出现收敛家族 (E-EVO-003)
+- ✅ Task-1 第一现实验证链已闭合 (E-T1-002)
+- ✅ P0 真实梯度训练链已打通并通过 P0-5 (E-P0-002)
+- ✅ 异构 CPU + GPU 执行 PoC 已成立
+- ✅ Akashic 可写 Task-1 继承包
+
+### 尚未成立
+
+- 🔴 Inheritance Effectiveness 仍未最终证明 (E-T1-003)
+- 🔴 多任务现实闭环尚未建立
+- 🔴 真异构执行体尚未完全闭合到主任务引擎
+
+---
+
+## 11. 当前最短行动序列
+
+当前最短序列：
+
+1. **实现 Fast Genesis 的 inheritance package 消费** (S1)
+2. **运行 Task-1 Round A / B** (S3-S4)
+3. **判断 L4 / P4 是否成立** (S5)
+4. **若成立** → 进入 Task-1 self-improvement loop 扩展
+5. **若不成立** → 回查 Akashic ↔ Fast Genesis 接口与 package schema
+
+---
+
+**批准**: Atlas-HEC Research Committee  
+**生效**: 2026-03-14  
+**版本**: v1.0
