@@ -1,0 +1,227 @@
+{
+  "current_round": 2,
+  "total_families": 9,
+  "active_families": 4,
+  "dominant_families": [],
+  "convergence_candidate": null,
+  "families": {
+    "F_P2T3M3": {
+      "family_id": "F_P2T3M3",
+      "core_signature": {
+        "P": 2,
+        "T": 3,
+        "M": 3
+      },
+      "created_round": 1,
+      "family_age": 2,
+      "adaptation_trend": "declining",
+      "convergence_score": 0.975,
+      "generations": [
+        {
+          "round": 1,
+          "rank": 1,
+          "members": [
+            "R1_E01"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.748729"
+        },
+        {
+          "round": 2,
+          "rank": 2,
+          "members": [
+            "R2_E02"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.757230"
+        }
+      ]
+    },
+    "F_P3T4M4": {
+      "family_id": "F_P3T4M4",
+      "core_signature": {
+        "P": 3,
+        "T": 4,
+        "M": 4
+      },
+      "created_round": 1,
+      "family_age": 1,
+      "adaptation_trend": "declining",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 1,
+          "rank": 2,
+          "members": [
+            "R1_E02",
+            "R1_E04"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.748754"
+        }
+      ]
+    },
+    "F_P1T4M4": {
+      "family_id": "F_P1T4M4",
+      "core_signature": {
+        "P": 1,
+        "T": 4,
+        "M": 4
+      },
+      "created_round": 1,
+      "family_age": 1,
+      "adaptation_trend": "declining",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 1,
+          "rank": 3,
+          "members": [
+            "R1_E03"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.748770"
+        }
+      ]
+    },
+    "F_P2T3M4": {
+      "family_id": "F_P2T3M4",
+      "core_signature": {
+        "P": 2,
+        "T": 3,
+        "M": 4
+      },
+      "created_round": 1,
+      "family_age": 1,
+      "adaptation_trend": "declining",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 1,
+          "rank": 5,
+          "members": [
+            "R1_E05"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.748783"
+        }
+      ]
+    },
+    "F_P2T4M5": {
+      "family_id": "F_P2T4M5",
+      "core_signature": {
+        "P": 2,
+        "T": 4,
+        "M": 5
+      },
+      "created_round": 1,
+      "family_age": 1,
+      "adaptation_trend": "declining",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 1,
+          "rank": 6,
+          "members": [
+            "R1_E06"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.748795"
+        }
+      ]
+    },
+    "F_P3T3M3": {
+      "family_id": "F_P3T3M3",
+      "core_signature": {
+        "P": 3,
+        "T": 3,
+        "M": 3
+      },
+      "created_round": 2,
+      "family_age": 1,
+      "adaptation_trend": "stable",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 2,
+          "rank": 1,
+          "members": [
+            "R2_E01"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.757209"
+        }
+      ]
+    },
+    "F_P4T4M4": {
+      "family_id": "F_P4T4M4",
+      "core_signature": {
+        "P": 4,
+        "T": 4,
+        "M": 4
+      },
+      "created_round": 2,
+      "family_age": 1,
+      "adaptation_trend": "stable",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 2,
+          "rank": 3,
+          "members": [
+            "R2_E03"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.757299"
+        }
+      ]
+    },
+    "F_P2T4M4": {
+      "family_id": "F_P2T4M4",
+      "core_signature": {
+        "P": 2,
+        "T": 4,
+        "M": 4
+      },
+      "created_round": 2,
+      "family_age": 1,
+      "adaptation_trend": "stable",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 2,
+          "rank": 4,
+          "members": [
+            "R2_E04",
+            "R2_E06"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.757316"
+        }
+      ]
+    },
+    "F_P3T3M4": {
+      "family_id": "F_P3T3M4",
+      "core_signature": {
+        "P": 3,
+        "T": 3,
+        "M": 4
+      },
+      "created_round": 2,
+      "family_age": 1,
+      "adaptation_trend": "stable",
+      "convergence_score": 0.0,
+      "generations": [
+        {
+          "round": 2,
+          "rank": 5,
+          "members": [
+            "R2_E05"
+          ],
+          "avg_score": 1.0,
+          "timestamp": "2026-03-14T00:50:47.757330"
+        }
+      ]
+    }
+  }
+}

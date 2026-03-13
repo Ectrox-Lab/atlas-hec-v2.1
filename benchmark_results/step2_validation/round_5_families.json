@@ -1,0 +1,9 @@
+{
+  "current_round": 5,
+  "total_families": 18,
+  "active_families": 3,
+  "dominant_families": [
+    "F_P3T2M3",
+    "F_P1T3M4"
+  ],
+  "convergence_candidate": 

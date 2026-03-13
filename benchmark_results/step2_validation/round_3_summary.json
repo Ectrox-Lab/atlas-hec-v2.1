@@ -1,0 +1,73 @@
+{
+  "round": 3,
+  "timestamp": "2026-03-14T00:50:47.771846",
+  "output_elites": [
+    {
+      "id": "R3_S3A28",
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "score": 1
+    },
+    {
+      "id": "R3_S0F0C",
+      "config": {
+        "P": 2,
+        "T": 2,
+        "M": 3,
+        "D": 2
+      },
+      "score": 1
+    },
+    {
+      "id": "R3_S41C3",
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 3
+      },
+      "score": 1
+    },
+    {
+      "id": "R3_SBB68",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "score": 1
+    },
+    {
+      "id": "R3_S2F6E",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "score": 1
+    },
+    {
+      "id": "R3_S0D93",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "score": 1
+    }
+  ],
+  "family_summary": {
+    "current_round": 3,
+    "total_families": 12,
+    "active_families": 4,
+    "dominant_families": [
+      "F_P3T3M3"
+    ],
+    "convergence_candidate": 

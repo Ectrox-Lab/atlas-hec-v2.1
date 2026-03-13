@@ -1,0 +1,122 @@
+[
+  {
+    "id": "R4_S1B14",
+    "config": {
+      "P": 1,
+      "T": 3,
+      "M": 4,
+      "D": 1
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R3_SA546"
+    ],
+    "mutation_op": "T+1",
+    "scores": {
+      "stability": 0.9,
+      "efficiency": 0.95,
+      "recovery": 0.9,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R4_SF4CC",
+    "config": {
+      "P": 1,
+      "T": 2,
+      "M": 3,
+      "D": 1
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R3_SA546"
+    ],
+    "mutation_op": "M-1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 0.95,
+      "recovery": 0.9,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R4_S7324",
+    "config": {
+      "P": 4,
+      "T": 2,
+      "M": 3,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R3_S6896"
+    ],
+    "mutation_op": "P+1",
+    "scores": {
+      "stability": 0.9,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R4_SF755",
+    "config": {
+      "P": 3,
+      "T": 2,
+      "M": 3,
+      "D": 3
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R3_S6896"
+    ],
+    "mutation_op": "D+1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 0.95,
+      "recovery": 0.9,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R4_SDE17",
+    "config": {
+      "P": 3,
+      "T": 3,
+      "M": 3,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R3_S6896"
+    ],
+    "mutation_op": "T+1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R4_SA697",
+    "config": {
+      "P": 3,
+      "T": 2,
+      "M": 2,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R3_S6896"
+    ],
+    "mutation_op": "M-1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  }
+]

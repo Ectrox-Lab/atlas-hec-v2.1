@@ -1,0 +1,122 @@
+[
+  {
+    "id": "R2_S80E3",
+    "config": {
+      "P": 3,
+      "T": 3,
+      "M": 3,
+      "D": 1
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R1_SF6B3"
+    ],
+    "mutation_op": "P+1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 1.0,
+      "recovery": 0.9,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R2_S4BE0",
+    "config": {
+      "P": 2,
+      "T": 3,
+      "M": 3,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R1_SF6B3"
+    ],
+    "mutation_op": "D+1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R2_SA18C",
+    "config": {
+      "P": 4,
+      "T": 4,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R1_SC9A1"
+    ],
+    "mutation_op": "P+1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R2_SC882",
+    "config": {
+      "P": 2,
+      "T": 4,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R1_SC9A1"
+    ],
+    "mutation_op": "P-1",
+    "scores": {
+      "stability": 0.9,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R2_S5F50",
+    "config": {
+      "P": 3,
+      "T": 3,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R1_SC9A1"
+    ],
+    "mutation_op": "T-1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R2_S37F8",
+    "config": {
+      "P": 2,
+      "T": 4,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R1_SC9A1"
+    ],
+    "mutation_op": "P-1",
+    "scores": {
+      "stability": 0.9,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  }
+]

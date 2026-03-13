@@ -1,0 +1,2205 @@
+{
+  "round": 3,
+  "total_seeds": 128,
+  "by_type": {
+    "mutation": 96,
+    "crossover": 24,
+    "immigrant": 8
+  },
+  "mutation_stats": {
+    "P+1": 12,
+    "P-1": 12,
+    "T+1": 12,
+    "T-1": 12,
+    "M+1": 12,
+    "M-1": 12,
+    "D+1": 12,
+    "D-1": 12
+  },
+  "records": {
+    "R3_S0E27": {
+      "seed_id": "R3_S0E27",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765615"
+    },
+    "R3_S141B": {
+      "seed_id": "R3_S141B",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765627"
+    },
+    "R3_SBB64": {
+      "seed_id": "R3_SBB64",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765635"
+    },
+    "R3_S39BD": {
+      "seed_id": "R3_S39BD",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 2,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765642"
+    },
+    "R3_S5D15": {
+      "seed_id": "R3_S5D15",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765649"
+    },
+    "R3_SF9B6": {
+      "seed_id": "R3_SF9B6",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 2,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765656"
+    },
+    "R3_S3A28": {
+      "seed_id": "R3_S3A28",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765664"
+    },
+    "R3_SD822": {
+      "seed_id": "R3_SD822",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765671"
+    },
+    "R3_S8008": {
+      "seed_id": "R3_S8008",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765677"
+    },
+    "R3_S319C": {
+      "seed_id": "R3_S319C",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765684"
+    },
+    "R3_S15AC": {
+      "seed_id": "R3_S15AC",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765691"
+    },
+    "R3_SAC67": {
+      "seed_id": "R3_SAC67",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 2,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765697"
+    },
+    "R3_SE9A5": {
+      "seed_id": "R3_SE9A5",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765704"
+    },
+    "R3_S0847": {
+      "seed_id": "R3_S0847",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 2,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765710"
+    },
+    "R3_S41DF": {
+      "seed_id": "R3_S41DF",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765717"
+    },
+    "R3_SFD06": {
+      "seed_id": "R3_SFD06",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S80E3"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765723"
+    },
+    "R3_S73FF": {
+      "seed_id": "R3_S73FF",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765732"
+    },
+    "R3_SAED5": {
+      "seed_id": "R3_SAED5",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765738"
+    },
+    "R3_SA8B1": {
+      "seed_id": "R3_SA8B1",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765745"
+    },
+    "R3_S822D": {
+      "seed_id": "R3_S822D",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 2,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765751"
+    },
+    "R3_S118E": {
+      "seed_id": "R3_S118E",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765757"
+    },
+    "R3_SD753": {
+      "seed_id": "R3_SD753",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 2,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765763"
+    },
+    "R3_SEF62": {
+      "seed_id": "R3_SEF62",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.765770"
+    },
+    "R3_S3E8A": {
+      "seed_id": "R3_S3E8A",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765776"
+    },
+    "R3_SEFD7": {
+      "seed_id": "R3_SEFD7",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765783"
+    },
+    "R3_S19F5": {
+      "seed_id": "R3_S19F5",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765789"
+    },
+    "R3_S8F84": {
+      "seed_id": "R3_S8F84",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765795"
+    },
+    "R3_S0F0C": {
+      "seed_id": "R3_S0F0C",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 2,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765802"
+    },
+    "R3_S7011": {
+      "seed_id": "R3_S7011",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765808"
+    },
+    "R3_SB068": {
+      "seed_id": "R3_SB068",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 2,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765814"
+    },
+    "R3_S41C3": {
+      "seed_id": "R3_S41C3",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.765821"
+    },
+    "R3_S7796": {
+      "seed_id": "R3_S7796",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S4BE0"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765827"
+    },
+    "R3_S9B55": {
+      "seed_id": "R3_S9B55",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 5,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765835"
+    },
+    "R3_SBB68": {
+      "seed_id": "R3_SBB68",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765842"
+    },
+    "R3_S96BE": {
+      "seed_id": "R3_S96BE",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 5,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765848"
+    },
+    "R3_SDE66": {
+      "seed_id": "R3_SDE66",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765855"
+    },
+    "R3_SF532": {
+      "seed_id": "R3_SF532",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765861"
+    },
+    "R3_S2F6E": {
+      "seed_id": "R3_S2F6E",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765868"
+    },
+    "R3_S178C": {
+      "seed_id": "R3_S178C",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.765874"
+    },
+    "R3_S721E": {
+      "seed_id": "R3_S721E",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765880"
+    },
+    "R3_SE7F3": {
+      "seed_id": "R3_SE7F3",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 5,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765886"
+    },
+    "R3_S3EF2": {
+      "seed_id": "R3_S3EF2",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765893"
+    },
+    "R3_S4143": {
+      "seed_id": "R3_S4143",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 5,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765899"
+    },
+    "R3_S8F7F": {
+      "seed_id": "R3_S8F7F",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765906"
+    },
+    "R3_S0D93": {
+      "seed_id": "R3_S0D93",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765912"
+    },
+    "R3_SC60D": {
+      "seed_id": "R3_SC60D",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765918"
+    },
+    "R3_SA61E": {
+      "seed_id": "R3_SA61E",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.765924"
+    },
+    "R3_SAD22": {
+      "seed_id": "R3_SAD22",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SA18C"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765930"
+    },
+    "R3_S08F2": {
+      "seed_id": "R3_S08F2",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765937"
+    },
+    "R3_S07A0": {
+      "seed_id": "R3_S07A0",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765944"
+    },
+    "R3_S2862": {
+      "seed_id": "R3_S2862",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 5,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765950"
+    },
+    "R3_S578E": {
+      "seed_id": "R3_S578E",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765956"
+    },
+    "R3_S6B28": {
+      "seed_id": "R3_S6B28",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765962"
+    },
+    "R3_S414F": {
+      "seed_id": "R3_S414F",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765968"
+    },
+    "R3_S1799": {
+      "seed_id": "R3_S1799",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.765975"
+    },
+    "R3_S082D": {
+      "seed_id": "R3_S082D",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.765981"
+    },
+    "R3_S0E7A": {
+      "seed_id": "R3_S0E7A",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765987"
+    },
+    "R3_S8D5B": {
+      "seed_id": "R3_S8D5B",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765993"
+    },
+    "R3_SADB0": {
+      "seed_id": "R3_SADB0",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 5,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.765999"
+    },
+    "R3_S8891": {
+      "seed_id": "R3_S8891",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766005"
+    },
+    "R3_S761D": {
+      "seed_id": "R3_S761D",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766011"
+    },
+    "R3_S2534": {
+      "seed_id": "R3_S2534",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766018"
+    },
+    "R3_S8493": {
+      "seed_id": "R3_S8493",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766024"
+    },
+    "R3_SC9EC": {
+      "seed_id": "R3_SC9EC",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_SC882"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766030"
+    },
+    "R3_S22F4": {
+      "seed_id": "R3_S22F4",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766037"
+    },
+    "R3_SF406": {
+      "seed_id": "R3_SF406",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766044"
+    },
+    "R3_S0987": {
+      "seed_id": "R3_S0987",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766050"
+    },
+    "R3_S0681": {
+      "seed_id": "R3_S0681",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 2,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766057"
+    },
+    "R3_S96E0": {
+      "seed_id": "R3_S96E0",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766064"
+    },
+    "R3_SEAB5": {
+      "seed_id": "R3_SEAB5",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766070"
+    },
+    "R3_S61F0": {
+      "seed_id": "R3_S61F0",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766077"
+    },
+    "R3_SFACA": {
+      "seed_id": "R3_SFACA",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766083"
+    },
+    "R3_SACE3": {
+      "seed_id": "R3_SACE3",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766089"
+    },
+    "R3_SCACC": {
+      "seed_id": "R3_SCACC",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766095"
+    },
+    "R3_S1392": {
+      "seed_id": "R3_S1392",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766101"
+    },
+    "R3_SFF0E": {
+      "seed_id": "R3_SFF0E",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 2,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766107"
+    },
+    "R3_S4C8D": {
+      "seed_id": "R3_S4C8D",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766113"
+    },
+    "R3_S5ECB": {
+      "seed_id": "R3_S5ECB",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766119"
+    },
+    "R3_SCCD5": {
+      "seed_id": "R3_SCCD5",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766126"
+    },
+    "R3_SEAF9": {
+      "seed_id": "R3_SEAF9",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S5F50"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766132"
+    },
+    "R3_S1457": {
+      "seed_id": "R3_S1457",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766139"
+    },
+    "R3_S28BE": {
+      "seed_id": "R3_S28BE",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766145"
+    },
+    "R3_SC6F9": {
+      "seed_id": "R3_SC6F9",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 5,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766152"
+    },
+    "R3_SECBE": {
+      "seed_id": "R3_SECBE",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766158"
+    },
+    "R3_S564F": {
+      "seed_id": "R3_S564F",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766164"
+    },
+    "R3_S40A7": {
+      "seed_id": "R3_S40A7",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766170"
+    },
+    "R3_S5407": {
+      "seed_id": "R3_S5407",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766177"
+    },
+    "R3_S32AB": {
+      "seed_id": "R3_S32AB",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766183"
+    },
+    "R3_S7A64": {
+      "seed_id": "R3_S7A64",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "P+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766189"
+    },
+    "R3_SC5D4": {
+      "seed_id": "R3_SC5D4",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "P-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766195"
+    },
+    "R3_SFCD0": {
+      "seed_id": "R3_SFCD0",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "T+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 5,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766201"
+    },
+    "R3_S06D0": {
+      "seed_id": "R3_S06D0",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "T-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766207"
+    },
+    "R3_S62A5": {
+      "seed_id": "R3_S62A5",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "M+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 5,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766214"
+    },
+    "R3_S1463": {
+      "seed_id": "R3_S1463",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "M-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766220"
+    },
+    "R3_SFF71": {
+      "seed_id": "R3_SFF71",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "D+1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766227"
+    },
+    "R3_SD49A": {
+      "seed_id": "R3_SD49A",
+      "generation": 3,
+      "parent_type": "mutation",
+      "parent_ids": [
+        "R2_S37F8"
+      ],
+      "mutation_operator": "D-1",
+      "crossover_partner": null,
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766233"
+    },
+    "R3_X7B06": {
+      "seed_id": "R3_X7B06",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_SA18C"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SA18C",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766251"
+    },
+    "R3_X312F": {
+      "seed_id": "R3_X312F",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_S5F50"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S5F50",
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766259"
+    },
+    "R3_X0BE4": {
+      "seed_id": "R3_X0BE4",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_SA18C"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SA18C",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766265"
+    },
+    "R3_X6217": {
+      "seed_id": "R3_X6217",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766271"
+    },
+    "R3_XB1C6": {
+      "seed_id": "R3_XB1C6",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766277"
+    },
+    "R3_X5518": {
+      "seed_id": "R3_X5518",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766283"
+    },
+    "R3_XED33": {
+      "seed_id": "R3_XED33",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_S5F50"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S5F50",
+      "config": {
+        "P": 4,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766289"
+    },
+    "R3_XD88B": {
+      "seed_id": "R3_XD88B",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_S5F50"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S5F50",
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766295"
+    },
+    "R3_X5377": {
+      "seed_id": "R3_X5377",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766300"
+    },
+    "R3_X3FE2": {
+      "seed_id": "R3_X3FE2",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_S4BE0"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S4BE0",
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766306"
+    },
+    "R3_XCD4C": {
+      "seed_id": "R3_XCD4C",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_S4BE0"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S4BE0",
+      "config": {
+        "P": 3,
+        "T": 3,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766312"
+    },
+    "R3_X6434": {
+      "seed_id": "R3_X6434",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766318"
+    },
+    "R3_XE0BB": {
+      "seed_id": "R3_XE0BB",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766324"
+    },
+    "R3_X5DBF": {
+      "seed_id": "R3_X5DBF",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766330"
+    },
+    "R3_XB7FA": {
+      "seed_id": "R3_XB7FA",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766336"
+    },
+    "R3_XA8BA": {
+      "seed_id": "R3_XA8BA",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766342"
+    },
+    "R3_XEA47": {
+      "seed_id": "R3_XEA47",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766348"
+    },
+    "R3_XB070": {
+      "seed_id": "R3_XB070",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 3,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766353"
+    },
+    "R3_X3767": {
+      "seed_id": "R3_X3767",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S4BE0",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 2,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766359"
+    },
+    "R3_XC613": {
+      "seed_id": "R3_XC613",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766365"
+    },
+    "R3_X38EE": {
+      "seed_id": "R3_X38EE",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SA18C",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 4,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766370"
+    },
+    "R3_XE1AD": {
+      "seed_id": "R3_XE1AD",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_S37F8"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S37F8",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 3,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766376"
+    },
+    "R3_XFD94": {
+      "seed_id": "R3_XFD94",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_SC882",
+        "R2_S5F50"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_S5F50",
+      "config": {
+        "P": 2,
+        "T": 3,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766382"
+    },
+    "R3_X58B6": {
+      "seed_id": "R3_X58B6",
+      "generation": 3,
+      "parent_type": "crossover",
+      "parent_ids": [
+        "R2_S80E3",
+        "R2_SC882"
+      ],
+      "mutation_operator": null,
+      "crossover_partner": "R2_SC882",
+      "config": {
+        "P": 3,
+        "T": 4,
+        "M": 4,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766388"
+    },
+    "R3_IB0B0": {
+      "seed_id": "R3_IB0B0",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 8,
+        "M": 3,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766398"
+    },
+    "R3_I09F4": {
+      "seed_id": "R3_I09F4",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 5,
+        "T": 8,
+        "M": 4,
+        "D": 4
+      },
+      "timestamp": "2026-03-14T00:50:47.766406"
+    },
+    "R3_I7333": {
+      "seed_id": "R3_I7333",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 2,
+        "M": 2,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766414"
+    },
+    "R3_I98B7": {
+      "seed_id": "R3_I98B7",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 3,
+        "T": 5,
+        "M": 6,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766421"
+    },
+    "R3_I00B1": {
+      "seed_id": "R3_I00B1",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 1,
+        "T": 4,
+        "M": 6,
+        "D": 1
+      },
+      "timestamp": "2026-03-14T00:50:47.766428"
+    },
+    "R3_IFF6E": {
+      "seed_id": "R3_IFF6E",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 6,
+        "T": 5,
+        "M": 6,
+        "D": 4
+      },
+      "timestamp": "2026-03-14T00:50:47.766435"
+    },
+    "R3_IE07D": {
+      "seed_id": "R3_IE07D",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 7,
+        "T": 2,
+        "M": 1,
+        "D": 3
+      },
+      "timestamp": "2026-03-14T00:50:47.766443"
+    },
+    "R3_IA9AF": {
+      "seed_id": "R3_IA9AF",
+      "generation": 3,
+      "parent_type": "immigrant",
+      "parent_ids": [],
+      "mutation_operator": null,
+      "crossover_partner": null,
+      "config": {
+        "P": 7,
+        "T": 3,
+        "M": 1,
+        "D": 2
+      },
+      "timestamp": "2026-03-14T00:50:47.766450"
+    }
+  }
+}
