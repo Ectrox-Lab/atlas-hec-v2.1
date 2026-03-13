@@ -1,0 +1,30 @@
+{
+  "package_type": "task1_orchestration",
+  "version": "2.1",
+  "timestamp": "2026-03-14T12:00:00Z",
+  "stable_delegation_patterns": [
+    {"pattern": "adaptive_migration", "success_rate": 0.92},
+    {"pattern": "trust_based_routing", "success_rate": 0.88}
+  ],
+  "recommended_recovery_sequences": [
+    ["detect_fault", "isolate_node", "redistribute_tasks", "restore_trust"],
+    ["detect_fault", "immediate_switch", "gradual_recovery"]
+  ],
+  "trust_update_priors": {
+    "trust_decay": {"mean": 0.10, "std": 0.03},
+    "trust_recovery": {"mean": 0.05, "std": 0.02},
+    "migration_threshold": {"mean": 0.30, "std": 0.08}
+  },
+  "avoid_switching_patterns": [
+    "rapid_switching",
+    "trust_collapse_cascade",
+    "migration_thrashing"
+  ],
+  "proxy_mainline_notes": "shadow throughput correlates positively; dry-run variance predicts mainline success",
+  "generator_priors": {
+    "trust_decay_range": [0.05, 0.15],
+    "trust_recovery_range": [0.03, 0.08],
+    "migration_threshold_range": [0.2, 0.4]
+  },
+  "compatible_with": ["structure_archive_v2", "seed_spike_registry"]
+}
