@@ -266,9 +266,102 @@ Task-1 Inheritance Effectiveness Run 满足以下**至少 3/5**：
 
 ---
 
+## 12. S1 完成标准（锁死）
+
+### 12.1 当前阶段判定
+
+**主线已进入 execution bottleneck 阶段，不再是 conceptual bottleneck**
+
+- ❌ 问题不再是"该做什么"
+- ✅ 问题是"把 S1 做出来，让 L4 接受生死判定"
+
+**执行原则**: 只做 S1，直到 Round A/B 能真正跑起来
+
+### 12.2 S1 五大完成标准
+
+#### 1. CLI 接口成立
+```bash
+generate_candidates.py \
+  --inheritance-package task1_inheritance_package.json \
+  --bias-toward-known-good 0.7 \
+  --task-family task1 \
+  --output round_b_candidates/
+```
+
+#### 2. 不传 package 时，行为与当前版本完全一致
+- Round A 对照组必须纯净
+- 无隐式 bias、无默认 package 加载
+- 当前生成逻辑作为 baseline 冻结
+
+#### 3. 传 package 后，manifest 必须记录
+```json
+{
+  "inheritance_package_version": "v2.1",
+  "bias_source": "task1_inheritance_package.json",
+  "approved_family_hint": ["F_P3T4M4"],
+  "blocked_signature_hint": ["S_...", "S_..."],
+  "generation_mode": "inheritance_biased",
+  "bias_strength": 0.7,
+  "timestamp": "2026-03-14T12:00:00Z"
+}
+```
+
+#### 4. 候选分布必须可观测地偏移
+输出必须显示：
+- `family_distribution.json`: 各 family 占比变化
+- `generation_log.json`: 每个候选的 family 溯源
+- known-good bias 生效证据
+- blocked pattern 避让证据
+
+#### 5. 生成逻辑必须可关闭
+- bias 是可切换层，非硬编码
+- `--bias-toward-known-good 0.0` = 纯探索模式
+- 支持 future ablation study
+
+### 12.3 S1 最小输出文件
+
+S1 完成后必须生成：
+
+```
+round_b_candidates/
+├── manifest.json              # 生成元数据
+├── family_distribution.json   # family 占比统计
+├── generation_log.json        # 逐候选生成记录
+└── candidates/
+    ├── candidate_001/
+    │   ├── genotype.json
+    │   └── metadata.json
+    └── ...
+```
+
+### 12.4 现在不该做的事（冻结清单）
+
+在 S1 完成前，**禁止**：
+
+- ❌ 再扩写 PROJECT.md（本节是最后一次文档更新）
+- ❌ 增加新 task family
+- ❌ 扩展更多记忆层讨论
+- ❌ 提前讨论 L2/L3 实现
+- ❌ 开新的生物启发支线
+- ❌ 优化非 S1 相关的代码路径
+- ❌ 增加新的实验设计
+
+**唯一允许的修改**: S1 实现代码 + 本节规格锁定
+
+### 12.5 S1 完成后立即触发
+
+S1 完成 → 立即执行：
+1. Round A: 50 candidates (no package)
+2. Round B: 50 candidates (with package)
+3. 并行 GPU0/GPU1 执行
+4. 生成报告 A + 报告 B
+5. L4 生死判定
+
+---
+
 **批准**: Atlas-HEC Research Committee  
 **生效**: 2026-03-14  
-**版本**: v1.0
+**版本**: v1.0 → **v1.1-S1-LOCKED**
 
 ---
 
