@@ -1,0 +1,14 @@
+{
+  "id": "C0021_F_P3T5M5",
+  "pressure": 3,
+  "perturbation": 5,
+  "memory": 5,
+  "delegation": 1,
+  "recovery_threshold": 1.0954,
+  "trust_update_rate": 1.1697,
+  "trust_decay": 0.0718,
+  "trust_recovery": 0.0597,
+  "migration_threshold": 0.2404,
+  "family_id": "F_P3T5M5",
+  "generation_mode": "inheritance_biased"
+}

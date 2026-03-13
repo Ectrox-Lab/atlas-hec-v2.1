@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-03-14T04:32:11.096602",
+  "generation_config": {
+    "count": 50,
+    "task_family": "task1",
+    "seed": 1000,
+    "bias_strength": 0.7
+  },
+  "inheritance_metadata": {
+    "inheritance_package_loaded": true,
+    "inheritance_package_version": "2.1",
+    "bias_source": "task1_inheritance_package.json",
+    "approved_family_hint": [
+      "F_P3T4M4",
+      "F_P2T3M3",
+      "F_P3T4M3"
+    ],
+    "blocked_signature_hint": [
+      "rapid_switching",
+      "trust_collapse_cascade",
+      "migration_thrashing"
+    ],
+    "generation_mode": "inheritance_biased"
+  },
+  "output_files": {
+    "manifest": "manifest.json",
+    "family_distribution": "family_distribution.json",
+    "generation_log": "generation_log.json",
+    "candidates_dir": "candidates/"
+  }
+}

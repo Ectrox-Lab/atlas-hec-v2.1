@@ -1,0 +1,418 @@
+{
+  "timestamp": "2026-03-14T04:32:55.534520",
+  "experiment_design": {
+    "seeds": [
+      1000,
+      1001,
+      1002
+    ],
+    "candidates_per_seed": 50,
+    "total_candidates_per_round": 150,
+    "control_variable": "seed (fixed across rounds)",
+    "independent_variable": "inheritance_package + bias_strength"
+  },
+  "rounds": {
+    "round_a_no_inheritance": {
+      "description": "Control - no inheritance package",
+      "total_candidates": 150,
+      "approved_family_count": 36,
+      "approved_family_coverage": 24.0,
+      "by_seed": {
+        "1000": {
+          "approved_count": 9,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P3T3M4",
+              {
+                "count": 9,
+                "percentage": 18.0
+              }
+            ],
+            [
+              "F_P2T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P3T3M2",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P3T3M3",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ],
+            [
+              "F_P2T4M2",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "uniform_exploration"
+        },
+        "1001": {
+          "approved_count": 15,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P3T3M2",
+              {
+                "count": 9,
+                "percentage": 18.0
+              }
+            ],
+            [
+              "F_P2T3M4",
+              {
+                "count": 7,
+                "percentage": 14.0
+              }
+            ],
+            [
+              "F_P3T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P2T4M2",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ]
+          ],
+          "generation_mode": "uniform_exploration"
+        },
+        "1002": {
+          "approved_count": 12,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P2T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P3T3M2",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T3M4",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T4M3",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "uniform_exploration"
+        }
+      }
+    },
+    "round_b_with_inheritance": {
+      "description": "Treatment - inheritance package, bias=0.7",
+      "total_candidates": 150,
+      "approved_family_count": 36,
+      "approved_family_coverage": 24.0,
+      "by_seed": {
+        "1000": {
+          "approved_count": 18,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P2T4M3",
+              {
+                "count": 9,
+                "percentage": 18.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 7,
+                "percentage": 14.0
+              }
+            ],
+            [
+              "F_P3T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P2T3M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T4M4",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "inheritance_biased"
+        },
+        "1001": {
+          "approved_count": 8,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P3T3M4",
+              {
+                "count": 7,
+                "percentage": 14.0
+              }
+            ],
+            [
+              "F_P2T3M2",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P2T3M4",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ],
+            [
+              "F_P3T4M2",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "inheritance_biased"
+        },
+        "1002": {
+          "approved_count": 10,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P2T4M4",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T4M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T3M3",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ],
+            [
+              "F_P2T3M4",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "inheritance_biased"
+        }
+      }
+    },
+    "round_ablation_bias_zero": {
+      "description": "Ablation - package loaded, bias=0.0",
+      "total_candidates": 36,
+      "approved_family_count": 36,
+      "approved_family_coverage": 24.0,
+      "by_seed": {
+        "1000": {
+          "approved_count": 9,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P3T3M4",
+              {
+                "count": 9,
+                "percentage": 18.0
+              }
+            ],
+            [
+              "F_P2T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P3T3M2",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P3T3M3",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ],
+            [
+              "F_P2T4M2",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "uniform_exploration"
+        },
+        "1001": {
+          "approved_count": 15,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P3T3M2",
+              {
+                "count": 9,
+                "percentage": 18.0
+              }
+            ],
+            [
+              "F_P2T3M4",
+              {
+                "count": 7,
+                "percentage": 14.0
+              }
+            ],
+            [
+              "F_P3T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P2T4M2",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ]
+          ],
+          "generation_mode": "uniform_exploration"
+        },
+        "1002": {
+          "approved_count": 12,
+          "total": 50,
+          "top_families": [
+            [
+              "F_P2T4M4",
+              {
+                "count": 6,
+                "percentage": 12.0
+              }
+            ],
+            [
+              "F_P3T3M2",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P3T4M3",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T3M4",
+              {
+                "count": 5,
+                "percentage": 10.0
+              }
+            ],
+            [
+              "F_P2T4M3",
+              {
+                "count": 4,
+                "percentage": 8.0
+              }
+            ]
+          ],
+          "generation_mode": "uniform_exploration"
+        }
+      }
+    }
+  }
+}

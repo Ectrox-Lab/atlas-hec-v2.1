@@ -1,0 +1,14 @@
+{
+  "id": "C0014_F_P2T4M4",
+  "pressure": 2,
+  "perturbation": 4,
+  "memory": 4,
+  "delegation": 1,
+  "recovery_threshold": 1.7164,
+  "trust_update_rate": 0.8712,
+  "trust_decay": 0.1663,
+  "trust_recovery": 0.0233,
+  "migration_threshold": 0.1676,
+  "family_id": "F_P2T4M4",
+  "generation_mode": "uniform_exploration"
+}

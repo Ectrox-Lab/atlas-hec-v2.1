@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-03-14T04:32:07.398461",
+  "generation_config": {
+    "count": 50,
+    "task_family": "task1",
+    "seed": 1002,
+    "bias_strength": 0.0
+  },
+  "inheritance_metadata": {
+    "inheritance_package_loaded": false,
+    "inheritance_package_version": null,
+    "bias_source": null,
+    "approved_family_hint": [],
+    "blocked_signature_hint": [],
+    "generation_mode": "uniform_exploration"
+  },
+  "output_files": {
+    "manifest": "manifest.json",
+    "family_distribution": "family_distribution.json",
+    "generation_log": "generation_log.json",
+    "candidates_dir": "candidates/"
+  }
+}

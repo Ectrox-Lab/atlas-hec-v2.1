@@ -1,0 +1,115 @@
+{
+  "timestamp": "2026-03-14T04:32:11.189370",
+  "total_candidates": 50,
+  "family_distribution": {
+    "F_P2T4M4": {
+      "count": 5,
+      "percentage": 10.0
+    },
+    "F_P3T4M3": {
+      "count": 5,
+      "percentage": 10.0
+    },
+    "F_P2T4M3": {
+      "count": 5,
+      "percentage": 10.0
+    },
+    "F_P2T3M3": {
+      "count": 4,
+      "percentage": 8.0
+    },
+    "F_P2T3M4": {
+      "count": 4,
+      "percentage": 8.0
+    },
+    "F_P3T3M4": {
+      "count": 3,
+      "percentage": 6.0
+    },
+    "F_P4T4M2": {
+      "count": 2,
+      "percentage": 4.0
+    },
+    "F_P1T3M4": {
+      "count": 2,
+      "percentage": 4.0
+    },
+    "F_P4T4M3": {
+      "count": 2,
+      "percentage": 4.0
+    },
+    "F_P1T2M3": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P2T3M2": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P4T4M4": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P3T3M2": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P2T2M4": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P4T5M4": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P2T5M3": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P1T3M3": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P3T5M5": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P3T3M3": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P3T4M2": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P2T4M5": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P2T5M5": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P1T2M2": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P4T5M5": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P1T3M2": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P3T4M4": {
+      "count": 1,
+      "percentage": 2.0
+    },
+    "F_P2T5M4": {
+      "count": 1,
+      "percentage": 2.0
+    }
+  },
+  "approved_family_percentage": 20.0
+}

@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-03-14T04:32:15.152011",
+  "total_candidates": 50,
+  "family_distribution": {
+    "F_P3T3M4": {
+      "count": 9,
+      "percentage": 18.0
+    },
+    "F_P2T4M4": {
+      "count": 6,
+      "percentage": 12.0
+    },
+    "F_P3T3M2": {
+      "count": 5,
+      "percentage": 10.0
+    },
+    "F_P3T3M3": {
+      "count": 4,
+      "percentage": 8.0
+    },
+    "F_P2T4M2": {
+      "count": 4,
+      "percentage": 8.0
+    },
+    "F_P2T3M2": {
+      "count": 4,
+      "percentage": 8.0
+    },
+    "F_P3T4M4": {
+      "count": 4,
+      "percentage": 8.0
+    },
+    "F_P3T4M3": {
+      "count": 3,
+      "percentage": 6.0
+    },
+    "F_P2T4M3": {
+      "count": 3,
+      "percentage": 6.0
+    },
+    "F_P2T3M4": {
+      "count": 3,
+      "percentage": 6.0
+    },
+    "F_P3T4M2": {
+      "count": 3,
+      "percentage": 6.0
+    },
+    "F_P2T3M3": {
+      "count": 2,
+      "percentage": 4.0
+    }
+  },
+  "approved_family_percentage": 18.0
+}

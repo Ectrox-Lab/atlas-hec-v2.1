@@ -1,0 +1,14 @@
+{
+  "id": "C0023_F_P3T3M4",
+  "pressure": 3,
+  "perturbation": 3,
+  "memory": 4,
+  "delegation": 1,
+  "recovery_threshold": 1.5125,
+  "trust_update_rate": 1.0122,
+  "trust_decay": 0.0776,
+  "trust_recovery": 0.0603,
+  "migration_threshold": 0.4026,
+  "family_id": "F_P3T3M4",
+  "generation_mode": "inheritance_biased"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "C0000_F_P2T3M3",
+  "pressure": 2,
+  "perturbation": 3,
+  "memory": 3,
+  "delegation": 1,
+  "recovery_threshold": 0.6397,
+  "trust_update_rate": 1.1983,
+  "trust_decay": 0.0711,
+  "trust_recovery": 0.0293,
+  "migration_threshold": 0.3217,
+  "family_id": "F_P2T3M3",
+  "generation_mode": "inheritance_biased"
+}
