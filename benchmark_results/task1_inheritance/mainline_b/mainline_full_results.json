@@ -1,0 +1,440 @@
+{
+  "round": "b",
+  "mode": "SIMULATED",
+  "results": [
+    {
+      "candidate_id": "C0043_F_P3T4M4",
+      "family": "F_P3T4M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.1944116851232923,
+        "throughput_delta": 0.1730116851232923,
+        "latency_mean": 225.1697472979272,
+        "latency_delta": -7.735248834670157,
+        "recovery_mean": 269.32178059980913,
+        "recovery_delta": -20.96226319351894,
+        "stability_cv": 0.5522945586896748
+      }
+    },
+    {
+      "candidate_id": "C0031_F_P3T4M4",
+      "family": "F_P3T4M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.19646427981657713,
+        "throughput_delta": 0.17506427981657713,
+        "latency_mean": 234.22462816055702,
+        "latency_delta": -7.998239047326613,
+        "recovery_mean": 285.22597404288666,
+        "recovery_delta": -20.701333085485615,
+        "stability_cv": 0.5380890027401593
+      }
+    },
+    {
+      "candidate_id": "C0021_F_P3T4M4",
+      "family": "F_P3T4M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.19500826725144393,
+        "throughput_delta": 0.17360826725144393,
+        "latency_mean": 262.6601031065088,
+        "latency_delta": -19.311514853890934,
+        "recovery_mean": 280.42925897109694,
+        "recovery_delta": -17.449960158249723,
+        "stability_cv": 0.4899802451170167
+      }
+    },
+    {
+      "candidate_id": "C0003_F_P2T4M3",
+      "family": "F_P2T4M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.19770476692914982,
+        "throughput_delta": 0.17630476692914981,
+        "latency_mean": 239.91426848739206,
+        "latency_delta": 1.2047185188778382,
+        "recovery_mean": 263.3677805187968,
+        "recovery_delta": -12.195903669215124,
+        "stability_cv": 0.45091524983251086
+      }
+    },
+    {
+      "candidate_id": "C0038_F_P2T4M3",
+      "family": "F_P2T4M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.18992793596214635,
+        "throughput_delta": 0.16852793596214635,
+        "latency_mean": 240.6248312645153,
+        "latency_delta": -11.412857626745511,
+        "recovery_mean": 273.0373737597964,
+        "recovery_delta": -31.84022294179331,
+        "stability_cv": 0.7002467688609599
+      }
+    },
+    {
+      "candidate_id": "C0043_F_P3T4M3",
+      "family": "F_P3T4M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.19149900927365618,
+        "throughput_delta": 0.17009900927365618,
+        "latency_mean": 257.4290550623399,
+        "latency_delta": -15.035560630532391,
+        "recovery_mean": 274.388035570864,
+        "recovery_delta": 10.319536811815084,
+        "stability_cv": 0.4130270816893711
+      }
+    },
+    {
+      "candidate_id": "C0018_F_P3T4M3",
+      "family": "F_P3T4M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.1875141006806752,
+        "throughput_delta": 0.1661141006806752,
+        "latency_mean": 234.5349046466336,
+        "latency_delta": -7.637557863386972,
+        "recovery_mean": 280.4001006009195,
+        "recovery_delta": -4.677066495828589,
+        "stability_cv": 0.47429876016066846
+      }
+    },
+    {
+      "candidate_id": "C0029_F_P4T4M3",
+      "family": "F_P4T4M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.027193247721499093,
+        "throughput_delta": 0.0057932477214990945,
+        "latency_mean": 235.64970195524916,
+        "latency_delta": -3.798886525991213,
+        "recovery_mean": 276.9849397975694,
+        "recovery_delta": -30.655510283000027,
+        "stability_cv": 0.4964948488311844
+      }
+    },
+    {
+      "candidate_id": "C0019_F_P4T4M3",
+      "family": "F_P4T4M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.036194504273966394,
+        "throughput_delta": 0.014794504273966395,
+        "latency_mean": 261.26548136950436,
+        "latency_delta": -7.191566806076112,
+        "recovery_mean": 274.63953469199254,
+        "recovery_delta": -24.92164534388583,
+        "stability_cv": 0.4156757126032495
+      }
+    },
+    {
+      "candidate_id": "C0012_F_P3T3M2",
+      "family": "F_P3T3M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.0391407475725185,
+        "throughput_delta": 0.017740747572518503,
+        "latency_mean": 245.03197740813528,
+        "latency_delta": -7.099079044401176,
+        "recovery_mean": 262.826871672988,
+        "recovery_delta": -24.215537827388125,
+        "stability_cv": 0.4222218158900087
+      }
+    },
+    {
+      "candidate_id": "C0009_F_P3T3M2",
+      "family": "F_P3T3M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03552907681722072,
+        "throughput_delta": 0.014129076817220722,
+        "latency_mean": 246.43409182763992,
+        "latency_delta": -21.5614055302283,
+        "recovery_mean": 265.0008296158576,
+        "recovery_delta": -11.40097334319031,
+        "stability_cv": 0.6522012724664941
+      }
+    },
+    {
+      "candidate_id": "C0026_F_P3T3M4",
+      "family": "F_P3T3M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.039213899025152925,
+        "throughput_delta": 0.017813899025152926,
+        "latency_mean": 250.0128393951411,
+        "latency_delta": -11.99502035890546,
+        "recovery_mean": 258.83394020201865,
+        "recovery_delta": -20.395144307499727,
+        "stability_cv": 0.6527335781901833
+      }
+    },
+    {
+      "candidate_id": "C0003_F_P3T3M4",
+      "family": "F_P3T3M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.04198266343169325,
+        "throughput_delta": 0.020582663431693248,
+        "latency_mean": 244.87397926462614,
+        "latency_delta": 6.6513443178088565,
+        "recovery_mean": 269.51487941210775,
+        "recovery_delta": -10.03720279176959,
+        "stability_cv": 0.5307591552558512
+      }
+    },
+    {
+      "candidate_id": "C0040_F_P2T3M4",
+      "family": "F_P2T3M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03733434292962753,
+        "throughput_delta": 0.01593434292962753,
+        "latency_mean": 263.1617134777152,
+        "latency_delta": -2.4669759848144324,
+        "recovery_mean": 249.00780548069167,
+        "recovery_delta": -18.198770578281724,
+        "stability_cv": 0.5428336538368287
+      }
+    },
+    {
+      "candidate_id": "C0028_F_P2T3M4",
+      "family": "F_P2T3M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.040349549645126145,
+        "throughput_delta": 0.018949549645126147,
+        "latency_mean": 226.5155293018662,
+        "latency_delta": -21.277807935109013,
+        "recovery_mean": 241.40449546857326,
+        "recovery_delta": -15.568891706729753,
+        "stability_cv": 0.48967968209603224
+      }
+    },
+    {
+      "candidate_id": "C0034_F_P2T4M2",
+      "family": "F_P2T4M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03803565812834355,
+        "throughput_delta": 0.016635658128343552,
+        "latency_mean": 232.30325222120942,
+        "latency_delta": -16.121188379530313,
+        "recovery_mean": 239.65432413630975,
+        "recovery_delta": -12.366501130020506,
+        "stability_cv": 0.5370053958487777
+      }
+    },
+    {
+      "candidate_id": "C0037_F_P2T4M2",
+      "family": "F_P2T4M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03997898101106714,
+        "throughput_delta": 0.018578981011067138,
+        "latency_mean": 247.90795687979232,
+        "latency_delta": -10.953577904684712,
+        "recovery_mean": 290.23891444130226,
+        "recovery_delta": -16.090935292212396,
+        "stability_cv": 0.4339163613681928
+      }
+    },
+    {
+      "candidate_id": "C0014_F_P1T3M3",
+      "family": "F_P1T3M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.030438264670089296,
+        "throughput_delta": 0.009038264670089297,
+        "latency_mean": 234.15188355294606,
+        "latency_delta": -20.82868359750171,
+        "recovery_mean": 272.3448907947865,
+        "recovery_delta": -13.000915265902673,
+        "stability_cv": 0.4637734189117902
+      }
+    },
+    {
+      "candidate_id": "C0029_F_P3T5M5",
+      "family": "F_P3T5M5",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.029858475589740755,
+        "throughput_delta": 0.008458475589740756,
+        "latency_mean": 243.71803824355277,
+        "latency_delta": -1.4156470622615451,
+        "recovery_mean": 270.5738272875747,
+        "recovery_delta": -19.06106885767765,
+        "stability_cv": 0.44085527975770694
+      }
+    },
+    {
+      "candidate_id": "C0009_F_P2T4M4",
+      "family": "F_P2T4M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03979073068556451,
+        "throughput_delta": 0.018390730685564512,
+        "latency_mean": 227.35234428958557,
+        "latency_delta": -10.626303440990398,
+        "recovery_mean": 270.9177339650517,
+        "recovery_delta": -0.24257049787047968,
+        "stability_cv": 0.5943473764113375
+      }
+    },
+    {
+      "candidate_id": "C0028_F_P2T4M4",
+      "family": "F_P2T4M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.04310208770694964,
+        "throughput_delta": 0.021702087706949643,
+        "latency_mean": 232.8705145890076,
+        "latency_delta": -6.650392283818785,
+        "recovery_mean": 252.90926288175126,
+        "recovery_delta": -12.50431442647304,
+        "stability_cv": 0.5418737260418859
+      }
+    },
+    {
+      "candidate_id": "C0043_F_P2T4M4",
+      "family": "F_P2T4M4",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03770077175181329,
+        "throughput_delta": 0.016300771751813294,
+        "latency_mean": 259.9937980516149,
+        "latency_delta": -7.163131686246684,
+        "recovery_mean": 241.45907545658235,
+        "recovery_delta": -10.577120907233532,
+        "stability_cv": 0.45925881811099917
+      }
+    },
+    {
+      "candidate_id": "C0008_F_P2T3M3",
+      "family": "F_P2T3M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03700412864744891,
+        "throughput_delta": 0.015604128647448912,
+        "latency_mean": 244.65764790914184,
+        "latency_delta": -8.04733666344229,
+        "recovery_mean": 239.41272985448077,
+        "recovery_delta": -24.266557948908677,
+        "stability_cv": 0.5772624158574592
+      }
+    },
+    {
+      "candidate_id": "C0015_F_P2T3M3",
+      "family": "F_P2T3M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.040903612747687876,
+        "throughput_delta": 0.019503612747687877,
+        "latency_mean": 259.031528866625,
+        "latency_delta": -0.9841588067344738,
+        "recovery_mean": 239.1669509305428,
+        "recovery_delta": -8.844143032508395,
+        "stability_cv": 0.3083709798884896
+      }
+    },
+    {
+      "candidate_id": "C0000_F_P2T3M2",
+      "family": "F_P2T3M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.04184080218562599,
+        "throughput_delta": 0.02044080218562599,
+        "latency_mean": 242.53349402822047,
+        "latency_delta": -15.705843939885195,
+        "recovery_mean": 300.1485142063671,
+        "recovery_delta": -9.848233037673026,
+        "stability_cv": 0.31088511110485273
+      }
+    },
+    {
+      "candidate_id": "C0005_F_P2T3M2",
+      "family": "F_P2T3M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.037880404352381866,
+        "throughput_delta": 0.016480404352381867,
+        "latency_mean": 232.6886009233462,
+        "latency_delta": -9.443522600148802,
+        "recovery_mean": 263.02208078166956,
+        "recovery_delta": -4.012048909850764,
+        "stability_cv": 0.35767136118164256
+      }
+    },
+    {
+      "candidate_id": "C0019_F_P3T4M2",
+      "family": "F_P3T4M2",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.037952215504784254,
+        "throughput_delta": 0.016552215504784255,
+        "latency_mean": 258.14188340599975,
+        "latency_delta": -14.134801494851356,
+        "recovery_mean": 273.1597301408733,
+        "recovery_delta": -13.383986872399383,
+        "stability_cv": 0.4310297811121412
+      }
+    },
+    {
+      "candidate_id": "C0033_F_P3T3M3",
+      "family": "F_P3T3M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03894368086829576,
+        "throughput_delta": 0.017543680868295764,
+        "latency_mean": 240.97050281809896,
+        "latency_delta": -14.718837523915617,
+        "recovery_mean": 296.43024157348276,
+        "recovery_delta": -8.66708002728158,
+        "stability_cv": 0.48328930549774685
+      }
+    },
+    {
+      "candidate_id": "C0026_F_P3T3M3",
+      "family": "F_P3T3M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.03508997569766961,
+        "throughput_delta": 0.013689975697669613,
+        "latency_mean": 232.15637377789474,
+        "latency_delta": -3.8452951371972377,
+        "recovery_mean": 267.80282648189177,
+        "recovery_delta": -11.324494369081954,
+        "stability_cv": 0.4815543299107065
+      }
+    },
+    {
+      "candidate_id": "C0027_F_P2T2M3",
+      "family": "F_P2T2M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.038849228409452076,
+        "throughput_delta": 0.017449228409452077,
+        "latency_mean": 238.84020869874118,
+        "latency_delta": -6.180730637614653,
+        "recovery_mean": 267.25183635267706,
+        "recovery_delta": -8.363301623051825,
+        "stability_cv": 0.5672384109349637
+      }
+    },
+    {
+      "candidate_id": "C0049_F_P2T2M3",
+      "family": "F_P2T2M3",
+      "decision": "APPROVE",
+      "metrics": {
+        "throughput_mean": 0.036650170598016465,
+        "throughput_delta": 0.015250170598016467,
+        "latency_mean": 231.40222759573413,
+        "latency_delta": -14.700599952719028,
+        "recovery_mean": 258.88894769788845,
+        "recovery_delta": -22.87590114627848,
+        "stability_cv": 0.5865796421254051
+      }
+    }
+  ]
+}

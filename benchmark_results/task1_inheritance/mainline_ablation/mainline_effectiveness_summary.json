@@ -1,0 +1,13 @@
+{
+  "round": "ablation",
+  "table": "A - Effectiveness",
+  "sampled_candidates": 30,
+  "approve_count": 30,
+  "hold_count": 0,
+  "reject_count": 0,
+  "approve_rate": 1.0,
+  "mean_throughput_delta": 0.012503105338325927,
+  "mean_latency_delta": -10,
+  "failure_archetype_recurrence": 0,
+  "timestamp": "2026-03-14T07:17:45.794461"
+}
