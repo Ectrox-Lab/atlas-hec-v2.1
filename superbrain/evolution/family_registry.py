@@ -7,7 +7,7 @@ FAMILY REGISTRY - 家族延续性追踪
 import json
 import numpy as np
 from datetime import datetime
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Optional, Set, Tuple
 from dataclasses import dataclass, asdict
 from collections import defaultdict
 
