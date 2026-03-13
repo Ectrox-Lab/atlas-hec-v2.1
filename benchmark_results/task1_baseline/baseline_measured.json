@@ -1,0 +1,118 @@
+{
+  "task_family": "heterogeneous_executor_coordination",
+  "scheduler": "baseline_sjf",
+  "num_tasks": 1000,
+  "num_seeds": 3,
+  "metrics": {
+    "throughput": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "avg_latency": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "recovery_time": {
+      "mean": 1025.7166666666667,
+      "std": 387.3671912195628,
+      "min": 580.4,
+      "max": 1284.75,
+      "values": [
+        1284.75,
+        580.4,
+        1212.0
+      ]
+    },
+    "unnecessary_switches": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "missed_deadline_rate": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "stability_cv": {
+      "mean": 0.0,
+      "std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "raw_results": [
+    {
+      "scheduler": "baseline_sjf",
+      "num_tasks": 1000,
+      "seed": 0,
+      "throughput": 0.0,
+      "avg_latency": 0.0,
+      "recovery_time": 1284.75,
+      "unnecessary_switches": 0.0,
+      "missed_deadline_rate": 0.0,
+      "stability_cv": 0.0,
+      "completed": 0,
+      "missed_deadline": 0,
+      "total_time": 2000.0
+    },
+    {
+      "scheduler": "baseline_sjf",
+      "num_tasks": 1000,
+      "seed": 1,
+      "throughput": 0.0,
+      "avg_latency": 0.0,
+      "recovery_time": 580.4,
+      "unnecessary_switches": 0.0,
+      "missed_deadline_rate": 0.0,
+      "stability_cv": 0.0,
+      "completed": 0,
+      "missed_deadline": 0,
+      "total_time": 2000.0
+    },
+    {
+      "scheduler": "baseline_sjf",
+      "num_tasks": 1000,
+      "seed": 2,
+      "throughput": 0.0,
+      "avg_latency": 0.0,
+      "recovery_time": 1212.0,
+      "unnecessary_switches": 0.0,
+      "missed_deadline_rate": 0.0,
+      "stability_cv": 0.0,
+      "completed": 0,
+      "missed_deadline": 0,
+      "total_time": 2000.0
+    }
+  ]
+}
