@@ -1,0 +1,45 @@
+{
+  "lineage_id": "stable_plus",
+  "lineage_name": "Stable-Plus Enhancement",
+  "parent": {
+    "id": "P-ALPHA",
+    "config": {
+      "pressure": 2,
+      "perturbation": 3,
+      "memory": 3,
+      "delegation": 1
+    },
+    "performance": {
+      "drift": 0.2118,
+      "ranking": 1
+    }
+  },
+  "generation_params": {
+    "population_size": 64,
+    "generations": 50,
+    "ablation_rate": 0.8,
+    "selection_pressure": 0.1,
+    "elitism": 0.1
+  },
+  "constraints": {
+    "pressure_locked": true,
+    "perturbation_locked": true,
+    "memory_locked": true,
+    "delegation_locked": "D1",
+    "similarity_floor": 0.85,
+    "target_similarity": 0.90
+  },
+  "variation_permitted": {
+    "recovery_threshold": [0.5, 2.0],
+    "trust_update_rate": [0.8, 1.2],
+    "memory_promotion_sensitivity": [0.85, 1.15],
+    "specialist_routing_weights": [0.9, 1.1]
+  },
+  "success_criteria": {
+    "drift_target": 0.20,
+    "accuracy_tolerance": 0.03,
+    "critical_events": 0
+  },
+  "status": "GENESIS_ACTIVE",
+  "created": "2026-03-13T18:00:00Z"
+}

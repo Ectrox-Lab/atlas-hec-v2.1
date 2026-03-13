@@ -1,0 +1,43 @@
+{
+  "lineage_id": "balanced_memory",
+  "lineage_name": "Balanced Memory Hybrid",
+  "parents": [
+    {
+      "id": "P-ALPHA",
+      "config": {"pressure": 2, "perturbation": 3, "memory": 3, "delegation": 1},
+      "weight": 0.5
+    },
+    {
+      "id": "P-BETA",
+      "config": {"pressure": 2, "perturbation": 3, "memory": 1, "delegation": 1},
+      "weight": 0.5
+    }
+  ],
+  "generation_params": {
+    "population_size": 64,
+    "generations": 50,
+    "ablation_rate": 0.8,
+    "selection_pressure": 0.1,
+    "elitism": 0.1
+  },
+  "constraints": {
+    "pressure_locked": true,
+    "perturbation_locked": true,
+    "delegation_locked": "D1",
+    "similarity_floor": 0.75,
+    "target_similarity": 0.80
+  },
+  "variation_permitted": {
+    "memory_policy": ["adaptive_M1_M3", "gradient_M2", "contextual_switch"],
+    "promotion_rate": [0.7, 1.3],
+    "pruning_threshold": [0.8, 1.2],
+    "memory_governance": ["conservative", "balanced", "adaptive"]
+  },
+  "success_criteria": {
+    "drift_target": 0.22,
+    "adaptive_benefit": "variance_reduction",
+    "graceful_degradation": true
+  },
+  "status": "GENESIS_ACTIVE",
+  "created": "2026-03-13T18:00:00Z"
+}

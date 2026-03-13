@@ -1,0 +1,41 @@
+{
+  "phase": "4",
+  "launch_timestamp": "2026-03-13T18:00:00Z",
+  "authority": "CANDIDATE_GENERATION_PLAN_V1.md",
+  "lineages": [
+    {
+      "id": "stable_plus",
+      "status": "GENESIS_ACTIVE",
+      "population": 64,
+      "generation": 1,
+      "parent": "P-ALPHA (P2T3M3D1)"
+    },
+    {
+      "id": "balanced_memory",
+      "status": "GENESIS_ACTIVE",
+      "population": 64,
+      "generation": 1,
+      "parents": "P-ALPHA × P-BETA"
+    },
+    {
+      "id": "resilient_hybrid",
+      "status": "GENESIS_ACTIVE",
+      "population": 64,
+      "generation": 1,
+      "parents": "P-ALPHA × P-GAMMA"
+    }
+  ],
+  "total_genesis_population": 192,
+  "hard_constraints": {
+    "delegation": "D1 mandatory",
+    "p3_m3": "PROHIBITED",
+    "similarity_floor": 0.70,
+    "failure_distance": 0.30
+  },
+  "target_yield": {
+    "tier_b_monthly": "8-15",
+    "tier_a_monthly": "0-2"
+  },
+  "timeline_weeks": 4,
+  "next_checkpoint": "Week 2 - Admission Review"
+}

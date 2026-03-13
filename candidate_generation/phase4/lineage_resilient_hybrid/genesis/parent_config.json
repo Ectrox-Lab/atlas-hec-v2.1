@@ -1,0 +1,46 @@
+{
+  "lineage_id": "resilient_hybrid",
+  "lineage_name": "Resilient Mechanism Graft",
+  "parents": [
+    {
+      "id": "P-ALPHA",
+      "config": {"pressure": 2, "perturbation": 3, "memory": 3, "delegation": 1},
+      "weight": 0.7,
+      "role": "baseline"
+    },
+    {
+      "id": "P-GAMMA",
+      "config": {"pressure": 3, "perturbation": 4, "memory": 1, "delegation": 1},
+      "weight": 0.3,
+      "role": "mechanism_donor"
+    }
+  ],
+  "generation_params": {
+    "population_size": 64,
+    "generations": 50,
+    "ablation_rate": 0.8,
+    "selection_pressure": 0.1,
+    "elitism": 0.1
+  },
+  "constraints": {
+    "pressure_max": 2,
+    "pressure_bias": 0.95,
+    "delegation_locked": "D1",
+    "p3_m3_forbidden": true,
+    "similarity_floor": 0.80,
+    "target_similarity": 0.85
+  },
+  "variation_permitted": {
+    "recovery_mechanism": ["enhanced_rollback", "preemptive_hardening", "stress_compaction"],
+    "survival_mode_trigger": [0.25, 0.35],
+    "dynamic_adaptation": true,
+    "perturbation_burst_resistance": [1.0, 1.5]
+  },
+  "success_criteria": {
+    "drift_target": 0.22,
+    "recovery_effectiveness": "enhanced_vs_baseline",
+    "no_drift_spike_under_burst": true
+  },
+  "status": "GENESIS_ACTIVE",
+  "created": "2026-03-13T18:00:00Z"
+}
