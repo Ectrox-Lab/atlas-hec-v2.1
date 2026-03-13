@@ -260,8 +260,12 @@ class FamilyRegistry:
     
     def save(self, filepath: str):
         """保存注册表"""
+        report = self.generate_report()
+        # Convert families to dict for JSON serialization
+        report['families'] = {k: v.to_dict() if hasattr(v, 'to_dict') else v 
+                             for k, v in report.get('families', {}).items()}
         with open(filepath, 'w') as f:
-            json.dump(self.generate_report(), f, indent=2)
+            json.dump(report, f, indent=2, default=str)
 
 
 # ============================================================================
