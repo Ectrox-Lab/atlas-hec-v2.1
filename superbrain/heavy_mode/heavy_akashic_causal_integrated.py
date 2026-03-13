@@ -497,8 +497,86 @@ class HeavyAkashicCausalIntegrated:
 
 
 # ============================================================================
-# 主入口
+# PHASE C INTEGRATION: Fast-Forward Support
 # ============================================================================
+
+def _load_fast_forward_module():
+    """動態加載 Fast-Forward 模塊"""
+    import importlib.util
+    import sys
+    
+    ff_path = os.path.join(os.path.dirname(__file__), "causal_fast_forward.py")
+    spec = importlib.util.spec_from_file_location("causal_fast_forward", ff_path)
+    ff_module = importlib.util.module_from_spec(spec)
+    sys.modules["causal_fast_forward"] = ff_module
+    spec.loader.exec_module(ff_module)
+    return ff_module
+
+
+def create_fast_forward_scheduler(config_ranges=None):
+    """創建 Phase C Fast-Forward Scheduler 實例"""
+    ff_module = _load_fast_forward_module()
+    return ff_module.CausalFastForwardScheduler(
+        config_ranges=config_ranges,
+        exploration_budget=100,
+        min_confidence_threshold=0.5
+    )
+
+
+def run_fast_forward_heavy_mode(n_cycles: int = 10, n_candidates: int = 20000):
+    """
+    Phase C: 運行帶 Fast-Forward 的 Heavy Mode
+    這是 Phase A/B/C 的集成入口
+    """
+    ff_module = _load_fast_forward_module()
+    HeavyModeFastForwardIntegration = ff_module.HeavyModeFastForwardIntegration
+    
+    print("\n" + "="*70)
+    print("PHASE C: HEAVY MODE + CAUSAL FAST-FORWARD")
+    print("="*70)
+    
+    # 創建 Heavy Mode 引擎
+    heavy_config = {
+        "n_candidates": n_candidates,
+        "n_archetypes": 500,
+        "ram_budget_gb": 150
+    }
+    
+    engine = HeavyAkashicCausalIntegrated(config=heavy_config)
+    engine.n_candidates = n_candidates
+    
+    # 創建 Fast-Forward 調度器
+    scheduler = create_fast_forward_scheduler()
+    
+    # 集成運行
+    integration = HeavyModeFastForwardIntegration(
+        heavy_engine=engine,
+        scheduler=scheduler
+    )
+    
+    # 運行帶 Fast-Forward 的 benchmark
+    results = integration.run_fast_forward_benchmark(n_cycles=n_cycles)
+    
+    # 運行一次標準 Heavy Mode 週期作為對比
+    print("\n" + "-"*70)
+    print("Running baseline Heavy Mode cycle for comparison...")
+    print("-"*70)
+    
+    baseline_result = engine.run_benchmark(n_cycles=3)
+    
+    print("\n" + "="*70)
+    print("PHASE C COMPLETE - COMPARISON")
+    print("="*70)
+    print(f"Fast-Forward configs evaluated: {results['summary']['evaluated_configs']}")
+    print(f"Heavy Mode baseline cycles: 3")
+    print(f"Estimated speedup: {results['summary'].get('efficiency_gain', 1.0):.2f}x")
+    print("="*70)
+    
+    return {
+        "fast_forward_results": results,
+        "baseline_result": baseline_result
+    }
+
 
 if __name__ == "__main__":
     import argparse
@@ -506,11 +584,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--cycles", type=int, default=5)
     parser.add_argument("--candidates", type=int, default=20000)
+    parser.add_argument("--phase-c", action="store_true", help="Enable Phase C Fast-Forward")
     args = parser.parse_args()
     
-    engine = HeavyAkashicCausalIntegrated()
-    engine.n_candidates = args.candidates
+    if args.phase_c:
+        result = run_fast_forward_heavy_mode(
+            n_cycles=args.cycles,
+            n_candidates=args.candidates
+        )
+    else:
+        engine = HeavyAkashicCausalIntegrated()
+        engine.n_candidates = args.candidates
+        result = engine.run_benchmark(n_cycles=args.cycles)
     
-    result = engine.run_benchmark(n_cycles=args.cycles)
-    
-    print("\n✓ Phase A/B Integration Test Complete")
+    print("\n✓ Heavy Mode Execution Complete")
