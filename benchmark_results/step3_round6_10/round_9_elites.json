@@ -1,0 +1,122 @@
+[
+  {
+    "id": "R9_SC8CE",
+    "config": {
+      "P": 4,
+      "T": 4,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R8_S1096"
+    ],
+    "mutation_op": "P+1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R9_SC877",
+    "config": {
+      "P": 3,
+      "T": 3,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R8_S1096"
+    ],
+    "mutation_op": "T-1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R9_S391A",
+    "config": {
+      "P": 3,
+      "T": 4,
+      "M": 5,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R8_S1096"
+    ],
+    "mutation_op": "M+1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R9_S55DA",
+    "config": {
+      "P": 3,
+      "T": 4,
+      "M": 4,
+      "D": 1
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R8_S1096"
+    ],
+    "mutation_op": "D-1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 1.0,
+      "recovery": 0.9,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R9_SD19F",
+    "config": {
+      "P": 3,
+      "T": 2,
+      "M": 3,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R8_S9971"
+    ],
+    "mutation_op": "T-1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R9_S272C",
+    "config": {
+      "P": 3,
+      "T": 3,
+      "M": 3,
+      "D": 1
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R8_S9971"
+    ],
+    "mutation_op": "D-1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 1.0,
+      "recovery": 0.9,
+      "composite": 1
+    }
+  }
+]

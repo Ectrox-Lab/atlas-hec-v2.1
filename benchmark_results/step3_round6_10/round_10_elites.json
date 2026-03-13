@@ -1,0 +1,122 @@
+[
+  {
+    "id": "R10_S1425",
+    "config": {
+      "P": 3,
+      "T": 4,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R9_SC8CE"
+    ],
+    "mutation_op": "P-1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R10_S3691",
+    "config": {
+      "P": 4,
+      "T": 4,
+      "M": 5,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R9_SC8CE"
+    ],
+    "mutation_op": "M+1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R10_S8489",
+    "config": {
+      "P": 4,
+      "T": 4,
+      "M": 3,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R9_SC8CE"
+    ],
+    "mutation_op": "M-1",
+    "scores": {
+      "stability": 1.0,
+      "efficiency": 0.8,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R10_S3D0F",
+    "config": {
+      "P": 4,
+      "T": 5,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R9_SC8CE"
+    ],
+    "mutation_op": "T+1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 0.8,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R10_SC899",
+    "config": {
+      "P": 4,
+      "T": 3,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R9_SC877"
+    ],
+    "mutation_op": "P+1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 0.95,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  },
+  {
+    "id": "R10_S185F",
+    "config": {
+      "P": 3,
+      "T": 4,
+      "M": 4,
+      "D": 2
+    },
+    "parent_type": "mutation",
+    "parent_ids": [
+      "R9_SC877"
+    ],
+    "mutation_op": "T+1",
+    "scores": {
+      "stability": 0.95,
+      "efficiency": 1.0,
+      "recovery": 1.0,
+      "composite": 1
+    }
+  }
+]
