@@ -462,24 +462,75 @@ Task-1 Inheritance Effectiveness Run 满足以下**至少 3/5**：
 
 ## 10. 当前系统状态总览
 
+### 10.1 精确状态定义
+
+| 组件 | 状态 | 精确定义 |
+|------|------|----------|
+| **L4 Hypothesis** | 🟢 DEFINED | E-T1-003 + E-COMP-002 实验对设计完成，阈值明确 |
+| **Task-1 Reality Loop** | 🟢 CLOSED | Bridge → Mainline → Akashic 链路已打通并验证 |
+| **Inheritance Effectiveness Exp** | 🟢 DESIGNED | Round A/B 对比实验设计完成，判定标准量化 |
+| **Compositional Reuse Exp** | 🟢 DESIGNED | 模块复用验证方案完成，与E-T1-003绑定执行 |
+| **Execution Blocker** | 🔴 **S1 ONLY** | Fast Genesis inheritance consumption 未实现 |
+
+### 10.2 L4 验证实验对设计
+
+**核心绑定逻辑**: E-T1-003 与 E-COMP-002 必须同时回答，缺一不可
+
+| 实验 | 核心问题 | 验证目标 | 关键指标 |
+|------|----------|----------|----------|
+| **E-T1-003** | 继承是否让下一轮更好？ | Self-improvement Effectiveness | approve rate↑, throughput↑, archetype↓ |
+| **E-COMP-002** | 改善是否来自模块复用？ | Compositionality Validity | F_P3T4M4占比>60%, reuse rate>70%, new<30% |
+
+**判定矩阵**:
+- ✅ **L4 FULLY VALIDATED**: E-T1-003 PASS + E-COMP-002 PASS → 系统靠组合变强
+- ⚠️ **L4 PARTIAL**: E-T1-003 PASS + E-COMP-002 FAIL → 变强但非组合方式（结构膨胀）
+- ❌ **L4 FAILED**: E-T1-003 FAIL → 无论复用是否发生，自我改进不成立
+
+### 10.3 关键阈值汇总
+
+| 指标 | E-T1-003 阈值 | E-COMP-002 阈值 |
+|------|---------------|-----------------|
+| Round B vs A | 3/5 metrics improve | - |
+| F_P3T4M4占比 | > Round A +20% | >60% in Round B |
+| 复用率 | - | >70% |
+| 新模块泄漏 | - | <30% |
+| 跨种子重复性 | σ/μ < 0.1 | - |
+
+### 10.4 执行后报告分离策略
+
+**报告 A: L4 Effectiveness** (回答会不会变强)
+- Round B vs Round A 对比表
+- approve rate / throughput delta / archetype recurrence 改善统计
+- 统计显著性检验 (t-test, effect size)
+
+**报告 B: Compositional Reuse** (回答是不是用对的方式变强)
+- successful candidates family 分布溯源
+- reuse rate 计算（模块激活日志分析）
+- new family / new module leakage 量化
+- 是否依赖新增专用结构判定
+
+---
+
 | 层级 | 状态 | 关键证据 |
 |------|------|----------|
 | **L1 Continuity** | 🟡 READY | Continuity Probe v1 待启动 |
 | **L2 Memory** | 🔴 BLOCKED | L1 完成后启动 |
 | **L3 Self-model** | 🔴 BLOCKED | L2 完成后启动 |
-| **L4 Self-improvement** | 🟡 IN PROGRESS | **E-T1-003 是当前唯一关键验证** |
+| **L4 Self-improvement** | 🟡 IN PROGRESS | **E-T1-003/E-COMP-002 实验对就绪，仅S1阻塞** |
 
-### 已成立
+### 10.5 已成立
 
 - ✅ 进化搜索引擎可运行并出现收敛家族 (E-EVO-003)
 - ✅ Task-1 第一现实验证链已闭合 (E-T1-002)
 - ✅ P0 真实梯度训练链已打通并通过 P0-5 (E-P0-002)
 - ✅ 异构 CPU + GPU 执行 PoC 已成立
 - ✅ Akashic 可写 Task-1 继承包
+- ✅ E-T1-003 / E-COMP-002 实验对设计完成
 
-### 尚未成立
+### 10.6 尚未成立
 
-- 🔴 Inheritance Effectiveness 仍未最终证明 (E-T1-003)
+- 🔴 **Inheritance Effectiveness** (E-T1-003) - S1完成后验证
+- 🔴 **Compositional Reuse** (E-COMP-002) - E-T1-003后启动
 - 🔴 多任务现实闭环尚未建立
 - 🔴 真异构执行体尚未完全闭合到主任务引擎
 
@@ -487,13 +538,52 @@ Task-1 Inheritance Effectiveness Run 满足以下**至少 3/5**：
 
 ## 11. 当前最短行动序列
 
-当前最短序列：
+### 11.1 主线收敛状态
 
-1. **实现 Fast Genesis 的 inheritance package 消费** (S1)
-2. **运行 Task-1 Round A / B** (S3-S4)
-3. **判断 L4 / P4 是否成立** (S5)
-4. **若成立** → 进入 Task-1 self-improvement loop 扩展
-5. **若不成立** → 回查 Akashic ↔ Fast Genesis 接口与 package schema
+**当前已从"要做什么"进入"只差把 S1 接通就能判生死"阶段**
+
+唯一执行阻塞点：**S1 - Fast Genesis inheritance consumption**
+
+### 11.2 最短序列
+
+```
+S1: Fast Genesis --inheritance-package 实现 ─────┐
+                                                ↓
+S2: Round A (50 candidates, no package) ────┐   │
+                                             │   │
+S3: Round B (50 candidates, with package) ───┼───┘
+                                             ↓
+S4: 并行执行 GPU0/GPU1 分离                   │
+                                             ↓
+S5: 生成报告 A (Effectiveness)               │
+    生成报告 B (Compositional Reuse)         │
+                                             ↓
+S6: 判定 L4 / P4 是否成立 ◄──────────────────┘
+     ├── ✅ 成立 → 进入 Task-1 self-improvement loop
+     └── ❌ 失败 → 回查 Akashic ↔ Fast Genesis 接口
+```
+
+### 11.3 S1 关键实现点
+
+```python
+# Fast Genesis 需要支持
+--inheritance-package PATH  # CLI flag
+--inheritance-bias FLOAT    # 分布偏置强度 (默认 0.7)
+
+# 内部逻辑
+if inheritance_package:
+    known_families = load_package_families()  # F_P3T4M4 etc.
+    candidate_gen = bias_toward_known(known_families, bias_strength)
+else:
+    candidate_gen = uniform_exploration()
+```
+
+### 11.4 执行策略
+
+- **不再扩散**: 冻结所有非 S1 相关开发
+- **不再新增概念**: 当前实验对足够判定 L4
+- **单一焦点**: 全部工程资源投入 S1 实现
+- **执行后双报告**: 严格分离 Effectiveness vs Compositional Reuse 分析
 
 ---
 
