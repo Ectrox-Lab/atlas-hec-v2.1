@@ -1,0 +1,67 @@
+{
+  "n_workers": 8,
+  "duration_target": 30,
+  "matrix_size": 1200,
+  "total_time": 30.20766592025757,
+  "monitor": {
+    "duration": 31.061249494552612,
+    "samples": 31,
+    "avg_cpu_percent": 6.2177124644099075,
+    "max_cpu_percent": 6.838941369349671,
+    "min_cpu_percent": 0.3899851805631349,
+    "avg_load": 6.933262978830645,
+    "max_load": 7.18017578125,
+    "cpu_count": 128,
+    "interpretation": "6.2% = 0.0% per core average"
+  },
+  "workers": [
+    {
+      "worker_id": 0,
+      "elapsed": 30.007378816604614,
+      "iterations": 137,
+      "checksum": 2130084793352.8318
+    },
+    {
+      "worker_id": 7,
+      "elapsed": 30.026102542877197,
+      "iterations": 138,
+      "checksum": 2146039368570.2454
+    },
+    {
+      "worker_id": 5,
+      "elapsed": 30.03362727165222,
+      "iterations": 136,
+      "checksum": 2115156498594.128
+    },
+    {
+      "worker_id": 4,
+      "elapsed": 30.03718066215515,
+      "iterations": 141,
+      "checksum": 2192589939644.2183
+    },
+    {
+      "worker_id": 1,
+      "elapsed": 30.091582536697388,
+      "iterations": 137,
+      "checksum": 2130741142095.7166
+    },
+    {
+      "worker_id": 2,
+      "elapsed": 30.13671112060547,
+      "iterations": 141,
+      "checksum": 2192367227873.837
+    },
+    {
+      "worker_id": 6,
+      "elapsed": 30.184582710266113,
+      "iterations": 138,
+      "checksum": 2146002526528.8538
+    },
+    {
+      "worker_id": 3,
+      "elapsed": 30.191138744354248,
+      "iterations": 143,
+      "checksum": 2224377185843.94
+    }
+  ]
+}

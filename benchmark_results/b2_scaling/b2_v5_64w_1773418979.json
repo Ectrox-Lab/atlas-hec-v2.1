@@ -1,0 +1,403 @@
+{
+  "n_workers": 64,
+  "duration_target": 30,
+  "matrix_size": 1000,
+  "total_time": 30.30506706237793,
+  "monitor": {
+    "duration": 31.088534116744995,
+    "samples": 31,
+    "avg_cpu_percent": 48.797237298636524,
+    "max_cpu_percent": 51.433915211970074,
+    "min_cpu_percent": 6.819421713038731,
+    "avg_load": 13.893712197580646,
+    "max_load": 25.64404296875,
+    "cpu_count": 128,
+    "interpretation": "48.8% = 0.4% per core average"
+  },
+  "workers": [
+    {
+      "worker_id": 26,
+      "elapsed": 30.002613067626953,
+      "iterations": 155,
+      "checksum": 968768770567.6827
+    },
+    {
+      "worker_id": 14,
+      "elapsed": 30.00879693031311,
+      "iterations": 158,
+      "checksum": 987605890502.15
+    },
+    {
+      "worker_id": 28,
+      "elapsed": 30.01564598083496,
+      "iterations": 161,
+      "checksum": 1006404652135.931
+    },
+    {
+      "worker_id": 2,
+      "elapsed": 30.02822971343994,
+      "iterations": 153,
+      "checksum": 956295694522.7144
+    },
+    {
+      "worker_id": 42,
+      "elapsed": 30.006743669509888,
+      "iterations": 166,
+      "checksum": 1037369703927.5903
+    },
+    {
+      "worker_id": 9,
+      "elapsed": 30.032565593719482,
+      "iterations": 158,
+      "checksum": 987474725095.4772
+    },
+    {
+      "worker_id": 56,
+      "elapsed": 30.001474142074585,
+      "iterations": 161,
+      "checksum": 1006168748466.9989
+    },
+    {
+      "worker_id": 5,
+      "elapsed": 30.038647174835205,
+      "iterations": 159,
+      "checksum": 993604463116.7532
+    },
+    {
+      "worker_id": 23,
+      "elapsed": 30.04643487930298,
+      "iterations": 160,
+      "checksum": 1000214164596.9606
+    },
+    {
+      "worker_id": 34,
+      "elapsed": 30.04694676399231,
+      "iterations": 154,
+      "checksum": 962554978356.8682
+    },
+    {
+      "worker_id": 31,
+      "elapsed": 30.048605918884277,
+      "iterations": 161,
+      "checksum": 1006320486824.5897
+    },
+    {
+      "worker_id": 33,
+      "elapsed": 30.05102777481079,
+      "iterations": 162,
+      "checksum": 1012425245840.996
+    },
+    {
+      "worker_id": 36,
+      "elapsed": 30.049180030822754,
+      "iterations": 159,
+      "checksum": 993430598477.8115
+    },
+    {
+      "worker_id": 62,
+      "elapsed": 30.025251388549805,
+      "iterations": 156,
+      "checksum": 975070615532.797
+    },
+    {
+      "worker_id": 50,
+      "elapsed": 30.04292368888855,
+      "iterations": 157,
+      "checksum": 981211824687.1388
+    },
+    {
+      "worker_id": 29,
+      "elapsed": 30.071429014205933,
+      "iterations": 163,
+      "checksum": 1018803411707.3022
+    },
+    {
+      "worker_id": 57,
+      "elapsed": 30.045337915420532,
+      "iterations": 159,
+      "checksum": 994013314662.5485
+    },
+    {
+      "worker_id": 45,
+      "elapsed": 30.05399179458618,
+      "iterations": 155,
+      "checksum": 968858078390.2812
+    },
+    {
+      "worker_id": 12,
+      "elapsed": 30.08762216567993,
+      "iterations": 157,
+      "checksum": 981245644569.3949
+    },
+    {
+      "worker_id": 30,
+      "elapsed": 30.083807468414307,
+      "iterations": 161,
+      "checksum": 1006285135732.1367
+    },
+    {
+      "worker_id": 54,
+      "elapsed": 30.058508157730103,
+      "iterations": 162,
+      "checksum": 1012594171065.8805
+    },
+    {
+      "worker_id": 44,
+      "elapsed": 30.072439193725586,
+      "iterations": 155,
+      "checksum": 968814274147.0967
+    },
+    {
+      "worker_id": 7,
+      "elapsed": 30.095840454101562,
+      "iterations": 166,
+      "checksum": 1037655329034.2906
+    },
+    {
+      "worker_id": 18,
+      "elapsed": 30.092246294021606,
+      "iterations": 163,
+      "checksum": 1018753566498.3668
+    },
+    {
+      "worker_id": 25,
+      "elapsed": 30.09513831138611,
+      "iterations": 160,
+      "checksum": 999877012398.5013
+    },
+    {
+      "worker_id": 0,
+      "elapsed": 30.102000951766968,
+      "iterations": 161,
+      "checksum": 1006205047273.9486
+    },
+    {
+      "worker_id": 27,
+      "elapsed": 30.096694707870483,
+      "iterations": 162,
+      "checksum": 1012491173032.9875
+    },
+    {
+      "worker_id": 1,
+      "elapsed": 30.10409688949585,
+      "iterations": 134,
+      "checksum": 837678886133.5897
+    },
+    {
+      "worker_id": 39,
+      "elapsed": 30.091846704483032,
+      "iterations": 155,
+      "checksum": 968877840124.1156
+    },
+    {
+      "worker_id": 19,
+      "elapsed": 30.102417469024658,
+      "iterations": 157,
+      "checksum": 981262256067.5122
+    },
+    {
+      "worker_id": 20,
+      "elapsed": 30.102874755859375,
+      "iterations": 160,
+      "checksum": 999851572026.1508
+    },
+    {
+      "worker_id": 55,
+      "elapsed": 30.07726240158081,
+      "iterations": 162,
+      "checksum": 1012652055907.4259
+    },
+    {
+      "worker_id": 22,
+      "elapsed": 30.10782241821289,
+      "iterations": 158,
+      "checksum": 987332276536.3567
+    },
+    {
+      "worker_id": 17,
+      "elapsed": 30.115347623825073,
+      "iterations": 156,
+      "checksum": 975006901397.754
+    },
+    {
+      "worker_id": 24,
+      "elapsed": 30.113882064819336,
+      "iterations": 160,
+      "checksum": 999972078788.3442
+    },
+    {
+      "worker_id": 52,
+      "elapsed": 30.086544036865234,
+      "iterations": 157,
+      "checksum": 981146869863.2104
+    },
+    {
+      "worker_id": 37,
+      "elapsed": 30.110946893692017,
+      "iterations": 139,
+      "checksum": 868819523257.9896
+    },
+    {
+      "worker_id": 16,
+      "elapsed": 30.11944341659546,
+      "iterations": 164,
+      "checksum": 1024940152086.8427
+    },
+    {
+      "worker_id": 60,
+      "elapsed": 30.08854603767395,
+      "iterations": 159,
+      "checksum": 993794957102.7065
+    },
+    {
+      "worker_id": 32,
+      "elapsed": 30.11971616744995,
+      "iterations": 154,
+      "checksum": 962444981055.067
+    },
+    {
+      "worker_id": 49,
+      "elapsed": 30.09749960899353,
+      "iterations": 159,
+      "checksum": 993697303887.1837
+    },
+    {
+      "worker_id": 21,
+      "elapsed": 30.127381324768066,
+      "iterations": 160,
+      "checksum": 1000002353164.5924
+    },
+    {
+      "worker_id": 51,
+      "elapsed": 30.10144019126892,
+      "iterations": 159,
+      "checksum": 993693194980.6754
+    },
+    {
+      "worker_id": 4,
+      "elapsed": 30.133700609207153,
+      "iterations": 164,
+      "checksum": 1024931371448.3263
+    },
+    {
+      "worker_id": 40,
+      "elapsed": 30.121479749679565,
+      "iterations": 162,
+      "checksum": 1012624478815.1499
+    },
+    {
+      "worker_id": 11,
+      "elapsed": 30.13673734664917,
+      "iterations": 158,
+      "checksum": 987599175791.3491
+    },
+    {
+      "worker_id": 10,
+      "elapsed": 30.136457920074463,
+      "iterations": 158,
+      "checksum": 987887070764.2168
+    },
+    {
+      "worker_id": 3,
+      "elapsed": 30.14237141609192,
+      "iterations": 118,
+      "checksum": 737793271885.8182
+    },
+    {
+      "worker_id": 59,
+      "elapsed": 30.110308408737183,
+      "iterations": 160,
+      "checksum": 1000085425481.7399
+    },
+    {
+      "worker_id": 35,
+      "elapsed": 30.135220050811768,
+      "iterations": 160,
+      "checksum": 999922098497.8356
+    },
+    {
+      "worker_id": 53,
+      "elapsed": 30.11431312561035,
+      "iterations": 160,
+      "checksum": 999958660877.6156
+    },
+    {
+      "worker_id": 6,
+      "elapsed": 30.148080587387085,
+      "iterations": 156,
+      "checksum": 975055438044.8794
+    },
+    {
+      "worker_id": 13,
+      "elapsed": 30.152621507644653,
+      "iterations": 156,
+      "checksum": 975089613185.8829
+    },
+    {
+      "worker_id": 43,
+      "elapsed": 30.134737253189087,
+      "iterations": 166,
+      "checksum": 1037362090301.8735
+    },
+    {
+      "worker_id": 8,
+      "elapsed": 30.158182621002197,
+      "iterations": 164,
+      "checksum": 1024879598763.0192
+    },
+    {
+      "worker_id": 15,
+      "elapsed": 30.157129049301147,
+      "iterations": 165,
+      "checksum": 1031315334724.4036
+    },
+    {
+      "worker_id": 47,
+      "elapsed": 30.12973976135254,
+      "iterations": 163,
+      "checksum": 1018729876411.1898
+    },
+    {
+      "worker_id": 38,
+      "elapsed": 30.151238679885864,
+      "iterations": 157,
+      "checksum": 981069365377.3691
+    },
+    {
+      "worker_id": 41,
+      "elapsed": 30.14829730987549,
+      "iterations": 161,
+      "checksum": 1006356037892.6705
+    },
+    {
+      "worker_id": 58,
+      "elapsed": 30.12982726097107,
+      "iterations": 159,
+      "checksum": 993963612768.8955
+    },
+    {
+      "worker_id": 61,
+      "elapsed": 30.13897204399109,
+      "iterations": 164,
+      "checksum": 1024895777241.389
+    },
+    {
+      "worker_id": 48,
+      "elapsed": 30.146576404571533,
+      "iterations": 119,
+      "checksum": 743786772053.5183
+    },
+    {
+      "worker_id": 46,
+      "elapsed": 30.1483256816864,
+      "iterations": 163,
+      "checksum": 1018659468602.8044
+    },
+    {
+      "worker_id": 63,
+      "elapsed": 30.148258209228516,
+      "iterations": 161,
+      "checksum": 1006263683870.5017
+    }
+  ]
+}

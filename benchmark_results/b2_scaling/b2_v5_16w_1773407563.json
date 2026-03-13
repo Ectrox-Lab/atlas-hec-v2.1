@@ -1,0 +1,115 @@
+{
+  "n_workers": 16,
+  "duration_target": 25,
+  "matrix_size": 1200,
+  "total_time": 25.228517532348633,
+  "monitor": {
+    "duration": 26.051846265792847,
+    "samples": 26,
+    "avg_cpu_percent": 12.178574022319937,
+    "max_cpu_percent": 12.921348314606739,
+    "min_cpu_percent": 0.9830693610049179,
+    "avg_load": 8.650540865384615,
+    "max_load": 9.8115234375,
+    "cpu_count": 128,
+    "interpretation": "12.2% = 0.1% per core average"
+  },
+  "workers": [
+    {
+      "worker_id": 0,
+      "elapsed": 25.006972551345825,
+      "iterations": 116,
+      "checksum": 1803676951995.7207
+    },
+    {
+      "worker_id": 13,
+      "elapsed": 25.015713214874268,
+      "iterations": 117,
+      "checksum": 1819410415633.851
+    },
+    {
+      "worker_id": 12,
+      "elapsed": 25.039181232452393,
+      "iterations": 114,
+      "checksum": 1772785284221.7258
+    },
+    {
+      "worker_id": 10,
+      "elapsed": 25.045352458953857,
+      "iterations": 112,
+      "checksum": 1742142674655.471
+    },
+    {
+      "worker_id": 7,
+      "elapsed": 25.059157609939575,
+      "iterations": 113,
+      "checksum": 1757340353235.1519
+    },
+    {
+      "worker_id": 9,
+      "elapsed": 25.0620014667511,
+      "iterations": 114,
+      "checksum": 1772418234865.0132
+    },
+    {
+      "worker_id": 1,
+      "elapsed": 25.069182634353638,
+      "iterations": 115,
+      "checksum": 1788600184118.7026
+    },
+    {
+      "worker_id": 15,
+      "elapsed": 25.070030689239502,
+      "iterations": 114,
+      "checksum": 1773276853038.853
+    },
+    {
+      "worker_id": 6,
+      "elapsed": 25.10031795501709,
+      "iterations": 117,
+      "checksum": 1819596747977.3665
+    },
+    {
+      "worker_id": 11,
+      "elapsed": 25.10746741294861,
+      "iterations": 115,
+      "checksum": 1788408147409.2004
+    },
+    {
+      "worker_id": 2,
+      "elapsed": 25.122069358825684,
+      "iterations": 115,
+      "checksum": 1788806269061.2927
+    },
+    {
+      "worker_id": 8,
+      "elapsed": 25.123851776123047,
+      "iterations": 115,
+      "checksum": 1789123068128.009
+    },
+    {
+      "worker_id": 14,
+      "elapsed": 25.17317271232605,
+      "iterations": 116,
+      "checksum": 1804389980900.6982
+    },
+    {
+      "worker_id": 3,
+      "elapsed": 25.186300039291382,
+      "iterations": 113,
+      "checksum": 1756878874266.8557
+    },
+    {
+      "worker_id": 5,
+      "elapsed": 25.192830801010132,
+      "iterations": 113,
+      "checksum": 1757596995645.2473
+    },
+    {
+      "worker_id": 4,
+      "elapsed": 25.20367980003357,
+      "iterations": 112,
+      "checksum": 1741808743029.549
+    }
+  ]
+}
