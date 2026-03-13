@@ -1,0 +1,200 @@
+{
+  "round": "b",
+  "by_family": {
+    "F_P1T2M2": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P1T2M3": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P1T3M2": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P1T3M3": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P1T3M4": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P1T4M3": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P2T2M2": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P2T2M3": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P2T2M4": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P2T3M2": {
+      "total": 9,
+      "passed": 9,
+      "pass_rate": 1.0
+    },
+    "F_P2T3M3": {
+      "total": 11,
+      "passed": 11,
+      "pass_rate": 1.0
+    },
+    "F_P2T3M4": {
+      "total": 9,
+      "passed": 9,
+      "pass_rate": 1.0
+    },
+    "F_P2T4M2": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P2T4M3": {
+      "total": 16,
+      "passed": 16,
+      "pass_rate": 1.0
+    },
+    "F_P2T4M4": {
+      "total": 13,
+      "passed": 13,
+      "pass_rate": 1.0
+    },
+    "F_P2T4M5": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P2T5M3": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P2T5M4": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P2T5M5": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P3T2M2": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P3T2M4": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P3T3M2": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P3T3M3": {
+      "total": 3,
+      "passed": 3,
+      "pass_rate": 1.0
+    },
+    "F_P3T3M4": {
+      "total": 12,
+      "passed": 12,
+      "pass_rate": 1.0
+    },
+    "F_P3T3M5": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P3T4M2": {
+      "total": 8,
+      "passed": 8,
+      "pass_rate": 1.0
+    },
+    "F_P3T4M3": {
+      "total": 16,
+      "passed": 16,
+      "pass_rate": 1.0
+    },
+    "F_P3T4M4": {
+      "total": 9,
+      "passed": 9,
+      "pass_rate": 1.0
+    },
+    "F_P3T4M5": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P3T5M3": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P3T5M4": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P3T5M5": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P4T3M3": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P4T4M2": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P4T4M3": {
+      "total": 4,
+      "passed": 4,
+      "pass_rate": 1.0
+    },
+    "F_P4T4M4": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P4T5M3": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    },
+    "F_P4T5M4": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0
+    },
+    "F_P4T5M5": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0
+    }
+  }
+}

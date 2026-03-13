@@ -1,0 +1,20 @@
+{
+  "round": "b",
+  "by_seed": {
+    "1000": {
+      "total": 50,
+      "passed": 50,
+      "pass_rate": 1.0
+    },
+    "1001": {
+      "total": 50,
+      "passed": 50,
+      "pass_rate": 1.0
+    },
+    "1002": {
+      "total": 50,
+      "passed": 50,
+      "pass_rate": 1.0
+    }
+  }
+}
