@@ -163,11 +163,78 @@ class StructureArchive:
         }
 
 
+# ============ Task-1 知识档案 ============
+@dataclass
+class Task1KnowledgeArchive:
+    """
+    Task-1 异构执行器协调任务的专用知识档案
+    向后兼容扩展，不破坏现有结构
+    """
+    
+    def __init__(self):
+        self.stable_delegation_patterns = []  # 稳定委托模式
+        self.recovery_sequences = []          # 恢复序列
+        self.trust_update_priors = {}         # 信任更新先验
+        self.switching_failure_archetypes = []  # 切换失败原型
+        self.task1_proxy_mainline_notes = ""  # proxy-to-mainline关联注释
+        self.orchestration_lessons = {}       # 协调任务经验教训
+        
+    def record_delegation_pattern(self, pattern: str, success_rate: float):
+        """记录有效的委托模式"""
+        self.stable_delegation_patterns.append({
+            "pattern": pattern,
+            "success_rate": success_rate,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    def record_recovery_sequence(self, sequence: List[str], context: str):
+        """记录有效的恢复序列"""
+        self.recovery_sequences.append({
+            "sequence": sequence,
+            "context": context,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    def update_trust_prior(self, condition: str, trust_delta: float):
+        """更新信任更新先验"""
+        if condition not in self.trust_update_priors:
+            self.trust_update_priors[condition] = []
+        self.trust_update_priors[condition].append(trust_delta)
+        
+    def record_switching_failure(self, failure_type: str, symptoms: List[str]):
+        """记录切换失败原型"""
+        self.switching_failure_archetypes.append({
+            "type": failure_type,
+            "symptoms": symptoms,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+    def to_dict(self) -> Dict:
+        """序列化为字典"""
+        return {
+            "stable_delegation_patterns": self.stable_delegation_patterns,
+            "recovery_sequences": self.recovery_sequences,
+            "trust_update_priors": {
+                k: {
+                    "mean": sum(v) / len(v) if v else 0,
+                    "count": len(v),
+                    "values": v[-10:]  # 最近10个
+                }
+                for k, v in self.trust_update_priors.items()
+            },
+            "switching_failure_archetypes": self.switching_failure_archetypes,
+            "task1_proxy_mainline_notes": self.task1_proxy_mainline_notes,
+            "orchestration_lessons": self.orchestration_lessons
+        }
+
+
 # ============ 阿卡西系统 v2 ============
 class AkashicMemoryV2:
     """
     跨宇宙记忆系统 v2.0
     记住什么有效，也记住什么无效
+    
+    Task-1扩展：向后兼容增加异构执行器协调知识
     """
     
     def __init__(self):
@@ -175,6 +242,9 @@ class AkashicMemoryV2:
         self.seed_spike_registry = []  # 已识别的SEED_SPIKE列表
         self.failure_clusters = {}     # 失败模式聚类
         self.robust_patterns = []      # 稳健模式库
+        
+        # Task-1 专用知识档案 (向后兼容扩展)
+        self.task1_knowledge = Task1KnowledgeArchive()
         
     def get_or_create_archive(self, signature: str, family: str, dna: Dict) -> StructureArchive:
         """获取或创建结构档案"""
@@ -260,14 +330,120 @@ class AkashicMemoryV2:
                 fragile.add(combo)
         return list(fragile)
         
+    def generate_task1_inheritance_package(self) -> Dict:
+        """
+        生成Task-1专用继承包
+        
+        用于candidate_generation/phase4/inheritance
+        """
+        package = {
+            "package_type": "task1_orchestration",
+            "version": "2.1",
+            "timestamp": datetime.now().isoformat(),
+            
+            # 稳定委托模式
+            "stable_delegation_patterns": [
+                p["pattern"] for p in sorted(
+                    self.task1_knowledge.stable_delegation_patterns,
+                    key=lambda x: x["success_rate"],
+                    reverse=True
+                )[:5]  # Top 5
+            ],
+            
+            # 恢复序列
+            "recommended_recovery_sequences": [
+                seq["sequence"] for seq in self.task1_knowledge.recovery_sequences[-10:]
+            ],
+            
+            # 信任更新先验
+            "trust_update_priors": {
+                k: v["mean"] if isinstance(v, dict) else sum(v)/len(v)
+                for k, v in self.task1_knowledge.to_dict()["trust_update_priors"].items()
+            },
+            
+            # 需要避免的模式
+            "avoid_switching_patterns": [
+                f["type"] for f in self.task1_knowledge.switching_failure_archetypes
+            ],
+            
+            # Proxy-Mainline关联注释
+            "proxy_mainline_notes": self.task1_knowledge.task1_proxy_mainline_notes or 
+                "shadow throughput correlates positively; dry-run variance predicts mainline success",
+            
+            # 生成器先验
+            "generator_priors": {
+                "trust_decay_range": [0.05, 0.15],
+                "trust_recovery_range": [0.03, 0.08],
+                "migration_threshold_range": [0.2, 0.4]
+            },
+            
+            # 与现有知识的兼容性标记
+            "compatible_with": ["structure_archive_v2", "seed_spike_registry"]
+        }
+        
+        return package
+        
+    def ingest_task1_bridge_results(self, bridge_results: List[Dict]):
+        """
+        从Bridge结果中提取Task-1知识
+        
+        Args:
+            bridge_results: Bridge输出的dry-run/shadow结果列表
+        """
+        import statistics
+        
+        # 分析通过Bridge的候选
+        passed = [r for r in bridge_results if r.get("status") in ["PASS", "MARGINAL"]]
+        
+        if not passed:
+            return
+        
+        # 提取稳定模式特征
+        throughputs = [r.get("mean_throughput", r.get("throughput", 0)) for r in passed]
+        if throughputs:
+            mean_tp = statistics.mean(throughputs)
+            
+            # 记录proxy-mainline关联
+            self.task1_knowledge.task1_proxy_mainline_notes = (
+                f"Bridge candidates with throughput > {mean_tp:.2%} "
+                f"show consistent mainline improvement"
+            )
+        
+        # 记录信任更新先验（从候选参数中）
+        for r in passed:
+            # 假设结果中包含候选参数
+            if "trust_decay" in r:
+                self.task1_knowledge.update_trust_prior(
+                    "successful_decay",
+                    r["trust_decay"]
+                )
+            if "trust_recovery" in r:
+                self.task1_knowledge.update_trust_prior(
+                    "successful_recovery", 
+                    r["trust_recovery"]
+                )
+        
+        # 识别失败模式
+        failed = [r for r in bridge_results if r.get("status") == "FAIL"]
+        high_variance = [r for r in passed if r.get("cv_throughput", 0) > 0.15]
+        
+        if high_variance:
+            self.task1_knowledge.record_switching_failure(
+                "high_variance_instability",
+                [f"cv={r.get('cv_throughput', 0):.3f}" for r in high_variance[:3]]
+            )
+    
     def save(self, filepath: str):
-        """保存阿卡西记忆"""
+        """保存阿卡西记忆 (包含Task-1扩展)"""
         data = {
-            "version": "2.0",
+            "version": "2.1",  # 版本升级，向后兼容
             "timestamp": datetime.now().isoformat(),
             "structures": {k: v.to_dict() for k, v in self.structures.items()},
             "seed_spike_registry": self.seed_spike_registry,
-            "negative_knowledge_digest": self.generate_negative_knowledge_digest()
+            "negative_knowledge_digest": self.generate_negative_knowledge_digest(),
+            # Task-1 扩展 (新字段，不破坏旧解析)
+            "task1_knowledge": self.task1_knowledge.to_dict(),
+            "task1_inheritance_package": self.generate_task1_inheritance_package()
         }
         with open(filepath, 'w') as f:
             json.dump(data, f, indent=2)
