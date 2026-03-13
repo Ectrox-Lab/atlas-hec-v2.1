@@ -176,7 +176,7 @@ class HeavyFastGenesis:
     """Large population evolution engine"""
     
     def __init__(self):
-        self.population_size = 10000
+        self.population_size = 5000  # Tuned for 512GB machine
         self.surrogate_threshold = 0.85
         self.n_generations = 0
         
@@ -204,12 +204,16 @@ class HeavyFastGenesis:
         print(f"[HEAVY-GENESIS] Population ready")
         
     def evaluate_population_parallel(self, candidates: List[HeavyCandidate]) -> List[np.ndarray]:
-        """Parallel evaluation of candidates"""
+        """HEAVY sequential evaluation with massive computation per candidate"""
         start = time.time()
         
-        # Use multiprocessing for true parallelism
-        with Pool(processes=min(64, cpu_count())) as pool:
-            fitnesses = pool.map(lambda c: c.evaluate_full(), candidates)
+        # Sequential but HEAVY: each evaluation is computationally expensive
+        fitnesses = []
+        for i, c in enumerate(candidates):
+            fitness = c.evaluate_full()
+            fitnesses.append(fitness)
+            if i % 500 == 0 and i > 0:
+                print(f"  Evaluated: {i}/{len(candidates)}")
             
         elapsed = time.time() - start
         self.evaluation_count += len(candidates)

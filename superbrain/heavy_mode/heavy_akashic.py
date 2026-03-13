@@ -88,19 +88,25 @@ class HeavyAkashic:
             pass
             
     def compute_all_pairwise_distances(self) -> np.ndarray:
-        """O(N^2) compute: all candidate pairwise distances"""
+        """O(N^2) compute: all candidate pairwise distances - memory efficient"""
         n = len(self.phenotype_index)
         vectors = np.array([v["vector"] for v in self.phenotype_index.values()])
         
-        # Heavy computation: pairwise distance matrix
-        # This is O(N^2) and CPU intensive
-        print(f"[HEAVY-AKASHIC] Computing {n} x {n} pairwise distances...")
+        # Heavy computation: pairwise distance matrix - compute in chunks to save RAM
+        print(f"[HEAVY-AKASHIC] Computing {n} x {n} pairwise distances (chunked)...")
         start = time.time()
         
-        # Use vectorized operations (still heavy)
-        diff = vectors[:, np.newaxis, :] - vectors[np.newaxis, :, :]
-        distances = np.sqrt(np.sum(diff**2, axis=2))
+        # Process in chunks to avoid 1.16TB allocation
+        chunk_size = 1000
+        distances = np.zeros((n, n), dtype=np.float32)
         
+        for i in range(0, n, chunk_size):
+            end_i = min(i + chunk_size, n)
+            chunk = vectors[i:end_i]
+            # Compute distances for this chunk against all vectors
+            diff = chunk[:, np.newaxis, :] - vectors[np.newaxis, :, :]
+            distances[i:end_i] = np.sqrt(np.sum(diff**2, axis=2))
+            
         elapsed = time.time() - start
         print(f"[HEAVY-AKASHIC] Pairwise complete in {elapsed:.1f}s")
         self.total_compute_time += elapsed
@@ -266,8 +272,8 @@ class HeavyAkashic:
         """Main loop - NO SLEEP, pure computation"""
         print("[HEAVY-AKASHIC] Starting HEAVY MODE - no sleep, pure compute")
         
-        # Allocate heavy state
-        self.allocate_heavy_state(n_candidates=50000, n_archetypes=1000)
+        # Allocate heavy state (tuned for 512GB machine)
+        self.allocate_heavy_state(n_candidates=20000, n_archetypes=500)
         
         while True:
             try:

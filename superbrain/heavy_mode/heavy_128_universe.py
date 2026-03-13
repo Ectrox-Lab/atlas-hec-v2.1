@@ -28,8 +28,8 @@ class HeavyUniverse:
         self.id = universe_id
         self.config = config
         
-        # Heavy state per universe
-        self.population = np.random.random((10000, 64))  # 10k agents, 64-dim state
+        # Heavy state per universe (tuned for 512GB total)
+        self.population = np.random.random((5000, 64))  # 5k agents, 64-dim state
         self.fitness_history = []
         self.drift_trajectory = []
         
@@ -177,16 +177,17 @@ class Heavy128Universe:
         print(f"[HEAVY-128] All {len(self.universes)} universes ready")
         
     def run_parallel_evolution(self, n_generations: int = 5):
-        """Evolve all universes in parallel"""
-        print(f"[HEAVY-128] Parallel evolution: {n_generations} generations")
+        """Evolve all universes - HEAVY single-threaded with many iterations"""
+        print(f"[HEAVY-128] Evolution: {n_generations} generations x 128 universes")
         start = time.time()
         
-        # Use multiprocessing for true parallelism
-        with Pool(processes=min(64, cpu_count())) as pool:
-            results = pool.map(
-                lambda u: u.evolve_generation(n_generations),
-                self.universes
-            )
+        # Sequential but HEAVY: each universe does massive computation
+        results = []
+        for i, universe in enumerate(self.universes):
+            fitness = universe.evolve_generation(n_generations)
+            results.append(fitness)
+            if i % 32 == 0:
+                print(f"  Progress: {i}/128 universes")
             
         elapsed = time.time() - start
         avg_fitness = np.mean(results)

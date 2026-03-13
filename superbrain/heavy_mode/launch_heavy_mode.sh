@@ -71,17 +71,17 @@ monitor_resources() {
 
 # Launch experiments in parallel
 echo "[LAUNCH] Starting HEAVY AKASHIC..."
-python3 superbrain/heavy_mode/heavy_akashic.py > heavy_logs/akashic.log 2>&1 &
+/usr/bin/python3 superbrain/heavy_mode/heavy_akashic.py > heavy_logs/akashic.log 2>&1 &
 AKASHIC_PID=$!
 echo "  PID: $AKASHIC_PID"
 
 echo "[LAUNCH] Starting HEAVY 128 UNIVERSE..."
-python3 superbrain/heavy_mode/heavy_128_universe.py > heavy_logs/128universe.log 2>&1 &
+/usr/bin/python3 superbrain/heavy_mode/heavy_128_universe.py > heavy_logs/128universe.log 2>&1 &
 UNIV_PID=$!
 echo "  PID: $UNIV_PID"
 
 echo "[LAUNCH] Starting HEAVY FAST GENESIS..."
-python3 superbrain/heavy_mode/heavy_fast_genesis.py > heavy_logs/genesis.log 2>&1 &
+/usr/bin/python3 superbrain/heavy_mode/heavy_fast_genesis.py > heavy_logs/genesis.log 2>&1 &
 GENESIS_PID=$!
 echo "  PID: $GENESIS_PID"
 
