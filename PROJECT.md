@@ -489,17 +489,15 @@ S1 完成 → 立即执行：
 
 **E-T1-003 Task-1 Inheritance Effectiveness Run**
 
-- **级别**: PLANNED (当前唯一关键验证门)
-- **目标**: 证明 Round B (with inheritance) > Round A (without)
-- **方法**: 50 candidates × 2 rounds × A/B comparison
-- **成功标准**:
-  1. Bridge pass rate +5pp
-  2. Mainline approve rate +5pp
-  3. Mean throughput delta > +0.3%
-  4. Cross-seed repeatable
-  5. Failure archetype recurrence ↓
-- **执行计划**: `scripts/ralph/prd.json` (S1-S7)
-- **结果目录**: `benchmark_results/task1_inheritance_ab/` (待创建)
+- **级别**: COMPLETE (L4-v1)
+- **结论**: **PARTIAL SUCCESS** - Inheritance mechanism works, drives exploration, but approve rate improvement insufficient
+- **关键结果**:
+  - Round A: 40.0% approve, +1.51% throughput
+  - Round B: 51.6% approve (+11.6pp), +5.13% throughput
+  - Ablation: 36.7% approve (validates bias layer)
+- **判定**: 2/3 E-T1-003 criteria passed (throughput improved, archetype stable)
+- **问题**: Improvement from novel family exploration, not stable family reuse
+- **结果目录**: `benchmark_results/task1_inheritance/`
 
 ---
 
@@ -546,7 +544,10 @@ S1 完成 → 立即执行：
   - Round B生成大量全新family，与Round A无继承关系
   - 模块激活模式显示Task-1专用模块被重新创造而非复用
   - F_P3T4M4占比未显著提升
-- **关键问题**: Superbrain是在"组合"已有能力，还是在"生长"专用结构？
+- **关键问题**: Superbrain shows "inheritance-driven exploration bias", NOT "inheritance-driven compositional reuse"
+- **判定**: 1/4 E-COMP-002 criteria passed
+- **根因**: Family-level bias too coarse, drives exploration to nearby variants
+- **下一步**: L4-v2 with mechanism-level inheritance + anti-leakage bias
 - **结果目录**: `benchmark_results/task1_compositional_analysis/` (待创建)
 - **依赖**: E-T1-003 完成后启动
 - **与E-T1-003关系**: E-T1-003问"继承是否有效"，E-COMP-002问"有效是否来自模块化复用"
@@ -609,7 +610,7 @@ S1 完成 → 立即执行：
 | **L1 Continuity** | 🟡 READY | Continuity Probe v1 待启动 |
 | **L2 Memory** | 🔴 BLOCKED | L1 完成后启动 |
 | **L3 Self-model** | 🔴 BLOCKED | L2 完成后启动 |
-| **L4 Self-improvement** | 🟡 IN PROGRESS | **E-T1-003/E-COMP-002 实验对就绪，仅S1阻塞** |
+| **L4 Self-improvement** | 🔴 **FAILED (v1)** | **E-T1-003 partial, E-COMP-002 failed - v2 required** |
 
 ### 10.5 已成立
 
@@ -618,12 +619,16 @@ S1 完成 → 立即执行：
 - ✅ P0 真实梯度训练链已打通并通过 P0-5 (E-P0-002)
 - ✅ 异构 CPU + GPU 执行 PoC 已成立
 - ✅ Akashic 可写 Task-1 继承包
-- ✅ E-T1-003 / E-COMP-002 实验对设计完成
+- ✅ E-T1-003 / E-COMP-002 实验对执行完成 (L4-v1)
+- ✅ Inheritance mechanism works (consumption + distribution shift)
+- ⚠️ **But**: Drives exploration, NOT compositional reuse
 
 ### 10.6 尚未成立
 
-- 🔴 **Inheritance Effectiveness** (E-T1-003) - S1完成后验证
-- 🔴 **Compositional Reuse** (E-COMP-002) - E-T1-003后启动
+- 🔴 **L4 Self-improvement** (v1 FAILED) - Inheritance drives exploration, not reuse
+- 🔴 **Compositional Reuse** (v1 FAILED) - F_P3T4M4 share dropped, leakage increased
+- 🔴 **Inheritance Effectiveness** (v1 PARTIAL) - Throughput improved but not approve rate
+- 🟡 **L4-v2** - Mechanism-level inheritance + anti-leakage bias (planned)
 - 🔴 多任务现实闭环尚未建立
 - 🔴 真异构执行体尚未完全闭合到主任务引擎
 
@@ -683,3 +688,127 @@ else:
 **批准**: Atlas-HEC Research Committee  
 **生效**: 2026-03-14  
 **版本**: v1.0
+
+---
+
+## 13. L4-v1 执行结果与判定
+
+### 13.1 执行摘要
+
+| 实验 | 状态 | 得分 | 关键发现 |
+|------|------|------|----------|
+| **E-T1-003** | Partial | 2/3 | Throughput improved (+5.13% vs +1.51%), approve rate marginal (+11.6pp) |
+| **E-COMP-002** | Failed | 1/4 | Improvement from novel families, NOT compositional reuse |
+| **Overall** | **FAILED** | 3/7 | Inheritance drives exploration, not stable reuse |
+
+### 13.2 核心结论
+
+> **当前 inheritance 表现出 "exploration bias"，而非 "compositional reuse-based self-improvement"**
+
+**成立的部分**:
+- ✅ Inheritance package 被消费
+- ✅ 候选分布确实改变
+- ✅ Raw throughput 提升显著
+
+**不成立的部分**:
+- ❌ 提升不是来自既有稳定 family 的复用
+- ❌ F_P3T4M4 占比下降 (13.3% → 9.7%)
+- ❌ Reuse rate 下降 (70.0% → 51.6%)
+- ❌ Leakage 上升 (0% → 12.9%，P1/P4/T5 家族)
+
+### 13.3 根因分析
+
+**问题**: Inheritance package 语义太粗（family-level bias）
+
+```json
+// Current (v1) - 问题所在
+{
+  "approved_families": ["F_P3T4M4", "F_P2T3M3"],
+  "generator_priors": {"trust_decay_range": [0.05, 0.15]}
+}
+```
+
+**后果**: 
+- 推动候选向 "已知 family 的邻近变体" 跳跃
+- 允许向未测试区域（P4, T5）结构性扩张
+- 不编码 mechanism-level 可复用模式
+
+### 13.4 两刀修复（不扩散）
+
+**刀 1**: Akashic Package Schema  
+**From**: Family-level prior  
+**To**: Mechanism/routing prior (`stable_patterns`, `blocked_motifs`, `route_constraints`)
+
+**刀 2**: Fast Genesis Anti-Leakage  
+**Add**: `anti_structural_expansion_penalty` 对以下候选降权：
+- 超出已知 family 邻域太远
+- 引入新的高复杂度组合但没有历史支持
+- 违反现有 stable path 的路由模式
+- P1/P4/T5 异常扩张
+
+---
+
+## 14. L4-v2 计划
+
+### 14.1 目标
+
+| 指标 | L4-v1 (Round B) | L4-v2 Target |
+|------|-----------------|--------------|
+| Approve rate | 51.6% | > 60% |
+| Reuse rate | 51.6% | > 70% |
+| F_P3T4M4 share | 9.7% | > 30% |
+| Leakage | 12.9% | < 8% |
+| Winners from stable paths | 22.6% | > 60% |
+
+### 14.2 实验结构（不变）
+
+- **Round A-v2**: No inheritance (control)
+- **Round B-v2**: Inheritance package v2 + anti-leakage
+- **Sample**: 30 candidates per round, stratified
+- **Evaluation**: Bridge → Mainline (same thresholds)
+
+### 14.3 关键修改
+
+| 组件 | L4-v1 | L4-v2 |
+|------|-------|-------|
+| Akashic output | Family list | Mechanism patterns + routing constraints |
+| Fast Genesis bias | toward-known-good | toward-known-good + anti-leakage |
+| Bias strength | 0.7 | 0.6 (conservative) |
+| Leakage penalty | None | 0.3-0.4 per novel motif |
+
+### 14.4 判定标准（不变）
+
+**L4-v2 FULLY VALIDATED**:
+- Approve rate B > A + 5pp
+- Reuse rate > 60%
+- Leakage < 10%
+- F_P3T4M4 share > 25%
+- Winners from stable paths > 50%
+
+---
+
+## 15. 主线状态总结
+
+### 当前精确状态
+
+| 层级 | 状态 | 说明 |
+|------|------|------|
+| **L0** | ✅ Running | Ralph 外骨骼 |
+| **L1-L3** | 🔴 Blocked | 等待 L4 确立 |
+| **L4-v1** | 🔴 **FAILED** | Exploration bias confirmed, reuse not established |
+| **L4-v2** | 🟡 Planned | Mechanism-level inheritance + anti-leakage |
+
+### 关键认知更新
+
+> **这不是"L4 不可能"的证据，而是"当前 inheritance 语义不对"的信号。**
+
+- Inheritance **mechanism** works (consumption → distribution shift → throughput gain)
+- Inheritance **semantics** wrong (family-level → exploration; need mechanism-level → reuse)
+- Fix scope: Akashic output schema + Fast Genesis bias logic
+- **No architecture diffusion required**
+
+---
+
+**批准**: Atlas-HEC Research Committee  
+**生效**: 2026-03-14  
+**版本**: v1.1 → **v2.0-L4V2-PLANNED**
