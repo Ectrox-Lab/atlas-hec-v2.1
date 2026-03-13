@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-HEAVY AKASHIC - Memory-Bound Knowledge Synthesis
+HEAVY AKASHIC - Memory-Bound Knowledge Synthesis + Causal Memory Fusion
 
-RAM Target: 200-400GB
+RAM Target: 150-200GB (compressed with causal graph)
 CPU Target: 60-80% on 128C
 
 In-memory state:
@@ -11,6 +11,7 @@ In-memory state:
 - Cross-universe phenotype index
 - Conflict adjacency matrix
 - Inheritance compression DAG
+- CAUSAL GRAPH: event nodes + causal edges
 """
 
 import numpy as np
@@ -21,9 +22,20 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 import threading
 import gc
+import sys
+
+# Import causal fusion
+sys.path.insert(0, '/home/admin/atlas-hec-v2.1-repo/superbrain/heavy_mode')
+try:
+    from akashic_causal_fusion import AkashicCausalFusion, CausalEvent, CausalGraph
+    CAUSAL_FUSION_AVAILABLE = True
+    print("[HEAVY-AKASHIC] Causal fusion loaded")
+except Exception as e:
+    print(f"[HEAVY-AKASHIC] Causal fusion not available: {e}")
+    CAUSAL_FUSION_AVAILABLE = False
 
 class HeavyAkashic:
-    """RAM-heavy knowledge synthesis engine"""
+    """RAM-heavy knowledge synthesis engine with Causal Memory"""
     
     def __init__(self, config: Dict):
         self.config = config
@@ -35,11 +47,19 @@ class HeavyAkashic:
         self.conflict_matrix = None  # Archetype conflicts
         self.inheritance_dag = {}  # Compressed lineage
         
+        # CAUSAL FUSION ENGINE
+        if CAUSAL_FUSION_AVAILABLE:
+            self.causal_engine = AkashicCausalFusion(max_ram_gb=50.0)
+            self.causal_enabled = True
+        else:
+            self.causal_engine = None
+            self.causal_enabled = False
+        
         # Statistics
         self.synthesis_count = 0
         self.total_compute_time = 0.0
         
-        print(f"[HEAVY-AKASHIC] Initialized, target RAM: 200-400GB")
+        print(f"[HEAVY-AKASHIC] Initialized, target RAM: 150-200GB (causal compression enabled)")
         
     def allocate_heavy_state(self, n_candidates: int = 50000, n_archetypes: int = 1000):
         """Pre-allocate large memory structures"""
@@ -224,9 +244,12 @@ class HeavyAkashic:
         }
         
     def run_heavy_synthesis_cycle(self):
-        """One full heavy synthesis cycle"""
+        """One full heavy synthesis cycle with causal tracking"""
         print(f"\n[HEAVY-AKASHIC] === Synthesis Cycle {self.synthesis_count} ===")
         cycle_start = time.time()
+        
+        # Pre-cycle state for causal tracking
+        pre_drift = self._estimate_current_drift()
         
         # 1. Pairwise distances (O(N^2))
         distances = self.compute_all_pairwise_distances()
@@ -243,10 +266,36 @@ class HeavyAkashic:
         # 5. Update distance matrix (heavy matrix ops)
         self._update_distance_matrix()
         
+        # Post-cycle state
+        post_drift = self._estimate_current_drift()
+        
+        # CAUSAL TRACKING: Record synthesis event
+        if self.causal_enabled:
+            self.causal_engine.record_event(
+                universe_id=f"AKASHIC_MAIN",
+                event_type="synthesis_cycle",
+                config={"p": 2, "t": 3, "m": 3, "d": 1, "cycle": self.synthesis_count},
+                drift_before=pre_drift,
+                drift_after=post_drift
+            )
+            
+            # Record compression event if significant
+            if compressed["compression_ratio"] < 0.8:
+                self.causal_engine.record_event(
+                    universe_id=f"AKASHIC_MAIN",
+                    event_type="compression",
+                    config={"p": 2, "t": 3, "m": 3, "d": 1},
+                    drift_before=compressed["removed_count"],
+                    drift_after=compressed["compression_ratio"]
+                )
+        
         self.synthesis_count += 1
         cycle_time = time.time() - cycle_start
         
         print(f"[HEAVY-AKASHIC] Cycle complete in {cycle_time:.1f}s")
+        if self.causal_enabled:
+            digest = self.causal_engine.generate_digest()
+            print(f"[HEAVY-AKASHIC] Causal events: {digest['causal_graph']['events']}, edges: {digest['causal_graph']['edges']}")
         self._report_memory()
         
         return {
@@ -255,6 +304,12 @@ class HeavyAkashic:
             "clusters_found": len(np.unique(clusters["labels"])),
             "compression_ratio": compressed["compression_ratio"]
         }
+    
+    def _estimate_current_drift(self) -> float:
+        """Estimate current drift level from state"""
+        if self.distance_matrix is not None:
+            return float(np.mean(self.distance_matrix))
+        return 0.5
         
     def _update_distance_matrix(self):
         """Heavy matrix update operation"""
