@@ -1,0 +1,80 @@
+{
+  "mode": "FULL_STACK_SUPERBRAIN",
+  "version": "1.0",
+  "launch_time": "2026-03-13T18:30:00Z",
+  "time_scales": {
+    "mainline": {
+      "clock": "slow",
+      "tick_rate": "1tick=1sec",
+      "checkpoint_interval": "6h",
+      "audit_frequency": "24h"
+    },
+    "fast_genesis": {
+      "clock": "fast",
+      "compression_ratio": "1sec_real=1year_sim",
+      "epoch_mode_threshold": "1000_ticks_stable",
+      "event_driven": true,
+      "surrogate_filter": true
+    },
+    "akashic": {
+      "clock": "medium",
+      "synthesis_interval": "1h",
+      "inheritance_update": "6h",
+      "policy_feedback": "24h"
+    }
+  },
+  "modules": {
+    "mainline_orchestrator": {
+      "enabled": true,
+      "universes": 128,
+      "config_matrix": "8_core_x16_repeats",
+      "responsibility": "verification_reality_judgment"
+    },
+    "fast_genesis_orchestrator": {
+      "enabled": true,
+      "lineages": 9,
+      "population_per_lineage": 384,
+      "generations": 25,
+      "acceleration": {
+        "event_driven": true,
+        "epoch_skip": true,
+        "stable_fast_forward": "1epoch=1000ticks",
+        "surrogate_threshold": 0.85
+      },
+      "responsibility": "exploration_discovery"
+    },
+    "bridge_scheduler": {
+      "enabled": true,
+      "rolling_admission": true,
+      "shadow_batch": 8,
+      "dry_run_batch": 16,
+      "queue_depth_max": 10,
+      "responsibility": "funnel_filter_audit"
+    },
+    "akashic_synthesizer": {
+      "enabled": true,
+      "inputs": ["mainline", "fast_genesis", "bridge"],
+      "outputs": ["policy_updates", "generator_priors", "blocked_zones", "inheritance_packages"],
+      "responsibility": "memory_inheritance_knowledge"
+    }
+  },
+  "hard_constraints": {
+    "global": {
+      "d1_mandatory": true,
+      "p3_m3_prohibited": true,
+      "similarity_floor": 0.70,
+      "failure_distance_min": 0.30
+    },
+    "isolation_rules": {
+      "mainline_no_direct_adoption": "bridge_queue_only",
+      "fast_genesis_no_mainline_injection": "bridge_only",
+      "akashic_readonly_for_policy": "feedback_not_override"
+    }
+  },
+  "target_outputs": {
+    "tier_b_candidates": "24h_first_batch",
+    "tier_a_edge_candidates": "48h_check",
+    "stable_recipe_updates": "6h_synthesis",
+    "failure_archetype_expansion": "continuous"
+  }
+}
