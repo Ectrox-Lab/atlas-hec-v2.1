@@ -35,7 +35,7 @@ class RalphHourGate:
         self.command = self.config["batch_command"]
         self.working_dir = Path(self.config.get("working_dir", "."))
         self.output_dir = Path(self.config.get("output_dir", "ralph_runs"))
-        self.output_dir.mkdir(exist_ok=True)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         
         self.log_file = self.output_dir / f"{self.experiment_name}_ralph.log"
         

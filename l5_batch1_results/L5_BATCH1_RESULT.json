@@ -1,0 +1,38 @@
+{
+  "experiment": "L5_Full_Batch1",
+  "batch": "1_of_10",
+  "timestamp": "2026-03-15T06:15:21.911296",
+  "duration_minutes": 0.0,
+  "total_seeds": 80,
+  "group_stats": {
+    "G1_Transfer": {
+      "n": 32,
+      "avg_math_loss": 0.7229,
+      "avg_code_retention": 0.913
+    },
+    "G2_Sham": {
+      "n": 32,
+      "avg_math_loss": 0.7965,
+      "avg_code_retention": 0.8832
+    },
+    "G3_SelfRef": {
+      "n": 16,
+      "avg_math_loss": 0.5424,
+      "avg_code_retention": 0.9961
+    }
+  },
+  "key_metrics": {
+    "transfer_gap_pp": 7.36,
+    "code_retention": 0.913,
+    "self_gap_pp": 25.41
+  },
+  "checks": {
+    "transfer_gap_ge_5": true,
+    "code_retention_ge_85": true,
+    "self_gap_positive": true
+  },
+  "checks_passed": "3/3",
+  "verdict": "SUCCESS",
+  "recommendation": "APPLY_FOR_BATCH2",
+  "next_step": "Submit BATCH2_APPLICATION"
+}

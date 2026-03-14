@@ -1,0 +1,10 @@
+{
+  "experiment": "L5_FULL_BATCH1",
+  "batch": 1,
+  "hour": 1,
+  "status": "NEGATIVE",
+  "reason": "METRICS_UNAVAILABLE",
+  "timestamp": "2026-03-15T06:15:21.916138",
+  "action": "FREEZE_EXPERIMENT",
+  "ralph_decision": "STOP_NO_EXTENSION"
+}
