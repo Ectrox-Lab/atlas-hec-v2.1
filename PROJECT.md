@@ -921,18 +921,35 @@ l4v2_experiment:
 | 层级 | 状态 | 说明 |
 |------|------|------|
 | **L0** | ✅ Running | Ralph 外骨骼 |
-| **L1-L3** | 🔴 Blocked | 等待 L4 确立 |
+| **L1-L3** | 🟡 Ready | L4已验证，可并行启动 |
 | **L4-v1** | 🔴 **FAILED** | Exploration bias confirmed, reuse not established |
-| **L4-v2** | 🟡 Planned | Mechanism-level inheritance + anti-leakage |
+| **L4-v2** | ✅ **VALIDATED** | **18.7pp Control Gap, 0% Leakage, 4/4 criteria passed** |
+| **L5** | 🟡 **DESIGN** | Multi-task inheritance - architecture design phase |
 
-### 关键认知更新
+### 关键认知更新 (Post L4-v2 Validation)
 
-> **这不是"L4 不可能"的证据，而是"当前 inheritance 语义不对"的信号。**
+> **L4 Self-Improvement: VALIDATED in single-task setting.**
 
-- Inheritance **mechanism** works (consumption → distribution shift → throughput gain)
-- Inheritance **semantics** wrong (family-level → exploration; need mechanism-level → reuse)
-- Fix scope: Akashic output schema + Fast Genesis bias logic
-- **No architecture diffusion required**
+**已验证**:
+- ✅ Inheritance mechanism works: **18.7pp Control Gap** (threshold: 8pp)
+- ✅ Anti-leakage effective: **0% penetration** (threshold: 10%)
+- ✅ Mechanism-level > Family-level: compositional reuse established
+- ✅ 128-seed discipline: maintainable, observable, improvable
+
+**L4-v2 vs L4-v1改进**:
+| 维度 | L4-v1 | L4-v2 | 提升 |
+|------|-------|-------|------|
+| Control Gap | 3.9pp | **18.7pp** | +380% |
+| Leakage | 12.9% | **0%** | -100% |
+| Mechanism | Family-level | **Mechanism-level** | 语义升级 |
+
+**未验证（L5目标）**:
+- 🔴 Multi-task transfer: Can Task A inheritance improve Task B?
+- 🔴 Cross-task leakage prevention
+- 🔴 Catastrophic forgetting avoidance
+- 🔴 Transfer Gap metric (vs Control Gap)
+
+**风险警告**: L5风险指数级增长，禁止将L4成功外推为L5必然成功。
 
 ---
 
