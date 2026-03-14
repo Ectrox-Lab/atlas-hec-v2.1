@@ -1,0 +1,106 @@
+{
+  "phase": "L5_PILOT_HOUR2",
+  "version": "3.1-hour2-constrained",
+  "approved_by": "九叔/LOGIC_Layer",
+  "approval_time": "2026-03-15",
+  
+  "constraints": {
+    "max_seeds": 48,
+    "max_duration_minutes": 60,
+    "max_training_steps": 200,
+    "hard_stop_t30": true,
+    "no_hour3": true,
+    "_comment": "ABSOLUTE_CONSTRAINTS_NO_EXCEPTION"
+  },
+  
+  "groups": {
+    "G1_Transfer": {
+      "n": 16,
+      "task": "Code→Math",
+      "inheritance": "enabled",
+      "description": "Code pretrain → Math finetune with inheritance"
+    },
+    "G2_Sham": {
+      "n": 16,
+      "task": "Math_only",
+      "inheritance": "sham",
+      "description": "Math training with sham package (control)"
+    },
+    "G3_SelfRef": {
+      "n": 16,
+      "task": "Math→Math",
+      "inheritance": "self",
+      "description": "Math self-inheritance (upper bound reference)"
+    }
+  },
+  
+  "t30_checkpoint": {
+    "time_minutes": 30,
+    "condition_type": "MUST_MEET_ONE",
+    "conditions": {
+      "A_direct_signal": [
+        "Transfer Gap > 2pp",
+        "G1 loss significantly lower than G2"
+      ],
+      "B_mechanism_healthy": [
+        "Self Gap > 0.1",
+        "Code retention stable",
+        "Leakage clean"
+      ]
+    },
+    "action_if_fail": "IMMEDIATE_STOP_SUBMIT_PARTIAL"
+  },
+  
+  "t60_final": {
+    "time_minutes": 60,
+    "hard_deadline": true,
+    "must_deliver": "L5_HOUR2_RESULT.md"
+  },
+  
+  "circuit_breakers": {
+    "CB1_T30_NO_SIGNAL": {
+      "trigger": "t+30min no A or B condition met",
+      "action": "IMMEDIATE_STOP"
+    },
+    "CB2_NEGATIVE_TRANSFER": {
+      "trigger": "transfer_gap <= 0",
+      "action": "REJECT_L5"
+    },
+    "CB3_FORGETTING": {
+      "trigger": "code_retention < 80%",
+      "action": "REJECT_L5"
+    },
+    "CB4_TIMEOUT": {
+      "trigger": "t+60min incomplete",
+      "action": "SUBMIT_PARTIAL_RESULTS"
+    }
+  },
+  
+  "verdict_tree": {
+    "SUCCESS": {
+      "condition": "transfer_gap >= 5pp",
+      "next": "Prepare L5 Full application",
+      "note": "Pilot validated, needs full verification"
+    },
+    "HOLD": {
+      "condition": "0 < transfer_gap < 5pp",
+      "next": "Back to analysis, NO Hour-3",
+      "note": "Marginal signal, need redesign not more time"
+    },
+    "REJECT": {
+      "condition": "transfer_gap <= 0pp",
+      "next": "Freeze L5, revert to L4-v2",
+      "note": "Current config rejected, not L5 concept rejected"
+    }
+  },
+  
+  "explanation_boundary": {
+    "if_fail": "L5 current configuration (Code→Math, current schema) rejected",
+    "not": "L5 concept (multi-task inheritance) rejected forever",
+    "possible_reasons": [
+      "Code→Math not suitable first pair",
+      "Current transfer schema insufficient",
+      "Missing intermediate representation layer"
+    ]
+  }
+}

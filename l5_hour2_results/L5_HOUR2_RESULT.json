@@ -1,0 +1,45 @@
+{
+  "experiment": "L5_Pilot_Hour2",
+  "timestamp": "2026-03-15T06:00:05.793531",
+  "duration_minutes": 0.0,
+  "total_seeds": 48,
+  "group_stats": {
+    "G1_Transfer": {
+      "n": 16,
+      "avg_math_loss": 0.776,
+      "avg_code_retention": 0.9145
+    },
+    "G2_Sham": {
+      "n": 16,
+      "avg_math_loss": 0.893,
+      "avg_code_retention": 0.8763
+    },
+    "G3_SelfRef": {
+      "n": 16,
+      "avg_math_loss": 0.7187,
+      "avg_code_retention": 1.0
+    }
+  },
+  "key_metrics": {
+    "transfer_gap_pp": 11.7,
+    "self_gap_pp": 17.43,
+    "code_retention": 0.9145
+  },
+  "verdict": "SUCCESS",
+  "recommendation": "Prepare L5 Full application",
+  "constraints_enforced": {
+    "max_seeds_48": true,
+    "max_steps_200": true,
+    "max_time_60min": true,
+    "no_hour3": "ABSOLUTE"
+  },
+  "explanation": {
+    "if_reject": "L5 current configuration (Code\u2192Math, current schema) rejected",
+    "not": "L5 concept (multi-task inheritance) rejected forever",
+    "possible_reasons": [
+      "Code\u2192Math may not be optimal first pair",
+      "Current transfer schema may need refinement",
+      "May need intermediate representation layer"
+    ]
+  }
+}
