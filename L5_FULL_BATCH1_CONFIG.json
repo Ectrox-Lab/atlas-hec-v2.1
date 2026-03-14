@@ -1,0 +1,97 @@
+{
+  "phase": "L5_FULL_BATCH1",
+  "batch": "1_of_10",
+  "version": "1.0-compliant",
+  "approved_by": "九叔/LOGIC_Layer",
+  "approval_date": "2026-03-15",
+  
+  "violation_correction": {
+    "original_application": "L5_FULL_APPLICATION_v1_REJECTED.md",
+    "violation": "30-40 hours duration",
+    "correction": "Decomposed into 1-hour batches",
+    "status": "CORRECTED"
+  },
+  
+  "constraints": {
+    "max_seeds": 80,
+    "max_duration_minutes": 60,
+    "hard_deadline_t60": true,
+    "no_auto_continuation": true,
+    "next_batch_requires_approval": true,
+    "_warning": "VIOLATION_OF_1HOUR_RULE_IS_ABSOLUTE_PROHIBITION"
+  },
+  
+  "experiment_design": {
+    "task_pair": "A→B",
+    "task_a": "Code / Tool-use",
+    "task_b": "Math / Symbolic reasoning",
+    "purpose": "Replicate Pilot Hour-2 11.7pp Transfer Gap at 80-seed scale",
+    
+    "groups": {
+      "G1_Transfer": {"n": 32, "inheritance": "enabled"},
+      "G2_Sham": {"n": 32, "inheritance": "sham"},
+      "G3_SelfRef": {"n": 16, "inheritance": "self"}
+    }
+  },
+  
+  "success_criteria": {
+    "transfer_gap_pp": {"min": 5.0, "description": "Replicate Pilot success"},
+    "code_retention": {"min": 0.85, "description": "No catastrophic forgetting"},
+    "self_gap_positive": true
+  },
+  
+  "verdict_tree": {
+    "SUCCESS": {
+      "condition": "All 3 criteria met",
+      "action": "Submit BATCH2_APPLICATION",
+      "note": "Continue to next pair only after approval"
+    },
+    "MARGINAL": {
+      "condition": "Partial success",
+      "action": "HOLD, analyze, NO_BATCH2",
+      "note": "Investigate Pilot-Batch1 difference"
+    },
+    "FAIL": {
+      "condition": "Any criterion failed",
+      "action": "REJECT_BATCH1, FREEZE_L5_FULL",
+      "note": "Revert to L4-v2, redesign L5"
+    }
+  },
+  
+  "circuit_breakers": {
+    "CB1_T60_TIMEOUT": {
+      "trigger": "t+60min not complete",
+      "action": "REJECT_INCONCLUSIVE"
+    },
+    "CB2_TRANSFER_GAP_LOW": {
+      "trigger": "transfer_gap < 5pp",
+      "action": "REJECT_BATCH1"
+    },
+    "CB3_FORGETTING": {
+      "trigger": "code_retention < 85%",
+      "action": "REJECT_BATCH1"
+    }
+  },
+  
+  "comparison_with_pilot": {
+    "pilot_hour2": {
+      "seeds": 48,
+      "transfer_gap_pp": 11.7,
+      "status": "SUCCESS"
+    },
+    "batch1_target": {
+      "seeds": 80,
+      "transfer_gap_pp": ">= 5.0",
+      "note": "Replication at larger scale"
+    }
+  },
+  
+  "prohibited_actions": [
+    "Auto-continue to Batch 2 without approval",
+    "Extend beyond 60 minutes",
+    "Increase seed count beyond 80",
+    "Modify hyperparameters from Pilot"
+  ],
+  
+  "approved_action": "Execute Batch 1 only, STOP at T+60, submit result, await approval for Batch 2"
+}
