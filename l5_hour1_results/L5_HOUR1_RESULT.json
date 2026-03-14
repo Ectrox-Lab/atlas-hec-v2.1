@@ -1,0 +1,57 @@
+{
+  "experiment": "L5_Hour1_Probe",
+  "timestamp": "2026-03-15T05:54:44.577494",
+  "duration_minutes": 0.0,
+  "total_seeds": 18,
+  "group_stats": {
+    "G1_Transfer": {
+      "n": 6,
+      "avg_math_loss": 1.004,
+      "avg_code_retention": 0.927,
+      "seeds": [
+        "H1_3000",
+        "H1_3001",
+        "H1_3002",
+        "H1_3003",
+        "H1_3004",
+        "H1_3005"
+      ]
+    },
+    "G2_Sham": {
+      "n": 6,
+      "avg_math_loss": 1.004,
+      "avg_code_retention": 0.881,
+      "seeds": [
+        "H1_3006",
+        "H1_3007",
+        "H1_3008",
+        "H1_3009",
+        "H1_3010",
+        "H1_3011"
+      ]
+    },
+    "G3_Self": {
+      "n": 6,
+      "avg_math_loss": 0.874,
+      "avg_code_retention": 1.013,
+      "seeds": [
+        "H1_3012",
+        "H1_3013",
+        "H1_3014",
+        "H1_3015",
+        "H1_3016",
+        "H1_3017"
+      ]
+    }
+  },
+  "checkpoints": {},
+  "key_metrics": {
+    "transfer_gap": 0.0,
+    "self_gap": 0.13,
+    "code_retention": 0.927,
+    "leakage_flag": "CLEAN"
+  },
+  "positive_signals_count": 2,
+  "recommendation": "ESCALATE",
+  "next_action": "Apply for Hour-2 (48 seeds)"
+}
