@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-03-15T04:50:04.525664",
+  "phase": "Mainline_Phase2",
+  "sample_size": 38,
+  "pool_stats": [
+    {
+      "pool": "A",
+      "n_evaluated": 8,
+      "n_approve": 7,
+      "approve_rate": 0.875,
+      "mean_throughput": 4.39,
+      "family_distribution": {
+        "F_P3T4M4": 3,
+        "F_P2T4M3": 1,
+        "F_P2T3M4": 1,
+        "F_P3T3M4": 2
+      }
+    },
+    {
+      "pool": "B",
+      "n_evaluated": 8,
+      "n_approve": 7,
+      "approve_rate": 0.875,
+      "mean_throughput": 6.04,
+      "family_distribution": {
+        "F_P3T4M4": 4,
+        "F_P2T4M3": 3
+      }
+    },
+    {
+      "pool": "C",
+      "n_evaluated": 8,
+      "n_approve": 7,
+      "approve_rate": 0.875,
+      "mean_throughput": 4.45,
+      "family_distribution": {
+        "F_P3T4M4": 4,
+        "F_P2T4M3": 1,
+        "F_P2T4M4": 1,
+        "F_P3T3M4": 1
+      }
+    },
+    {
+      "pool": "D",
+      "n_evaluated": 6,
+      "n_approve": 4,
+      "approve_rate": 0.667,
+      "mean_throughput": 4.19,
+      "family_distribution": {
+        "F_P2T4M3": 1,
+        "F_P3T3M3": 1,
+        "F_P3T3M4": 1,
+        "F_P2T3M3": 1
+      }
+    },
+    {
+      "pool": "E",
+      "n_evaluated": 8,
+      "n_approve": 6,
+      "approve_rate": 0.75,
+      "mean_throughput": 4.02,
+      "family_distribution": {
+        "F_P3T4M4": 5,
+        "F_P3T4M3": 1
+      }
+    }
+  ],
+  "key_comparisons": {
+    "B_vs_E_control_gap_pp": 12.5,
+    "B_vs_A_recombination_gain_pp": 0.0,
+    "F_penetration_rate": 0
+  },
+  "family_diversity": {
+    "unique_families_approved": 8,
+    "f_p3t4m4_share": 0.516
+  },
+  "verdict": "PROMISING-BUT-CONTROL-TOO-STRONG-CONSIDER-REDESIGN"
+}

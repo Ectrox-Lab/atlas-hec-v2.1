@@ -1,0 +1,46 @@
+{
+  "seed_id": "S2096",
+  "pool": "D",
+  "family_id": "F_P2T3M3",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "bridge_verdict": "PASS",
+  "mainline_evaluation": {
+    "verdict": "APPROVE",
+    "five_criteria": {
+      "throughput_improved": {
+        "threshold": 0.3,
+        "actual": 4.24,
+        "passed": true
+      },
+      "approve_rate_high": {
+        "threshold": 0.85,
+        "actual": 0.9,
+        "passed": true
+      },
+      "latency_acceptable": {
+        "threshold": 300,
+        "actual": 230,
+        "passed": true
+      },
+      "resource_within_budget": {
+        "threshold": 0.9,
+        "actual": 0.86,
+        "passed": true
+      },
+      "recovery_successful": {
+        "threshold": 0.9,
+        "actual": 0.93,
+        "passed": true
+      }
+    },
+    "passed_criteria_count": "5/5",
+    "mechanism_activation": [
+      {
+        "mechanism": "boundary_exploration",
+        "activated": true,
+        "contribution": 0.3
+      }
+    ]
+  }
+}

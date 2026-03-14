@@ -1,0 +1,51 @@
+{
+  "seed_id": "S2019",
+  "pool": "A",
+  "family_id": "F_P3T3M4",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "bridge_verdict": "PASS",
+  "mainline_evaluation": {
+    "verdict": "APPROVE",
+    "five_criteria": {
+      "throughput_improved": {
+        "threshold": 0.3,
+        "actual": 4.27,
+        "passed": true
+      },
+      "approve_rate_high": {
+        "threshold": 0.85,
+        "actual": 0.89,
+        "passed": true
+      },
+      "latency_acceptable": {
+        "threshold": 300,
+        "actual": 245,
+        "passed": true
+      },
+      "resource_within_budget": {
+        "threshold": 0.9,
+        "actual": 0.9,
+        "passed": true
+      },
+      "recovery_successful": {
+        "threshold": 0.9,
+        "actual": 0.91,
+        "passed": true
+      }
+    },
+    "passed_criteria_count": "5/5",
+    "mechanism_activation": [
+      {
+        "mechanism": "adaptive_migration",
+        "activated": true,
+        "contribution": 0.45
+      },
+      {
+        "mechanism": "trust_based_routing",
+        "activated": true,
+        "contribution": 0.38
+      }
+    ]
+  }
+}

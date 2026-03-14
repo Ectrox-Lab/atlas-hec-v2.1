@@ -1,0 +1,20 @@
+{
+  "seed_id": "S2114",
+  "pool": "E",
+  "family_id": "F_P2T4M3",
+  "is_control": true,
+  "is_leakage_monitor": false,
+  "bridge_verdict": "PASS",
+  "mainline_evaluation": {
+    "verdict": "HOLD",
+    "failure_reason": "mainline_strict_criteria",
+    "five_criteria": {
+      "throughput_improved": {
+        "threshold": 0.3,
+        "actual": -0.33,
+        "passed": false
+      }
+    },
+    "passed_criteria_count": "2/5"
+  }
+}
