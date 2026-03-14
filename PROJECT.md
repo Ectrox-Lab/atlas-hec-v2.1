@@ -1,142 +1,191 @@
-# Atlas-HEC v2.1 Project Rules
+# Atlas-HEC v2.1 Project
 
-> **Version**: 2.0.0  
+> **Trajectory Principle Edition**  
+> **Version**: 3.0.0  
 > **Status**: ACTIVE  
 > **Effective**: 2026-03-15
 
 ---
 
-## Hard Rule: Execution Window, Not Physical Clock
+## Trajectory Principle (軌跡優先原則)
 
-### 核心原则
+### 四句核心紀律
 
-**约束对象不是原始物理时间，而是预算窗口内的真实执行。**
-
-因为 bio-world / code-world 时间可以相对物理世界加速，真正重要的是：
-
-1. **真实执行** - 实际发生的计算和状态转移
-2. **真实评估** - 明确的阈值判定逻辑
-3. **真实产出** - 可审计的 metrics / 决策记录
-4. **真实反馈** - 正/负信号才允许进入下一窗口
-
-### 时间定义
-
-| 时间类型 | 定义 | 作用 |
-|---------|------|------|
-| **物理时间** | 现实 wall-clock time | 人类审批节奏、资源管理 |
-| **Bio-world 时间** | 系统内部可加速的运行时间 | 真实执行发生的时间域 |
-| **预算窗口** | 单次授权的执行单元 | Ralph 守门的基本单位 |
-
-### 窗口纪律
-
-```
-Window N:
-    ├─ 执行真实计算 (bio-world 时间可加速)
-    ├─ 产生状态变化 (非伪造的独立结果)
-    ├─ 生成 auditable outputs (metrics.json)
-    ├─ 阈值评估 (POSITIVE_AUTO / POSITIVE_MANUAL / MARGINAL / FAIL)
-    └─ Ralph 决策 → 停止
-              ↓
-    人工审查或自动批准 (严格阈值下)
-              ↓
-Window N+1 授权
-```
-
-### Ralph 守门规则
-
-```python
-# Ralph 是预算窗口守门员，不是物理时钟看守
-
-if verdict == "POSITIVE_AUTO":  # ≥10pp AND ≥90%
-    → 自动批准，继续下一窗口
-    
-elif verdict == "POSITIVE_MANUAL":  # ≥5pp AND ≥85%
-    → 生成申请，等待人工确认
-    
-elif verdict in ["MARGINAL", "FAIL"]:
-    → 冻结，等待人工决策
-```
-
-### 真实性验证标准
-
-每个窗口必须留下：
-
-| 验证项 | 检查点 | 审计文件 |
-|--------|--------|----------|
-| 真实执行 | data_checksum 唯一 | metrics.json |
-| 真实评估 | verdict 明确 | decision.json |
-| 真实产出 | 文件存在且非空 | hour_N/ 目录 |
-| 审计追踪 | SHA256 + 时间戳 | decision.json |
+1. **時間不是第一性對象，執行窗口只是軌跡切片。**
+2. **隨機不是核心解釋，真正核心是可重播的因果展開。**
+3. **努力不是反命定，而是生成後續軌跡的必要前因。**
+4. **研究目標不是敘事勝利，而是把軌跡變成可審計、可複現、可繼承的工程對象。**
 
 ---
 
-## T0 - 预算窗口规则 (Budget Window Rule)
+## 工程定義
 
-### 规则定义
-
-**每个执行窗口必须产生真实可检验反馈，才允许进入下一窗口。**
-
-### 自动批准与续时
-
-Ralph **可以自动批准并继续下一窗口**，但阈值必须严格到**人工确认级别**。
-
-### 自动批准标准（严格阈值）
-
-| 条件 | 阈值 | Ralph 动作 |
-|------|------|-----------|
-| **POSITIVE_AUTO** | transfer_gap ≥ **10pp** AND retention ≥ **90%** | **自动批准，继续下一窗口** |
-| **POSITIVE_MANUAL** | transfer_gap ≥ 5pp AND retention ≥ 85% | 生成申请，等待人工确认 |
-| **MARGINAL** | 0 < transfer_gap < 5pp | 冻结，等待分析 |
-| **FAIL** | transfer_gap ≤ 0 OR retention < 85% | 冻结，终止或回退 |
-
-### 自动批准流程
+### 什麼是軌跡 (Trajectory)
 
 ```
-Window 执行
-    ↓
-[Ralph] STOP (窗口结束)
-    ↓
-[评估阈值]
-    ↓
-├── POSITIVE_AUTO (≥10pp, ≥90%) 
-│   → 自动批准
-│   → 生成 window_{N+1}_config.json
-│   → **自动继续下一窗口**
-│   → 记录决策日志
-│
-├── POSITIVE_MANUAL (≥5pp, ≥85%)
-│   → 生成申请材料
-│   → 等待人工确认
-│
-└── MARGINAL / FAIL
-    → 冻结
-    → 等待人工决策
+軌跡 = 前因 → 狀態轉移 → 產物 → 後效
+
+前因 (Antecedent):
+  - 初始種子 (seeds)
+  - 繼承包裹 (inheritance package)
+  - 選擇壓力 (selection pressure)
+  - 環境配置 (config)
+
+狀態轉移 (State Transition):
+  - 真實計算發生
+  - 可驗證的 checksum 變化
+  - metrics 更新
+
+產物 (Artifact):
+  - 模型權重
+  - 決策日志
+  - 評估指標
+  - lineage 記錄
+
+後效 (Consequence):
+  - 下一輪初始條件改變
+  - 搜索空間壓縮
+  - family shift 發生
+  - 失敗模式被標記
 ```
 
-### 关键纪律
+### 軌跡的可審計標準
 
-- ✅ **严格阈值**: 自动批准标准必须远高于最低门槛
-- ✅ **可审计**: 每次自动批准必须记录完整决策链
-- ✅ **可回滚**: 即使自动批准，后续发现异常仍可冻结
-- ✅ **真实执行**: 每个窗口必须有独立的状态变化和产出
-- ❌ **放宽标准**: 不得降低自动批准阈值
-- ❌ **空转窗口**: 禁止无真实计算的编号递增
+每個實驗批次必須留下：
+
+| 字段 | 格式 | 用途 |
+|------|------|------|
+| `trajectory_id` | UUID | 全局唯一標識 |
+| `antecedent_snapshot` | JSON | 前因完整記錄 |
+| `transition_checksum` | SHA256 | 狀態轉移證明 |
+| `artifact_locations` | Path[] | 產物存儲位置 |
+| `consequence_metrics` | JSON | 後效量化指標 |
+| `trajectory_delta_explained` | Text | 這一批改變了什麼 |
 
 ---
 
-## 实验运行记录
+## 強制報告格式
 
-### L5 Full Batch-1 (Budget Window Mode)
+### 每輪實驗報告結構
 
+```markdown
+## Trajectory Report: {batch_id}
+
+### 1. Antecedent (前因)
+- seeds: {n} (hash: {seed_hash})
+- inheritance_package: {package_id} (consumption: {rate})
+- lineage_source: {parent_trajectory_ids}
+- config_version: {git_commit}
+
+### 2. State Transition (狀態轉移)
+- checksum_before: {hash_a}
+- checksum_after: {hash_b}
+- transition_verified: {bool}
+- computation_cost: {flops | time | energy}
+
+### 3. Artifact (產物)
+- model_weights: {path} (size: {bytes})
+- decision_log: {path} (entries: {n})
+- metrics: {transfer_gap_pp, retention, ...}
+- lineage_record: {path}
+
+### 4. Consequence (後效)
+- next_round_eligibility: {bool}
+- search_space_compression: {ratio}
+- family_shift_detected: {bool}
+- failure_archetype_recorded: {id | null}
+
+### 5. Trajectory Delta Explained (軌跡改變說明)
+這一批次改變了後續分佈的具體機制：
+{詳細說明哪些前因導致了哪些後效，如何避免表面波動}
 ```
-物理时间: ~30 分钟 (现实 wall-clock)
-Bio-world 时间: 10 个执行窗口
-执行结果: 全部 POSITIVE_AUTO
-真实产出: 10 组独立 metrics + checksum
-```
-
-**验证**: 每个窗口有独立 data_checksum，证明真实状态变化发生。
 
 ---
 
-*Rule T0 v2.0 Effective: 2026-03-15*
+## 實驗批次規範
+
+### Batch-3 (B→A) 軌跡記錄
+
+```yaml
+trajectory_id: atlas-hec-l5-batch3-b2a-20260315
+antecedent:
+  seeds: 800 (10 windows × 80)
+  source_task: Math
+  target_task: Code
+  lineage_source: [batch1-a2b, batch2-a2c]
+  
+state_transition:
+  mechanism: bidirectional_transfer_test
+  expected_tg: 10-12pp  # Math↔Code domain 接近
+  
+artifact_required:
+  - metrics.json per window
+  - decision.json per window
+  - trajectory_delta_explained.txt
+  
+consequence_evaluation:
+  success_criteria:
+    - mean_tg >= 5pp
+    - min_tg > 0pp
+    - windows_positive >= 8/10
+  
+  trajectory_delta_question:
+    "B→A (Math→Code) 是否與 A→B (Code→Math) 對稱？
+     這將決定 transfer 是雙向普適還是有方向性偏好。"
+```
+
+---
+
+## 從 g100 到 g300 的軌跡化
+
+| 代際 | 舊表述 | 軌跡化表述 |
+|------|--------|-----------|
+| g100 | "突破了" | `checkpoint_100.tar` + `family_shift_log.json` + `uplift_metrics.csv` |
+| g200 | "變異了" | `mutation_record_{id}.json` + `crossover_lineage.png` + `selection_pressure_delta` |
+| g300 | "強化了" | `inheritance_consumption_rate` + `failure_compression_ratio` + `verified_replay_log` |
+
+---
+
+## 關鍵轉折點記錄
+
+每當發生以下事件，強制生成 `critical_transition_record.json`：
+
+- family shift (家族遷移)
+- inheritance package consumption (包裹消費)
+- failure archetype recurrence (失敗模式復現)
+- search space phase transition (搜索空間相變)
+- control gap → transfer gap 轉換
+
+---
+
+## 禁止事項
+
+- ❌ 使用「變強了」等敘事詞，無具體軌跡證據
+- ❌ 聲稱「成功」而無可重播 artifact
+- ❌ 將世代數字 (g100/g200) 當成口號而非可驗證狀態
+- ❌ 混淆「敘事連貫」與「因果可審計」
+
+---
+
+## 當前主線
+
+| 批次 | 軌跡目標 | 狀態 |
+|------|---------|------|
+| Batch-1 (A→B) | 確立 Code→Math transfer 基準 (14.5pp) | ✅ 完成，軌跡已記錄 |
+| Batch-2 (A→C) | 測試 domain gap 影響 (6.8pp) | ✅ 完成，軌跡已記錄 |
+| **Batch-3 (B→A)** | **驗證 transfer 對稱性** | 🟡 **等待軌跡證據** |
+| Batch-4 (B→C) | Math→Planning transfer 測試 | ⏸️ 等待 Batch-3 軌跡 |
+| Batch-5 (C→A) | Planning→Code transfer 測試 | ⏸️ 等待 |
+| Batch-6 (C→B) | Planning→Math transfer 測試 | ⏸️ 等待 |
+
+---
+
+## 捅破窗戶紙
+
+**不是理解宇宙，而是把展開路徑抓到足夠清楚，讓它不再只能靠直覺描述。**
+
+等待 Batch-3 的軌跡證據。
+
+---
+
+*Trajectory Principle v3.0 - 2026-03-15*
