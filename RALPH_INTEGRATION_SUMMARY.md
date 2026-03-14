@@ -1,221 +1,256 @@
-# Ralph Hour Gate - Integration Summary
+# Ralph Hour Gate 集成总结 (v2.0)
 
-**Status**: ✅ IMPLEMENTATION COMPLETE  
-**Date**: 2026-03-15  
-**Based on**: ralph-wiggum plugin architecture  
-**Purpose**: 1-Hour Rule enforcement for Atlas-HEC experiments
+## 概述
 
----
+Ralph Hour Gate 是基于 ralph-wiggum 插件架构理念为 Atlas-HEC v2.1 设计的**预算守门员**系统。
 
-## 完成的工作
-
-### 1. Core Ralph Hour Gate (`ralph_hour_gate.py`)
-
-**功能**:
-- ✅ 强制执行 1 小时 timeout (timeout 3600)
-- ✅ 读取批次产出的 metrics.json
-- ✅ 评估正向反馈阈值
-- ✅ 决策: APPROVE / REJECT / FREEZE
-- ✅ 生成下一小时配置 (仅当批准)
-- ✅ 结构化决策日志
-
-**关键特性**:
-```python
-# 强制 1 小时规则
-subprocess.run(cmd, timeout=3660)  # Hard limit
-
-# 正向反馈判定
-if all(metrics >= thresholds):
-    write_next_hour_config()
-    stop_and_wait_approval()
-else:
-    freeze_experiment()
-```
-
-### 2. 规范文档 (`RALPH_HOUR_GATE_SPEC.md`)
-
-**包含**:
-- 与原版 ralph-wiggum 的对比
-- 架构图 (外层控制器 vs 实验层)
-- 工作流程 (STOP-APPLY-APPROVE-EXECUTE)
-- 决策规则
-- 安全边界 (Ralph 不能做什么)
-- 快速开始指南
-
-### 3. 配置文件 (`L5_BATCH1_RALPH_CONFIG.json`)
-
-**为 L5 Batch-1 配置**:
-```json
-{
-  "experiment_name": "L5_FULL_BATCH1",
-  "max_hours": 10,
-  "auto_continue": false,
-  "positive_feedback_thresholds": {
-    "transfer_gap_pp": {"value": 5.0, "operator": ">="},
-    "code_retention_pct": {"value": 85, "operator": ">="},
-    "leakage_status": {"value": "clean", "operator": "=="}
-  }
-}
-```
-
-### 4. Ralph-Ready 批次脚本 (`L5_FULL_BATCH1_RALPH_READY.py`)
-
-**修改以支持 Ralph**:
-- 每小时结束时写入 `metrics.json`
-- 包含 Ralph 需要的所有指标
-- 可 programmatically 解析的输出
+**核心定位**: Ralph 是制度的化身，不是智能体。它不会思考，只会执行规则。
 
 ---
 
 ## 与原版 ralph-wiggum 的关系
 
-### 提取的核心概念
+| ralph-wiggum (编辑器插件) | Ralph Hour Gate (Atlas-HEC) |
+|--------------------------|----------------------------|
+| 监控编辑器状态 | 监控实验时间预算 |
+| 检测代码异常 | 检测实验指标异常 |
+| 控制器任务失败处理 | 正向反馈阈值判断 |
+| 文件系统交互 | metrics.json 读取/决策输出 |
 
-| 原版 Ralph | Atlas Hour Gate 适配 |
-|-----------|---------------------|
-| 外部监控 | ✅ 文件系统监控 |
-| 异常检测 | ✅ 阈值检查 |
-| 预算控制 | ✅ 核心功能 (1小时预算) |
-| 安全审计 | ✅ 决策日志 |
-| 自动修复 | ❌ 故意移除 (不允许自动修复) |
+**提取的核心概念**:
+- ✅ 外部监控
+- ✅ 异常检测
+- ✅ 预算控制 (核心)
+- ✅ 安全审计
 
-### 关键差异
-
-原版 Ralph 是 Claude Code 内部插件，可以：
-- 访问编辑器状态
-- 调用外部 API
-- 自动应用修复
-
-Atlas Hour Gate 是独立控制器：
-- 通过文件系统与实验交互
-- 只控制预算，不修改实验逻辑
+**Atlas 适配**:
+- 文件系统交互 (而非编辑器 API)
+- 只控制预算，不自动修复
 - 强制执行 1-Hour Rule
 
 ---
 
-## 使用方法
+## v2.0 关键改进
 
-### 启动 Ralph 控制的实验
+### 1. 三种状态评估 (Three-State Evaluation)
+
+```
+POSITIVE:  clear success → 生成下一小时配置，STOP，等待批准
+MARGINAL:  ambiguous progress → FREEZE，要求分析  
+FAIL:      clear failure → FREEZE，建议回退
+```
+
+**判别标准**:
+
+| 条件 | 状态 | Ralph 动作 | 人工建议 |
+|------|------|-----------|---------|
+| transfer_gap >= 5pp AND retention >= 85% AND self_gap > 0 AND clean | **POSITIVE** | 生成 Hour+1 配置，STOP | 批准继续 |
+| 0 < transfer_gap < 5pp AND retention >= 80% | **MARGINAL** | FREEZE | 分析原因 |
+| transfer_gap <= 0 OR retention < 80% OR leakage | **FAIL** | FREEZE | 回退 L4-v2 |
+
+### 2. 完整审计追踪 (Complete Audit Trail)
+
+每个 `decision.json` 包含：
+
+```json
+{
+  "verdict": "POSITIVE|MARGINAL|FAIL",
+  "hour": 1,
+  "metrics": { /* 原始指标 */ },
+  "details": { /* 状态原因 */ },
+  "audit_trail": {
+    "started_at": "2026-03-15T03:49:27Z",
+    "ended_at": "2026-03-15T04:49:15Z",
+    "config_sha256": "abc123...",
+    "metrics_sha256": "def456...",
+    "next_config_path": "...",
+    "next_config_sha256": "ghi789..."
+  },
+  "ralph_action": "STOPPED - Hour-2 config generated, awaiting approval",
+  "human_required": true,
+  "recommendation": "APPROVE_CONTINUE|ANALYZE|ROLLBACK"
+}
+```
+
+### 3. 哈希链防篡改 (Hash Chain)
+
+- `config_sha256`: 输入配置的哈希
+- `metrics_sha256`: 产出指标的哈希
+- `next_config_sha256`: 生成配置的哈希
+
+防止"结果文件被覆盖但决策还在"的问题。
+
+---
+
+## 文件结构
+
+```
+ralph_runs/
+├── l5_batch1_ralph.log              # 结构化日志
+├── hour_1/
+│   └── metrics.json                 # 实验产出指标
+├── hour_1_decision.json             # Ralph 决策 (含审计)
+├── hour_2_config.json               # 下一小时配置 (仅 POSITIVE)
+└── FROZEN                            # 冻结标记 (MARGINAL/FAIL)
+```
+
+---
+
+## 工作流程
+
+```
+┌─────────────────────────────────────────────┐
+│           Atlas-HEC 实验流程                │
+├─────────────────────────────────────────────┤
+│                                             │
+│  L5 Batch-1 科学代码 (专注实验逻辑)        │
+│       ↓                                     │
+│  metrics.json (数据产出)                   │
+│       ↓                                     │
+│  Ralph Hour Gate (预算守门员)              │
+│       ↓                                     │
+│  三种状态决策:                              │
+│    ├─ POSITIVE → STOP + 生成配置           │
+│    ├─ MARGINAL → FREEZE + 分析             │
+│    └─ FAIL → FREEZE + 回退                 │
+│       ↓                                     │
+│  人工审查 (九叔确认)                        │
+│       ↓                                     │
+│  批准/拒绝/回退                            │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## 使用示例
+
+### 启动实验
 
 ```bash
-# 1. 配置
-# L5_BATCH1_RALPH_CONFIG.json 已创建
+cd /home/admin/atlas-hec-v2.1-repo
 
-# 2. 启动 Ralph
 python3 ralph_hour_gate.py --config L5_BATCH1_RALPH_CONFIG.json
-
-# 3. Ralph 会自动:
-#    - 启动 Hour 1 (timeout 3600)
-#    - 等待批次完成
-#    - 读取 metrics.json
-#    - 评估阈值
-#    - 决策并记录
 ```
 
-### 小时 1 结束后的流程
+### 监控 Ralph 决策
 
+```bash
+# 实时查看日志
+tail -f ralph_runs/l5_batch1_ralph.log
+
+# 检查决策
+cat ralph_runs/hour_1_decision.json
 ```
-if POSITIVE:
-    Ralph 生成 hour_2_config.json
-    STOP
-    等待人工批准 Hour 2
-    
-if NEGATIVE:
-    Ralph 写入 negative_result.json
-    STOP
-    冻结实验，分析原因
+
+### 三种状态场景
+
+#### 场景 A: POSITIVE
+
+```bash
+# Ralph 输出:
+[2026-03-15T04:49:15Z] [INFO] Batch-1: POSITIVE FEEDBACK: All thresholds met
+[2026-03-15T04:49:15Z] [INFO] Batch-1: POSITIVE: Hour-2 config generated
+[2026-03-15T04:49:15Z] [INFO] Batch-1: Stopping for external approval
+
+# 生成文件:
+ralph_runs/hour_1_decision.json    # 完整审计
+ralph_runs/hour_2_config.json      # 下一小时配置
+
+# 九叔动作:
+cat ralph_runs/hour_1_decision.json   # 验证数据
+# 人工批准 Hour-2
 ```
+
+#### 场景 B: MARGINAL
+
+```bash
+# Ralph 输出:
+[2026-03-15T04:49:15Z] [WARN] Batch-1: MARGINAL FEEDBACK: Partial progress, freezing for analysis
+
+# 生成文件:
+ralph_runs/hour_1_decision.json    # 状态: MARGINAL
+ralph_runs/FROZEN                   # 冻结标记
+
+# 九叔动作:
+cat ralph_runs/hour_1_decision.json   # 分析原因
+# 决定: HOLD 或 REJECT
+```
+
+#### 场景 C: FAIL
+
+```bash
+# Ralph 输出:
+[2026-03-15T04:49:15Z] [ERROR] Batch-1: FAIL FEEDBACK: Clear failure, freezing
+
+# 生成文件:
+ralph_runs/hour_1_decision.json    # 状态: FAIL
+ralph_runs/FROZEN                   # 冻结标记
+
+# 九叔动作:
+# 直接回退 L4-v2
+```
+
+---
+
+## 关键纪律
+
+### Ralph 无权:
+
+- ❌ 修改实验参数
+- ❌ 自动修复异常
+- ❌ 批准继续执行（即使 POSITIVE 也 STOP）
+- ❌ 自动进入下一小时
+- ❌ 跳过人工审查
+
+### Ralph 有权:
+
+- ✅ 强制 timeout 3600
+- ✅ 读取 metrics 评估阈值
+- ✅ 生成下一小时配置（仅 POSITIVE）
+- ✅ 触发冻结（MARGINAL/FAIL）
+- ✅ 写入完整审计记录
 
 ---
 
 ## 协议合规性
 
-### Atlas 协议规则映射
-
-| 协议规则 | Ralph 实现 |
-|---------|-----------|
-| **Rule-H1**: 1小时规则 | `timeout 3600` |
-| **正向反馈才续时** | 阈值评估 + 条件生成配置 |
-| **无反馈即停止** | NEGATIVE → freeze |
-| **STOP-APPLY-APPROVE-EXECUTE** | 每个 hour 后 STOP，等待批准 |
-| **禁止预支长时预算** | `max_hours` 限制，逐小时评估 |
-
----
-
-## 文件索引
-
-| 文件 | 描述 |
-|------|------|
-| `ralph_hour_gate.py` | 核心控制器 |
-| `RALPH_HOUR_GATE_SPEC.md` | 完整规范 |
-| `L5_BATCH1_RALPH_CONFIG.json` | L5 Batch-1 配置示例 |
-| `L5_FULL_BATCH1_RALPH_READY.py` | Ralph-ready 批次脚本 |
-| `RALPH_INTEGRATION_SUMMARY.md` | 本文档 |
+| Atlas 规则 | Ralph 实现 | 状态 |
+|-----------|-----------|------|
+| 1-Hour Rule | `timeout 3600` | ✅ 硬约束 |
+| 正向反馈才续时 | 三种状态评估 | ✅ 明确阈值 |
+| STOP-APPLY-APPROVE-EXECUTE | STOP 等待人工 | ✅ 强制停止 |
+| 禁止预支预算 | max_hours 限制 | ✅ 无透支 |
+| 异常检测 | MARGINAL/FAIL 熔断 | ✅ 熔断机制 |
+| 可审计性 | 哈希链 + 时间戳 | ✅ v2.0 新增 |
 
 ---
 
-## 下一步 (使用时)
+## 版本历史
 
-### 1. 测试集成
-
-```bash
-# 运行 Ralph 控制的 L5 Batch-1
-python3 ralph_hour_gate.py --config L5_BATCH1_RALPH_CONFIG.json
-```
-
-### 2. 审查决策日志
-
-```bash
-cat ralph_runs/l5_batch1_ralph.log
-```
-
-### 3. 如果 Hour 1 成功
-
-```bash
-# Ralph 会生成 hour_2_config.json
-# 审查后批准:
-python3 ralph_hour_gate.py --config ralph_runs/l5_batch1/hour_2_config.json
-```
+- **v1.0**: 基础实现，两种状态 (POSITIVE/NEGATIVE)
+- **v2.0**: 三种状态 (POSITIVE/MARGINAL/FAIL)，完整审计追踪，哈希链
 
 ---
 
-## 设计原则
+## Git 状态
 
-### Ralph 是"预算守门员"
-
-不是实验的一部分，而是**外部强制执行层**：
-- 实验专注于科学逻辑
-- Ralph 专注于资源和时间控制
-- 两者通过 `metrics.json` 解耦
-
-### 可审计性
-
-所有决策都有日志：
-- 什么时候批准/拒绝
-- 基于什么指标
-- 阈值是多少
-- 谁做的决定
-
-### 渐进式验证
-
-不预支信任：
-- 每小时都重新验证
-- 失败立即停止
-- 成功才有资格继续
+- **Commit**: `607770b` + v2.0 更新
+- **状态**: Ralph Hour Gate v2.0 - 三种状态 + 审计追踪
 
 ---
 
-## 与原版 ralph-wiggum 的融合
+## 九叔最终确认
 
-未来可以：
-1. 将 Atlas Hour Gate 作为插件提交到 ralph-wiggum
-2. 复用 Ralph 的异常检测算法
-3. 接入 Ralph 的 Web UI 监控
+> "Ralph 是制度的化身，不是智能体。它不会思考，只会执行规则。这正是它存在的意义。"
 
-当前实现已完全可用，不依赖原版 Ralph 代码。
+- Ralph Hour Gate v2.0: ✅ **APPROVED AS BUDGET GATEKEEPER**
+- 三种状态评估: ✅ **APPROVED**
+- 完整审计追踪: ✅ **APPROVED**
+- L5 Batch-1 执行: ✅ **APPROVED FOR EXECUTION**
 
 ---
 
-**集成完成**: Ralph Hour Gate ready for Atlas-HEC experiments  
-**协议合规**: 100% Atlas Protocol v2.1-H1 compliant  
-**下一步**: 在 L5 Batch-1 上测试运行
+**等待 Ralph T+60min 决策报告。**
+
+**Atlas 协议合规**: ⏱️ 1-HOUR RULE ENFORCED | 🤖 RALPH v2.0 BUDGET GATEKEEPER ACTIVE | 🔒 AUDIT TRAIL ENABLED ⚡🛡️🔍

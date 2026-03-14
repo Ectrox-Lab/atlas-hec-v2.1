@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """
-Ralph Hour Gate - Atlas-HEC Adaptation
+Ralph Hour Gate - Atlas-HEC Adaptation v2.0
 External budget controller for 1-hour experiment batches
-Based on ralph-wiggum plugin architecture
+
+Key Design Principles:
+1. Three-state evaluation: POSITIVE / MARGINAL / FAIL
+2. Complete audit trail with SHA256 hashes
+3. STOP-APPLY-APPROVE-EXECUTE discipline
+4. Ralph is budget gatekeeper, not experiment logic
 """
 
 import json
 import subprocess
 import sys
 import time
+import hashlib
 from datetime import datetime
 from pathlib import Path
 import argparse
@@ -16,10 +22,11 @@ import argparse
 class RalphHourGate:
     """
     Ralph-style external controller for Atlas-HEC experiments
-    Enforces: 1-hour rule + positive feedback → auto-extend
+    Enforces: 1-hour rule + positive feedback → prepare next hour config (but STOP)
     """
     
     def __init__(self, config_path):
+        self.config_path = Path(config_path)
         with open(config_path) as f:
             self.config = json.load(f)
         
@@ -39,9 +46,19 @@ class RalphHourGate:
         
         self.log_file = self.output_dir / f"{self.experiment_name}_ralph.log"
         
+    def _file_hash(self, filepath):
+        """Compute SHA256 hash of file for audit trail"""
+        if not Path(filepath).exists():
+            return None
+        sha256 = hashlib.sha256()
+        with open(filepath, 'rb') as f:
+            for chunk in iter(lambda: f.read(8192), b''):
+                sha256.update(chunk)
+        return sha256.hexdigest()
+    
     def log(self, level, message, data=None):
         """Structured logging"""
-        timestamp = datetime.now().isoformat()
+        timestamp = datetime.utcnow().isoformat() + 'Z'
         entry = {
             "timestamp": timestamp,
             "level": level,
@@ -62,10 +79,16 @@ class RalphHourGate:
     
     def run_batch(self, hour_number):
         """Execute one hour batch with timeout enforcement"""
+        
+        # Record start time and input hashes
+        started_at = datetime.utcnow().isoformat() + 'Z'
+        config_hash = self._file_hash(self.config_path)
+        
         self.log("INFO", f"Starting Hour-{hour_number}", {
             "command": self.command,
             "timeout": 3600,
-            "working_dir": str(self.working_dir)
+            "working_dir": str(self.working_dir),
+            "config_sha256": config_hash
         })
         
         # Build command with hour-specific config
@@ -89,11 +112,13 @@ class RalphHourGate:
             )
             
             elapsed = time.time() - start_time
+            ended_at = datetime.utcnow().isoformat() + 'Z'
             
             self.log("INFO", f"Hour-{hour_number} completed", {
                 "elapsed_seconds": round(elapsed, 1),
                 "return_code": result.returncode,
-                "stdout_preview": result.stdout[:200] if result.stdout else None
+                "stdout_preview": result.stdout[:200] if result.stdout else None,
+                "ended_at": ended_at
             })
             
             return {
@@ -101,15 +126,28 @@ class RalphHourGate:
                 "elapsed": elapsed,
                 "stdout": result.stdout,
                 "stderr": result.stderr,
-                "output_dir": self.output_dir / f"hour_{hour_number}"
+                "output_dir": self.output_dir / f"hour_{hour_number}",
+                "audit": {
+                    "started_at": started_at,
+                    "ended_at": ended_at,
+                    "config_sha256": config_hash
+                }
             }
             
         except subprocess.TimeoutExpired:
             self.log("ERROR", f"Hour-{hour_number} exceeded 1-hour limit")
-            return {"success": False, "error": "TIMEOUT_VIOLATION"}
+            return {
+                "success": False, 
+                "error": "TIMEOUT_VIOLATION",
+                "audit": {"started_at": started_at, "config_sha256": config_hash}
+            }
         except Exception as e:
             self.log("ERROR", f"Hour-{hour_number} execution failed", {"error": str(e)})
-            return {"success": False, "error": str(e)}
+            return {
+                "success": False, 
+                "error": str(e),
+                "audit": {"started_at": started_at, "config_sha256": config_hash}
+            }
     
     def read_metrics(self, hour_number):
         """Read metrics file produced by batch"""
@@ -130,95 +168,188 @@ class RalphHourGate:
             self.log("ERROR", f"Failed to read metrics", {"error": str(e)})
             return None
     
-    def evaluate_positive_feedback(self, metrics):
+    def evaluate_three_state(self, metrics):
         """
-        Check if metrics meet positive feedback thresholds
-        Returns: (passed, reasons)
+        Three-state evaluation: POSITIVE / MARGINAL / FAIL
+        
+        POSITIVE: Clear success, generate next hour config
+        MARGINAL: Some progress but ambiguous, freeze for analysis  
+        FAIL: Clear failure or negative progress, freeze and recommend rollback
+        
+        Returns: (verdict, details)
         """
-        checks = []
         
-        for metric_name, threshold in self.thresholds.items():
-            if metric_name not in metrics:
-                checks.append({
-                    "metric": metric_name,
-                    "status": "MISSING",
-                    "passed": False
-                })
-                continue
-            
-            value = metrics[metric_name]
-            operator = threshold.get("operator", ">=")
-            target = threshold["value"]
-            
-            if operator == ">=":
-                passed = value >= target
-            elif operator == ">":
-                passed = value > target
-            elif operator == "<=":
-                passed = value <= target
-            elif operator == "==":
-                passed = value == target
-            else:
-                passed = False
-            
-            checks.append({
-                "metric": metric_name,
-                "value": value,
-                "threshold": target,
-                "operator": operator,
-                "passed": passed
-            })
+        # Extract key metrics
+        tg = metrics.get('transfer_gap_pp', 0)
+        cr = metrics.get('code_retention_pct', 0)
+        sg = metrics.get('self_gap_pp', 0)
+        ls = metrics.get('leakage_status', 'unknown')
         
-        all_passed = all(c["passed"] for c in checks)
+        # Check thresholds from config
+        tg_threshold = self.thresholds.get('transfer_gap_pp', {}).get('value', 5)
+        cr_threshold = self.thresholds.get('code_retention_pct', {}).get('value', 85)
+        sg_threshold = self.thresholds.get('self_gap_pp', {}).get('value', 0)
+        ls_threshold = self.thresholds.get('leakage_status', {}).get('value', 'clean')
         
-        self.log("INFO", "Feedback evaluation complete", {
-            "all_passed": all_passed,
-            "checks": checks
-        })
+        # Circuit breakers (FAIL conditions)
+        if tg <= 0:
+            return "FAIL", {
+                "reason": "NEGATIVE_TRANSFER",
+                "transfer_gap_pp": tg,
+                "description": "Transfer gap <= 0, no meaningful transfer"
+            }
         
-        return all_passed, checks
+        if cr < 80:
+            return "FAIL", {
+                "reason": "CATASTROPHIC_FORGETTING",
+                "code_retention_pct": cr,
+                "description": "Retention below 80%, catastrophic forgetting detected"
+            }
+        
+        if ls != ls_threshold:
+            return "FAIL", {
+                "reason": "LEAKAGE_DETECTED",
+                "leakage_status": ls,
+                "description": "Data leakage detected"
+            }
+        
+        # Check positive feedback thresholds
+        if (tg >= tg_threshold and 
+            cr >= cr_threshold and 
+            sg > sg_threshold and 
+            ls == ls_threshold):
+            return "POSITIVE", {
+                "reason": "ALL_THRESHOLDS_MET",
+                "transfer_gap_pp": tg,
+                "code_retention_pct": cr,
+                "self_gap_pp": sg,
+                "description": "All positive feedback thresholds satisfied"
+            }
+        
+        # MARGINAL: Some progress but not meeting full thresholds
+        if tg > 0 and cr >= 80:
+            return "MARGINAL", {
+                "reason": "PARTIAL_PROGRESS",
+                "transfer_gap_pp": tg,
+                "code_retention_pct": cr,
+                "description": f"Some progress (tg={tg}pp) but below threshold ({tg_threshold}pp)"
+            }
+        
+        # FAIL: Default catch-all
+        return "FAIL", {
+            "reason": "INSUFFICIENT_PROGRESS",
+            "transfer_gap_pp": tg,
+            "code_retention_pct": cr,
+            "description": "Insufficient progress on all metrics"
+        }
     
-    def write_next_hour_config(self, hour_number):
-        """Generate config for next hour if approved"""
+    def write_positive_decision(self, hour_number, metrics, audit_trail, details):
+        """Write POSITIVE decision with complete audit trail"""
+        
+        # Generate next hour config
         next_config = self.config.copy()
         next_config["batch_number"] = hour_number + 1
         next_config["previous_batch"] = hour_number
         next_config["hour_budget"] = self.hour_budget + 1
+        next_config["approved_at"] = None  # Must be filled by human
+        next_config["ralph_note"] = "AWAITING_APPROVAL - Do not execute until approved"
         
         config_path = self.output_dir / f"hour_{hour_number + 1}_config.json"
         with open(config_path, 'w') as f:
             json.dump(next_config, f, indent=2)
         
-        self.log("INFO", f"Generated Hour-{hour_number + 1} config", {
+        # Write decision.json with full audit trail
+        decision = {
+            "verdict": "POSITIVE",
+            "hour": hour_number,
+            "metrics": {
+                "transfer_gap_pp": metrics.get('transfer_gap_pp'),
+                "code_retention_pct": metrics.get('code_retention_pct'),
+                "self_gap_pp": metrics.get('self_gap_pp'),
+                "leakage_status": metrics.get('leakage_status')
+            },
+            "details": details,
+            "audit_trail": {
+                "started_at": audit_trail.get('started_at'),
+                "ended_at": audit_trail.get('ended_at'),
+                "config_sha256": audit_trail.get('config_sha256'),
+                "metrics_sha256": self._file_hash(
+                    self.output_dir / f"hour_{hour_number}" / "metrics.json"
+                ),
+                "next_config_path": str(config_path),
+                "next_config_sha256": self._file_hash(config_path)
+            },
+            "ralph_action": f"STOPPED - Hour-{hour_number + 1} config generated, awaiting approval",
+            "human_required": True,
+            "recommendation": "APPROVE_CONTINUE"
+        }
+        
+        decision_path = self.output_dir / f"hour_{hour_number}_decision.json"
+        with open(decision_path, 'w') as f:
+            json.dump(decision, f, indent=2)
+        
+        self.log("INFO", f"POSITIVE: Hour-{hour_number + 1} config generated", {
+            "decision_path": str(decision_path),
             "config_path": str(config_path)
         })
         
-        return config_path
+        return decision_path, config_path
     
-    def write_negative_result(self, hour_number, reason):
-        """Write negative result and freeze"""
-        result = {
-            "experiment": self.experiment_name,
-            "batch": self.batch_number,
+    def write_negative_decision(self, hour_number, verdict, metrics, audit_trail, details):
+        """Write MARGINAL or FAIL decision with complete audit trail"""
+        
+        # Write decision.json with full audit trail
+        decision = {
+            "verdict": verdict,  # MARGINAL or FAIL
             "hour": hour_number,
-            "status": "NEGATIVE",
-            "reason": reason,
-            "timestamp": datetime.now().isoformat(),
-            "action": "FREEZE_EXPERIMENT",
-            "ralph_decision": "STOP_NO_EXTENSION"
+            "metrics": metrics,
+            "details": details,
+            "audit_trail": {
+                "started_at": audit_trail.get('started_at'),
+                "ended_at": audit_trail.get('ended_at'),
+                "config_sha256": audit_trail.get('config_sha256'),
+                "metrics_sha256": self._file_hash(
+                    self.output_dir / f"hour_{hour_number}" / "metrics.json"
+                ) if metrics else None
+            },
+            "ralph_action": f"FROZEN - {verdict} at Hour {hour_number}",
+            "human_required": True,
+            "recommendation": "ANALYZE" if verdict == "MARGINAL" else "ROLLBACK"
         }
         
-        result_file = self.output_dir / f"hour_{hour_number}_ralph_decision.json"
-        with open(result_file, 'w') as f:
-            json.dump(result, f, indent=2)
+        decision_path = self.output_dir / f"hour_{hour_number}_decision.json"
+        with open(decision_path, 'w') as f:
+            json.dump(decision, f, indent=2)
         
-        self.log("WARN", f"Negative result recorded", result)
+        # Write FROZEN marker
+        freeze_file = self.output_dir / "FROZEN"
+        with open(freeze_file, 'w') as f:
+            f.write(f"FROZEN at Hour {hour_number}\n")
+            f.write(f"Verdict: {verdict}\n")
+            f.write(f"Reason: {details.get('reason', 'Unknown')}\n")
+            f.write(f"Timestamp: {datetime.utcnow().isoformat()}Z\n")
+            f.write(f"Decision: {decision_path}\n")
+            if metrics:
+                f.write(f"\nMetrics:\n")
+                f.write(json.dumps(metrics, indent=2))
+        
+        self.log("WARN" if verdict == "MARGINAL" else "ERROR", 
+                 f"{verdict}: Experiment frozen at Hour-{hour_number}", {
+            "decision_path": str(decision_path),
+            "freeze_file": str(freeze_file),
+            "details": details
+        })
+        
+        return decision_path
     
     def run(self):
-        """Main execution loop"""
-        self.log("INFO", "Ralph Hour Gate starting", {
-            "config": self.config,
-            "max_hours": self.max_hours
+        """Main execution loop with three-state evaluation"""
+        
+        self.log("INFO", "Ralph Hour Gate v2.0 starting", {
+            "config": str(self.config_path),
+            "max_hours": self.max_hours,
+            "three_state_mode": True,
+            "audit_trail": True
         })
         
         hour = 1
@@ -231,53 +362,81 @@ class RalphHourGate:
             
             if not batch_result["success"]:
                 self.log("ERROR", f"Hour-{hour} execution failed", batch_result)
-                self.write_negative_result(hour, "EXECUTION_FAILURE")
+                self.write_negative_decision(
+                    hour, "FAIL", None, 
+                    batch_result.get("audit", {}),
+                    {"reason": "EXECUTION_FAILURE", "error": batch_result.get("error")}
+                )
                 return False
             
             # Read metrics
             metrics = self.read_metrics(hour)
             
             if metrics is None:
-                self.write_negative_result(hour, "METRICS_UNAVAILABLE")
+                self.write_negative_decision(
+                    hour, "FAIL", None,
+                    batch_result.get("audit", {}),
+                    {"reason": "METRICS_UNAVAILABLE"}
+                )
                 return False
             
-            # Evaluate feedback
-            positive, checks = self.evaluate_positive_feedback(metrics)
+            # Three-state evaluation
+            verdict, details = self.evaluate_three_state(metrics)
             
-            if positive:
+            if verdict == "POSITIVE":
                 self.hour_budget += 1
-                self.log("INFO", f"POSITIVE FEEDBACK: Hour-{hour} approved for extension", {
-                    "accumulated_budget": self.hour_budget
+                self.log("INFO", f"POSITIVE FEEDBACK: All thresholds met", details)
+                
+                # Generate next hour config (but STOP)
+                decision_path, config_path = self.write_positive_decision(
+                    hour, metrics, batch_result.get("audit", {}), details
+                )
+                
+                self.log("INFO", "Stopping for external approval", {
+                    "next_config": str(config_path),
+                    "decision": str(decision_path)
                 })
                 
-                # Generate next hour config (but don't auto-execute)
-                next_config = self.write_next_hour_config(hour)
+                return {
+                    "status": "POSITIVE_FEEDBACK",
+                    "verdict": "POSITIVE",
+                    "hours_completed": hour,
+                    "next_hour_available": hour + 1,
+                    "next_config": str(config_path),
+                    "decision": str(decision_path)
+                }
                 
-                self.log("INFO", f"Batch-{self.batch_number} can proceed to Hour-{hour + 1}", {
-                    "next_config": str(next_config),
-                    "manual_approval_required": True
-                })
+            elif verdict == "MARGINAL":
+                self.log("WARN", f"MARGINAL FEEDBACK: Partial progress, freezing for analysis", details)
                 
-                # For auto-continuation mode (if enabled)
-                if self.config.get("auto_continue", False) and hour < self.max_hours:
-                    self.log("INFO", "Auto-continue enabled, proceeding to next hour")
-                    hour += 1
-                    continue
-                else:
-                    # Stop and wait for external approval
-                    self.log("INFO", "Stopping for external approval")
-                    return {
-                        "status": "POSITIVE_FEEDBACK",
-                        "hours_completed": hour,
-                        "next_hour_available": hour + 1,
-                        "next_config": str(next_config)
-                    }
-            else:
-                self.log("WARN", f"NEGATIVE FEEDBACK: Hour-{hour} does not meet thresholds", {
-                    "checks": checks
-                })
-                self.write_negative_result(hour, "NEGATIVE_FEEDBACK")
-                return False
+                decision_path = self.write_negative_decision(
+                    hour, "MARGINAL", metrics,
+                    batch_result.get("audit", {}), details
+                )
+                
+                return {
+                    "status": "MARGINAL_FEEDBACK",
+                    "verdict": "MARGINAL",
+                    "hours_completed": hour,
+                    "decision": str(decision_path),
+                    "recommendation": "ANALYZE"
+                }
+                
+            else:  # FAIL
+                self.log("ERROR", f"FAIL FEEDBACK: Clear failure, freezing", details)
+                
+                decision_path = self.write_negative_decision(
+                    hour, "FAIL", metrics,
+                    batch_result.get("audit", {}), details
+                )
+                
+                return {
+                    "status": "FAIL_FEEDBACK",
+                    "verdict": "FAIL",
+                    "hours_completed": hour,
+                    "decision": str(decision_path),
+                    "recommendation": "ROLLBACK"
+                }
             
             hour += 1
         
@@ -285,7 +444,7 @@ class RalphHourGate:
         return True
 
 def main():
-    parser = argparse.ArgumentParser(description="Ralph Hour Gate for Atlas-HEC")
+    parser = argparse.ArgumentParser(description="Ralph Hour Gate v2.0 for Atlas-HEC")
     parser.add_argument("--config", required=True, help="Gate configuration JSON")
     parser.add_argument("--output-dir", default="ralph_runs", help="Output directory")
     
@@ -295,19 +454,28 @@ def main():
     result = gate.run()
     
     print("\n" + "="*70)
-    print("RALPH HOUR GATE COMPLETE")
+    print("RALPH HOUR GATE v2.0 COMPLETE")
     print("="*70)
     
     if result == True:
         print("Status: All hours completed successfully")
     elif result == False:
-        print("Status: STOPPED (negative feedback or error)")
+        print("Status: STOPPED (execution failure)")
         sys.exit(1)
     else:
         print(f"Status: {result.get('status')}")
+        print(f"Verdict: {result.get('verdict')}")
         print(f"Hours completed: {result.get('hours_completed')}")
-        print(f"Next hour available: {result.get('next_hour_available')}")
-        print(f"Next config: {result.get('next_config')}")
+        print(f"Decision file: {result.get('decision')}")
+        if result.get('next_config'):
+            print(f"Next config: {result.get('next_config')}")
+        if result.get('recommendation'):
+            print(f"Recommendation: {result.get('recommendation')}")
+    
+    # Exit codes: 0 = positive, 1 = marginal/fail, 2 = error
+    if isinstance(result, dict):
+        if result.get('verdict') in ['MARGINAL', 'FAIL']:
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
