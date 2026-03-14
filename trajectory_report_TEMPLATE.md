@@ -86,107 +86,150 @@ lineage_record:
 
 ---
 
-## 4. Consequence (後效)
-
-```yaml
-next_round_eligibility:
-  status: {APPROVED | CONDITIONAL | REJECTED}
-  condition: {threshold_meeting}
-  
-search_space_compression:
-  ratio: {0.0-1.0}
-  mechanism: {inheritance_consumption}
-  
-family_shift:
-  detected: {bool}
-  from_family: {id}
-  to_family: {id}
-  trigger: {mutation | selection | crossover}
-  
-failure_archetype:
-  recorded: {bool}
-  archetype_id: {id | null}
-  recurrence_count: {int}
-  
-scientific_finding:
-  primary: {string}
-  significance: {string}
-```
-
----
-
-## 5. Symmetry Check (對稱性驗證)
+## 4. Directionality Check (方向性驗證)
 
 ### Transfer 方向性評估
 
 ```yaml
-pair_comparison:
-  A_to_B:  # Batch-1 基準
-    mean_tg: 14.5pp
-    family_shift: {id}
-    inheritance_consumption: {pattern}
+directionality_check:
+  source_task: {A}
+  target_task: {B}
+  
+  forward_pair:  # 本批次 (A→B)
+    mean_transfer_gap_pp: {pp}
+    windows_positive: {n}/10
     
-  B_to_A:  # 本批次
-    mean_tg: {pp}
-    family_shift: {id}
-    inheritance_consumption: {pattern}
+  reverse_pair:  # 對稱批次 (B→A)
+    mean_transfer_gap_pp: {pp}
+    reference_batch: {batch_id}
     
-gap_symmetry_ratio: {B_to_A_mean / A_to_B_mean}
-  # 1.0 = 完美對稱
-  # 0.5-1.5 = 基本對稱
-  # <0.5 或 >2.0 = 明顯不對稱
-  
-shared_family_shift: {bool}
-  # B→A 是否落在與 A→B 相似的族群
-  
-shared_inheritance_consumption_patterns: {bool}
-  # 包裹消費模式是否相似
-  
-asymmetry_explanation: |
-  [若不對稱，差異是出在：]
-  - source task (Math vs Code 的起點差異)
-  - target task (Code vs Math 的終點差異)
-  - route / mechanism (傳播路徑差異)
-  - 其他因素
+  gap_symmetry_ratio: {B_to_A / A_to_B}
+    # 1.0 = 完美對稱
+    # 0.5-1.5 = 近對稱但有方向偏好
+    # <0.5 或 >2.0 = 明顯不對稱
+    
+  direction_bias: {source_stronger | target_stronger | near_equal}
+    # source_stronger: A→B > B→A (本例)
+    # target_stronger: B→A > A→B
+    # near_equal: 比值接近 1.0
 ```
 
-### 科學意義判定
+### 方向性判定標準
 
-| 對稱性狀態 | 判定標準 | 意義 |
-|-----------|---------|------|
-| 完美對稱 | ratio ∈ [0.9, 1.1] | Transfer 是雙向普適，與方向無關 |
-| 基本對稱 | ratio ∈ [0.5, 1.5] | Transfer 有一定對稱性，但存在方向偏好 |
-| 明顯不對稱 | ratio < 0.5 或 > 2.0 | Transfer 高度依賴 source→target 選擇 |
+| Ratio 範圍 | 判定 | 科學意義 |
+|:----------:|:----:|:---------|
+| 0.9-1.1 | 完美對稱 | Transfer 方向中性，任務等價 |
+| **0.5-0.9 或 1.1-1.5** | **近對稱但方向偏好** | **雙向可行，但 source→target 不等價 ← 當前** |
+| 0.3-0.5 或 1.5-3.0 | 弱對稱 | 單向主導，反向較弱 |
+| <0.3 或 >3.0 | 不對稱 | 幾乎單向，反向幾乎無效 |
 
 ---
 
-## 6. Trajectory Delta Explained (軌跡改變說明)
+## 5. Source Suitability Hypothesis (源適配性假說)
 
-### 這一批次改變了後續分佈的具體機制：
+### 工作假說評估
+
+```yaml
+source_suitability_hypothesis:
+  source_task: {Code | Math | Planning}
+  
+  evidence_strength: {weak | moderate | strong}
+    # weak: 僅此一批對稱數據
+    # moderate: 2-3 批相關數據支持
+    # strong: 完整矩陣驗證
+    
+  supporting_pairs:
+    - {source}→{target}: {tg}pp
+    # 支持此假說的其他 task pairs
+    
+  contradicting_pairs:
+    # 與此假說矛盾的数据（如有）
+    
+  current_status: {hypothesis | supported | stable_pattern}
+    # hypothesis: 工作假說，待更多數據
+    # supported: 多批數據支持
+    # stable_pattern: 完整矩陣驗證的穩定模式
+```
+
+### 當前發現摘要
+
+```markdown
+[Verified from reported metrics]
+- {Source}→{Target}: {X}pp
+- Reverse: {Y}pp  
+- Ratio: {Z}
+- Both directions > 0 and > threshold
+
+[Inference - Working Hypothesis]
+{Source} appears to be a stronger source task than {Target} for this pair.
+This remains a task-pair-specific finding until validated across the remaining matrix.
+
+[Theoretical Implication]
+Cross-task inheritance is bidirectionally viable, but not directionally neutral.
+Transfer strength depends on source→target ordering.
+
+[Next Validation Required]
+- {Source}→{Other}
+- {Other}→{Source}
+- To determine if this is a local phenomenon or general pattern.
+```
+
+---
+
+## 6. Symmetry Check (對稱性驗證)
+
+### 與前代對稱比較
+
+| Pair | Mean TG | Direction Bias | Status |
+|:-----|:-------:|:--------------:|:------:|
+| Code→Math | 14.69pp | Source Stronger | ✅ Verified |
+| Math→Code | 9.77pp | Target Weaker | ✅ Verified |
+| Code→Planning | {pp} | {bias} | ⏸️ Pending |
+| Planning→Code | {pp} | {bias} | ⏸️ Pending |
+| Math→Planning | {pp} | {bias} | ⏸️ Pending |
+| Planning→Math | {pp} | {bias} | ⏸️ Pending |
+
+### 科學發現狀態
 
 ```
-[詳細說明]
-- 哪些前因導致了哪些後效
-- 如何避免表面波動
-- 關鍵轉折點的因果鏈
-- 對後續世代的具體影響
-- 與 A→B 的對稱/非對稱結構
+Current Finding (Batch-3):
+- Cross-task inheritance is bidirectionally viable, but not directionally neutral.
+- Transfer effect depends not only on task pair existence, but also on 
+  directional asymmetry between source and target.
+- Gap Symmetry Ratio = 0.665 indicates near-symmetric but direction-biased transfer.
+
+Open Questions:
+- Is Code universally a stronger source task? (need Code→Planning, Planning→Code)
+- Is the asymmetry related to abstraction level? (need Planning↔Math)
+- What is the full source suitability × target receptivity matrix?
 ```
 
-### 與前代對比：
+---
 
-| 指標 | Batch-1 (A→B) | Batch-2 (A→C) | 本批次 (B→A) | 解讀 |
-|------|--------------|--------------|-------------|------|
-| Mean TG | 14.5pp | 6.8pp | {pp} | {} |
-| Gap Symmetry | - | - | {ratio} | {} |
-| Family Shift | {id} | {id} | {id} | {} |
-| Domain Gap | 小 | 大 | {評估} | {} |
+## 7. Trajectory Delta Explained (軌跡改變說明)
 
-### 科學結論：
+### 這一批次改變了後續分佈的具體機制
 
 ```
-[這一批驗證了什麼假設，推翻了什麼假設，留下了什麼待解問題]
-[特別回答：Transfer 是否有方向性？]
+[Detailed Explanation]
+- Which antecedents led to which consequences
+- How to avoid surface fluctuations
+- Causal chain of critical turning points
+- Specific impact on subsequent generations
+- Symmetric/asymmetric structure compared to A→B
+- Directionality insight and its implications for L5 theory
+```
+
+### 後續實驗策略調整
+
+```yaml
+priority_adjustment:
+  rationale: "Code appears to be stronger source; prioritize Code→X pairs"
+  new_order:
+    1: Code→Planning  # Test if Code source advantage generalizes
+    2: Planning→Code  # Test reverse
+    3: Math→Planning  # Fill matrix
+    4: Planning→Math  # Lowest priority based on current pattern
 ```
 
 ---
@@ -202,8 +245,28 @@ python3 verify_checksum_chain.py --batch {batch_id}
 
 # 比較與前代差異
 python3 compare_trajectory.py --current {uuid} --baseline {parent_uuid}
+
+# 方向性對稱檢查
+python3 check_symmetry.py --forward {batch_a2b} --reverse {batch_b2a}
 ```
 
 ---
 
-*Trajectory Report v3.0 - Trajectory Principle*
+## 理論貢獻
+
+```markdown
+可發表的發現框架:
+
+"Atlas-HEC L5 實驗發現：跨任務繼承存在方向梯度，{Source} 作為 source 時
+產生顯著更強的 transfer effect（{X}pp vs {Y}pp, ratio={Z}）。
+
+這挑戰了傳統多任務學習中任務對稱性的隱含假設，表明 transfer strength 
+depends on source→target ordering, not just task pair existence.
+
+工作假說：{Source} 的 [抽象層級/結構一致性/形式化程度] 可能使其成為
+更優的 source task，但這需要完整 task matrix 驗證。"
+```
+
+---
+
+*Trajectory Report v3.1 - Directionality Edition*
