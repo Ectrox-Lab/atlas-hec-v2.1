@@ -1,0 +1,110 @@
+{
+  "timestamp": "2026-03-15T04:44:01.696140",
+  "phase": "Bridge_Phase1",
+  "pools": [
+    {
+      "pool": "A",
+      "n_total": 32,
+      "pass": 31,
+      "hold": 1,
+      "reject": 0,
+      "leakage_reject": 0,
+      "pass_rate": 0.969,
+      "mean_throughput_delta": 1.39,
+      "family_survival_distribution": {
+        "F_P3T4M4": 16,
+        "F_P2T4M3": 4,
+        "F_P3T4M3": 4,
+        "F_P3T3M4": 2,
+        "F_P2T3M4": 2,
+        "F_P2T4M4": 2,
+        "F_P3T3M2": 1
+      },
+      "notes": "nominal"
+    },
+    {
+      "pool": "B",
+      "n_total": 32,
+      "pass": 32,
+      "hold": 0,
+      "reject": 0,
+      "leakage_reject": 0,
+      "pass_rate": 1.0,
+      "mean_throughput_delta": 1.81,
+      "family_survival_distribution": {
+        "F_P3T4M4": 22,
+        "F_P2T4M3": 10
+      },
+      "notes": "nominal"
+    },
+    {
+      "pool": "C",
+      "n_total": 24,
+      "pass": 23,
+      "hold": 1,
+      "reject": 0,
+      "leakage_reject": 0,
+      "pass_rate": 0.958,
+      "mean_throughput_delta": 1.39,
+      "family_survival_distribution": {
+        "F_P3T4M4": 8,
+        "F_P2T4M3": 4,
+        "F_P3T4M3": 4,
+        "F_P2T3M4": 2,
+        "F_P2T4M4": 2,
+        "F_P3T3M4": 2,
+        "F_P3T3M2": 1
+      },
+      "notes": "nominal"
+    },
+    {
+      "pool": "D",
+      "n_total": 16,
+      "pass": 14,
+      "hold": 2,
+      "reject": 0,
+      "leakage_reject": 0,
+      "pass_rate": 0.875,
+      "mean_throughput_delta": 1.02,
+      "family_survival_distribution": {
+        "F_P3T3M4": 2,
+        "F_P3T4M3": 2,
+        "F_P2T4M4": 2,
+        "F_P2T4M3": 2,
+        "F_P2T3M3": 2,
+        "F_P2T3M4": 1,
+        "F_P3T4M4": 2,
+        "F_P3T3M3": 1
+      },
+      "notes": "nominal"
+    },
+    {
+      "pool": "E",
+      "n_total": 16,
+      "pass": 15,
+      "hold": 1,
+      "reject": 0,
+      "leakage_reject": 0,
+      "pass_rate": 0.938,
+      "mean_throughput_delta": 1.32,
+      "family_survival_distribution": {
+        "F_P2T4M3": 4,
+        "F_P3T4M4": 8,
+        "F_P3T4M3": 3
+      },
+      "notes": "control_better_than_expected"
+    },
+    {
+      "pool": "F",
+      "n_total": 8,
+      "pass": 0,
+      "hold": 0,
+      "reject": 8,
+      "leakage_reject": 0,
+      "pass_rate": 0.0,
+      "mean_throughput_delta": -0.8,
+      "family_survival_distribution": {},
+      "notes": "nominal"
+    }
+  ]
+}

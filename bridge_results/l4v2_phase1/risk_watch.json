@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-03-15T04:44:01.696698",
+  "leakage_hit_rate": 0.0,
+  "leakage_hit_threshold": 0.15,
+  "leakage_status": "OK",
+  "control_gap_pp": 3.9,
+  "control_gap_threshold_pp": 5.0,
+  "control_gap_status": "MARGINAL",
+  "gray_zone_pass_rate": 0.5,
+  "f_p3t4m4_post_bridge_share": 0.487,
+  "f_p3t4m4_contraction_warning": false,
+  "unique_families_post_bridge": 9,
+  "unique_families_contraction_warning": true
+}

@@ -1,0 +1,16 @@
+{
+  "seed_id": "S2068",
+  "pool": "C",
+  "family_id": "F_P3T4M4",
+  "zone": "core",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "is_gray_zone": false,
+  "expected_role": "mechanism_robustness",
+  "bridge_evaluation": {
+    "throughput_delta_percent": 1.48,
+    "failure_archetype_match": null,
+    "anti_leakage_penalty_applied": 0.0,
+    "verdict": "PASS"
+  }
+}

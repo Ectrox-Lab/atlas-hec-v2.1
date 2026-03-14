@@ -1,0 +1,176 @@
+{
+  "timestamp": "2026-03-15T04:44:01.696478",
+  "families": [
+    {
+      "family": "F_P3T4M4",
+      "input_count": 56,
+      "bridge_survivors": 56,
+      "survivor_rate": 1.0,
+      "pools_present": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "family": "F_P2T4M3",
+      "input_count": 24,
+      "bridge_survivors": 24,
+      "survivor_rate": 1.0,
+      "pools_present": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "family": "F_P3T4M3",
+      "input_count": 14,
+      "bridge_survivors": 13,
+      "survivor_rate": 0.929,
+      "pools_present": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "family": "F_P3T3M4",
+      "input_count": 6,
+      "bridge_survivors": 6,
+      "survivor_rate": 1.0,
+      "pools_present": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "family": "F_P2T3M4",
+      "input_count": 6,
+      "bridge_survivors": 5,
+      "survivor_rate": 0.833,
+      "pools_present": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "family": "F_P2T4M4",
+      "input_count": 6,
+      "bridge_survivors": 6,
+      "survivor_rate": 1.0,
+      "pools_present": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "family": "F_P3T3M2",
+      "input_count": 4,
+      "bridge_survivors": 2,
+      "survivor_rate": 0.5,
+      "pools_present": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "family": "F_P2T3M3",
+      "input_count": 2,
+      "bridge_survivors": 2,
+      "survivor_rate": 1.0,
+      "pools_present": [
+        "D"
+      ]
+    },
+    {
+      "family": "F_P3T3M3",
+      "input_count": 2,
+      "bridge_survivors": 1,
+      "survivor_rate": 0.5,
+      "pools_present": [
+        "D"
+      ]
+    },
+    {
+      "family": "F_P3T2M4",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P2T2M3",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P2T5M4",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P4T4M4",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P1T3M4",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P1T3M3",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P3T5M5",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    },
+    {
+      "family": "F_P4T4M3",
+      "input_count": 1,
+      "bridge_survivors": 0,
+      "survivor_rate": 0.0,
+      "pools_present": [
+        "F"
+      ]
+    }
+  ]
+}

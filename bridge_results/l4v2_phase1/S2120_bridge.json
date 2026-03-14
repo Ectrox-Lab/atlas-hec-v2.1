@@ -1,0 +1,16 @@
+{
+  "seed_id": "S2120",
+  "pool": "F",
+  "family_id": "F_P4T4M3",
+  "zone": "leakage",
+  "is_control": false,
+  "is_leakage_monitor": true,
+  "is_gray_zone": false,
+  "expected_role": "leakage_sentinel",
+  "bridge_evaluation": {
+    "throughput_delta_percent": -0.77,
+    "failure_archetype_match": null,
+    "anti_leakage_penalty_applied": 0.35,
+    "verdict": "REJECT"
+  }
+}
