@@ -1,0 +1,84 @@
+{
+  "phase": "L4-v2-Phase3",
+  "phase_name": "Full Mainline Validation with Circuit Breakers",
+  "version": "1.0",
+  "approved_at": "2026-03-15T05:30:00Z",
+  "approved_by": "Atlas-HEC Research Committee",
+  
+  "sample": {
+    "type": "full",
+    "total_seeds": 128,
+    "pools": {
+      "A": 32,
+      "B": 32,
+      "C": 24,
+      "D": 16,
+      "E": 16,
+      "F": 8
+    }
+  },
+  
+  "primary_questions": {
+    "q1": "+12.5pp control_gap stability in full 128",
+    "q2": "B vs A = 0pp: sampling noise or real limitation?",
+    "q3": "Diversity survival: will unique_families drop below 6?"
+  },
+  
+  "circuit_breakers": {
+    "diversity": {
+      "metric": "unique_families",
+      "min_threshold": 6,
+      "trigger": "Diversity Collapse - Immediate Freeze",
+      "action": "Stop Phase 3, initiate Family Rebalancing"
+    },
+    "contraction": {
+      "metric": "f_p3t4m4_share",
+      "max_threshold": 0.60,
+      "trigger": "Family Contraction - Diversity Alert",
+      "action": "Stop Phase 3, investigate inheritance bias"
+    },
+    "gap": {
+      "metric": "control_gap_pp",
+      "min_threshold": 8.0,
+      "trigger": "Inheritance Stability Question",
+      "action": "Review data integrity, check for system degradation"
+    },
+    "leakage": {
+      "metric": "leakage_penetration_rate",
+      "max_threshold": 0.10,
+      "trigger": "Anti-leakage Failure - System Contamination",
+      "action": "Terminate L4-v2, emergency audit"
+    }
+  },
+  
+  "success_criteria": {
+    "control_gap": {
+      "threshold_pp": 8.0,
+      "operator": ">="
+    },
+    "leakage": {
+      "threshold": 0.10,
+      "operator": "<="
+    },
+    "diversity": {
+      "min_unique_families": 6,
+      "max_f_p3t4m4_share": 0.60
+    },
+    "recombination": {
+      "b_vs_a_not_significantly_negative": true
+    }
+  },
+  
+  "execution": {
+    "deadline": "72_hours_from_approval",
+    "monitoring_interval_minutes": 30,
+    "checkpoint_every_n_seeds": 32
+  },
+  
+  "outputs": {
+    "pool_summary": "mainline_results/l4v2_phase3/pool_summary.json",
+    "risk_watch": "mainline_results/l4v2_phase3/risk_watch.json",
+    "family_survival": "mainline_results/l4v2_phase3/family_survival.json",
+    "final_certification": "L4V2_FINAL_CERTIFICATION.md"
+  }
+}

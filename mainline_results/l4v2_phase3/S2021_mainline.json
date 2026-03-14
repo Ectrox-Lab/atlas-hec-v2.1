@@ -1,0 +1,12 @@
+{
+  "seed_id": "S2021",
+  "pool": "A",
+  "family_id": "F_P2T4M4",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "mainline_evaluation": {
+    "verdict": "APPROVE",
+    "throughput_delta": 5.05,
+    "five_criteria_passed": 5
+  }
+}

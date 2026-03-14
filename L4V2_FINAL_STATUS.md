@@ -147,18 +147,57 @@
 
 ---
 
-## 下一步行动 (待决策)
+## 决策批准 (EXECUTIVE DECISION)
 
-等待Atlas-HEC Research Committee裁决：
+**批准状态**: ✅ **APPROVED - 进入Phase 3**
 
-1. **若选A (Phase 3)**: 执行Mainline全量128，监控diversity指标
-2. **若选B (重构控制)**: 重新设计Pool E，重跑Phase 2
-3. **若选C (回查Bridge)**: 分析Bridge-Mainline偏差，重新校准
+**批准时间**: 2026-03-15  
+**批准人**: Atlas-HEC Research Committee  
+**执行方式**: 显式批准，非自动默认
 
-**默认超时动作**: 72小时内无决策，自动进入Option A (Phase 3)
+```yaml
+decision_basis:
+  inheritance_confirmed_by_mainline_gap: true  # +12.5pp > 5pp threshold
+  anti_leakage_stable: true                    # Pool F 0% penetration
+  diversity_warning_active: true               # Unique families = 8 < 12
+  recombination_uncertainty: true              # B vs A = 0pp in Mainline
+  control_group_too_strong: true               # 75% base rate
+
+phase3_primary_questions:
+  q1: "+12.5pp control_gap stability in full 128"
+  q2: "B vs A = 0pp: sampling noise or real limitation?"
+  q3: "Diversity survival: will unique_families drop below 6?"
+
+phase3_circuit_breakers:
+  min_unique_families: 6
+  max_f_p3t4m4_share: 0.60
+  min_control_gap_pp: 8.0
+  max_leakage_penetration: 0.10
+```
+
+### 否决的选项
+- ❌ **Option B (重构控制组)**: 时间成本过高，当前信号已足够强
+- ❌ **Option C (回查Bridge)**: 可能只是抽样噪声，不应延迟
+
+### 禁止的做法
+- ❌ **72小时自动默认**: 研究决策必须显式批准，禁止程序化终局
+
+**Phase 3目标**: 稳定性验证 + 收缩风险监控，**非最终认证**
+
+---
+
+## 下一步行动 (已批准)
+
+1. **执行Phase 3**: Mainline全量128，72小时内完成
+2. **强制熔断监控**:
+   - 若unique_families < 6，立即冻结
+   - 若F_P3T4M4 > 60%，触发Diversity Collapse警报
+   - 若control_gap < 8pp，质疑Inheritance稳定性
+   - 若leakage > 10%，系统污染警报
+3. **产出**: Phase 3 Pool Summary + Final L4-v2 Certification
 
 ---
 
 **提交**: Atlas-HEC Research Committee  
-**批准**: 待裁决  
-**版本**: L4-v2-PHASE2-COMPLETE
+**批准**: ✅ **EXECUTED**  
+**版本**: L4-v2-PHASE2-COMPLETE → **PHASE3-APPROVED**

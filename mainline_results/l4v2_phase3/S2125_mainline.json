@@ -1,0 +1,12 @@
+{
+  "seed_id": "S2125",
+  "pool": "F",
+  "family_id": "F_P1T3M4",
+  "is_control": false,
+  "is_leakage_monitor": true,
+  "mainline_evaluation": {
+    "verdict": "REJECT",
+    "throughput_delta": -0.39,
+    "five_criteria_passed": 0
+  }
+}

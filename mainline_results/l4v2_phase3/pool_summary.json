@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-03-15T04:56:02.902033",
+  "pools": [
+    {
+      "pool": "A",
+      "n_evaluated": 32,
+      "n_approve": 29,
+      "approve_rate": 0.906,
+      "mean_throughput": 4.53
+    },
+    {
+      "pool": "B",
+      "n_evaluated": 32,
+      "n_approve": 26,
+      "approve_rate": 0.812,
+      "mean_throughput": 6.16
+    },
+    {
+      "pool": "C",
+      "n_evaluated": 24,
+      "n_approve": 20,
+      "approve_rate": 0.833,
+      "mean_throughput": 4.43
+    },
+    {
+      "pool": "D",
+      "n_evaluated": 16,
+      "n_approve": 11,
+      "approve_rate": 0.688,
+      "mean_throughput": 4.13
+    },
+    {
+      "pool": "E",
+      "n_evaluated": 16,
+      "n_approve": 10,
+      "approve_rate": 0.625,
+      "mean_throughput": 4.37
+    },
+    {
+      "pool": "F",
+      "n_evaluated": 8,
+      "n_approve": 0,
+      "approve_rate": 0.0,
+      "mean_throughput": 0
+    }
+  ]
+}

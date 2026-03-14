@@ -1,0 +1,107 @@
+{
+  "timestamp": "2026-03-15T04:56:02.902097",
+  "families": [
+    {
+      "family": "F_P3T4M4",
+      "input_count": 56,
+      "survivors": 50,
+      "survival_rate": 0.893
+    },
+    {
+      "family": "F_P2T4M3",
+      "input_count": 24,
+      "survivors": 14,
+      "survival_rate": 0.583
+    },
+    {
+      "family": "F_P3T4M3",
+      "input_count": 14,
+      "survivors": 12,
+      "survival_rate": 0.857
+    },
+    {
+      "family": "F_P3T3M4",
+      "input_count": 6,
+      "survivors": 5,
+      "survival_rate": 0.833
+    },
+    {
+      "family": "F_P2T3M4",
+      "input_count": 6,
+      "survivors": 5,
+      "survival_rate": 0.833
+    },
+    {
+      "family": "F_P2T4M4",
+      "input_count": 6,
+      "survivors": 5,
+      "survival_rate": 0.833
+    },
+    {
+      "family": "F_P3T3M2",
+      "input_count": 4,
+      "survivors": 2,
+      "survival_rate": 0.5
+    },
+    {
+      "family": "F_P2T3M3",
+      "input_count": 2,
+      "survivors": 2,
+      "survival_rate": 1.0
+    },
+    {
+      "family": "F_P3T3M3",
+      "input_count": 2,
+      "survivors": 1,
+      "survival_rate": 0.5
+    },
+    {
+      "family": "F_P3T2M4",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P2T2M3",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P2T5M4",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P4T4M4",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P1T3M4",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P1T3M3",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P3T5M5",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    },
+    {
+      "family": "F_P4T4M3",
+      "input_count": 1,
+      "survivors": 0,
+      "survival_rate": 0.0
+    }
+  ]
+}
