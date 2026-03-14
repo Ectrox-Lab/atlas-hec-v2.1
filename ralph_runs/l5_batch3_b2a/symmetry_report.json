@@ -1,0 +1,25 @@
+{
+  "A_to_B": {
+    "mean_tg_pp": 14.69,
+    "windows": 10,
+    "checksums": [
+      "md5:25d5565f8dc4...",
+      "md5:2ac9d876fbf3...",
+      "md5:bf7253b29758..."
+    ]
+  },
+  "B_to_A": {
+    "mean_tg_pp": 9.77,
+    "windows": 10,
+    "checksums": [
+      "sha256:037bb5389...",
+      "sha256:f1e0b691a...",
+      "sha256:eb6241656..."
+    ]
+  },
+  "symmetry": {
+    "ratio": 0.665,
+    "status": "\u57fa\u672c\u5c0d\u7a31 (Near Symmetry)",
+    "scientific_meaning": "Transfer \u6709\u4e00\u5b9a\u5c0d\u7a31\u6027\uff0c\u4f46\u5b58\u5728\u65b9\u5411\u504f\u597d"
+  }
+}

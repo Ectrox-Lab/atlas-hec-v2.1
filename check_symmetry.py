@@ -13,6 +13,7 @@ def load_batch_metrics(batch_dir):
     batch_path = Path(batch_dir)
     metrics_list = []
     
+    # Try window_* first (Batch-3 format)
     for window_dir in sorted(batch_path.glob("window_*")):
         metrics_file = window_dir / "metrics.json"
         if metrics_file.exists():
@@ -23,6 +24,19 @@ def load_batch_metrics(batch_dir):
                     "transfer_gap_pp": data.get("transfer_gap_pp", 0),
                     "checksum": data.get("data_checksum", "")
                 })
+    
+    # Try hour_* (Batch-1 format)
+    if not metrics_list:
+        for hour_dir in sorted(batch_path.glob("hour_*")):
+            metrics_file = hour_dir / "metrics.json"
+            if metrics_file.exists():
+                with open(metrics_file) as f:
+                    data = json.load(f)
+                    metrics_list.append({
+                        "window": hour_dir.name,
+                        "transfer_gap_pp": data.get("transfer_gap_pp", 0),
+                        "checksum": data.get("data_checksum", "")
+                    })
     
     return metrics_list
 
