@@ -764,8 +764,25 @@ else:
 
 - **Round A-v2**: No inheritance (control)
 - **Round B-v2**: Inheritance package v2 + anti-leakage
+- **Ablation-v2**: Package loaded, bias=0.0, anti-leakage=0.0
 - **Sample**: 30 candidates per round, stratified
 - **Evaluation**: Bridge → Mainline (same thresholds)
+- **追加约束**: Round B-v2 throughput ≥ Round A-v2, Ablation-v2 ≡ Round A-v2
+
+### 14.3 详细规格
+
+见 `L4_V2_SPEC.md`:
+- Akashic package v2 schema (mechanism-level fields)
+- Fast Genesis anti-leakage CLI parameters
+- Anti-leakage scoring function
+- Ablation plan (mechanism-only vs penalty-only)
+
+### 14.4 实现顺序（LOCKED）
+
+1. Akashic schema v2 (mechanism-level)
+2. Fast Genesis anti-leakage (CLI + scoring)
+3. L4-v2 A/B/Ablation (execute)
+4. Post-hoc ablation (mechanism vs penalty)
 
 ### 14.3 关键修改
 
