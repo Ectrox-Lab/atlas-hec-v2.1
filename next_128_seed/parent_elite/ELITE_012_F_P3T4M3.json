@@ -1,0 +1,17 @@
+{
+  "id": "C0035_F_P3T4M3",
+  "pressure": 3,
+  "memory": 3,
+  "delegation": 1,
+  "recovery_threshold": 1.2175,
+  "trust_update_rate": 1.0899,
+  "trust_decay": 0.1084,
+  "trust_recovery": 0.0628,
+  "migration_threshold": 0.3864,
+  "family_id": "F_P3T4M3",
+  "generation_mode": "uniform_exploration",
+  "triage": 4,
+  "_source": "benchmark_results/task1_inheritance/round_a/seed_1001/candidates/C0035_F_P3T4M3.json",
+  "elite_id": "ELITE_012_F_P3T4M3",
+  "elite_index": 12
+}

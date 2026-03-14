@@ -1,0 +1,77 @@
+{
+  "manifest_version": "1.0-frozen",
+  "frozen_at": "2026-03-15T05:00:00Z",
+  "frozen_by": "Atlas-HEC Research Committee",
+  "total_seeds": 128,
+  "zone_distribution": {
+    "core": 116,
+    "gray": 6,
+    "leakage": 6
+  },
+  "pool_distribution": {
+    "A": 32,
+    "B": 32,
+    "C": 24,
+    "D": 16,
+    "E": 16,
+    "F": 8
+  },
+  "control_group": {
+    "present": true,
+    "count": 16,
+    "split": {
+      "no_inheritance": 8,
+      "bias_zero": 8
+    }
+  },
+  "leakage_monitor": {
+    "present": true,
+    "count": 8,
+    "families": [
+      "F_P4T4M4",
+      "F_P1T3M4",
+      "F_P3T5M5",
+      "F_P2T5M4",
+      "F_P4T4M3",
+      "F_P1T3M3"
+    ]
+  },
+  "gray_zone": {
+    "count": 6,
+    "seeds": [
+      {
+        "seed_id": "S2088",
+        "family_id": "F_P2T3M3",
+        "pool": "D"
+      },
+      {
+        "seed_id": "S2096",
+        "family_id": "F_P2T3M3",
+        "pool": "D"
+      },
+      {
+        "seed_id": "S2092",
+        "family_id": "F_P3T3M3",
+        "pool": "D"
+      },
+      {
+        "seed_id": "S2100",
+        "family_id": "F_P3T3M3",
+        "pool": "D"
+      },
+      {
+        "seed_id": "S2127",
+        "family_id": "F_P3T2M4",
+        "pool": "F"
+      },
+      {
+        "seed_id": "S2126",
+        "family_id": "F_P2T2M3",
+        "pool": "F"
+      }
+    ]
+  },
+  "evaluation_axes_frozen": true,
+  "pass_fail_rules_frozen": true,
+  "next_stage": "L4-v2-Bridge-Phase1"
+}

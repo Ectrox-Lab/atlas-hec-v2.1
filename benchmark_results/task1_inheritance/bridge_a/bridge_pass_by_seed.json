@@ -1,0 +1,26 @@
+{
+  "round": "a",
+  "by_seed": {
+    "1000": {
+      "total": 50,
+      "shadow_passed": 50,
+      "dry_run_passed": 41,
+      "tier_b": 36,
+      "tier_c_plus": 5
+    },
+    "1001": {
+      "total": 50,
+      "shadow_passed": 50,
+      "dry_run_passed": 41,
+      "tier_b": 29,
+      "tier_c_plus": 12
+    },
+    "1002": {
+      "total": 50,
+      "shadow_passed": 50,
+      "dry_run_passed": 38,
+      "tier_b": 30,
+      "tier_c_plus": 8
+    }
+  }
+}

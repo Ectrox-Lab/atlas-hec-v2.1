@@ -1,0 +1,36 @@
+{
+  "seed_id": "S2033",
+  "pool": "B",
+  "generation_mode": "recombine_stable",
+  "parent_elite_ids": [
+    "ELITE_000_F_P3T4M4",
+    "ELITE_001_F_P3T4M4"
+  ],
+  "pressure": 3,
+  "triage": 4,
+  "memory": 4,
+  "delegation": 1,
+  "recovery_threshold": 1.4607,
+  "trust_update_rate": 1.1388,
+  "trust_decay": 0.1037,
+  "trust_recovery": 0.0202,
+  "migration_threshold": 0.4265,
+  "anti_leakage_penalty": 0.0,
+  "family_id": "F_P3T4M4",
+  "zone": "core",
+  "manifest_version": "1.0-frozen",
+  "frozen_at": "2026-03-15T05:00:00Z",
+  "parent_candidates": [
+    "ELITE_000_F_P3T4M4",
+    "ELITE_001_F_P3T4M4"
+  ],
+  "source_pool": "Pool-B",
+  "variation_ops": [
+    "recombine_stable"
+  ],
+  "inheritance_mode": "v2.1-mechanism-biased",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "is_gray_zone": false,
+  "expected_role": "recombination_test"
+}

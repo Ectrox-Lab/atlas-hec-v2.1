@@ -1,0 +1,32 @@
+{
+  "seed_id": "S2077",
+  "pool": "C",
+  "generation_mode": "mechanism_perturb",
+  "parent_elite_id": "ELITE_013_F_P3T4M3",
+  "pressure": 3,
+  "triage": 4,
+  "memory": 3,
+  "delegation": 1,
+  "recovery_threshold": 1.5521984173026802,
+  "trust_update_rate": 0.9702104511917425,
+  "trust_decay": 0.1109163965744751,
+  "trust_recovery": 0.03,
+  "migration_threshold": 0.21312003210360364,
+  "anti_leakage_penalty": 0.0,
+  "family_id": "F_P3T4M3",
+  "zone": "core",
+  "manifest_version": "1.0-frozen",
+  "frozen_at": "2026-03-15T05:00:00Z",
+  "parent_candidates": [
+    "ELITE_013_F_P3T4M3"
+  ],
+  "source_pool": "Pool-C",
+  "variation_ops": [
+    "mechanism_perturb"
+  ],
+  "inheritance_mode": "v2.1-mechanism-biased",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "is_gray_zone": false,
+  "expected_role": "mechanism_robustness"
+}

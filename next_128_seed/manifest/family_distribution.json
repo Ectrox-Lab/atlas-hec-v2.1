@@ -1,0 +1,44 @@
+{
+  "total_seeds": 128,
+  "unique_families": 17,
+  "family_distribution": {
+    "F_P3T4M4": 56,
+    "F_P2T4M3": 24,
+    "F_P3T4M3": 14,
+    "F_P3T3M2": 4,
+    "F_P3T3M4": 6,
+    "F_P2T4M4": 6,
+    "F_P2T3M4": 6,
+    "F_P2T3M3": 2,
+    "F_P3T3M3": 2,
+    "F_P4T4M3": 1,
+    "F_P4T4M4": 1,
+    "F_P3T5M5": 1,
+    "F_P2T5M4": 1,
+    "F_P1T3M3": 1,
+    "F_P1T3M4": 1,
+    "F_P2T2M3": 1,
+    "F_P3T2M4": 1
+  },
+  "core_families": {
+    "F_P3T4M4": 56,
+    "F_P2T4M3": 24,
+    "F_P3T4M3": 14,
+    "F_P3T3M2": 4,
+    "F_P3T3M4": 6,
+    "F_P2T4M4": 6,
+    "F_P2T3M4": 6
+  },
+  "leakage_families": {
+    "F_P4T4M3": 1,
+    "F_P4T4M4": 1,
+    "F_P3T5M5": 1,
+    "F_P2T5M4": 1,
+    "F_P1T3M3": 1,
+    "F_P1T3M4": 1
+  },
+  "core_family_count": 116,
+  "leakage_family_count": 6,
+  "core_family_percentage": 90.6,
+  "leakage_family_percentage": 4.7
+}

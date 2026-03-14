@@ -332,53 +332,194 @@ class AkashicMemoryV2:
         
     def generate_task1_inheritance_package(self) -> Dict:
         """
-        生成Task-1专用继承包
+        生成Task-1专用继承包 (v1 - 向后兼容)
         
         用于candidate_generation/phase4/inheritance
+        注意：此为v1版本，调用v2但保留旧字段结构
         """
-        package = {
+        # 调用v2生成器，但返回v1兼容格式
+        v2_package = self.generate_task1_inheritance_package_v2()
+        
+        # 转换为v1格式（向后兼容）
+        return {
             "package_type": "task1_orchestration",
             "version": "2.1",
-            "timestamp": datetime.now().isoformat(),
+            "timestamp": v2_package["timestamp"],
             
-            # 稳定委托模式
+            # 稳定委托模式 (v1 simplified)
             "stable_delegation_patterns": [
-                p["pattern"] for p in sorted(
-                    self.task1_knowledge.stable_delegation_patterns,
-                    key=lambda x: x["success_rate"],
-                    reverse=True
-                )[:5]  # Top 5
+                p["pattern"] for p in v2_package.get("stable_mechanisms", {}).get("delegation_patterns", [])[:5]
             ],
             
             # 恢复序列
             "recommended_recovery_sequences": [
-                seq["sequence"] for seq in self.task1_knowledge.recovery_sequences[-10:]
+                seq["sequence"] for seq in v2_package.get("stable_mechanisms", {}).get("recovery_sequences", [])
             ],
             
             # 信任更新先验
-            "trust_update_priors": {
-                k: v["mean"] if isinstance(v, dict) else sum(v)/len(v)
-                for k, v in self.task1_knowledge.to_dict()["trust_update_priors"].items()
-            },
+            "trust_update_priors": v2_package.get("stable_mechanisms", {}).get("trust_update_priors", {}),
             
             # 需要避免的模式
             "avoid_switching_patterns": [
-                f["type"] for f in self.task1_knowledge.switching_failure_archetypes
+                m["motif"] for m in v2_package.get("blocked_motifs", [])
             ],
             
             # Proxy-Mainline关联注释
-            "proxy_mainline_notes": self.task1_knowledge.task1_proxy_mainline_notes or 
-                "shadow throughput correlates positively; dry-run variance predicts mainline success",
+            "proxy_mainline_notes": v2_package.get("proxy_mainline_notes", ""),
             
             # 生成器先验
+            "generator_priors": v2_package.get("generator_priors", {}),
+            
+            # 与现有知识的兼容性标记
+            "compatible_with": ["structure_archive_v2", "seed_spike_registry"],
+            
+            # v2字段（新解析器可用，旧解析器忽略）
+            "_v2_package": v2_package  # 嵌入完整v2包供新系统使用
+        }
+    
+    def generate_task1_inheritance_package_v2(self) -> Dict:
+        """
+        生成Task-1专用继承包 v2 (mechanism-level bias)
+        
+        L4-v2核心：从family-level bias转向mechanism/routing-level bias
+        
+        Returns:
+            Dict: 包含mechanism-level字段的v2 package
+        """
+        # 构建稳定机制库
+        delegation_patterns = sorted(
+            self.task1_knowledge.stable_delegation_patterns,
+            key=lambda x: x.get("success_rate", 0),
+            reverse=True
+        )[:5]
+        
+        recovery_sequences = self.task1_knowledge.recovery_sequences[-10:] if self.task1_knowledge.recovery_sequences else []
+        
+        # 构建trust update priors（结构化）
+        trust_priors = self.task1_knowledge.to_dict()["trust_update_priors"]
+        
+        # 构建blocked motifs（从failure archetypes升级）
+        blocked_motifs = []
+        for failure in self.task1_knowledge.switching_failure_archetypes:
+            blocked_motifs.append({
+                "motif": failure.get("type", "unknown"),
+                "penalty": 0.5,  # 默认惩罚值
+                "symptoms": failure.get("symptoms", [])
+            })
+        
+        # 添加已知不良模式
+        known_bad_motifs = [
+            {"motif": "rapid_switching", "penalty": 0.5, "symptoms": ["high_switching_rate", "unstable_delegation"]},
+            {"motif": "migration_thrashing", "penalty": 0.4, "symptoms": ["frequent_migrations", "low_throughput"]},
+            {"motif": "trust_collapse_cascade", "penalty": 0.6, "symptoms": ["sudden_trust_drop", "recovery_failure"]}
+        ]
+        for motif in known_bad_motifs:
+            if not any(bm["motif"] == motif["motif"] for bm in blocked_motifs):
+                blocked_motifs.append(motif)
+        
+        # Route constraints（从E-EVO-003收敛结果推导）
+        route_constraints = {
+            "pressure_range": {"min": 2, "max": 3, "optimal": [2, 3], "expansion_penalty": 0.15},
+            "triage_range": {"min": 3, "max": 4, "optimal": [3, 4], "expansion_penalty": 0.10},
+            "memory_range": {"min": 2, "max": 4, "optimal": [3, 4], "expansion_penalty": 0.10}
+        }
+        
+        # Family to mechanism mapping（关键：哪些family依赖哪些机制）
+        family_mechanism_map = {
+            "F_P3T4M4": {
+                "primary_mechanisms": ["adaptive_migration", "trust_based_routing"],
+                "route_signature": {"P": 3, "T": 4, "M": 4},
+                "stability_score": 0.85
+            },
+            "F_P2T4M3": {
+                "primary_mechanisms": ["adaptive_migration"],
+                "route_signature": {"P": 2, "T": 4, "M": 3},
+                "stability_score": 0.78
+            },
+            "F_P3T4M3": {
+                "primary_mechanisms": ["trust_based_routing"],
+                "route_signature": {"P": 3, "T": 4, "M": 3},
+                "stability_score": 0.75
+            },
+            "F_P3T3M2": {
+                "primary_mechanisms": ["conservative_delegation"],
+                "route_signature": {"P": 3, "T": 3, "M": 2},
+                "stability_score": 0.70
+            }
+        }
+        
+        # Anti-expansion hints（限制无根据的结构扩张）
+        anti_expansion_hints = {
+            "untested_pressure": [1, 4],  # P1和P4未经验证
+            "untested_triage": [2, 5],    # T2和T5未经验证
+            "untested_memory": [1, 5],    # M1和M5未经验证
+            "penalty_per_step": 0.15,
+            "max_family_distance": 1,     # 最大允许family距离
+            "novelty_threshold": 0.3      # 新颖度阈值
+        }
+        
+        package = {
+            "package_type": "task1_orchestration",
+            "package_version": "2.1-mechanism",
+            "timestamp": datetime.now().isoformat(),
+            
+            # ========== STABLE MECHANISMS (核心) ==========
+            "stable_mechanisms": {
+                "delegation_patterns": [
+                    {
+                        "pattern": p.get("pattern", "unknown"),
+                        "success_rate": p.get("success_rate", 0.8),
+                        "context": p.get("context", "general")
+                    }
+                    for p in delegation_patterns
+                ],
+                "recovery_sequences": [
+                    {
+                        "sequence": seq.get("sequence", []),
+                        "context": seq.get("context", "general"),
+                        "success_rate": seq.get("success_rate", 0.8)
+                    }
+                    for seq in recovery_sequences
+                ],
+                "trust_update_priors": {
+                    "decay_rate": {
+                        "mean": trust_priors.get("successful_decay", {}).get("mean", 0.10),
+                        "std": trust_priors.get("successful_decay", {}).get("std", 0.03),
+                        "optimal_range": [0.05, 0.15]
+                    },
+                    "recovery_rate": {
+                        "mean": trust_priors.get("successful_recovery", {}).get("mean", 0.05),
+                        "std": trust_priors.get("successful_recovery", {}).get("std", 0.02),
+                        "optimal_range": [0.03, 0.08]
+                    }
+                }
+            },
+            
+            # ========== BLOCKED MOTIFS (避免) ==========
+            "blocked_motifs": blocked_motifs,
+            
+            # ========== ROUTE CONSTRAINTS (参数范围) ==========
+            "route_constraints": route_constraints,
+            
+            # ========== FAMILY-MECHANISM MAP (映射) ==========
+            "family_mechanism_map": family_mechanism_map,
+            
+            # ========== ANTI-EXPANSION HINTS (防泄漏) ==========
+            "anti_expansion_hints": anti_expansion_hints,
+            
+            # ========== GENERATOR PRIORS (生成器参数) ==========
             "generator_priors": {
                 "trust_decay_range": [0.05, 0.15],
                 "trust_recovery_range": [0.03, 0.08],
-                "migration_threshold_range": [0.2, 0.4]
+                "migration_threshold_range": [0.2, 0.4],
+                "mechanism_bias_strength": 0.6,  # 机制偏置强度
+                "anti_leakage_default": 0.4      # 默认抗泄漏强度
             },
             
-            # 与现有知识的兼容性标记
-            "compatible_with": ["structure_archive_v2", "seed_spike_registry"]
+            # ========== METADATA ==========
+            "proxy_mainline_notes": self.task1_knowledge.task1_proxy_mainline_notes or 
+                "shadow throughput correlates positively; dry-run variance predicts mainline success",
+            "compatible_with": ["structure_archive_v2", "seed_spike_registry", "fast_genesis_v2"]
         }
         
         return package
@@ -443,10 +584,23 @@ class AkashicMemoryV2:
             "negative_knowledge_digest": self.generate_negative_knowledge_digest(),
             # Task-1 扩展 (新字段，不破坏旧解析)
             "task1_knowledge": self.task1_knowledge.to_dict(),
-            "task1_inheritance_package": self.generate_task1_inheritance_package()
+            "task1_inheritance_package": self.generate_task1_inheritance_package(),
+            "task1_inheritance_package_v2": self.generate_task1_inheritance_package_v2()  # v2机制级包
         }
         with open(filepath, 'w') as f:
             json.dump(data, f, indent=2)
+    
+    def save_task1_inheritance_package_v2(self, filepath: str):
+        """
+        单独保存Task-1继承包v2 (供Fast Genesis直接消费)
+        
+        L4-v2: 生成mechanism-level inheritance package
+        """
+        package = self.generate_task1_inheritance_package_v2()
+        with open(filepath, 'w') as f:
+            json.dump(package, f, indent=2)
+        print(f"[AKASHIC] Saved v2 inheritance package to {filepath}")
+        return package
             
     def load(self, filepath: str):
         """加载阿卡西记忆"""
@@ -485,8 +639,12 @@ if __name__ == "__main__":
         
         # 记录复现失败
         archive.record_replication_attempt([101, 202, 303], [0.815, 0.837, 0.749])
-        archive.record_seed_spike(archive)
         archive.classify_failure_mode("seed_spike", "High variance across seeds")
+        
+    # 记录seed spike到registry
+    for sig, family, dna in candidates:
+        archive = akashic.get_or_create_archive(sig, family, dna)
+        akashic.record_seed_spike(archive)
         
     # 保存
     akashic.save("outputs/akashic_memory_v2.json")
@@ -503,3 +661,49 @@ if __name__ == "__main__":
     for combo in digest['fragile_combinations']:
         print(f"  ⚠️ {combo}")
     print("="*60)
+    
+    # ========== L4-v2: Task-1 机制级继承包示例 ==========
+    print("\n" + "="*60)
+    print("TASK-1 INHERITANCE PACKAGE V2 (MECHANISM-LEVEL)")
+    print("="*60)
+    
+    # 记录一些Task-1知识（模拟Mainline结果）
+    akashic.task1_knowledge.record_delegation_pattern("adaptive_migration", 0.92)
+    akashic.task1_knowledge.record_delegation_pattern("trust_based_routing", 0.88)
+    akashic.task1_knowledge.record_recovery_sequence(
+        ["detect_fault", "isolate_node", "redistribute_tasks", "restore_trust"],
+        "high_load_scenario"
+    )
+    akashic.task1_knowledge.update_trust_prior("successful_decay", 0.08)
+    akashic.task1_knowledge.update_trust_prior("successful_decay", 0.12)
+    akashic.task1_knowledge.update_trust_prior("successful_recovery", 0.04)
+    akashic.task1_knowledge.update_trust_prior("successful_recovery", 0.06)
+    akashic.task1_knowledge.record_switching_failure("rapid_switching", ["high_variance", "oscillation"])
+    
+    # 生成v1包（向后兼容）
+    v1_package = akashic.generate_task1_inheritance_package()
+    print("\n[V1 PACKAGE - 向后兼容]")
+    print(f"  Type: {v1_package['package_type']}")
+    print(f"  Version: {v1_package['version']}")
+    print(f"  Stable patterns: {len(v1_package.get('stable_delegation_patterns', []))}")
+    print(f"  Recovery sequences: {len(v1_package.get('recommended_recovery_sequences', []))}")
+    
+    # 生成并保存v2包（L4-v2核心）
+    v2_package = akashic.save_task1_inheritance_package_v2(
+        "outputs/task1_inheritance_package_v2.json"
+    )
+    
+    print("\n[V2 PACKAGE - 机制级]")
+    print(f"  Type: {v2_package['package_type']}")
+    print(f"  Version: {v2_package['package_version']}")
+    print(f"  Delegation patterns: {len(v2_package['stable_mechanisms']['delegation_patterns'])}")
+    print(f"  Recovery sequences: {len(v2_package['stable_mechanisms']['recovery_sequences'])}")
+    print(f"  Blocked motifs: {len(v2_package['blocked_motifs'])}")
+    print(f"  Route constraints: {list(v2_package['route_constraints'].keys())}")
+    print(f"  Family-mechanism map: {list(v2_package['family_mechanism_map'].keys())}")
+    print(f"  Anti-expansion hints: {v2_package['anti_expansion_hints']}")
+    
+    print("\n" + "="*60)
+    print("V2 PACKAGE READY FOR FAST GENESIS CONSUMPTION")
+    print("="*60)
+    print("Output: outputs/task1_inheritance_package_v2.json")

@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-03-14T08:52:11.535148",
+  "source": "E-COMP-003 MechanismExtractor",
+  "family_mechanism_map": {
+    "F_P2T4M4": {
+      "mechanisms": [
+        {
+          "type": "delegation",
+          "pattern_id": "delegation_F_P2T4M4",
+          "description": "Most common delegation pattern for F_P2T4M4",
+          "success_rate": 0.3333333333333333,
+          "avg_throughput": 0.03666666666666666
+        },
+        {
+          "type": "recovery",
+          "pattern_id": "recovery_F_P2T4M4",
+          "description": "Recovery sequence pattern for F_P2T4M4",
+          "success_rate": 0.3333333333333333,
+          "avg_throughput": 0.03666666666666666
+        },
+        {
+          "type": "trust_update",
+          "pattern_id": "trust_F_P2T4M4",
+          "description": "Trust update pattern for F_P2T4M4: balanced",
+          "success_rate": 0.3333333333333333,
+          "avg_throughput": 0.03666666666666666
+        }
+      ],
+      "stability_score": 0.3333333333333333,
+      "optimal_params": {}
+    },
+    "F_P3T4M4": {
+      "mechanisms": [
+        {
+          "type": "delegation",
+          "pattern_id": "delegation_F_P3T4M4",
+          "description": "Most common delegation pattern for F_P3T4M4",
+          "success_rate": 0.0,
+          "avg_throughput": 0.026
+        },
+        {
+          "type": "recovery",
+          "pattern_id": "recovery_F_P3T4M4",
+          "description": "Recovery sequence pattern for F_P3T4M4",
+          "success_rate": 0.0,
+          "avg_throughput": 0.026
+        },
+        {
+          "type": "trust_update",
+          "pattern_id": "trust_F_P3T4M4",
+          "description": "Trust update pattern for F_P3T4M4: balanced",
+          "success_rate": 0.0,
+          "avg_throughput": 0.026
+        }
+      ],
+      "stability_score": 0.0,
+      "optimal_params": {}
+    }
+  }
+}

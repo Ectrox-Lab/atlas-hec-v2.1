@@ -1,0 +1,33 @@
+{
+  "seed_id": "S2120",
+  "pool": "F",
+  "generation_mode": "leakage_monitor",
+  "parent_elite_id": "ELITE_000_F_P3T4M4",
+  "pressure": 4,
+  "triage": 4,
+  "memory": 3,
+  "delegation": 1,
+  "recovery_threshold": 2.2961223048880415,
+  "trust_update_rate": 0.8721405164001805,
+  "trust_decay": 0.13989246365264746,
+  "trust_recovery": 0.0405038269169877,
+  "migration_threshold": 0.2499059478445849,
+  "anti_leakage_penalty": 0.35,
+  "expected_to_fail": true,
+  "family_id": "F_P4T4M3",
+  "zone": "leakage",
+  "manifest_version": "1.0-frozen",
+  "frozen_at": "2026-03-15T05:00:00Z",
+  "parent_candidates": [
+    "ELITE_000_F_P3T4M4"
+  ],
+  "source_pool": "Pool-F",
+  "variation_ops": [
+    "leakage_monitor"
+  ],
+  "inheritance_mode": "monitor_only_high_penalty",
+  "is_control": false,
+  "is_leakage_monitor": true,
+  "is_gray_zone": false,
+  "expected_role": "leakage_sentinel"
+}

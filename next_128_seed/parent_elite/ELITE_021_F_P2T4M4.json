@@ -1,0 +1,17 @@
+{
+  "id": "C0014_F_P2T4M4",
+  "pressure": 2,
+  "memory": 4,
+  "delegation": 1,
+  "recovery_threshold": 0.603,
+  "trust_update_rate": 1.0801,
+  "trust_decay": 0.1138,
+  "trust_recovery": 0.0788,
+  "migration_threshold": 0.3458,
+  "family_id": "F_P2T4M4",
+  "generation_mode": "inheritance_biased",
+  "triage": 4,
+  "_source": "benchmark_results/task1_inheritance/round_b/seed_1000/candidates/C0014_F_P2T4M4.json",
+  "elite_id": "ELITE_021_F_P2T4M4",
+  "elite_index": 21
+}

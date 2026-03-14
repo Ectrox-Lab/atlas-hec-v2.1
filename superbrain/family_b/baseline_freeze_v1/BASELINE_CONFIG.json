@@ -1,0 +1,46 @@
+{
+  "freeze_version": "v1.0",
+  "freeze_date": "2026-03-14",
+  "mve_reference": "family_b_mve_passed",
+  "components": {
+    "contracts": {
+      "file": "contracts.py",
+      "version": "post_calibration",
+      "count": 3,
+      "names": ["StrictHandoff", "AdaptiveRecovery", "PressureThrottle"]
+    },
+    "evaluator": {
+      "file": "evaluator.py",
+      "version": "fixed_v1",
+      "task": "task2_simulator",
+      "sample_size": 300
+    },
+    "generator": {
+      "file": "generator.py",
+      "version": "contract_based_v1",
+      "mode": "composition_from_verified"
+    }
+  },
+  "calibration": {
+    "adaptive_recovery": {
+      "failover_success_threshold": 0,
+      "stage_failure_rate_threshold": 0.08
+    },
+    "strict_handoff": {
+      "triage_key": "triage_or_perturbation",
+      "pipeline_completion_threshold": 0.85
+    }
+  },
+  "mve_metrics": {
+    "round_a": {
+      "coverage": 0.93,
+      "reuse": 0.90,
+      "effect_pp": 90
+    },
+    "round_b": {
+      "coverage": 0.83,
+      "reuse": 0.83,
+      "effect_pp": 83
+    }
+  }
+}

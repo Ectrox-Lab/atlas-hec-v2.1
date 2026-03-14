@@ -1,0 +1,32 @@
+{
+  "seed_id": "S2080",
+  "pool": "C",
+  "generation_mode": "mechanism_perturb",
+  "parent_elite_id": "ELITE_016_F_P3T3M2",
+  "pressure": 3,
+  "triage": 3,
+  "memory": 2,
+  "delegation": 1,
+  "recovery_threshold": 1.1313721928940925,
+  "trust_update_rate": 1.0,
+  "trust_decay": 0.12877526559337615,
+  "trust_recovery": 0.03,
+  "migration_threshold": 0.4309024409518642,
+  "anti_leakage_penalty": 0.0,
+  "family_id": "F_P3T3M2",
+  "zone": "core",
+  "manifest_version": "1.0-frozen",
+  "frozen_at": "2026-03-15T05:00:00Z",
+  "parent_candidates": [
+    "ELITE_016_F_P3T3M2"
+  ],
+  "source_pool": "Pool-C",
+  "variation_ops": [
+    "mechanism_perturb"
+  ],
+  "inheritance_mode": "v2.1-mechanism-biased",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "is_gray_zone": false,
+  "expected_role": "mechanism_robustness"
+}

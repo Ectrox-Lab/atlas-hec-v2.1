@@ -1,0 +1,162 @@
+# FAMILY B: PRODUCTION-READY LOCK
+# Version: 3.0
+# Date: 2026-03-14
+# Status: HARDENED, DIAGNOSED, LOCKED, READY
+
+================================================================================
+CURRENT STATE (PRODUCTION-READY)
+================================================================================
+
+Family B: ACTIVE MAINLINE [LOCKED]
+  State: HARDENED, DIAGNOSED, LOCKED, READY
+  Scope: Task-2 domain only
+  
+Classification:
+  - Not a research candidate
+  - Not a trial method
+  - Production-grade baseline for Task-2 domain
+
+================================================================================
+PRODUCTION RUNBOOK (LOCKED)
+================================================================================
+
+PRIMARY CONFIGURATION (Default)
+  Contracts: StrictHandoff + AdaptiveRecovery
+  Success Rate: 100% (validated at n=50, n=100, n=300)
+  Avg Completion: 0.95
+  Avg Throughput: 1.79
+  Usage: DEFAULT for all Task-2 experiments
+
+FALLBACK CONFIGURATION (Auto-trigger)
+  Contracts: StrictHandoff + PressureThrottle
+  Success Rate: 100% (validated)
+  Avg Completion: 0.963
+  Avg Throughput: 1.78
+  Usage: Automatic fallback when trigger conditions met
+
+AUTO-FALLBACK TRIGGER RULE (Executable)
+  ```
+  IF pipeline_completion < 0.90 
+     AND AdaptiveRecovery in target_contracts:
+      SWITCH to StrictHandoff + PressureThrottle
+      LOG fallback event
+      CONTINUE operation
+  ```
+
+MONITORING REQUIREMENTS
+  - Watch: pressure_level = P3 (increased AR risk)
+  - Watch: 3-contract combos (fragility warning)
+  - Log: All fallback triggers for pattern analysis
+
+================================================================================
+KNOWN FAILURE ARCHETYPES (Documented)
+================================================================================
+
+AdaptiveRecovery Failures (n=8 analyzed)
+  Concentration:
+    - 3-contract combinations: 6/8 (75%)
+    - Completion < 0.90: 6/8 (75%)
+    - Pressure P3: 5/8 (62%)
+  
+  Critical Threshold:
+    - Completion >= 0.93: AR almost always passes
+    - Completion < 0.90: AR failure risk increases
+
+StrictHandoff Failures (n=4 analyzed)
+  - Low completion + queue buildup
+  - Rare in 2-contract combos
+
+PressureThrottle Failures (n=1 analyzed)
+  - Extreme pressure conditions only
+
+MITIGATION
+  All known failure modes have defined fallback paths.
+  No unhandled critical failure archetype.
+
+================================================================================
+EXECUTION RULES (LOCKED)
+================================================================================
+
+MANDATORY (No Exception)
+  ✅ Use StrictHandoff + AdaptiveRecovery as default
+  ✅ Implement auto-fallback on completion < 0.90
+  ✅ Log all routing decisions and fallback triggers
+  ✅ Reference STATUS_PRODUCTION.lock for all Task-2 work
+
+PROHIBITED (Enforced)
+  ❌ Resurrect Family A
+  ❌ Re-validate Family B baseline
+  ❌ Default to Full-stack (3 contracts)
+  ❌ Operate without fallback rules
+  ❌ Ad-hoc cross-task porting
+
+ALLOWED INCREMENTAL WORK
+  ✅ Route/handoff fine-tuning
+  ✅ Failure archetype sub-typing
+  ✅ Evaluator diagnostics enhancement
+  ✅ Fallback switching optimization
+  ✅ Performance profiling
+
+================================================================================
+DIAGNOSTICS ARTIFACTS (Reference)
+================================================================================
+
+Location: /tmp/routing_diagnostics/
+
+Files:
+  - route_pattern_summary.json
+  - handoff_failure_modes.json
+  - fallback_trigger_table.json
+  - task2_routing_diagnostics.md
+  - FINAL_DIAGNOSTICS_REPORT.txt
+
+Usage:
+  Reference for failure analysis, fallback tuning, pattern recognition.
+
+================================================================================
+INFRASTRUCTURE BACKLOG (Separate Track)
+================================================================================
+
+Does NOT block Task-2 production use:
+
+  - Task-3 simulator: Medium priority
+  - Task-4 simulator: Low priority
+  - Cross-task validation: Future work
+
+Build these as separate infrastructure when resources available.
+
+================================================================================
+CONTACT & REFERENCE
+================================================================================
+
+Lock Files (READ-ONLY):
+  - STATUS_PRODUCTION.lock (this file) - Current production state
+  - STATUS_HARDENED.lock - Hardening validation record
+  - STATUS.lock - Original validation lock
+
+Documentation:
+  - FINAL_STATUS.md - Complete MVE record
+  - REPRO_SUMMARY.md - Reproducibility notes
+  - task2_routing_diagnostics.md - Operational diagnostics
+
+Code:
+  - baseline_freeze_v1/ - Frozen implementation
+  - /tmp/routing_diagnostics/ - Diagnostics artifacts
+
+================================================================================
+FINAL NOTE
+================================================================================
+
+Family B is now:
+  ✅ HARDENED    (Validated stable at n=300)
+  ✅ DIAGNOSED   (Failure archetypes mapped, fallback rules defined)
+  ✅ LOCKED      (No reopen, no debate)
+  ✅ READY       (Production-grade for Task-2 domain)
+
+Next Task-2 experiment starts with:
+  - Default: StrictHandoff + AdaptiveRecovery
+  - Fallback: StrictHandoff + PressureThrottle on completion < 0.90
+  - No justification needed for using this baseline
+  - Deviation requires explicit documentation and approval
+
+================================================================================

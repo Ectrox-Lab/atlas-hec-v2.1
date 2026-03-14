@@ -1,0 +1,203 @@
+# FAMILY B: MAINTAINABLE PRODUCTION LOCK
+# Version: 4.0
+# Date: 2026-03-14
+# Status: HARDENED, DIAGNOSED, TYPED, MAINTAINABLE, LOCKED, READY
+
+================================================================================
+CURRENT STATE (MAINTAINABLE PRODUCTION)
+================================================================================
+
+Family B: ACTIVE MAINLINE [LOCKED]
+  State: HARDENED, DIAGNOSED, TYPED, MAINTAINABLE, LOCKED, READY
+  Scope: Task-2 domain only
+  
+Evolution:
+  v1.0: VALIDATED (MVE passed)
+  v2.0: HARDENED (n=100 stable)
+  v3.0: DIAGNOSED (fallback rules defined)
+  v4.0: TYPED, MAINTAINABLE (sub-types, tiered triggers)
+
+Classification:
+  - Production-grade baseline
+  - Maintainable system with operational semantics
+  - Self-diagnosing with tiered response protocols
+
+================================================================================
+TIERED PRODUCTION RUNBOOK (LOCKED)
+================================================================================
+
+PRIMARY CONFIGURATION (Default)
+  Contracts: StrictHandoff + AdaptiveRecovery
+  Pressure: P2 (default)
+  Success Rate: 100%
+  Usage: DEFAULT for all Task-2 operations
+
+FALLBACK CONFIGURATION (Auto-trigger)
+  Contracts: StrictHandoff + PressureThrottle
+  Success Rate: 100%
+  Usage: Automatic on Tier 1 trigger
+
+TIER 1 TRIGGER — CRITICAL (Immediate Action)
+  Condition: pipeline_completion < 0.85
+  Action: IMMEDIATE FALLBACK to SH+PT
+  Priority: P0 - Interrupt current operation
+  Log: CRITICAL_FALLBACK_EVENT
+  Response Time: < 100ms
+  
+TIER 2 TRIGGER — HIGH (Route Adjust)
+  Condition: pressure = 3 OR 3-contract combo detected
+  Action: REDUCE complexity
+    - Option A: Switch to 2-contract combo
+    - Option B: Reduce pressure from P3 to P2
+  Priority: P1 - Schedule adjustment
+  Log: ROUTE_ADJUST_EVENT
+  Response Time: < 1s
+  
+TIER 3 TRIGGER — MONITOR (Watch)
+  Condition: 0.85 <= completion < 0.90
+  Action: INCREASE monitoring frequency
+    - Log detailed metrics
+    - Prepare fallback readiness
+    - Alert operator
+  Priority: P2 - Elevated watch
+  Log: BOUNDARY_WARNING_EVENT
+  Response Time: Logging only
+
+================================================================================
+FAILURE ARCHETYPE TYPES (Documented)
+================================================================================
+
+CRITICAL COMPLETION DROP (Tier 1)
+  Frequency: 12.5% of AR failures
+  Condition: completion < 0.85
+  Example: P3M3 configs under stress
+  Action: Immediate fallback
+
+MODERATE COMPLETION DROP (Tier 3)
+  Frequency: 62.5% of AR failures
+  Condition: 0.85 <= completion < 0.90
+  Context: Usually P3 pressure
+  Action: Monitor + prepare fallback
+
+HIGH PRESSURE FRAGILITY (Tier 2)
+  Frequency: 62.5% of AR failures
+  Condition: pressure = 3
+  Context: AR satisfaction drops
+  Action: Reduce pressure or contract count
+
+MULTI-CONTRACT STRESS (Tier 2)
+  Frequency: 75% of AR failures
+  Condition: 3-contract combinations
+  Context: Full-stack fragility
+  Action: Reduce to 2-contract baseline
+
+================================================================================
+MAINTENANCE PROTOCOLS (Locked)
+================================================================================
+
+SCHEDULED MAINTENANCE
+  Weekly:
+    - Review Tier 1 fallback logs
+    - Check Tier 2 route adjust frequency
+    - Verify alert threshold compliance
+  
+  Monthly:
+    - Analyze failure archetype patterns
+    - Tune thresholds if FP rate > 10%
+    - Review pressure distribution
+
+ALERT THRESHOLDS
+  CRITICAL: >1% Tier 1 events per batch
+  HIGH: >5% Tier 2 events per batch  
+  NORMAL: <5% Tier 3 warnings per batch
+  HEALTHY: Zero Tier 1/2, minimal Tier 3
+
+TUNING GUIDELINES
+  - completion threshold: 0.85 (locked unless data shows otherwise)
+  - pressure preference: P2 over P3
+  - contract count: 2 preferred, 3 diagnostic only
+
+================================================================================
+OPERATIONAL SEMANTICS (Executable)
+================================================================================
+
+SELF-DIAGNOSING
+  System can classify its own failures:
+    - Type 1: Critical (needs immediate fallback)
+    - Type 2: High (needs route adjustment)
+    - Type 3: Monitor (elevated watch)
+
+SELF-HEALING
+  Automatic responses:
+    - Tier 1: Auto-fallback, no human needed
+    - Tier 2: Auto-suggest route adjustments
+    - Tier 3: Auto-escalate monitoring
+
+MAINTAINABLE
+  Clear operational guidelines:
+    - When to fallback (completion < 0.85)
+    - When to adjust (pressure=3 or 3-contract)
+    - When to monitor (completion 0.85-0.90)
+
+================================================================================
+EXECUTION RULES (LOCKED)
+================================================================================
+
+MANDATORY (No Exception)
+  ✅ Implement all 3 tier triggers
+  ✅ Log all trigger events by tier
+  ✅ Maintain weekly/monthly review schedule
+  ✅ Use tiered response protocols
+  
+PROHIBITED (Enforced)
+  ❌ Ignore Tier 1 triggers
+  ❌ Default to P3 pressure
+  ❌ Use 3-contract as default
+  ❌ Skip maintenance reviews
+
+ALLOWED INCREMENTAL WORK
+  ✅ Route adjustment refinement
+  ✅ Pressure-aware policy tuning
+  ✅ Maintenance scheduling rules
+  ✅ Evaluator diagnostics enhancement
+  ✅ Fallback switching optimization
+  ✅ Performance profiling under triggers
+
+================================================================================
+ARTIFACTS & REFERENCES
+================================================================================
+
+Lock Files (State History):
+  - STATUS_MAINTAINABLE.lock (v4.0) - Current
+  - STATUS_PRODUCTION.lock (v3.0) - Production-ready
+  - STATUS_HARDENED.lock (v2.0) - Hardened
+  - STATUS.lock (v1.0) - Original validation
+
+Diagnostics:
+  - /tmp/routing_diagnostics/ - Routing analysis
+  - /tmp/failure_subtyping/ - Sub-typing results
+  - baseline_freeze_v1/ - Frozen implementation
+
+================================================================================
+FINAL NOTE
+================================================================================
+
+Family B has evolved through 4 stages:
+  ✅ VALIDATED    → MVE passed
+  ✅ HARDENED     → Scale stable
+  ✅ DIAGNOSED    → Fallback rules defined
+  ✅ TYPED        → Failure archetypes sub-typed
+  ✅ MAINTAINABLE → Tiered triggers, maintenance protocols
+
+Current state:
+  ✅ HARDENED, DIAGNOSED, TYPED, MAINTAINABLE, LOCKED, READY
+
+Next Task-2 operation:
+  - Default: SH+AR, P2 pressure, 2-contract
+  - Watch: Tier 1/2/3 triggers
+  - Respond: Per tier protocol
+  - Maintain: Weekly/monthly reviews
+
+Family B is now a maintainable production system, not just a validated baseline.
+
+================================================================================

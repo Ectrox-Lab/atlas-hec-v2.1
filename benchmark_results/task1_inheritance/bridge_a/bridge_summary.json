@@ -1,0 +1,19 @@
+{
+  "round": "a",
+  "gpu": 0,
+  "timestamp": "2026-03-14T04:57:26.155650",
+  "summary": {
+    "total": 150,
+    "admitted": 150,
+    "shadow_passed": 150,
+    "dry_run_passed": 120,
+    "tier_b": 95,
+    "tier_c_plus": 25,
+    "rejected": 0
+  },
+  "pass_rate": {
+    "shadow": 100.0,
+    "dry_run": 80.0,
+    "tier_b": 63.33333333333333
+  }
+}

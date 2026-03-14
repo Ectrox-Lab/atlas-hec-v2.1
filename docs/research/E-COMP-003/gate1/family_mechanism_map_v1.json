@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-03-14T09:02:13.352529",
+  "source": "E-COMP-003 MechanismExtractor",
+  "family_mechanism_map": {
+    "F_P2T3M3": {
+      "mechanisms": [
+        {
+          "type": "delegation",
+          "pattern_id": "delegation_F_P2T3M3",
+          "description": "Most common delegation pattern for F_P2T3M3",
+          "success_rate": 0.5,
+          "avg_throughput": 0.039999999999999994
+        },
+        {
+          "type": "recovery",
+          "pattern_id": "recovery_F_P2T3M3",
+          "description": "Recovery sequence pattern for F_P2T3M3",
+          "success_rate": 0.5,
+          "avg_throughput": 0.039999999999999994
+        },
+        {
+          "type": "trust_update",
+          "pattern_id": "trust_F_P2T3M3",
+          "description": "Trust update pattern for F_P2T3M3: balanced",
+          "success_rate": 0.5,
+          "avg_throughput": 0.039999999999999994
+        }
+      ],
+      "stability_score": 0.5,
+      "optimal_params": {}
+    },
+    "F_P2T4M3": {
+      "mechanisms": [
+        {
+          "type": "delegation",
+          "pattern_id": "delegation_F_P2T4M3",
+          "description": "Most common delegation pattern for F_P2T4M3",
+          "success_rate": 0.0,
+          "avg_throughput": 0.027
+        },
+        {
+          "type": "recovery",
+          "pattern_id": "recovery_F_P2T4M3",
+          "description": "Recovery sequence pattern for F_P2T4M3",
+          "success_rate": 0.0,
+          "avg_throughput": 0.027
+        },
+        {
+          "type": "trust_update",
+          "pattern_id": "trust_F_P2T4M3",
+          "description": "Trust update pattern for F_P2T4M3: balanced",
+          "success_rate": 0.0,
+          "avg_throughput": 0.027
+        }
+      ],
+      "stability_score": 0.0,
+      "optimal_params": {}
+    },
+    "F_P3T3M2": {
+      "mechanisms": [
+        {
+          "type": "recovery",
+          "pattern_id": "recovery_F_P3T3M2",
+          "description": "Recovery sequence pattern for F_P3T3M2",
+          "success_rate": 0.0,
+          "avg_throughput": 0.03
+        },
+        {
+          "type": "trust_update",
+          "pattern_id": "trust_F_P3T3M2",
+          "description": "Trust update pattern for F_P3T3M2: balanced",
+          "success_rate": 0.0,
+          "avg_throughput": 0.03
+        }
+      ],
+      "stability_score": 0.0,
+      "optimal_params": {}
+    }
+  }
+}

@@ -1,0 +1,59 @@
+# FAMILY B: STATUS LOCK
+# Generated: 2026-03-14
+# DO NOT MODIFY - This file records the validated baseline state
+
+================================================================================
+CURRENT STATE (LOCKED)
+================================================================================
+
+Family B: COMPLETE (Task-2 scope)
+Status: ACTIVE MAINLINE
+
+L4 Core: VALIDATED AT MVE LEVEL (Task-2 scope)
+
+Cross-task generalization: PENDING FUTURE WORK
+
+================================================================================
+BASELINE SPECIFICATION
+================================================================================
+
+Default Configuration: Mixed contracts (2-contract combinations)
+  - StrictHandoff + AdaptiveRecovery
+  - StrictHandoff + PressureThrottle  
+  - AdaptiveRecovery + PressureThrottle
+
+Diagnostic Variant: Full-stack (3 contracts)
+  - Use only for specific diagnostic purposes
+  - NOT default for new experiments
+
+Archived: Family A (non-convergent)
+  - Do not resurrect
+  - Do not merge with Family B
+
+================================================================================
+USAGE GUIDE
+================================================================================
+
+For Task-2 domain experiments:
+  ✅ Use Family B / Mixed contracts as default
+  ✅ Reference baseline_freeze_v1/ for implementation
+  ✅ Use STATUS_UPDATE.md for context
+
+For cross-task work:
+  ⏸️ Requires Task-3 simulator (not yet available)
+  ⏸️ Do not attempt ad-hoc porting
+
+For new method families:
+  ⚠️ Must demonstrate clear advantage over Mixed contracts baseline
+  ⚠️ Follow same MVE discipline (n=300, 3 metrics)
+
+================================================================================
+CONTACT
+================================================================================
+
+For questions about this baseline, refer to:
+- FINAL_STATUS.md - Complete validation record
+- REPRO_SUMMARY.md - Reproducibility notes
+- BASELINE_CONFIG.json - Machine-readable config
+
+================================================================================

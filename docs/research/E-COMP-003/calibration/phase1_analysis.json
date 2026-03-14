@@ -1,0 +1,47 @@
+{
+  "conditions": {
+    "A_baseline": {
+      "approve": 5.0,
+      "reuse": 0.0,
+      "leakage": 0.0
+    },
+    "B_mech_only": {
+      "approve": 5.0,
+      "reuse": 100.0,
+      "leakage": 0.0
+    },
+    "C_anti_only": {
+      "approve": 0.0,
+      "reuse": 0.0,
+      "leakage": 0.0
+    },
+    "D_full": {
+      "approve": 0.0,
+      "reuse": 0.0,
+      "leakage": 0.0
+    }
+  },
+  "comparisons": {
+    "anti_leakage_effect": {
+      "C_vs_A": -5.0,
+      "D_vs_B": -5.0,
+      "interpretation": "Anti-leakage reduces approval"
+    },
+    "mechanism_effect": {
+      "B_vs_A": 0.0,
+      "interpretation": "Mechanism bias neutral or positive"
+    },
+    "variance": {
+      "min_rate": 0.0,
+      "max_rate": 5.0,
+      "range": 5.0,
+      "interpretation": "Clear differences between conditions"
+    }
+  },
+  "conclusion": {
+    "hypothesis": "H1",
+    "description": "Anti-leakage too strong",
+    "confidence": "medium",
+    "recommendation": "Proceed to Phase 2 (strength scan)"
+  }
+}

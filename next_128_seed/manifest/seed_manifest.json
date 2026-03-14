@@ -1,0 +1,784 @@
+{
+  "generation_timestamp": "2026-03-15T04:30:00Z",
+  "total_seeds": 128,
+  "package_version": "2.1-mechanism",
+  "parent_elite_count": 24,
+  "pools": {
+    "A": 32,
+    "B": 32,
+    "C": 24,
+    "D": 16,
+    "E": 16,
+    "F": 8
+  },
+  "seeds": [
+    {
+      "seed_id": "S2000",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2001",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2002",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2003",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2004",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2005",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2006",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2007",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2008",
+      "pool": "A",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2009",
+      "pool": "A",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2010",
+      "pool": "A",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2011",
+      "pool": "A",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2012",
+      "pool": "A",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2013",
+      "pool": "A",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2014",
+      "pool": "A",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2015",
+      "pool": "A",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2016",
+      "pool": "A",
+      "family_id": "F_P3T3M2",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2017",
+      "pool": "A",
+      "family_id": "F_P3T3M2",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2018",
+      "pool": "A",
+      "family_id": "F_P3T3M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2019",
+      "pool": "A",
+      "family_id": "F_P3T3M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2020",
+      "pool": "A",
+      "family_id": "F_P2T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2021",
+      "pool": "A",
+      "family_id": "F_P2T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2022",
+      "pool": "A",
+      "family_id": "F_P2T3M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2023",
+      "pool": "A",
+      "family_id": "F_P2T3M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2024",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2025",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2026",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2027",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2028",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2029",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2030",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2031",
+      "pool": "A",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "preserve_low_perturb"
+    },
+    {
+      "seed_id": "S2032",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2033",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2034",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2035",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2036",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2037",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2038",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2039",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2040",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2041",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2042",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2043",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2044",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2045",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2046",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2047",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2048",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2049",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2050",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2051",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2052",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2053",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2054",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2055",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2056",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2057",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2058",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2059",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2060",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2061",
+      "pool": "B",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2062",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2063",
+      "pool": "B",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "recombine_stable"
+    },
+    {
+      "seed_id": "S2064",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2065",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2066",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2067",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2068",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2069",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2070",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2071",
+      "pool": "C",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2072",
+      "pool": "C",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2073",
+      "pool": "C",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2074",
+      "pool": "C",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2075",
+      "pool": "C",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2076",
+      "pool": "C",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2077",
+      "pool": "C",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2078",
+      "pool": "C",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2079",
+      "pool": "C",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2080",
+      "pool": "C",
+      "family_id": "F_P3T3M2",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2081",
+      "pool": "C",
+      "family_id": "F_P3T3M2",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2082",
+      "pool": "C",
+      "family_id": "F_P3T3M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2083",
+      "pool": "C",
+      "family_id": "F_P3T3M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2084",
+      "pool": "C",
+      "family_id": "F_P2T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2085",
+      "pool": "C",
+      "family_id": "F_P2T4M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2086",
+      "pool": "C",
+      "family_id": "F_P2T3M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2087",
+      "pool": "C",
+      "family_id": "F_P2T3M4",
+      "generation_mode": "mechanism_perturb"
+    },
+    {
+      "seed_id": "S2088",
+      "pool": "D",
+      "family_id": "F_P2T3M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2089",
+      "pool": "D",
+      "family_id": "F_P2T3M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2090",
+      "pool": "D",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2091",
+      "pool": "D",
+      "family_id": "F_P2T4M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2092",
+      "pool": "D",
+      "family_id": "F_P3T3M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2093",
+      "pool": "D",
+      "family_id": "F_P3T3M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2094",
+      "pool": "D",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2095",
+      "pool": "D",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2096",
+      "pool": "D",
+      "family_id": "F_P2T3M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2097",
+      "pool": "D",
+      "family_id": "F_P2T3M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2098",
+      "pool": "D",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2099",
+      "pool": "D",
+      "family_id": "F_P2T4M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2100",
+      "pool": "D",
+      "family_id": "F_P3T3M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2101",
+      "pool": "D",
+      "family_id": "F_P3T3M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2102",
+      "pool": "D",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2103",
+      "pool": "D",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "boundary_probe"
+    },
+    {
+      "seed_id": "S2104",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2105",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2106",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2107",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2108",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2109",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2110",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2111",
+      "pool": "E",
+      "family_id": "F_P3T4M4",
+      "generation_mode": "control_no_inheritance"
+    },
+    {
+      "seed_id": "S2112",
+      "pool": "E",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2113",
+      "pool": "E",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2114",
+      "pool": "E",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2115",
+      "pool": "E",
+      "family_id": "F_P2T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2116",
+      "pool": "E",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2117",
+      "pool": "E",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2118",
+      "pool": "E",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2119",
+      "pool": "E",
+      "family_id": "F_P3T4M3",
+      "generation_mode": "control_bias_zero"
+    },
+    {
+      "seed_id": "S2120",
+      "pool": "F",
+      "family_id": "F_P4T4M3",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2121",
+      "pool": "F",
+      "family_id": "F_P4T4M4",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2122",
+      "pool": "F",
+      "family_id": "F_P3T5M5",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2123",
+      "pool": "F",
+      "family_id": "F_P2T5M4",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2124",
+      "pool": "F",
+      "family_id": "F_P1T3M3",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2125",
+      "pool": "F",
+      "family_id": "F_P1T3M4",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2126",
+      "pool": "F",
+      "family_id": "F_P2T2M3",
+      "generation_mode": "leakage_monitor"
+    },
+    {
+      "seed_id": "S2127",
+      "pool": "F",
+      "family_id": "F_P3T2M4",
+      "generation_mode": "leakage_monitor"
+    }
+  ]
+}

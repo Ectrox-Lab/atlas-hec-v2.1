@@ -1,0 +1,32 @@
+{
+  "seed_id": "S2100",
+  "pool": "D",
+  "generation_mode": "boundary_probe",
+  "parent_elite_id": "ELITE_012_F_P3T4M3",
+  "pressure": 3,
+  "triage": 3,
+  "memory": 3,
+  "delegation": 1,
+  "recovery_threshold": 1.9235757725637264,
+  "trust_update_rate": 0.7553360447944503,
+  "trust_decay": 0.050354568908778236,
+  "trust_recovery": 0.06855596115098136,
+  "migration_threshold": 0.3274226754602759,
+  "anti_leakage_penalty": 0.0,
+  "family_id": "F_P3T3M3",
+  "zone": "gray",
+  "manifest_version": "1.0-frozen",
+  "frozen_at": "2026-03-15T05:00:00Z",
+  "parent_candidates": [
+    "ELITE_012_F_P3T4M3"
+  ],
+  "source_pool": "Pool-D",
+  "variation_ops": [
+    "boundary_probe"
+  ],
+  "inheritance_mode": "v2.1-mechanism-biased",
+  "is_control": false,
+  "is_leakage_monitor": false,
+  "is_gray_zone": true,
+  "expected_role": "boundary_exploration"
+}
