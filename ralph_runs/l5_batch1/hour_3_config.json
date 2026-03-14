@@ -2,21 +2,16 @@
   "_comment": "Ralph Hour Gate Configuration for L5 Full Batch-1 - AUTO MODE",
   "_version": "2.0",
   "_protocol": "Atlas-HEC 1-Hour Rule with POSITIVE_AUTO",
-  
   "experiment_name": "L5_FULL_BATCH1",
-  "batch_number": 1,
-  "description": "Replicate A→B transfer gap at 80-seed scale with 1-hour batches - AUTO CONTINUOUS",
-  
+  "batch_number": 3,
+  "description": "Replicate A\u2192B transfer gap at 80-seed scale with 1-hour batches - AUTO CONTINUOUS",
   "batch_command": "L5_FULL_BATCH1_RALPH_READY.py",
   "batch_config": "L5_BATCH1_RALPH_CONFIG.json",
-  
   "working_dir": ".",
   "output_dir": "ralph_runs/l5_batch1",
-  
   "max_hours": 10,
   "auto_continue": true,
-  "_auto_continue_note": "ENABLED: Ralph will auto-continue on POSITIVE_AUTO (≥10pp/≥90%)",
-  
+  "_auto_continue_note": "ENABLED: Ralph will auto-continue on POSITIVE_AUTO (\u226510pp/\u226590%)",
   "positive_feedback_thresholds": {
     "transfer_gap_pp": {
       "value": 5.0,
@@ -39,18 +34,17 @@
       "description": "No source task contamination"
     }
   },
-  
   "auto_approve_thresholds": {
     "_comment": "Strict thresholds for automatic approval without human wait",
     "transfer_gap_pp": {
       "value": 10.0,
       "operator": ">=",
-      "description": "AUTO: ≥10pp (human confirmation level)"
+      "description": "AUTO: \u226510pp (human confirmation level)"
     },
     "code_retention_pct": {
       "value": 90.0,
       "operator": ">=",
-      "description": "AUTO: ≥90% (human confirmation level)"
+      "description": "AUTO: \u226590% (human confirmation level)"
     },
     "self_gap_pp": {
       "value": 5.0,
@@ -63,13 +57,11 @@
       "description": "AUTO: Must be clean"
     }
   },
-  
   "hourly_outputs": {
     "metrics_file": "metrics.json",
     "result_file": "result.json",
     "log_file": "execution.log"
   },
-  
   "circuit_breakers": {
     "timeout_violation": {
       "action": "IMMEDIATE_STOP",
@@ -84,15 +76,17 @@
       "log_level": "WARN"
     }
   },
-  
   "approval_chain": {
     "after_each_hour": "EVALUATE_THEN_DECIDE",
-    "_comment": "POSITIVE_AUTO → auto-continue, POSITIVE_MANUAL → wait, MARGINAL/FAIL → freeze",
-    "approval_required_for": ["hour_2_manual", "hour_3_manual", "hour_4_manual"],
+    "_comment": "POSITIVE_AUTO \u2192 auto-continue, POSITIVE_MANUAL \u2192 wait, MARGINAL/FAIL \u2192 freeze",
+    "approval_required_for": [
+      "hour_2_manual",
+      "hour_3_manual",
+      "hour_4_manual"
+    ],
     "auto_approve_first_hour": true,
     "manual_review_trigger": "any_threshold_below_50_percent"
   },
-  
   "comparison_baseline": {
     "pilot_hour2": {
       "seeds": 48,
@@ -106,18 +100,20 @@
       "code_retention_pct_min": 85.0
     }
   },
-  
   "logging": {
     "level": "INFO",
     "structured": true,
     "audit_trail": true,
     "output_file": "ralph_decisions.log"
   },
-  
   "sleep_mode": {
     "enabled": true,
     "note": "Running continuously while user sleeps - auto-approve on strict thresholds",
     "expected_wake_time": "2026-03-15T08:00:00Z",
     "max_auto_hours": 8
-  }
+  },
+  "previous_batch": 2,
+  "hour_budget": 3,
+  "approved_at": null,
+  "ralph_note": "AWAITING_APPROVAL - Do not execute until approved"
 }

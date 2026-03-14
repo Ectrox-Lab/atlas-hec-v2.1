@@ -1,0 +1,26 @@
+{
+  "hour": 3,
+  "timestamp": "2026-03-15T06:30:22.199147",
+  "experiment": "L5_FULL_BATCH1",
+  "batch": 1,
+  "transfer_gap_pp": 15.34,
+  "code_retention_pct": 91.45,
+  "self_gap_pp": 21.76,
+  "leakage_status": "clean",
+  "group_stats": {
+    "G1_Transfer": {
+      "n": 32,
+      "avg_math_loss": 0.9822,
+      "avg_code_retention": 0.9145
+    },
+    "G2_Sham": {
+      "n": 32,
+      "avg_math_loss": 1.1356
+    },
+    "G3_SelfRef": {
+      "n": 16,
+      "avg_math_loss": 0.9181
+    }
+  },
+  "data_checksum": "md5:85a9fdc8905db44fcf46caab6f40d390"
+}

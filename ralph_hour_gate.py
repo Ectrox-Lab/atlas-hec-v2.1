@@ -68,7 +68,8 @@ class RalphHourGate:
             "message": message
         }
         if data:
-            entry["data"] = data
+            # Convert Path objects to strings for JSON serialization
+            entry["data"] = self._serialize_for_json(data)
         
         # Console output
         print(f"[{timestamp}] [{level}] Batch-{self.batch_number}: {message}")
@@ -76,6 +77,16 @@ class RalphHourGate:
         # File logging
         with open(self.log_file, 'a') as f:
             f.write(json.dumps(entry) + "\n")
+    
+    def _serialize_for_json(self, obj):
+        """Convert non-JSON-serializable objects to strings"""
+        if isinstance(obj, Path):
+            return str(obj)
+        elif isinstance(obj, dict):
+            return {k: self._serialize_for_json(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [self._serialize_for_json(item) for item in obj]
+        return obj
     
     def run_batch(self, hour_number):
         """Execute one hour batch with timeout enforcement"""
@@ -170,11 +181,13 @@ class RalphHourGate:
     
     def evaluate_three_state(self, metrics):
         """
-        Three-state evaluation: POSITIVE / MARGINAL / FAIL
+        Four-state evaluation with POSITIVE_AUTO for continuous operation:
+        POSITIVE_AUTO / POSITIVE_MANUAL / MARGINAL / FAIL
         
-        POSITIVE: Clear success, generate next hour config
-        MARGINAL: Some progress but ambiguous, freeze for analysis  
-        FAIL: Clear failure or negative progress, freeze and recommend rollback
+        POSITIVE_AUTO: Exceeds strict thresholds → auto-continue (sleep mode)
+        POSITIVE_MANUAL: Meets standard thresholds → generate config, wait approval
+        MARGINAL: Ambiguous → freeze for analysis  
+        FAIL: Clear failure → freeze and recommend rollback
         
         Returns: (verdict, details)
         """
@@ -190,6 +203,13 @@ class RalphHourGate:
         cr_threshold = self.thresholds.get('code_retention_pct', {}).get('value', 85)
         sg_threshold = self.thresholds.get('self_gap_pp', {}).get('value', 0)
         ls_threshold = self.thresholds.get('leakage_status', {}).get('value', 'clean')
+        
+        # Auto-approve strict thresholds (for sleep mode continuous operation)
+        auto_thresholds = self.config.get('auto_approve_thresholds', {})
+        tg_auto = auto_thresholds.get('transfer_gap_pp', {}).get('value', 10)
+        cr_auto = auto_thresholds.get('code_retention_pct', {}).get('value', 90)
+        sg_auto = auto_thresholds.get('self_gap_pp', {}).get('value', 5)
+        ls_auto = auto_thresholds.get('leakage_status', {}).get('value', 'clean')
         
         # Circuit breakers (FAIL conditions)
         if tg <= 0:
@@ -213,17 +233,31 @@ class RalphHourGate:
                 "description": "Data leakage detected"
             }
         
-        # Check positive feedback thresholds
+        # Check POSITIVE_AUTO (strict thresholds for auto-continue)
+        if (tg >= tg_auto and 
+            cr >= cr_auto and 
+            sg > sg_auto and 
+            ls == ls_auto):
+            return "POSITIVE_AUTO", {
+                "reason": "AUTO_APPROVE_THRESHOLDS_MET",
+                "transfer_gap_pp": tg,
+                "code_retention_pct": cr,
+                "self_gap_pp": sg,
+                "thresholds": {"tg": tg_auto, "cr": cr_auto, "sg": sg_auto},
+                "description": "Strict thresholds met - AUTO CONTINUING (sleep mode)"
+            }
+        
+        # Check POSITIVE_MANUAL (standard thresholds)
         if (tg >= tg_threshold and 
             cr >= cr_threshold and 
             sg > sg_threshold and 
             ls == ls_threshold):
-            return "POSITIVE", {
+            return "POSITIVE_MANUAL", {
                 "reason": "ALL_THRESHOLDS_MET",
                 "transfer_gap_pp": tg,
                 "code_retention_pct": cr,
                 "self_gap_pp": sg,
-                "description": "All positive feedback thresholds satisfied"
+                "description": "Standard thresholds satisfied - awaiting manual approval"
             }
         
         # MARGINAL: Some progress but not meeting full thresholds
@@ -383,11 +417,43 @@ class RalphHourGate:
             # Three-state evaluation
             verdict, details = self.evaluate_three_state(metrics)
             
-            if verdict == "POSITIVE":
+            if verdict == "POSITIVE_AUTO":
                 self.hour_budget += 1
-                self.log("INFO", f"POSITIVE FEEDBACK: All thresholds met", details)
+                self.log("INFO", f"POSITIVE_AUTO: Strict thresholds met - AUTO CONTINUING", details)
                 
-                # Generate next hour config (but STOP)
+                # Generate next hour config and AUTO-CONTINUE (sleep mode)
+                decision_path, config_path = self.write_positive_decision(
+                    hour, metrics, batch_result.get("audit", {}), details
+                )
+                
+                # Check if auto_continue is enabled
+                if self.config.get("auto_continue", False):
+                    self.log("INFO", f"Auto-continue enabled - proceeding to Hour {hour + 1}", {
+                        "sleep_mode": self.config.get("sleep_mode", {}).get("enabled", False),
+                        "note": "Running continuously while user sleeps"
+                    })
+                    hour += 1
+                    continue  # Continue to next hour without stopping
+                else:
+                    self.log("INFO", "Auto-continue disabled - stopping for external approval", {
+                        "next_config": str(config_path),
+                        "decision": str(decision_path)
+                    })
+                    return {
+                        "status": "POSITIVE_AUTO",
+                        "verdict": "POSITIVE_AUTO",
+                        "hours_completed": hour,
+                        "next_hour_available": hour + 1,
+                        "next_config": str(config_path),
+                        "decision": str(decision_path),
+                        "auto_continue": False
+                    }
+                
+            elif verdict == "POSITIVE_MANUAL":
+                self.hour_budget += 1
+                self.log("INFO", f"POSITIVE_MANUAL: Standard thresholds met - awaiting approval", details)
+                
+                # Generate next hour config but STOP for manual approval
                 decision_path, config_path = self.write_positive_decision(
                     hour, metrics, batch_result.get("audit", {}), details
                 )
@@ -398,8 +464,8 @@ class RalphHourGate:
                 })
                 
                 return {
-                    "status": "POSITIVE_FEEDBACK",
-                    "verdict": "POSITIVE",
+                    "status": "POSITIVE_MANUAL",
+                    "verdict": "POSITIVE_MANUAL",
                     "hours_completed": hour,
                     "next_hour_available": hour + 1,
                     "next_config": str(config_path),

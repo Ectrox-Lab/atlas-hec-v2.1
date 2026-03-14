@@ -1,0 +1,33 @@
+{
+  "verdict": "POSITIVE",
+  "hour": 5,
+  "metrics": {
+    "transfer_gap_pp": 15.07,
+    "code_retention_pct": 91.55,
+    "self_gap_pp": 19.94,
+    "leakage_status": "clean"
+  },
+  "details": {
+    "reason": "AUTO_APPROVE_THRESHOLDS_MET",
+    "transfer_gap_pp": 15.07,
+    "code_retention_pct": 91.55,
+    "self_gap_pp": 19.94,
+    "thresholds": {
+      "tg": 10.0,
+      "cr": 90.0,
+      "sg": 5.0
+    },
+    "description": "Strict thresholds met - AUTO CONTINUING (sleep mode)"
+  },
+  "audit_trail": {
+    "started_at": "2026-03-14T22:30:22.232760Z",
+    "ended_at": "2026-03-14T22:30:22.259960Z",
+    "config_sha256": "9a9148285809bb1d41438ccb3ff0c1d2a4a06f9a71c93aa8807ddc4bc227bd08",
+    "metrics_sha256": "37a955c5ecac7ba6337b2a743b101c052dac5eae14450194d3f280f8c3effdac",
+    "next_config_path": "ralph_runs/l5_batch1/hour_6_config.json",
+    "next_config_sha256": "8c93f8bbb62f7e0b341e65ea57a9185f9ea98678ba4c8b65ae6f4827e9415f39"
+  },
+  "ralph_action": "STOPPED - Hour-6 config generated, awaiting approval",
+  "human_required": true,
+  "recommendation": "APPROVE_CONTINUE"
+}

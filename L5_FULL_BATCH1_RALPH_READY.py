@@ -61,7 +61,7 @@ def run_batch(hour_number, output_dir):
     transfer_gap_pp = (g2_avg_loss - g1_avg_loss) * 100
     self_gap_pp = (g2_avg_loss - g3_avg_loss) * 100
     
-    g1_retention = sum(r["code_retention"] for r in groups["G1_Transfer"]]) / len(groups["G1_Transfer"])
+    g1_retention = sum(r["code_retention"] for r in groups["G1_Transfer"]) / len(groups["G1_Transfer"])
     
     # Determine leakage status (simulated)
     leakage_status = "clean" if random.random() > 0.05 else "suspected"
@@ -144,10 +144,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--hour", type=int, default=1, help="Hour number")
     parser.add_argument("--output-dir", default="ralph_runs/l5_batch1", help="Output directory")
+    parser.add_argument("--config", default=None, help="Config file (for Ralph compatibility)")
     
     args = parser.parse_args()
     
-    hour_dir = Path(args.output_dir) / f"hour_{args.hour}"
+    # Ralph passes full hour directory path, don't append hour_N again
+    hour_dir = Path(args.output_dir)
     metrics = run_batch(args.hour, hour_dir)
     
     # Output JSON for programmatic use
