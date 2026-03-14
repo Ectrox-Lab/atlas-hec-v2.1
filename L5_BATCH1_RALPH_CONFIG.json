@@ -1,0 +1,91 @@
+{
+  "_comment": "Ralph Hour Gate Configuration for L5 Full Batch-1",
+  "_version": "1.0",
+  "_protocol": "Atlas-HEC 1-Hour Rule",
+  
+  "experiment_name": "L5_FULL_BATCH1",
+  "batch_number": 1,
+  "description": "Replicate A→B transfer gap at 80-seed scale with 1-hour batches",
+  
+  "batch_command": "L5_FULL_BATCH1.py",
+  "batch_config": "L5_FULL_BATCH1_CONFIG.json",
+  
+  "working_dir": ".",
+  "output_dir": "ralph_runs/l5_batch1",
+  
+  "max_hours": 10,
+  "auto_continue": false,
+  "_auto_continue_warning": "Only enable for low-risk repetitive validation",
+  
+  "positive_feedback_thresholds": {
+    "transfer_gap_pp": {
+      "value": 5.0,
+      "operator": ">=",
+      "description": "Must replicate Pilot's 11.7pp (allow variance, min 5pp)"
+    },
+    "code_retention_pct": {
+      "value": 85.0,
+      "operator": ">=",
+      "description": "No catastrophic forgetting (Pilot: 91.5%)"
+    },
+    "self_gap_pp": {
+      "value": 0.0,
+      "operator": ">",
+      "description": "Self-inheritance must remain positive (mechanism healthy)"
+    },
+    "leakage_status": {
+      "value": "clean",
+      "operator": "==",
+      "description": "No source task contamination"
+    }
+  },
+  
+  "hourly_outputs": {
+    "metrics_file": "metrics.json",
+    "result_file": "result.json",
+    "log_file": "execution.log"
+  },
+  
+  "circuit_breakers": {
+    "timeout_violation": {
+      "action": "IMMEDIATE_STOP",
+      "log_level": "CRITICAL"
+    },
+    "metrics_missing": {
+      "action": "STOP_AND_FLAG",
+      "log_level": "ERROR"
+    },
+    "threshold_violation": {
+      "action": "STOP_NO_EXTENSION",
+      "log_level": "WARN"
+    }
+  },
+  
+  "approval_chain": {
+    "after_each_hour": "STOP_WAIT_APPROVAL",
+    "approval_required_for": ["hour_2", "hour_3", "hour_4", "hour_5", "hour_6", "hour_7", "hour_8", "hour_9", "hour_10"],
+    "auto_approve_first_hour": true,
+    "manual_review_trigger": "any_threshold_below_50_percent"
+  },
+  
+  "comparison_baseline": {
+    "pilot_hour2": {
+      "seeds": 48,
+      "transfer_gap_pp": 11.7,
+      "code_retention_pct": 91.5,
+      "self_gap_pp": 17.43
+    },
+    "target_batch1": {
+      "seeds": 80,
+      "transfer_gap_pp_min": 5.0,
+      "code_retention_pct_min": 85.0
+    }
+  },
+  
+  "logging": {
+    "level": "INFO",
+    "structured": true,
+    "audit_trail": true,
+    "output_file": "ralph_decisions.log"
+  }
+}
