@@ -115,7 +115,52 @@ scientific_finding:
 
 ---
 
-## 5. Trajectory Delta Explained (軌跡改變說明)
+## 5. Symmetry Check (對稱性驗證)
+
+### Transfer 方向性評估
+
+```yaml
+pair_comparison:
+  A_to_B:  # Batch-1 基準
+    mean_tg: 14.5pp
+    family_shift: {id}
+    inheritance_consumption: {pattern}
+    
+  B_to_A:  # 本批次
+    mean_tg: {pp}
+    family_shift: {id}
+    inheritance_consumption: {pattern}
+    
+gap_symmetry_ratio: {B_to_A_mean / A_to_B_mean}
+  # 1.0 = 完美對稱
+  # 0.5-1.5 = 基本對稱
+  # <0.5 或 >2.0 = 明顯不對稱
+  
+shared_family_shift: {bool}
+  # B→A 是否落在與 A→B 相似的族群
+  
+shared_inheritance_consumption_patterns: {bool}
+  # 包裹消費模式是否相似
+  
+asymmetry_explanation: |
+  [若不對稱，差異是出在：]
+  - source task (Math vs Code 的起點差異)
+  - target task (Code vs Math 的終點差異)
+  - route / mechanism (傳播路徑差異)
+  - 其他因素
+```
+
+### 科學意義判定
+
+| 對稱性狀態 | 判定標準 | 意義 |
+|-----------|---------|------|
+| 完美對稱 | ratio ∈ [0.9, 1.1] | Transfer 是雙向普適，與方向無關 |
+| 基本對稱 | ratio ∈ [0.5, 1.5] | Transfer 有一定對稱性，但存在方向偏好 |
+| 明顯不對稱 | ratio < 0.5 或 > 2.0 | Transfer 高度依賴 source→target 選擇 |
+
+---
+
+## 6. Trajectory Delta Explained (軌跡改變說明)
 
 ### 這一批次改變了後續分佈的具體機制：
 
@@ -125,20 +170,23 @@ scientific_finding:
 - 如何避免表面波動
 - 關鍵轉折點的因果鏈
 - 對後續世代的具體影響
+- 與 A→B 的對稱/非對稱結構
 ```
 
 ### 與前代對比：
 
-| 指標 | Batch-1 (A→B) | Batch-2 (A→C) | 本批次 ({X→Y}) | 解讀 |
-|------|--------------|--------------|---------------|------|
+| 指標 | Batch-1 (A→B) | Batch-2 (A→C) | 本批次 (B→A) | 解讀 |
+|------|--------------|--------------|-------------|------|
 | Mean TG | 14.5pp | 6.8pp | {pp} | {} |
-| 對稱性 | - | - | {symmetric/asymmetric} | {} |
-| Domain Gap | 小 | 大 | {} | {} |
+| Gap Symmetry | - | - | {ratio} | {} |
+| Family Shift | {id} | {id} | {id} | {} |
+| Domain Gap | 小 | 大 | {評估} | {} |
 
 ### 科學結論：
 
 ```
 [這一批驗證了什麼假設，推翻了什麼假設，留下了什麼待解問題]
+[特別回答：Transfer 是否有方向性？]
 ```
 
 ---
