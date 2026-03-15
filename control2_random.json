@@ -1,0 +1,124 @@
+{
+  "random_pairs": {
+    "Zeta\u2192Alpha": {
+      "source": "Zeta",
+      "target": "Alpha",
+      "mean_tg": 0.6729999999999999,
+      "values": [
+        1.01,
+        -0.25,
+        1.79,
+        0.45,
+        0.26,
+        3.09,
+        0.05,
+        -0.96,
+        4.76,
+        -3.47
+      ],
+      "positive_windows": "7/10"
+    },
+    "Epsilon\u2192Epsilon": {
+      "source": "Epsilon",
+      "target": "Epsilon",
+      "mean_tg": 1.258,
+      "values": [
+        0.91,
+        3.3,
+        0.89,
+        0.7,
+        2.13,
+        5.54,
+        -0.78,
+        0.5,
+        -0.04,
+        -0.57
+      ],
+      "positive_windows": "7/10"
+    },
+    "Epsilon\u2192Delta": {
+      "source": "Epsilon",
+      "target": "Delta",
+      "mean_tg": 0.358,
+      "values": [
+        2.4,
+        -1.18,
+        2.49,
+        -0.53,
+        -0.59,
+        -2.62,
+        2.5,
+        2.62,
+        -2.74,
+        1.23
+      ],
+      "positive_windows": "5/10"
+    },
+    "Delta\u2192Beta": {
+      "source": "Delta",
+      "target": "Beta",
+      "mean_tg": 0.205,
+      "values": [
+        0.54,
+        1.47,
+        1.3,
+        -0.71,
+        0.95,
+        -1.04,
+        -0.09,
+        0.49,
+        0.82,
+        -1.68
+      ],
+      "positive_windows": "6/10"
+    },
+    "Zeta\u2192Gamma": {
+      "source": "Zeta",
+      "target": "Gamma",
+      "mean_tg": 1.784,
+      "values": [
+        3.93,
+        3.3,
+        -0.66,
+        0.1,
+        1.0,
+        4.03,
+        1.14,
+        2.83,
+        0.2,
+        1.97
+      ],
+      "positive_windows": "9/10"
+    },
+    "Zeta\u2192Zeta": {
+      "source": "Zeta",
+      "target": "Zeta",
+      "mean_tg": 0.03300000000000004,
+      "values": [
+        -2.84,
+        -1.63,
+        5.55,
+        -3.52,
+        2.87,
+        1.05,
+        0.82,
+        -2.07,
+        4.04,
+        -3.94
+      ],
+      "positive_windows": "5/10"
+    }
+  },
+  "comparison": {
+    "random_baseline_mean": 0.7185,
+    "random_baseline_range": [
+      0.03300000000000004,
+      1.784
+    ],
+    "real_mean": 9.334999999999999,
+    "delta": 8.616499999999998,
+    "significance": "HIGH",
+    "interpretation": "Real effect substantially exceeds random baseline"
+  },
+  "conclusion": "Control 2 completed"
+}
