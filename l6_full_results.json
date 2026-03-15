@@ -1,0 +1,352 @@
+{
+  "timestamp": "2026-03-15T09:20:27.810795",
+  "circuit_breaker_version": "2.0",
+  "runs": [
+    {
+      "run_id": 1,
+      "results": {
+        "RANDOM": {
+          "mean_tg": 9.665,
+          "mean_regret": 2.3716666666666675,
+          "worst_pair": 7.909000000000001,
+          "best_pair": 12.386,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 12.386,
+              "positive_rate": 100.0,
+              "std": 2.8917302778786267,
+              "regret": 2.3040000000000003,
+              "worst": 8.17,
+              "best": 16.67
+            },
+            {
+              "target": "Code",
+              "mean_tg": 7.909000000000001,
+              "positive_rate": 100.0,
+              "std": 2.4458472969504865,
+              "regret": 2.801,
+              "worst": 4.13,
+              "best": 13.89
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 8.7,
+              "positive_rate": 100.0,
+              "std": 1.806947702618977,
+              "regret": 2.0100000000000016,
+              "worst": 4.79,
+              "best": 11.33
+            }
+          ]
+        },
+        "CODE_FIRST": {
+          "mean_tg": 11.285666666666666,
+          "mean_regret": 0.7510000000000012,
+          "worst_pair": 9.744,
+          "best_pair": 14.163999999999998,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 14.163999999999998,
+              "positive_rate": 100.0,
+              "std": 1.595244181935794,
+              "regret": 0.5260000000000016,
+              "worst": 11.75,
+              "best": 16.67
+            },
+            {
+              "target": "Code",
+              "mean_tg": 9.744,
+              "positive_rate": 100.0,
+              "std": 2.3841736513937066,
+              "regret": 0.9660000000000011,
+              "worst": 5.63,
+              "best": 13.89
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 9.949,
+              "positive_rate": 100.0,
+              "std": 1.082741428042725,
+              "regret": 0.761000000000001,
+              "worst": 7.83,
+              "best": 11.36
+            }
+          ]
+        },
+        "LEARNED": {
+          "mean_tg": 11.285666666666666,
+          "mean_regret": 0.7510000000000012,
+          "worst_pair": 9.744,
+          "best_pair": 14.163999999999998,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 14.163999999999998,
+              "positive_rate": 100.0,
+              "std": 1.595244181935794,
+              "regret": 0.5260000000000016,
+              "worst": 11.75,
+              "best": 16.67
+            },
+            {
+              "target": "Code",
+              "mean_tg": 9.744,
+              "positive_rate": 100.0,
+              "std": 2.3841736513937066,
+              "regret": 0.9660000000000011,
+              "worst": 5.63,
+              "best": 13.89
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 9.949,
+              "positive_rate": 100.0,
+              "std": 1.082741428042725,
+              "regret": 0.761000000000001,
+              "worst": 7.83,
+              "best": 11.36
+            }
+          ]
+        }
+      },
+      "tier": "TIER_2",
+      "circuit_breakers": []
+    },
+    {
+      "run_id": 2,
+      "results": {
+        "RANDOM": {
+          "mean_tg": 8.622,
+          "mean_regret": 3.4146666666666667,
+          "worst_pair": 7.894,
+          "best_pair": 9.312000000000001,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 8.66,
+              "positive_rate": 100.0,
+              "std": 4.6910361328815195,
+              "regret": 6.029999999999999,
+              "worst": 1.13,
+              "best": 15.41
+            },
+            {
+              "target": "Code",
+              "mean_tg": 7.894,
+              "positive_rate": 100.0,
+              "std": 2.8363328436556947,
+              "regret": 2.8160000000000007,
+              "worst": 1.51,
+              "best": 11.07
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 9.312000000000001,
+              "positive_rate": 100.0,
+              "std": 3.205535212721894,
+              "regret": 1.3979999999999997,
+              "worst": 4.06,
+              "best": 14.18
+            }
+          ]
+        },
+        "CODE_FIRST": {
+          "mean_tg": 12.056333333333333,
+          "mean_regret": -0.019666666666665833,
+          "worst_pair": 9.594,
+          "best_pair": 15.357999999999999,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 15.357999999999999,
+              "positive_rate": 100.0,
+              "std": 1.8068912529535361,
+              "regret": -0.6679999999999993,
+              "worst": 12.29,
+              "best": 19.31
+            },
+            {
+              "target": "Code",
+              "mean_tg": 9.594,
+              "positive_rate": 100.0,
+              "std": 1.1940117252355607,
+              "regret": 1.1160000000000014,
+              "worst": 6.8,
+              "best": 11.2
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 11.217,
+              "positive_rate": 100.0,
+              "std": 1.515421063599157,
+              "regret": -0.5069999999999997,
+              "worst": 9.12,
+              "best": 14.18
+            }
+          ]
+        },
+        "LEARNED": {
+          "mean_tg": 12.056333333333333,
+          "mean_regret": -0.019666666666665833,
+          "worst_pair": 9.594,
+          "best_pair": 15.357999999999999,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 15.357999999999999,
+              "positive_rate": 100.0,
+              "std": 1.8068912529535361,
+              "regret": -0.6679999999999993,
+              "worst": 12.29,
+              "best": 19.31
+            },
+            {
+              "target": "Code",
+              "mean_tg": 9.594,
+              "positive_rate": 100.0,
+              "std": 1.1940117252355607,
+              "regret": 1.1160000000000014,
+              "worst": 6.8,
+              "best": 11.2
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 11.217,
+              "positive_rate": 100.0,
+              "std": 1.515421063599157,
+              "regret": -0.5069999999999997,
+              "worst": 9.12,
+              "best": 14.18
+            }
+          ]
+        }
+      },
+      "tier": "TIER_2",
+      "circuit_breakers": []
+    },
+    {
+      "run_id": 3,
+      "results": {
+        "RANDOM": {
+          "mean_tg": 9.903666666666668,
+          "mean_regret": 2.1329999999999996,
+          "worst_pair": 8.534,
+          "best_pair": 11.601,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 11.601,
+              "positive_rate": 100.0,
+              "std": 4.651768373425315,
+              "regret": 3.0889999999999986,
+              "worst": 2.88,
+              "best": 16.27
+            },
+            {
+              "target": "Code",
+              "mean_tg": 8.534,
+              "positive_rate": 100.0,
+              "std": 1.9556645929197576,
+              "regret": 2.176,
+              "worst": 5.45,
+              "best": 12.55
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 9.576,
+              "positive_rate": 100.0,
+              "std": 2.582604112131784,
+              "regret": 1.1340000000000003,
+              "worst": 5.56,
+              "best": 13.64
+            }
+          ]
+        },
+        "CODE_FIRST": {
+          "mean_tg": 11.681666666666667,
+          "mean_regret": 0.3550000000000004,
+          "worst_pair": 9.617999999999999,
+          "best_pair": 14.427000000000001,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 14.427000000000001,
+              "positive_rate": 100.0,
+              "std": 1.4393821591224474,
+              "regret": 0.2629999999999981,
+              "worst": 12.47,
+              "best": 17.08
+            },
+            {
+              "target": "Code",
+              "mean_tg": 9.617999999999999,
+              "positive_rate": 100.0,
+              "std": 1.2160493411042168,
+              "regret": 1.0920000000000023,
+              "worst": 8.27,
+              "best": 12.74
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 11.0,
+              "positive_rate": 100.0,
+              "std": 1.533649242819231,
+              "regret": -0.28999999999999915,
+              "worst": 7.77,
+              "best": 13.64
+            }
+          ]
+        },
+        "LEARNED": {
+          "mean_tg": 11.681666666666667,
+          "mean_regret": 0.3550000000000004,
+          "worst_pair": 9.617999999999999,
+          "best_pair": 14.427000000000001,
+          "targets": [
+            {
+              "target": "Math",
+              "mean_tg": 14.427000000000001,
+              "positive_rate": 100.0,
+              "std": 1.4393821591224474,
+              "regret": 0.2629999999999981,
+              "worst": 12.47,
+              "best": 17.08
+            },
+            {
+              "target": "Code",
+              "mean_tg": 9.617999999999999,
+              "positive_rate": 100.0,
+              "std": 1.2160493411042168,
+              "regret": 1.0920000000000023,
+              "worst": 8.27,
+              "best": 12.74
+            },
+            {
+              "target": "Planning",
+              "mean_tg": 11.0,
+              "positive_rate": 100.0,
+              "std": 1.533649242819231,
+              "regret": -0.28999999999999915,
+              "worst": 7.77,
+              "best": 13.64
+            }
+          ]
+        }
+      },
+      "tier": "TIER_2",
+      "circuit_breakers": []
+    }
+  ],
+  "aggregate": {
+    "learned_mean": 11.674555555555555,
+    "code_first_mean": 11.674555555555555,
+    "delta": 0.0,
+    "tier_distribution": {
+      "TIER_2": 3
+    }
+  },
+  "verdict": "TIER_2_MATCH",
+  "action": "PUBLISH L5+L6 (Learned matches Code-First)"
+}

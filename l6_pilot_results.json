@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-03-15T08:49:09.236471",
+  "policies": [
+    "RANDOM",
+    "CODE_FIRST",
+    "LEARNED"
+  ],
+  "metrics": {
+    "RANDOM": {
+      "mean_tg": 10.115666666666666,
+      "positive_rate": 100.0,
+      "mean_regret": 1.9210000000000005,
+      "worst_pair": 8.286,
+      "best_pair": 12.532,
+      "std": 3.1827825177909275
+    },
+    "CODE_FIRST": {
+      "mean_tg": 11.843666666666667,
+      "positive_rate": 100.0,
+      "mean_regret": 0.1930000000000008,
+      "worst_pair": 10.01,
+      "best_pair": 14.639,
+      "std": 2.418654561711715
+    },
+    "LEARNED": {
+      "mean_tg": 11.875666666666666,
+      "positive_rate": 100.0,
+      "mean_regret": 0.16100000000000017,
+      "worst_pair": 9.756,
+      "best_pair": 14.530000000000001,
+      "std": 2.635809405518962
+    }
+  },
+  "success_criteria": {
+    "Mean TG (\u2265 CF - 0.5)": true,
+    "Positive Rate (\u2265 CF - 5%)": true,
+    "Mean Regret (< CF)": true,
+    "Worst Pair (\u2265 CF - 1)": true
+  },
+  "all_passed": true,
+  "circuit_breakers_fired": [
+    "Learned positive rate < Random + 1pp"
+  ],
+  "verdict": "FAIL"
+}

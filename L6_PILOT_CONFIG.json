@@ -1,0 +1,93 @@
+{
+  "experiment_name": "L6_PILOT",
+  "phase": "L6_Pilot",
+  "description": "Learned source selection policy vs baselines",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0",
+  
+  "core_question": "Can system learn reusable transfer policy that matches/exceeds Code-First heuristic?",
+  
+  "policies_compared": [
+    {
+      "name": "RANDOM",
+      "type": "baseline",
+      "selection": "uniform_random",
+      "expected_mean_tg": "~6pp"
+    },
+    {
+      "name": "CODE_FIRST",
+      "type": "heuristic",
+      "selection": "priority=[Code, Math, Planning]",
+      "expected_mean_tg": "~10pp"
+    },
+    {
+      "name": "LEARNED_SIMPLE",
+      "type": "learned",
+      "model": "lightweight_scorer",
+      "features": [
+        "source_suitability_prior",
+        "pair_history_mean_tg",
+        "confidence_weight",
+        "variance_penalty"
+      ],
+      "formula": "score = 0.4*prior + 0.3*history + 0.2*confidence - 0.1*variance",
+      "target": "match_or_exceed_CODE_FIRST"
+    }
+  ],
+  
+  "success_criteria_ALL_MUST_PASS": {
+    "mean_tg": {
+      "learned_vs_codefirst": ">= -0.5pp",
+      "description": "Learned mean TG within 0.5pp of Code-First"
+    },
+    "positive_rate": {
+      "learned_vs_codefirst": ">= -5pp",
+      "description": "Learned positive rate within 5% of Code-First"
+    },
+    "mean_regret": {
+      "learned_vs_codefirst": "<",
+      "description": "Learned regret strictly better than Code-First"
+    },
+    "worst_pair_floor": {
+      "learned_vs_codefirst": ">= -1pp",
+      "description": "Learned worst pair not worse than Code-First by >1pp"
+    },
+    "holdout_validation": {
+      "description": "Must hold on unseen target instances",
+      "method": "Leave-one-pair-out validation"
+    }
+  },
+  
+  "oracle_definition": {
+    "description": "Best possible source for each target",
+    "from_l5_data": {
+      "Math_target": "Code (14.69pp)",
+      "Code_target": "Code (10.71pp) or Math (9.77pp)",
+      "Planning_target": "Code (10.71pp)"
+    }
+  },
+  
+  "pilot_structure": {
+    "training_data": "L5 frozen artifacts",
+    "evaluation_targets": ["Math", "Code", "Planning"],
+    "windows_per_policy": 10,
+    "holdout_split": "Leave-one-pair-out"
+  },
+  
+  "circuit_breakers_IMMEDIATE": {
+    "CB1": "Learned holdout < Code-First - 1pp",
+    "CB2": "Learned regret NOT better than Code-First",
+    "CB3": "Learned positive rate < Random + 1pp for 2 consecutive rounds"
+  },
+  
+  "proceed_to_full_l6": {
+    "condition": "Pilot passes ALL 5 success criteria",
+    "action": "Execute Full L6 with expanded targets"
+  },
+  
+  "fallback_to_l5_standalone": {
+    "trigger": "Any circuit breaker fired OR Pilot fails success criteria",
+    "action": "Immediately publish L5 standalone",
+    "prepared_package": "publication/l5_standby/"
+  }
+}

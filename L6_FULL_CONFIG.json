@@ -1,0 +1,63 @@
+{
+  "experiment_name": "L6_FULL_VALIDATION",
+  "phase": "L6",
+  "version": "1.0",
+  
+  "pilot_result": "PASS_MARGINAL",
+  "pilot_note": "Learned matched Code-First (+0.04pp) with better regret",
+  
+  "circuit_breaker_version": "2.0",
+  "circuit_breakers": {
+    "CB1": "learned_mean_tg < random_mean_tg - 2pp",
+    "CB2": "learned_positive_rate < 0.90",
+    "CB3": "learned_regret > code_first_regret + 0.5",
+    "CB4": "learned_worst_pair < 6pp"
+  },
+  
+  "success_tiers": {
+    "tier_1_complete": {
+      "description": "Clear superiority",
+      "conditions": [
+        "learned_mean_tg > code_first_mean_tg + 1pp",
+        "learned_regret < code_first_regret",
+        "reproducibility: 3/3 runs positive"
+      ]
+    },
+    "tier_2_match": {
+      "description": "Viable alternative",
+      "conditions": [
+        "learned_mean_tg >= code_first_mean_tg - 0.5pp",
+        "learned_regret <= code_first_regret + 0.1",
+        "reproducibility: 2/3 runs positive"
+      ]
+    },
+    "tier_3_marginal": {
+      "description": "Needs refinement",
+      "conditions": ["other positive results"]
+    },
+    "fail": {
+      "description": "Not viable",
+      "conditions": [
+        "learned_mean_tg < code_first_mean_tg - 1pp",
+        "OR learned_regret > code_first_regret + 0.3"
+      ]
+    }
+  },
+  
+  "execution_plan": {
+    "n_runs": 3,
+    "n_windows_per_target": 10,
+    "targets": ["Math", "Code", "Planning"],
+    "policies": ["RANDOM", "CODE_FIRST", "LEARNED"],
+    
+    "stop_early_conditions": [
+      "2 runs consistently Tier 1 or Tier 2 -> can conclude",
+      "2 runs inconsistent -> need 3rd run",
+      "1 run Fail -> consider early termination"
+    ]
+  },
+  
+  "enhanced_monitoring": true,
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0"
+}
