@@ -48,20 +48,23 @@ evidence_matrix:
       
   Planning:
     as_source:
-      Planning→Code: {mean_tg: null, windows: null, status: PENDING}
+      Planning→Code: {mean_tg: 7.5, windows: 9, status: VERIFIED}
       Planning→Math: {mean_tg: null, windows: null, status: PENDING}
     as_target:
-      Code→Planning: {mean_tg: 6.8, windows: 8, status: VERIFIED}
+      Code→Planning: {mean_tg: 10.71, windows: 10, status: VERIFIED}
       Math→Planning: {mean_tg: null, windows: null, status: PENDING}
     
-    directionality_bias: UNKNOWN
-    evidence_strength: WEAK  # only as target verified
+    directionality_bias: MODERATE_SOURCE
+    evidence_strength: MODERATE  # both directions now verified
     
     hypothesis: |
-      Planning may be:
-      - Most domain-specific (hardest to transfer from)
-      - Or receptive to high-abstraction sources
-      - Need complete matrix to determine
+      Planning is a moderate source (7.5pp to Code), weaker than Code (10.71pp)
+      but still viable. Directionality ratio = 1.428 (near symmetric but biased).
+      
+      Updated assessment:
+      - Planning is not target-only
+      - Planning can transfer to Code but less efficiently than reverse
+      - Source suitability: Code > Planning > Math (as target receptivity)
 
 # Directionality Metrics
 directionality_gradients:
