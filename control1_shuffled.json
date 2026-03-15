@@ -1,0 +1,35 @@
+{
+  "Code\u2192Math (Batch-1)": {
+    "original_mean": 14.688999999999998,
+    "shuffled_mean": 14.688999999999998,
+    "shuffled_std": 0.0,
+    "ci_95": [
+      14.688999999999998,
+      14.688999999999998
+    ],
+    "original_in_ci": true,
+    "n_shuffles": 1000
+  },
+  "Code\u2192Planning (Batch-4)": {
+    "original_mean": 10.712,
+    "shuffled_mean": 10.712,
+    "shuffled_std": 0.0,
+    "ci_95": [
+      10.712,
+      10.712
+    ],
+    "original_in_ci": true,
+    "n_shuffles": 1000
+  },
+  "Planning\u2192Math (Batch-7)": {
+    "original_mean": 6.255,
+    "shuffled_mean": 6.255,
+    "shuffled_std": 0.0,
+    "ci_95": [
+      6.255,
+      6.255
+    ],
+    "original_in_ci": true,
+    "n_shuffles": 1000
+  }
+}
