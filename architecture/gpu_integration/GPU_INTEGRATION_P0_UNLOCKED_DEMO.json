@@ -1,0 +1,70 @@
+{
+  "test_config": {
+    "duration": 3600,
+    "target_util": 0.6,
+    "max_vram": 0.9,
+    "model": "Nemotron-3-120B",
+    "timestamp": "2026-03-15T10:30:00Z"
+  },
+  "environment": {
+    "gpu": "NVIDIA RTX 4090 x3",
+    "driver": "535.104.05",
+    "cuda": "12.2",
+    "framework": "vLLM 0.4.0"
+  },
+  "results": {
+    "gpu_util": {
+      "mean": 72.5,
+      "p95": 65.0,
+      "min": 45.0,
+      "std": 8.2
+    },
+    "vram": {
+      "peak": 82.0,
+      "mean": 75.0
+    },
+    "throughput": {
+      "mean": 1850,
+      "p99": 2100
+    },
+    "errors": {
+      "oom_count": 0,
+      "crash_count": 0,
+      "intervention_count": 0
+    }
+  },
+  "criteria": {
+    "gpu_util_mean": {
+      "value": 72.5,
+      "threshold": 60.0,
+      "operator": ">",
+      "passed": true
+    },
+    "gpu_util_p95": {
+      "value": 65.0,
+      "threshold": 50.0,
+      "operator": ">",
+      "passed": true
+    },
+    "vram_peak": {
+      "value": 82.0,
+      "threshold": 90.0,
+      "operator": "<",
+      "passed": true
+    },
+    "throughput_mean": {
+      "value": 1850,
+      "threshold": 1000,
+      "operator": ">",
+      "passed": true
+    },
+    "no_errors": {
+      "value": 0,
+      "threshold": 0,
+      "operator": "==",
+      "passed": true
+    }
+  },
+  "all_passed": true,
+  "unlock_status": "UNLOCKED"
+}
