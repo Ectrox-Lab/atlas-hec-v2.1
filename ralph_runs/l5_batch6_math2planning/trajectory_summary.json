@@ -1,0 +1,62 @@
+{
+  "batch": "L5_BATCH6_MATH2PLANNING",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0",
+  "windows": 10,
+  "mean_tg_pp": 7.09,
+  "positive_windows": "9/10",
+  "trajectory_log": [
+    {
+      "window": 1,
+      "tg": 7.95,
+      "checksum": "9498e029d0327ce7..."
+    },
+    {
+      "window": 2,
+      "tg": 7.06,
+      "checksum": "9c281ab11cf983df..."
+    },
+    {
+      "window": 3,
+      "tg": 7.08,
+      "checksum": "57704070f8653033..."
+    },
+    {
+      "window": 4,
+      "tg": 5.48,
+      "checksum": "7cb3d3320e8353cd..."
+    },
+    {
+      "window": 5,
+      "tg": 7.43,
+      "checksum": "b879aef6f4c8555b..."
+    },
+    {
+      "window": 6,
+      "tg": 9.72,
+      "checksum": "f3d4cce3c2a01ad1..."
+    },
+    {
+      "window": 7,
+      "tg": 7.97,
+      "checksum": "eec44023ec77b98e..."
+    },
+    {
+      "window": 8,
+      "tg": 4.21,
+      "checksum": "bc8cbc6249a642f8..."
+    },
+    {
+      "window": 9,
+      "tg": 7.17,
+      "checksum": "6a584d3e58401c15..."
+    },
+    {
+      "window": 10,
+      "tg": 6.87,
+      "checksum": "85b246098100ee98..."
+    }
+  ],
+  "matrix_status": "5/6 pairs completed",
+  "status": "COMPLETED"
+}
