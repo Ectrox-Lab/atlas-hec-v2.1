@@ -1,0 +1,63 @@
+{
+  "batch": "L5_BATCH7_PLANNING2MATH",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0",
+  "windows": 10,
+  "mean_tg_pp": 6.25,
+  "positive_windows": "6/10",
+  "trajectory_log": [
+    {
+      "window": 1,
+      "tg": 3.7,
+      "checksum": "95b44253988bd8c4..."
+    },
+    {
+      "window": 2,
+      "tg": 4.7,
+      "checksum": "cc3eb5c9de0990a6..."
+    },
+    {
+      "window": 3,
+      "tg": 4.43,
+      "checksum": "5c6d27d17d78c45e..."
+    },
+    {
+      "window": 4,
+      "tg": 7.6,
+      "checksum": "91dacec65cfb6220..."
+    },
+    {
+      "window": 5,
+      "tg": 9.14,
+      "checksum": "528642b3f0aadc50..."
+    },
+    {
+      "window": 6,
+      "tg": 5.0,
+      "checksum": "a874c294ee8077c6..."
+    },
+    {
+      "window": 7,
+      "tg": 6.25,
+      "checksum": "5e9f660dfbe5c093..."
+    },
+    {
+      "window": 8,
+      "tg": 12.47,
+      "checksum": "4dc2d3d385ea53b3..."
+    },
+    {
+      "window": 9,
+      "tg": 3.75,
+      "checksum": "54b71d1334a3eae0..."
+    },
+    {
+      "window": 10,
+      "tg": 5.51,
+      "checksum": "8c134413f6883fdd..."
+    }
+  ],
+  "matrix_status": "6/6 COMPLETE",
+  "milestone": "L5 Full Validation Complete",
+  "status": "COMPLETED"
+}

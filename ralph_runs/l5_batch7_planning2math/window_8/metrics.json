@@ -1,0 +1,15 @@
+{
+  "window": 8,
+  "source_task": "Planning",
+  "target_task": "Math",
+  "transfer_gap_pp": 12.47,
+  "code_retention_pct": 81.23,
+  "self_gap_pp": 15.02,
+  "leakage_status": "clean",
+  "data_checksum": "sha256:4dc2d3d385ea53b3671b7425c8f71d03c5b63d7c1fa114061f8879b3b03663a3",
+  "experiment": "L5_BATCH7_PLANNING2MATH",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0",
+  "final_pair": true,
+  "timestamp": "2026-03-15T08:20:09.225288"
+}
