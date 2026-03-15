@@ -1,0 +1,22 @@
+{
+  "experiment_name": "L5_BATCH4_CODE2PLANNING",
+  "phase": "L5_Full",
+  "source_task": "Code",
+  "target_task": "Planning",
+  "batch_number": 4,
+  "seeds": 800,
+  "windows": 10,
+  "inheritance_from": ["L5_BATCH1_CODE2MATH", "L5_BATCH2_CODE2PLANNING"],
+  "trajectory_goal": "驗證 Code source 優勢是否普遍延伸至 Planning domain",
+  "expected_tg_range": "10-13pp",
+  "thresholds": {
+    "success_mean_tg": "6pp",
+    "min_windows_positive": 6,
+    "circuit_breaker_tg": "0pp"
+  },
+  "sole_reference": "延續 Batch-1/Batch-2/Batch-3 建立的內部軌跡規律",
+  "auto_continue": true,
+  "output_dir": "ralph_runs/l5_batch4_code2planning",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0"
+}

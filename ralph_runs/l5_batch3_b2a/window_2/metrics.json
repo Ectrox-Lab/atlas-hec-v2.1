@@ -1,0 +1,12 @@
+{
+  "hour": 2,
+  "transfer_gap_pp": 9.49,
+  "code_retention_pct": 90.98,
+  "self_gap_pp": 12.18,
+  "leakage_status": "clean",
+  "data_checksum": "sha256:eb62416566cfec50932c964ff320cf2d24c74b06436e266aab0d53d032a52cbf",
+  "experiment": "L5_BATCH3_B2A",
+  "window": 2,
+  "source_task": "Math",
+  "target_task": "Code"
+}

@@ -1,0 +1,14 @@
+{
+  "window": 9,
+  "source_task": "Code",
+  "target_task": "Planning",
+  "transfer_gap_pp": 9.65,
+  "code_retention_pct": 87.11,
+  "self_gap_pp": 13.14,
+  "leakage_status": "clean",
+  "data_checksum": "sha256:ab483580890eda85a437c47a4418cc90a5baafe2f1c780846b087dbda71d3c28",
+  "experiment": "L5_BATCH4_CODE2PLANNING",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0",
+  "timestamp": "2026-03-15T08:17:12.310260"
+}

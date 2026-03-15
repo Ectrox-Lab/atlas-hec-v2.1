@@ -1,0 +1,62 @@
+{
+  "batch": "L5_BATCH4_CODE2PLANNING",
+  "trajectory_principle": "v3.0",
+  "sole_reference_principle": "v4.0",
+  "windows": 10,
+  "mean_tg_pp": 10.71,
+  "positive_windows": "10/10",
+  "trajectory_log": [
+    {
+      "window": 1,
+      "tg": 10.36,
+      "checksum": "b5485614b3b7e1a9..."
+    },
+    {
+      "window": 2,
+      "tg": 11.97,
+      "checksum": "5412ae5eb550aafd..."
+    },
+    {
+      "window": 3,
+      "tg": 13.31,
+      "checksum": "99bfe4081425908f..."
+    },
+    {
+      "window": 4,
+      "tg": 11.62,
+      "checksum": "5ab45308d7370afd..."
+    },
+    {
+      "window": 5,
+      "tg": 9.25,
+      "checksum": "6b0cfba5c971391d..."
+    },
+    {
+      "window": 6,
+      "tg": 9.59,
+      "checksum": "30d90e68d6053d7f..."
+    },
+    {
+      "window": 7,
+      "tg": 9.82,
+      "checksum": "d41211b460a5880f..."
+    },
+    {
+      "window": 8,
+      "tg": 11.38,
+      "checksum": "2eef22a227bbecaf..."
+    },
+    {
+      "window": 9,
+      "tg": 9.65,
+      "checksum": "ab483580890eda85..."
+    },
+    {
+      "window": 10,
+      "tg": 10.17,
+      "checksum": "952803f7267f5b28..."
+    }
+  ],
+  "continuity_check": "\u5ef6\u7e8c Batch-1/Batch-3 \u65b9\u5411\u6027\u767c\u73fe",
+  "status": "COMPLETED"
+}
