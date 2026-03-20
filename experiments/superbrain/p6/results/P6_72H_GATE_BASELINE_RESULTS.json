@@ -1,0 +1,36 @@
+{
+  "run_id": "P6_72H_GATE_BASELINE",
+  "timestamp": "2026-03-20T22:57:44.507169",
+  "config": {
+    "duration_hours": 72,
+    "epoch_minutes": 60,
+    "anomaly_injection_rate": 0.1,
+    "enable_memory_gate": true
+  },
+  "result": {
+    "verdict": "PASS",
+    "state": "COMPLETE",
+    "epochs_completed": 72,
+    "stop_reason": null
+  },
+  "metrics_summary": {
+    "core_drift_count": 0,
+    "min_detector_recall": 1.0,
+    "min_capability_diversity": 0.5756006753129992,
+    "max_maintenance_overhead": 0.07084435500829099,
+    "total_memory_events": 78,
+    "total_memory_overhead_ms": 7.7748,
+    "avg_memory_overhead_ms": 0.10798333333333333
+  },
+  "memory_gate_stats": {
+    "total_events": 78,
+    "admitted": 78,
+    "caution": 0,
+    "rejected": 0,
+    "admission_rate": 1.0,
+    "caution_rate": 0.0,
+    "rejection_rate": 0.0,
+    "avg_score": 0.825
+  },
+  "runtime_seconds": 0.018561
+}
