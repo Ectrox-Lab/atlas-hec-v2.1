@@ -386,6 +386,53 @@ HEC_1B_PREFLIGHT_REPORT.md
 
 ---
 
+## 9. 实验队列（通过后执行顺序）
+
+### 9.1 第一优先级：核心验证
+
+必须通过 Preflight Gate 后立即执行：
+
+| 实验 | 配置 | 目的 |
+|------|------|------|
+| E1 | Baseline-1B | 建立性能基线 |
+| E2 | HEC-1B(min) | 验证最小 HEC 机制有效 |
+| E3 | E1 vs E2 对比 | ICR/MCI/SMCE/RSS 首次测量 |
+
+### 9.2 第二优先级：骨架消融
+
+E1-E3 完成后，根据结果决定是否执行：
+
+| 实验 | 配置 | 目的 | 触发条件 |
+|------|------|------|----------|
+| E4 | Baseline + AttnRes-like | 验证骨架改造独立效果 | A-line备忘 `ATTNRES_HEC_ARCH_NOTE.md` |
+| E5 | HEC-1B(min) + AttnRes-like | 验证骨架与 HEC 协同 | E4 显示潜力 |
+
+**AttnRes 定位**: 骨架层优化候选，非 HEC 本体理论。详见 `../p6_stage2/ATTNRES_HEC_ARCH_NOTE.md`。
+
+**关键问题**:
+- AttnRes 只是通用 backbone 优化，还是特别增强 HEC？
+- 是否改善 ICR/MCI/SMCE/RSS 指标？
+- 小模型（1B-3B）是否比大模型更受益？
+
+### 9.3 第三优先级：扩展验证
+
+E1-E5 完成后，视资源决定：
+- 更大模型规模 (2B, 3B)
+- 更长训练时长
+- 完整 P6-S2 机制集成
+
+---
+
+## 10. 相关文档索引
+
+| 文档 | 路径 | 说明 |
+|------|------|------|
+| A-line 冻结备忘 | `../p6_stage2/A_BASELINE_FREEZE.md` | A-line 当前状态与解冻条件 |
+| AttnRes 架构备忘 | `../p6_stage2/ATTNRES_HEC_ARCH_NOTE.md` | 外部论文启发与 B1 集成建议 |
+| Memory Gate Spec | `../p6_stage2/MEMORY_GATE_V0_1_SPEC.md` | HEC selective retrieval 机制 |
+
+---
+
 *Preflight Gate: 冻结 A 线后的 B 线第一步*  
 *目标: 证明 HEC 最小机制在真实训练态可运行、可测量*  
 *非目标: 证明 HEC 超越 SOTA 或实现完全自主*
